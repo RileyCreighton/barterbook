@@ -1,6 +1,7 @@
 import { createPrivateKey, sign } from "node:crypto";
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { Keypair, SystemProgram, Transaction } from "@solana/web3.js";
+import bs58 from "bs58";
 import { b64, equalBytes, unb64 } from "../src/shared/crypto";
 import {
   buildTransaction,
@@ -17,6 +18,18 @@ import {
 } from "../src/client/wallet";
 import type { BrowserAccount, BrowserWallet } from "../src/client/wallet";
 import { fixture } from "./fixtures";
+
+function detachedSignature(key: Keypair, message: Uint8Array): Uint8Array {
+  const privateKey = createPrivateKey({
+    key: Buffer.concat([
+      Buffer.from("302e020100300506032b657004220420", "hex"),
+      Buffer.from(key.secretKey.slice(0, 32)),
+    ]),
+    format: "der",
+    type: "pkcs8",
+  });
+  return new Uint8Array(sign(null, message, privateKey));
+}
 
 it("never prompts a payer when encoded ATA creations exceed its accepted SOL allowance", async () => {
   const f = fixture();
@@ -56,18 +69,10 @@ function fakeWallet(
     return [{ signedTransaction: transform ? transform(signed) : signed }];
   });
   const signMessage = vi.fn(async (input: { message: Uint8Array }) => {
-    const privateKey = createPrivateKey({
-      key: Buffer.concat([
-        Buffer.from("302e020100300506032b657004220420", "hex"),
-        Buffer.from(key.secretKey.slice(0, 32)),
-      ]),
-      format: "der",
-      type: "pkcs8",
-    });
     return [
       {
         signedMessage: input.message,
-        signature: new Uint8Array(sign(null, input.message, privateKey)),
+        signature: detachedSignature(key, input.message),
         signatureType: "ed25519",
       },
     ];
@@ -107,6 +112,226 @@ function fakeWallet(
     },
   };
 }
+
+function fakeSolflare(key: Keypair) {
+  const adapter = fakeWallet(key);
+  Object.defineProperty(adapter.wallet, "name", { value: "Solflare" });
+  const provider = {
+    isSolflare: true,
+    isConnected: true,
+    publicKey: key.publicKey,
+    request: vi.fn(
+      async (input: { method: string; params: { message: string } }) => ({
+        publicKey: key.publicKey.toBase58(),
+        signature: bs58.encode(
+          detachedSignature(key, bs58.decode(input.params.message)),
+        ),
+      }),
+    ),
+  };
+  vi.stubGlobal("window", { solflare: provider });
+  return { ...adapter, provider };
+}
+
+describe("Solflare transaction-message compatibility (fake provider, not extension proof)", () => {
+  afterEach(() => vi.unstubAllGlobals());
+
+  for (const count of [2, 3])
+    it(`collects ${count} exact signatures with Bob as payer without sending earlier signatures to Solflare`, async () => {
+      const f = fixture(count);
+      f.terms.feePayer = f.owners[1].publicKey.toBase58();
+      let wire = unsignedWire(f.plan);
+      const original = wireParts(unb64(wire)).message;
+      for (const owner of [f.owners[1], f.owners[0], ...f.owners.slice(2)]) {
+        const adapter = fakeSolflare(owner);
+        const before = wireParts(unb64(wire));
+        wire = await signFrozenTransaction(
+          await connectWallet(adapter.wallet),
+          wire,
+          f.plan,
+          f.terms,
+        );
+        expect(adapter.provider.request).toHaveBeenCalledExactlyOnceWith({
+          method: "signTransaction",
+          params: { message: bs58.encode(original) },
+        });
+        expect(adapter.signTransaction).not.toHaveBeenCalled();
+        expect(adapter.signMessage).not.toHaveBeenCalled();
+        const after = wireParts(unb64(wire));
+        expect(after.message).toEqual(original);
+        for (let i = 0; i < before.signers.length; i++)
+          if (before.signers[i] !== owner.publicKey.toBase58())
+            expect(after.signatures[i]).toEqual(before.signatures[i]);
+      }
+      await verifyWireSignatures(unb64(wire), f.plan, true);
+    });
+
+  it("rejects a signature over a changed blockhash without retrying another signing method", async () => {
+    const f = fixture();
+    const adapter = fakeSolflare(f.owners[0]);
+    const changed = buildTransaction(f.plan);
+    changed.recentBlockhash = Keypair.generate().publicKey.toBase58();
+    adapter.provider.request.mockResolvedValueOnce({
+      publicKey: f.owners[0].publicKey.toBase58(),
+      signature: bs58.encode(
+        detachedSignature(f.owners[0], changed.serializeMessage()),
+      ),
+    });
+    await expect(
+      signFrozenTransaction(
+        await connectWallet(adapter.wallet),
+        unsignedWire(f.plan),
+        f.plan,
+        f.terms,
+      ),
+    ).rejects.toThrow(/different transaction|invalid signature/);
+    expect(adapter.provider.request).toHaveBeenCalledOnce();
+    expect(adapter.signTransaction).not.toHaveBeenCalled();
+    expect(adapter.signMessage).not.toHaveBeenCalled();
+  });
+
+  it("rejects a correct-address response signed by another key", async () => {
+    const f = fixture();
+    const adapter = fakeSolflare(f.owners[0]);
+    const wire = unsignedWire(f.plan);
+    adapter.provider.request.mockResolvedValueOnce({
+      publicKey: f.owners[0].publicKey.toBase58(),
+      signature: bs58.encode(
+        detachedSignature(f.owners[1], wireParts(unb64(wire)).message),
+      ),
+    });
+    await expect(
+      signFrozenTransaction(
+        await connectWallet(adapter.wallet),
+        wire,
+        f.plan,
+        f.terms,
+      ),
+    ).rejects.toThrow(/invalid signature/);
+  });
+
+  for (const response of [
+    undefined,
+    {},
+    { signature: "!".repeat(88) },
+    { signature: "1".repeat(63) },
+    { signature: "1".repeat(89) },
+    { publicKey: "wrong", signature: "1".repeat(64) },
+  ])
+    it(`rejects malformed or wrong-account responses: ${JSON.stringify(response)}`, async () => {
+      const f = fixture();
+      const adapter = fakeSolflare(f.owners[0]);
+      adapter.provider.request.mockResolvedValueOnce(response as never);
+      await expect(
+        signFrozenTransaction(
+          await connectWallet(adapter.wallet),
+          unsignedWire(f.plan),
+          f.plan,
+          f.terms,
+        ),
+      ).rejects.toThrow(/invalid transaction signature/);
+    });
+
+  for (const change of [
+    "missing",
+    "wrong account",
+    "disconnected",
+    "not Solflare",
+  ])
+    it(`does not prompt an injected provider that is ${change}`, async () => {
+      const f = fixture();
+      const adapter = fakeSolflare(f.owners[0]);
+      if (change === "missing") vi.stubGlobal("window", {});
+      if (change === "wrong account")
+        adapter.provider.publicKey = f.owners[1].publicKey;
+      if (change === "disconnected") adapter.provider.isConnected = false;
+      if (change === "not Solflare") adapter.provider.isSolflare = false;
+      await expect(
+        signFrozenTransaction(
+          await connectWallet(adapter.wallet),
+          unsignedWire(f.plan),
+          f.plan,
+          f.terms,
+        ),
+      ).rejects.toThrow(/unavailable|account changed/);
+      expect(adapter.provider.request).not.toHaveBeenCalled();
+      expect(adapter.signTransaction).not.toHaveBeenCalled();
+    });
+
+  for (const change of [
+    "provider replaced",
+    "provider account",
+    "standard account",
+  ])
+    it(`discards approval when ${change} changes during the prompt`, async () => {
+      const f = fixture();
+      const adapter = fakeSolflare(f.owners[0]);
+      const original = adapter.provider.request.getMockImplementation()!;
+      adapter.provider.request.mockImplementationOnce(async (input) => {
+        const output = await original(input);
+        if (change === "provider replaced")
+          vi.stubGlobal("window", { solflare: { ...adapter.provider } });
+        if (change === "provider account")
+          adapter.provider.publicKey = f.owners[1].publicKey;
+        if (change === "standard account") adapter.setAccounts([]);
+        return output;
+      });
+      await expect(
+        signFrozenTransaction(
+          await connectWallet(adapter.wallet),
+          unsignedWire(f.plan),
+          f.plan,
+          f.terms,
+        ),
+      ).rejects.toThrow(/account changed/);
+    });
+
+  it("preserves a cancellation or unsupported-method error without a second prompt", async () => {
+    const f = fixture();
+    const adapter = fakeSolflare(f.owners[0]);
+    const error = new Error("Transaction cancelled");
+    adapter.provider.request.mockRejectedValueOnce(error);
+    await expect(
+      signFrozenTransaction(
+        await connectWallet(adapter.wallet),
+        unsignedWire(f.plan),
+        f.plan,
+        f.terms,
+      ),
+    ).rejects.toBe(error);
+    expect(adapter.provider.request).toHaveBeenCalledOnce();
+    expect(adapter.signTransaction).not.toHaveBeenCalled();
+    expect(adapter.signMessage).not.toHaveBeenCalled();
+  });
+
+  it("rejects unapproved terms before requesting a Solflare signature", async () => {
+    const f = fixture();
+    const adapter = fakeSolflare(f.owners[0]);
+    await expect(
+      signFrozenTransaction(
+        await connectWallet(adapter.wallet),
+        unsignedWire(f.plan),
+        f.plan,
+        { ...f.terms, version: 2 },
+      ),
+    ).rejects.toThrow(/accepted terms/);
+    expect(adapter.provider.request).not.toHaveBeenCalled();
+  });
+
+  it("keeps other selected wallets on Wallet Standard even when Solflare is installed", async () => {
+    const f = fixture();
+    const solflare = fakeSolflare(f.owners[0]);
+    const adapter = fakeWallet(f.owners[0]);
+    await signFrozenTransaction(
+      await connectWallet(adapter.wallet),
+      unsignedWire(f.plan),
+      f.plan,
+      f.terms,
+    );
+    expect(solflare.provider.request).not.toHaveBeenCalled();
+    expect(adapter.signTransaction).toHaveBeenCalledOnce();
+  });
+});
 
 describe("account changes (fake adapters only, not extension evidence)", () => {
   it("refuses to silently select one of multiple returned devnet accounts", async () => {

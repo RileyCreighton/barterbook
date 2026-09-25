@@ -1,5 +1,7 @@
 # Use the existing devnet wallets with Solflare in Zen
 
+**September 25 signing repair:** The newer version 6 report is an altered-transaction rejection after Bob approved Solflare’s default prompt. D1 shows no saved signatures or transaction ID. A [transaction-message signing repair](solflare-transaction-signing.md) is prepared and passes focused local checks; actual extension settlement still needs the owner-controlled rehearsal. The version 5 network-warning investigation below is historical and does not diagnose this new error.
+
 This is the current alternative being evaluated after Phantom could not load balances with BarterBook closed, including after a full Zen restart. **Solflare's complete BarterBook signing workflow is not yet verified.** No Chrome test was performed; see the [owner-report correction](../evidence/hosted/browser-second-attempt-owner-report-correction-77036da8.json).
 
 **Current Solflare-in-Zen checkpoint:** the owner reports that all three wallets use the official Solflare Firefox extension in their existing Zen profiles, show their exact original public addresses, and complete BarterBook login. Displayed Devnet balances are Bob **1 SOL**, Alice **0.05 SOL** and Carol **0.05 SOL**. These extension and login observations are owner reports, not a new independent D1 authentication verification.

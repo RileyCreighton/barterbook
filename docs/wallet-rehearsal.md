@@ -1,5 +1,7 @@
 # Devnet wallet setup and demo rehearsal
 
+**September 25 signing repair:** The newer version 6 report is an altered-transaction rejection after Bob approved Solflare’s default prompt. D1 shows no saved signatures or transaction ID. A [transaction-message signing repair](solflare-transaction-signing.md) is prepared and passes focused local checks; actual extension settlement still needs the owner-controlled rehearsal. The version 5 network-warning investigation below is historical and does not diagnose this new error.
+
 A judge can review the app without a wallet. The separate live-signing rehearsal needs three **new, authorized, disposable devnet wallets**. Pre-existing user funds and real PRE tokens are outside this fixture exercise. The authorized Alice/Bob/Carol wallets already exist in Zen; keep their addresses. Use the [Solflare-in-Zen setup guide](solflare-zen-setup.md) for the current path; Chrome setup below is only an optional reference. No purchase or transfer of user assets is needed.
 
 **Current Solflare-in-Zen checkpoint:** the owner reports that all three wallets use the official Solflare Firefox extension in their existing Zen profiles, show their exact original public addresses, and complete BarterBook login. Displayed Devnet balances are Bob **1 SOL**, Alice **0.05 SOL** and Carol **0.05 SOL**. These extension and login observations are owner reports, not a new independent D1 authentication verification.

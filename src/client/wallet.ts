@@ -1,5 +1,6 @@
 import { getWallets } from "@wallet-standard/app";
 import { PublicKey } from "@solana/web3.js";
+import bs58 from "bs58";
 import { b64, equalBytes, unb64, verifyEd25519 } from "../shared/crypto";
 import { verifyWireSignatures } from "../shared/transactions";
 import type { FrozenPlan, Terms } from "../shared/types";
@@ -53,6 +54,82 @@ interface SignTransactionFeature {
     chain: "solana:devnet";
     transaction: Uint8Array;
   }): Promise<readonly { signedTransaction: Uint8Array }[]>;
+}
+
+interface SolflareTransactionProvider {
+  readonly isSolflare: boolean;
+  readonly isConnected: boolean;
+  readonly publicKey: { toBase58(): string } | null;
+  request(input: {
+    method: "signTransaction";
+    params: { message: string };
+  }): Promise<{ signature: string; publicKey: string }>;
+}
+
+function injectedSolflare(): SolflareTransactionProvider | undefined {
+  return typeof window === "undefined"
+    ? undefined
+    : (window as Window & { solflare?: SolflareTransactionProvider }).solflare;
+}
+
+function assertSolflareAccount(
+  provider: SolflareTransactionProvider,
+  connection: WalletConnection,
+): void {
+  assertConnected(connection);
+  if (
+    injectedSolflare() !== provider ||
+    provider.isSolflare !== true ||
+    provider.isConnected !== true ||
+    provider.publicKey?.toBase58() !== connection.account.address ||
+    typeof provider.request !== "function"
+  )
+    throw new Error(
+      "Solflare account changed or is unavailable. Reconnect the intended wallet and review the terms again.",
+    );
+}
+
+/** Solflare's exposed transaction-message RPC retains transaction simulation
+ * and approval, but signs the original compiled message. Its Wallet Standard
+ * wire-transaction path can instead sign the simulation service's enrichedTx.
+ * This is transaction signing, never solana:signMessage. See the public-package
+ * analysis in docs/solflare-transaction-signing.md.
+ */
+async function signSolflareTransaction(
+  connection: WalletConnection,
+  originalWire: Uint8Array,
+  message: Uint8Array,
+  ownSlot: number,
+): Promise<Uint8Array> {
+  const provider = injectedSolflare();
+  if (!provider)
+    throw new Error(
+      "Solflare's transaction signing connection is unavailable. Reconnect the Solflare extension and review the terms again.",
+    );
+  assertSolflareAccount(provider, connection);
+  const output = await provider.request({
+    method: "signTransaction",
+    params: { message: bs58.encode(message) },
+  });
+  assertSolflareAccount(provider, connection);
+  if (
+    !output ||
+    output.publicKey !== connection.account.address ||
+    typeof output.signature !== "string" ||
+    !/^[1-9A-HJ-NP-Za-km-z]{64,88}$/.test(output.signature)
+  )
+    throw new Error("Solflare returned an invalid transaction signature.");
+  const signature = bs58.decode(output.signature);
+  if (!(await verifyEd25519(connection.account.address, signature, message)))
+    throw new Error(
+      "Solflare signed a different transaction or returned an invalid signature. This signature was not saved.",
+    );
+  assertSolflareAccount(provider, connection);
+  // Only the selected owner's slot is filled. Earlier signatures and all
+  // message bytes stay local and unchanged; never give the wallet a full wire.
+  const signedWire = new Uint8Array(originalWire);
+  signedWire.set(signature, 1 + ownSlot * 64);
+  return signedWire;
 }
 
 function capability<T>(wallet: BrowserWallet, name: `${string}:${string}`): T {
@@ -252,15 +329,25 @@ export async function signFrozenTransaction(
   // Signature verification above is asynchronous: check the same authorized
   // account snapshot again immediately before opening the wallet prompt.
   assertConnected(connection);
-  const outputs = await feature.signTransaction({
-    account: connection.account,
-    chain: "solana:devnet",
-    transaction: new Uint8Array(originalWire),
-  });
-  const result = outputs[0]?.signedTransaction;
-  if (outputs.length !== 1 || !result)
-    throw new Error("Wallet returned no unique signed transaction.");
-  const signedWire = new Uint8Array(result);
+  let signedWire: Uint8Array;
+  if (connection.wallet.name === "Solflare") {
+    signedWire = await signSolflareTransaction(
+      connection,
+      originalWire,
+      before.message,
+      ownSlot,
+    );
+  } else {
+    const outputs = await feature.signTransaction({
+      account: connection.account,
+      chain: "solana:devnet",
+      transaction: new Uint8Array(originalWire),
+    });
+    const result = outputs[0]?.signedTransaction;
+    if (outputs.length !== 1 || !result)
+      throw new Error("Wallet returned no unique signed transaction.");
+    signedWire = new Uint8Array(result);
+  }
   const after = await verifyWireSignatures(signedWire, plan, false, terms);
   if (!equalBytes(before.message, after.message))
     throw new Error(
