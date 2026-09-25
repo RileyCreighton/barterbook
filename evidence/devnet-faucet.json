@@ -1,0 +1,8 @@
+{
+  "cluster": "devnet",
+  "wallet": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+  "state": "BLOCKED_OR_UNCERTAIN",
+  "reason": "airdrop to 5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV failed: Internal error",
+  "checkedAt": "2026-09-25T04:24:35.914Z",
+  "existingUserFundsUsed": false
+}

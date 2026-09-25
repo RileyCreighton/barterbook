@@ -1,0 +1,22 @@
+{
+  "executedAt": "2026-09-25T05:05:05.428Z",
+  "scope": "Local SDK round trip only. Random ephemeral keys; no assets, browser-wallet proof or chain execution.",
+  "results": [
+    {
+      "owners": 2,
+      "transfers": 3,
+      "bytes": 774,
+      "immutable": true,
+      "allSignaturesValid": true,
+      "messageHash": "2bab57738d8c19114e915d94b95bc72250eaadd81469c16c7752c3915613da85"
+    },
+    {
+      "owners": 3,
+      "transfers": 3,
+      "bytes": 870,
+      "immutable": true,
+      "allSignaturesValid": true,
+      "messageHash": "2ee52246910dbe4e6935044d2195a1163461b859b50e639754c70043a32ca34d"
+    }
+  ]
+}

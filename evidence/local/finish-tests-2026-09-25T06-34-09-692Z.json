@@ -1,0 +1,1694 @@
+{
+  "numTotalTestSuites": 37,
+  "numPassedTestSuites": 37,
+  "numFailedTestSuites": 0,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 130,
+  "numPassedTests": 130,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "numTodoTests": 0,
+  "snapshot": {
+    "added": 0,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesRemovedList": [],
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": [],
+    "unmatched": 0,
+    "updated": 0,
+    "didUpdate": false
+  },
+  "startTime": 1790318049692,
+  "success": true,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "adversarial signing costs and receipt identity"
+          ],
+          "fullName": "adversarial signing costs and receipt identity rejects a server plan that understates an encoded priority fee beyond the accepted total SOL cap",
+          "status": "passed",
+          "title": "rejects a server plan that understates an encoded priority fee beyond the accepted total SOL cap",
+          "duration": 202.49912999999992,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "adversarial signing costs and receipt identity"
+          ],
+          "fullName": "adversarial signing costs and receipt identity rejects duplicate account-index entries in transaction token metadata",
+          "status": "passed",
+          "title": "rejects duplicate account-index entries in transaction token metadata",
+          "duration": 271.84481800000003,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "adversarial signing costs and receipt identity"
+          ],
+          "fullName": "adversarial signing costs and receipt identity rejects a matching-message receipt carrying different full signed bytes",
+          "status": "passed",
+          "title": "rejects a matching-message receipt carrying different full signed bytes",
+          "duration": 90.90472199999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "adversarial signing costs and receipt identity"
+          ],
+          "fullName": "adversarial signing costs and receipt identity rejects unsafe integer RPC network fees rather than rounding",
+          "status": "passed",
+          "title": "rejects unsafe integer RPC network fees rather than rounding",
+          "duration": 72.01721299999986,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "prior-success and inconsistent-history recovery"
+          ],
+          "fullName": "prior-success and inconsistent-history recovery recovers original success from transaction metadata even when signature status is missing",
+          "status": "passed",
+          "title": "recovers original success from transaction metadata even when signature status is missing",
+          "duration": 13.380701999999928,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "prior-success and inconsistent-history recovery"
+          ],
+          "fullName": "prior-success and inconsistent-history recovery holds a formerly confirmed attempt when current histories contradict its prior success",
+          "status": "passed",
+          "title": "holds a formerly confirmed attempt when current histories contradict its prior success",
+          "duration": 14.865365999999995,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "prior-success and inconsistent-history recovery"
+          ],
+          "fullName": "prior-success and inconsistent-history recovery does not ignore a third healthy endpoint that still sees processing",
+          "status": "passed",
+          "title": "does not ignore a third healthy endpoint that still sees processing",
+          "duration": 15.30619200000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "live preparation network and ATA rent safety"
+          ],
+          "fullName": "live preparation network and ATA rent safety accepts the full official devnet genesis hash",
+          "status": "passed",
+          "title": "accepts the full official devnet genesis hash",
+          "duration": 37.830384000000095,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "live preparation network and ATA rent safety"
+          ],
+          "fullName": "live preparation network and ATA rent safety prices the ImmutableOwner extension added by Token-2022 ATA creation",
+          "status": "passed",
+          "title": "prices the ImmutableOwner extension added by Token-2022 ATA creation",
+          "duration": 68.04912100000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1790318050793,
+      "endTime": 1790318051581.049,
+      "status": "passed",
+      "message": "",
+      "name": "/home/riley/dev/barterbook/tests/adversarial.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "wallet authentication boundary"
+          ],
+          "fullName": "wallet authentication boundary consumes a cryptographically verified challenge once even when requests race",
+          "status": "passed",
+          "title": "consumes a cryptographically verified challenge once even when requests race",
+          "duration": 26.812219999999968,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "wallet authentication boundary"
+          ],
+          "fullName": "wallet authentication boundary rejects signatures by another wallet and keeps the challenge unconsumed",
+          "status": "passed",
+          "title": "rejects signatures by another wallet and keeps the challenge unconsumed",
+          "duration": 14.475265999999976,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "wallet authentication boundary"
+          ],
+          "fullName": "wallet authentication boundary binds a signature to exact message, origin, cluster and expiry",
+          "status": "passed",
+          "title": "binds a signature to exact message, origin, cluster and expiry",
+          "duration": 15.172729000000004,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "wallet authentication boundary"
+          ],
+          "fullName": "wallet authentication boundary rejects cross-origin mutations and issues secure HttpOnly cookies",
+          "status": "passed",
+          "title": "rejects cross-origin mutations and issues secure HttpOnly cookies",
+          "duration": 59.248500000000035,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "wallet authentication boundary"
+          ],
+          "fullName": "wallet authentication boundary enforces rate limits under concurrent increments in the database",
+          "status": "passed",
+          "title": "enforces rate limits under concurrent increments in the database",
+          "duration": 4.928631999999993,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1790318051793,
+      "endTime": 1790318051914.9287,
+      "status": "passed",
+      "message": "",
+      "name": "/home/riley/dev/barterbook/tests/auth.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "raw mint compatibility gate (no RPC calls)"
+          ],
+          "fullName": "raw mint compatibility gate (no RPC calls) decodes both fee caps and supply above Number safe range without precision loss",
+          "status": "passed",
+          "title": "decodes both fee caps and supply above Number safe range without precision loss",
+          "duration": 8.037294000000088,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw mint compatibility gate (no RPC calls)"
+          ],
+          "fullName": "raw mint compatibility gate (no RPC calls) allows fee-bearing mints with inactive hook, unpaused state and unchanged multiplier",
+          "status": "passed",
+          "title": "allows fee-bearing mints with inactive hook, unpaused state and unchanged multiplier",
+          "duration": 6.812531999999919,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw mint compatibility gate (no RPC calls)"
+          ],
+          "fullName": "raw mint compatibility gate (no RPC calls) rejects active transfer hook even when that extension type was registered",
+          "status": "passed",
+          "title": "rejects active transfer hook even when that extension type was registered",
+          "duration": 3.7046920000000227,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw mint compatibility gate (no RPC calls)"
+          ],
+          "fullName": "raw mint compatibility gate (no RPC calls) rejects paused mint even when that extension type was registered",
+          "status": "passed",
+          "title": "rejects paused mint even when that extension type was registered",
+          "duration": 3.159569000000033,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw mint compatibility gate (no RPC calls)"
+          ],
+          "fullName": "raw mint compatibility gate (no RPC calls) rejects changed current multiplier even when that extension type was registered",
+          "status": "passed",
+          "title": "rejects changed current multiplier even when that extension type was registered",
+          "duration": 2.6185629999999946,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw mint compatibility gate (no RPC calls)"
+          ],
+          "fullName": "raw mint compatibility gate (no RPC calls) rejects pending changed multiplier even when that extension type was registered",
+          "status": "passed",
+          "title": "rejects pending changed multiplier even when that extension type was registered",
+          "duration": 2.1282540000000836,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw mint compatibility gate (no RPC calls)"
+          ],
+          "fullName": "raw mint compatibility gate (no RPC calls) rejects nonfinite multiplier even when that extension type was registered",
+          "status": "passed",
+          "title": "rejects nonfinite multiplier even when that extension type was registered",
+          "duration": 1.8332850000000462,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw mint compatibility gate (no RPC calls)"
+          ],
+          "fullName": "raw mint compatibility gate (no RPC calls) rejects an unknown extension even if a caller tries to include it in the manifest",
+          "status": "passed",
+          "title": "rejects an unknown extension even if a caller tries to include it in the manifest",
+          "duration": 1.514711000000034,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw mint compatibility gate (no RPC calls)"
+          ],
+          "fullName": "raw mint compatibility gate (no RPC calls) rejects a newly introduced otherwise-recognized extension absent from the tested manifest",
+          "status": "passed",
+          "title": "rejects a newly introduced otherwise-recognized extension absent from the tested manifest",
+          "duration": 2.3217610000000377,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw mint compatibility gate (no RPC calls)"
+          ],
+          "fullName": "raw mint compatibility gate (no RPC calls) rejects a mint account owned by the wrong token program",
+          "status": "passed",
+          "title": "rejects a mint account owned by the wrong token program",
+          "duration": 1.3803459999999177,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw mint compatibility gate (no RPC calls)"
+          ],
+          "fullName": "raw mint compatibility gate (no RPC calls) rejects changed decimals, missing mint and uninitialized mint",
+          "status": "passed",
+          "title": "rejects changed decimals, missing mint and uninitialized mint",
+          "duration": 1.5576519999999618,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw mint compatibility gate (no RPC calls)"
+          ],
+          "fullName": "raw mint compatibility gate (no RPC calls) rejects changes in the declared fee-extension policy",
+          "status": "passed",
+          "title": "rejects changes in the declared fee-extension policy",
+          "duration": 1.0981810000000678,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw token-account authority and transfer requirement gate (no RPC calls)"
+          ],
+          "fullName": "raw token-account authority and transfer requirement gate (no RPC calls) accepts a fee-bearing account with immutable owner and preserves spendable raw balance",
+          "status": "passed",
+          "title": "accepts a fee-bearing account with immutable owner and preserves spendable raw balance",
+          "duration": 4.467788000000041,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw token-account authority and transfer requirement gate (no RPC calls)"
+          ],
+          "fullName": "raw token-account authority and transfer requirement gate (no RPC calls) permits a present MemoTransfer extension when incoming memos are not required",
+          "status": "passed",
+          "title": "permits a present MemoTransfer extension when incoming memos are not required",
+          "duration": 2.1116329999999834,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw token-account authority and transfer requirement gate (no RPC calls)"
+          ],
+          "fullName": "raw token-account authority and transfer requirement gate (no RPC calls) rejects memo-required recipients",
+          "status": "passed",
+          "title": "rejects memo-required recipients",
+          "duration": 3.176270000000045,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw token-account authority and transfer requirement gate (no RPC calls)"
+          ],
+          "fullName": "raw token-account authority and transfer requirement gate (no RPC calls) rejects frozen",
+          "status": "passed",
+          "title": "rejects frozen",
+          "duration": 2.1335040000000163,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw token-account authority and transfer requirement gate (no RPC calls)"
+          ],
+          "fullName": "raw token-account authority and transfer requirement gate (no RPC calls) rejects uninitialized",
+          "status": "passed",
+          "title": "rejects uninitialized",
+          "duration": 2.288277999999991,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw token-account authority and transfer requirement gate (no RPC calls)"
+          ],
+          "fullName": "raw token-account authority and transfer requirement gate (no RPC calls) rejects unexpected delegate",
+          "status": "passed",
+          "title": "rejects unexpected delegate",
+          "duration": 2.500238999999965,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw token-account authority and transfer requirement gate (no RPC calls)"
+          ],
+          "fullName": "raw token-account authority and transfer requirement gate (no RPC calls) rejects unexpected close authority",
+          "status": "passed",
+          "title": "rejects unexpected close authority",
+          "duration": 2.4041770000000042,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw token-account authority and transfer requirement gate (no RPC calls)"
+          ],
+          "fullName": "raw token-account authority and transfer requirement gate (no RPC calls) rejects native/wrapped SOL account",
+          "status": "passed",
+          "title": "rejects native/wrapped SOL account",
+          "duration": 2.1648030000000063,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw token-account authority and transfer requirement gate (no RPC calls)"
+          ],
+          "fullName": "raw token-account authority and transfer requirement gate (no RPC calls) rejects wrong token mint",
+          "status": "passed",
+          "title": "rejects wrong token mint",
+          "duration": 2.333703000000014,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw token-account authority and transfer requirement gate (no RPC calls)"
+          ],
+          "fullName": "raw token-account authority and transfer requirement gate (no RPC calls) rejects a token account whose spending authority is a different wallet",
+          "status": "passed",
+          "title": "rejects a token account whose spending authority is a different wallet",
+          "duration": 2.3849099999999908,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw token-account authority and transfer requirement gate (no RPC calls)"
+          ],
+          "fullName": "raw token-account authority and transfer requirement gate (no RPC calls) rejects a token account owned by a different token program",
+          "status": "passed",
+          "title": "rejects a token account owned by a different token program",
+          "duration": 1.7538949999999431,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw token-account authority and transfer requirement gate (no RPC calls)"
+          ],
+          "fullName": "raw token-account authority and transfer requirement gate (no RPC calls) rejects unsupported account extension 5",
+          "status": "passed",
+          "title": "rejects unsupported account extension 5",
+          "duration": 2.8087729999999738,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw token-account authority and transfer requirement gate (no RPC calls)"
+          ],
+          "fullName": "raw token-account authority and transfer requirement gate (no RPC calls) rejects unsupported account extension 11",
+          "status": "passed",
+          "title": "rejects unsupported account extension 11",
+          "duration": 3.2890539999999646,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw token-account authority and transfer requirement gate (no RPC calls)"
+          ],
+          "fullName": "raw token-account authority and transfer requirement gate (no RPC calls) rejects unsupported account extension 65534",
+          "status": "passed",
+          "title": "rejects unsupported account extension 65534",
+          "duration": 2.876382000000035,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "raw token-account authority and transfer requirement gate (no RPC calls)"
+          ],
+          "fullName": "raw token-account authority and transfer requirement gate (no RPC calls) requires raw base64 account data rather than trusting parsed RPC quantities",
+          "status": "passed",
+          "title": "requires raw base64 account data rather than trusting parsed RPC quantities",
+          "duration": 3.246262999999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1790318052068,
+      "endTime": 1790318052144.2463,
+      "status": "passed",
+      "message": "",
+      "name": "/home/riley/dev/barterbook/tests/compatibility.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "persistent authenticated board workflow"
+          ],
+          "fullName": "persistent authenticated board workflow posts only selected inventory with exact integer strings; rejects unauthorized withdrawal",
+          "status": "passed",
+          "title": "posts only selected inventory with exact integer strings; rejects unauthorized withdrawal",
+          "duration": 290.8923709999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "persistent authenticated board workflow"
+          ],
+          "fullName": "persistent authenticated board workflow persists exact two-for-one offers, isolates rooms and invalidates both acceptances on a counteroffer",
+          "status": "passed",
+          "title": "persists exact two-for-one offers, isolates rooms and invalidates both acceptances on a counteroffer",
+          "duration": 100.43594800000005,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "persistent authenticated board workflow"
+          ],
+          "fullName": "persistent authenticated board workflow rejects altered fees, unsupported mints and opposing bilateral directions before room creation",
+          "status": "passed",
+          "title": "rejects altered fees, unsupported mints and opposing bilateral directions before room creation",
+          "duration": 49.81331699999987,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "explicit room renewal after authoritative reconciliation"
+          ],
+          "fullName": "explicit room renewal after authoritative reconciliation rejects renewal for timeout, cancellation, nonfinal failure and any prior success",
+          "status": "passed",
+          "title": "rejects renewal for timeout, cancellation, nonfinal failure and any prior success",
+          "duration": 383.01043400000003,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "explicit room renewal after authoritative reconciliation"
+          ],
+          "fullName": "explicit room renewal after authoritative reconciliation allows a reconciled basket failure and ring expiry only with a new complete revision and fresh consent",
+          "status": "passed",
+          "title": "allows a reconciled basket failure and ring expiry only with a new complete revision and fresh consent",
+          "duration": 124.08840799999984,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "explicit room renewal after authoritative reconciliation"
+          ],
+          "fullName": "explicit room renewal after authoritative reconciliation atomically releases safe locks even when explicit cleanup is skipped, then renews the room",
+          "status": "passed",
+          "title": "atomically releases safe locks even when explicit cleanup is skipped, then renews the room",
+          "duration": 39.64549500000021,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "explicit room renewal after authoritative reconciliation"
+          ],
+          "fullName": "explicit room renewal after authoritative reconciliation rejects stale fees rather than changing quantities or receipts and checks unchanged ring shape",
+          "status": "passed",
+          "title": "rejects stale fees rather than changing quantities or receipts and checks unchanged ring shape",
+          "duration": 50.62995499999988,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1790318050934,
+      "endTime": 1790318051973.63,
+      "status": "passed",
+      "message": "",
+      "name": "/home/riley/dev/barterbook/tests/db-board.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "durable room and attempt constraints"
+          ],
+          "fullName": "durable room and attempt constraints atomically acquires every owner lock or none when rooms compete",
+          "status": "passed",
+          "title": "atomically acquires every owner lock or none when rooms compete",
+          "duration": 30.828573000000006,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "durable room and attempt constraints"
+          ],
+          "fullName": "durable room and attempt constraints prevents stale readiness and resets every acceptance on immutable revision",
+          "status": "passed",
+          "title": "prevents stale readiness and resets every acceptance on immutable revision",
+          "duration": 17.850685,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "durable room and attempt constraints"
+          ],
+          "fullName": "durable room and attempt constraints does not let a stale rejection cancel a counteroffer that won the race",
+          "status": "passed",
+          "title": "does not let a stale rejection cancel a counteroffer that won the race",
+          "duration": 14.23596299999997,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "durable room and attempt constraints"
+          ],
+          "fullName": "durable room and attempt constraints requires all participants ready at the atomic preparation boundary",
+          "status": "passed",
+          "title": "requires all participants ready at the atomic preparation boundary",
+          "duration": 11.567213999999979,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "durable room and attempt constraints"
+          ],
+          "fullName": "durable room and attempt constraints never releases frozen attempts through cancellation or allows a revision while unresolved",
+          "status": "passed",
+          "title": "never releases frozen attempts through cancellation or allows a revision while unresolved",
+          "duration": 10.948742000000038,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "durable room and attempt constraints"
+          ],
+          "fullName": "durable room and attempt constraints uses compare-and-swap to prevent concurrent signatures overwriting each other",
+          "status": "passed",
+          "title": "uses compare-and-swap to prevent concurrent signatures overwriting each other",
+          "duration": 9.257587000000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "durable room and attempt constraints"
+          ],
+          "fullName": "durable room and attempt constraints keeps message/lifetime/fully signed bytes and transaction identity immutable",
+          "status": "passed",
+          "title": "keeps message/lifetime/fully signed bytes and transaction identity immutable",
+          "duration": 12.070549000000028,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "durable room and attempt constraints"
+          ],
+          "fullName": "durable room and attempt constraints only releases a reconciled expiry/failure or final success",
+          "status": "passed",
+          "title": "only releases a reconciled expiry/failure or final success",
+          "duration": 9.782141999999965,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "durable room and attempt constraints"
+          ],
+          "fullName": "durable room and attempt constraints rejects a rejected or expired room at the database preparation boundary",
+          "status": "passed",
+          "title": "rejects a rejected or expired room at the database preparation boundary",
+          "duration": 7.808060000000012,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "durable room and attempt constraints"
+          ],
+          "fullName": "durable room and attempt constraints atomically consumes source listings and unlocks owners when final success is persisted",
+          "status": "passed",
+          "title": "atomically consumes source listings and unlocks owners when final success is persisted",
+          "duration": 15.130919000000063,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "durable room and attempt constraints"
+          ],
+          "fullName": "durable room and attempt constraints stores u64 quantities losslessly and rechecks listing versions before preparation",
+          "status": "passed",
+          "title": "stores u64 quantities losslessly and rechecks listing versions before preparation",
+          "duration": 8.614877999999976,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1790318051509,
+      "endTime": 1790318051657.615,
+      "status": "passed",
+      "message": "",
+      "name": "/home/riley/dev/barterbook/tests/db.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "immutable devnet evidence and transaction journals"
+          ],
+          "fullName": "immutable devnet evidence and transaction journals preserves original key/attempt/evidence bytes and rejects changed writes",
+          "status": "passed",
+          "title": "preserves original key/attempt/evidence bytes and rejects changed writes",
+          "duration": 195.319661,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "immutable devnet evidence and transaction journals"
+          ],
+          "fullName": "immutable devnet evidence and transaction journals can add public browser recipients without changing the original SDK manifest",
+          "status": "passed",
+          "title": "can add public browser recipients without changing the original SDK manifest",
+          "duration": 33.33099600000014,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "immutable devnet evidence and transaction journals"
+          ],
+          "fullName": "immutable devnet evidence and transaction journals persists exact full bytes, local ID, lifetime and submission marker before send; timeout then success never replaces them",
+          "status": "passed",
+          "title": "persists exact full bytes, local ID, lifetime and submission marker before send; timeout then success never replaces them",
+          "duration": 116.61204799999996,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "immutable devnet evidence and transaction journals"
+          ],
+          "fullName": "immutable devnet evidence and transaction journals unresolved expiry never fetches a fresh blockhash or builds a replacement",
+          "status": "passed",
+          "title": "unresolved expiry never fetches a fresh blockhash or builds a replacement",
+          "duration": 37.73827000000006,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "explicit faucet retries"
+          ],
+          "fullName": "explicit faucet retries requires fresh inspection, explicit retry, zero balance/history and cooldown; unresolved signatures remain blocked",
+          "status": "passed",
+          "title": "requires fresh inspection, explicit retry, zero balance/history and cooldown; unresolved signatures remain blocked",
+          "duration": 1.8787309999997888,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "explicit faucet retries"
+          ],
+          "fullName": "explicit faucet retries uses bounded exponential backoff for rate-limited reads",
+          "status": "passed",
+          "title": "uses bounded exponential backoff for rate-limited reads",
+          "duration": 1.4262240000000475,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "normal authenticated HTTP board reseeding"
+          ],
+          "fullName": "normal authenticated HTTP board reseeding signs real one-use auth challenges, reuses persisted exact intents after a dropped response and leaves consent pending",
+          "status": "passed",
+          "title": "signs real one-use auth challenges, reuses persisted exact intents after a dropped response and leaves consent pending",
+          "duration": 111.24460399999998,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "normal authenticated HTTP board reseeding"
+          ],
+          "fullName": "normal authenticated HTTP board reseeding rejects a challenge for another origin before disclosing any signature",
+          "status": "passed",
+          "title": "rejects a challenge for another origin before disclosing any signature",
+          "duration": 2.2028549999999996,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1790318051018,
+      "endTime": 1790318051518.203,
+      "status": "passed",
+      "message": "",
+      "name": "/home/riley/dev/barterbook/tests/devnet-scripts.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "exact financial boundaries"
+          ],
+          "fullName": "exact financial boundaries matches the SPL SDK at rounding, cap and u64 boundaries",
+          "status": "passed",
+          "title": "matches the SPL SDK at rounding, cap and u64 boundaries",
+          "duration": 10.972337000000039,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exact financial boundaries"
+          ],
+          "fullName": "exact financial boundaries grosses up to the least feasible raw unit and rejects impossible receipt",
+          "status": "passed",
+          "title": "grosses up to the least feasible raw unit and rejects impossible receipt",
+          "duration": 2.6562149999999747,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exact financial boundaries"
+          ],
+          "fullName": "exact financial boundaries never rounds decimal input or accepts unsafe/negative quantities",
+          "status": "passed",
+          "title": "never rounds decimal input or accepts unsafe/negative quantities",
+          "duration": 1.1070580000000518,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exact financial boundaries"
+          ],
+          "fullName": "exact financial boundaries rejects stale fee terms on epoch switch",
+          "status": "passed",
+          "title": "rejects stale fee terms on epoch switch",
+          "duration": 81.36522100000002,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "exact financial boundaries"
+          ],
+          "fullName": "exact financial boundaries rejects duplicate, opposite mint flows and insufficient net minima",
+          "status": "passed",
+          "title": "rejects duplicate, opposite mint flows and insufficient net minima",
+          "duration": 11.51230099999998,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1790318051870,
+      "endTime": 1790318051978.5122,
+      "status": "passed",
+      "message": "",
+      "name": "/home/riley/dev/barterbook/tests/financial.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "actual LOCAL Token-2022 runtime execution"
+          ],
+          "fullName": "actual LOCAL Token-2022 runtime execution BASKET: checked-fee atomic exchange creates missing ATAs after immutable sequential signing",
+          "status": "passed",
+          "title": "BASKET: checked-fee atomic exchange creates missing ATAs after immutable sequential signing",
+          "duration": 598.9027980000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "actual LOCAL Token-2022 runtime execution"
+          ],
+          "fullName": "actual LOCAL Token-2022 runtime execution RING: checked-fee atomic exchange creates missing ATAs after immutable sequential signing",
+          "status": "passed",
+          "title": "RING: checked-fee atomic exchange creates missing ATAs after immutable sequential signing",
+          "duration": 220.7607230000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "actual LOCAL Token-2022 runtime execution"
+          ],
+          "fullName": "actual LOCAL Token-2022 runtime execution a failing FINAL token leg rolls back earlier transfers AND all newly created ATAs",
+          "status": "passed",
+          "title": "a failing FINAL token leg rolls back earlier transfers AND all newly created ATAs",
+          "duration": 206.17543799999976,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1790318050889,
+      "endTime": 1790318051915.1755,
+      "status": "passed",
+      "message": "",
+      "name": "/home/riley/dev/barterbook/tests/local-runtime.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [],
+          "fullName": "matches exact whole lots, minima and deduplicates rotations",
+          "status": "passed",
+          "title": "matches exact whole lots, minima and deduplicates rotations",
+          "duration": 191.41575199999988,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "rejects cycle-shaped graph whose fees violate one receipt",
+          "status": "passed",
+          "title": "rejects cycle-shaped graph whose fees violate one receipt",
+          "duration": 21.99393800000007,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "excludes repeated owners, insufficient balance, locked, expired and other-network lots",
+          "status": "passed",
+          "title": "excludes repeated owners, insufficient balance, locked, expired and other-network lots",
+          "duration": 155.97745200000008,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1790318050710,
+      "endTime": 1790318051079.9775,
+      "status": "passed",
+      "message": "",
+      "name": "/home/riley/dev/barterbook/tests/matcher.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "public history and evidence privacy"
+          ],
+          "fullName": "public history and evidence privacy returns only verified matching-cluster receipts and no private attempt data",
+          "status": "passed",
+          "title": "returns only verified matching-cluster receipts and no private attempt data",
+          "duration": 238.17929800000002,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "public history and evidence privacy"
+          ],
+          "fullName": "public history and evidence privacy never exposes signed bytes for a non-finalized or unarchived attempt",
+          "status": "passed",
+          "title": "never exposes signed bytes for a non-finalized or unarchived attempt",
+          "duration": 39.642369000000144,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "public history and evidence privacy"
+          ],
+          "fullName": "public history and evidence privacy paginates deterministically across equal timestamps without losing history",
+          "status": "passed",
+          "title": "paginates deterministically across equal timestamps without losing history",
+          "duration": 144.72039499999983,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "public history and evidence privacy"
+          ],
+          "fullName": "public history and evidence privacy publishes only safe public configuration and labels configured wallets transparently",
+          "status": "passed",
+          "title": "publishes only safe public configuration and labels configured wallets transparently",
+          "duration": 19.88145399999985,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1790318050879,
+      "endTime": 1790318051321.8813,
+      "status": "passed",
+      "message": "",
+      "name": "/home/riley/dev/barterbook/tests/public.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [],
+          "fullName": "reconciles this transaction, independent of later wallet balances",
+          "status": "passed",
+          "title": "reconciles this transaction, independent of later wallet balances",
+          "duration": 371.4730350000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "rejects failed transaction, changed receipt, missing pre metadata and wrong net",
+          "status": "passed",
+          "title": "rejects failed transaction, changed receipt, missing pre metadata and wrong net",
+          "duration": 182.77092599999992,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1790318050727,
+      "endTime": 1790318051281.771,
+      "status": "passed",
+      "message": "",
+      "name": "/home/riley/dev/barterbook/tests/receipt.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [],
+          "fullName": "recovers success after send timeout/reload, even after expiry",
+          "status": "passed",
+          "title": "recovers success after send timeout/reload, even after expiry",
+          "duration": 196.17693699999995,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "timeout, cancel and single cache/history miss cannot unlock",
+          "status": "passed",
+          "title": "timeout, cancel and single cache/history miss cannot unlock",
+          "duration": 62.45741299999986,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "requires both authoritative histories after finalized expiry",
+          "status": "passed",
+          "title": "requires both authoritative histories after finalized expiry",
+          "duration": 35.205078000000185,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "finalized chain failure, not preflight failure, permits renewed consent",
+          "status": "passed",
+          "title": "finalized chain failure, not preflight failure, permits renewed consent",
+          "duration": 11.179159000000027,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "conflicting evidence and missing ID stay unresolved",
+          "status": "passed",
+          "title": "conflicting evidence and missing ID stay unresolved",
+          "duration": 13.599877000000106,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "can resume the same unsigned message after transient history outage before lifetime ends",
+          "status": "passed",
+          "title": "can resume the same unsigned message after transient history outage before lifetime ends",
+          "duration": 20.543007999999872,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "never forgets observed success after multiple uncertain reconciliation passes",
+          "status": "passed",
+          "title": "never forgets observed success after multiple uncertain reconciliation passes",
+          "duration": 10.141121999999996,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1790318050731,
+      "endTime": 1790318051083.141,
+      "status": "passed",
+      "message": "",
+      "name": "/home/riley/dev/barterbook/tests/recovery.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence)"
+          ],
+          "fullName": "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence) keeps active signing and fully signed attempts usable while polling a healthy valid lifetime",
+          "status": "passed",
+          "title": "keeps active signing and fully signed attempts usable while polling a healthy valid lifetime",
+          "duration": 5645.4196329999995,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence)"
+          ],
+          "fullName": "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence) persists full bytes, local identifier, lifetime and submission marker before broadcasting exact bytes",
+          "status": "passed",
+          "title": "persists full bytes, local identifier, lifetime and submission marker before broadcasting exact bytes",
+          "duration": 4290.502613,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence)"
+          ],
+          "fullName": "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence) broadcasts only once when two submit requests race",
+          "status": "passed",
+          "title": "broadcasts only once when two submit requests race",
+          "duration": 2781.489329,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence)"
+          ],
+          "fullName": "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence) recovers original success and transaction metadata after a send timeout and a new router instance",
+          "status": "passed",
+          "title": "recovers original success and transaction metadata after a send timeout and a new router instance",
+          "duration": 4286.2511220000015,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence)"
+          ],
+          "fullName": "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence) rejects a concurrent signature overwrite, then safely merges the loser after reloading",
+          "status": "passed",
+          "title": "rejects a concurrent signature overwrite, then safely merges the loser after reloading",
+          "duration": 2656.2521210000014,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence)"
+          ],
+          "fullName": "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence) cannot replace or immediately unlock a canceled attempt even before a signature upload",
+          "status": "passed",
+          "title": "cannot replace or immediately unlock a canceled attempt even before a signature upload",
+          "duration": 2263.611806000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence)"
+          ],
+          "fullName": "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence) does not authorize replacement from preflight failure or unavailable history; authoritative expiry still requires fresh consent",
+          "status": "passed",
+          "title": "does not authorize replacement from preflight failure or unavailable history; authoritative expiry still requires fresh consent",
+          "duration": 4644.512118000002,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence)"
+          ],
+          "fullName": "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence) budgets extension-aware receiving-account funding before wallet signing",
+          "status": "passed",
+          "title": "budgets extension-aware receiving-account funding before wallet signing",
+          "duration": 1154.2797739999987,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence)"
+          ],
+          "fullName": "settlement HTTP + SQLite + mocked RPC integration (not onchain evidence) checks source inventory and payer SOL before creating any executable attempt",
+          "status": "passed",
+          "title": "checks source inventory and payer SOL before creating any executable attempt",
+          "duration": 1644.7142090000016,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "recovery proof integrity"
+          ],
+          "fullName": "recovery proof integrity does not release allocations for altered failed transaction bytes or invalid signatures",
+          "status": "passed",
+          "title": "does not release allocations for altered failed transaction bytes or invalid signatures",
+          "duration": 6802.398924999998,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "recovery proof integrity"
+          ],
+          "fullName": "recovery proof integrity requires matching finalized failure metadata rather than a finalized status plus confirmed metadata",
+          "status": "passed",
+          "title": "requires matching finalized failure metadata rather than a finalized status plus confirmed metadata",
+          "duration": 4022.863873999995,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "recovery proof integrity"
+          ],
+          "fullName": "recovery proof integrity persists a success signal during conflicting observations and forbids a later absence-based retry",
+          "status": "passed",
+          "title": "persists a success signal during conflicting observations and forbids a later absence-based retry",
+          "duration": 5772.707911999998,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "sticky success when receipt retrieval fails"
+          ],
+          "fullName": "sticky success when receipt retrieval fails persists confirmed success before a metadata timeout and refuses a later finalized-failure release",
+          "status": "passed",
+          "title": "persists confirmed success before a metadata timeout and refuses a later finalized-failure release",
+          "duration": 5269.397949999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "sticky success when receipt retrieval fails"
+          ],
+          "fullName": "sticky success when receipt retrieval fails retains success when externally completed transaction bytes fail verification before full bytes were saved",
+          "status": "passed",
+          "title": "retains success when externally completed transaction bytes fail verification before full bytes were saved",
+          "duration": 5036.091607000002,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "holds allocations for contradictory finalized-success receipt metadata until the exact receipt verifies",
+          "status": "passed",
+          "title": "holds allocations for contradictory finalized-success receipt metadata until the exact receipt verifies",
+          "duration": 5290.055560000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "conservative receiving-account funding"
+          ],
+          "fullName": "conservative receiving-account funding rejects a zero rent cap even when all empty receiving ATAs currently exist",
+          "status": "passed",
+          "title": "rejects a zero rent cap even when all empty receiving ATAs currently exist",
+          "duration": 645.8408409999975,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "conservative receiving-account funding"
+          ],
+          "fullName": "conservative receiving-account funding budgets every encoded receiving ATA and caches the fresh rent quote by account size",
+          "status": "passed",
+          "title": "budgets every encoded receiving ATA and caches the fresh rent quote by account size",
+          "duration": 1150.973162000002,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "conservative receiving-account funding"
+          ],
+          "fullName": "conservative receiving-account funding refuses preparation when fresh RPC rent exceeds the browser-verifiable policy bound",
+          "status": "passed",
+          "title": "refuses preparation when fresh RPC rent exceeds the browser-verifiable policy bound",
+          "duration": 519.8211620000002,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "does not label confirmed metadata finalized merely because a status says finalized",
+          "status": "passed",
+          "title": "does not label confirmed metadata finalized merely because a status says finalized",
+          "duration": 4014.2772570000016,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [],
+          "fullName": "archives the actual finalized provider metadata instead of earlier confirmed metadata",
+          "status": "passed",
+          "title": "archives the actual finalized provider metadata instead of earlier confirmed metadata",
+          "duration": 3900.9547329999914,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1790318050883,
+      "endTime": 1790318122677.9548,
+      "status": "passed",
+      "message": "",
+      "name": "/home/riley/dev/barterbook/tests/settlement.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "immutable signing spike (SDK only)"
+          ],
+          "fullName": "immutable signing spike (SDK only) 2 owners sign identical bytes across serialize/merge round trips",
+          "status": "passed",
+          "title": "2 owners sign identical bytes across serialize/merge round trips",
+          "duration": 337.8713160000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "immutable signing spike (SDK only)"
+          ],
+          "fullName": "immutable signing spike (SDK only) 3 owners sign identical bytes across serialize/merge round trips",
+          "status": "passed",
+          "title": "3 owners sign identical bytes across serialize/merge round trips",
+          "duration": 135.27240700000016,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "immutable signing spike (SDK only)"
+          ],
+          "fullName": "immutable signing spike (SDK only) rejects instruction, signer, account, fee and lifetime tampering",
+          "status": "passed",
+          "title": "rejects instruction, signer, account, fee and lifetime tampering",
+          "duration": 200.70891600000004,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "immutable signing spike (SDK only)"
+          ],
+          "fullName": "immutable signing spike (SDK only) rejects invalid/missing signatures and an unaccepted terms version",
+          "status": "passed",
+          "title": "rejects invalid/missing signatures and an unaccepted terms version",
+          "duration": 40.13702599999988,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1790318050685,
+      "endTime": 1790318051400.137,
+      "status": "passed",
+      "message": "",
+      "name": "/home/riley/dev/barterbook/tests/signing.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [],
+          "fullName": "never prompts a payer when encoded ATA creations exceed its accepted SOL allowance",
+          "status": "passed",
+          "title": "never prompts a payer when encoded ATA creations exceed its accepted SOL allowance",
+          "duration": 314.700568,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "account changes (fake adapters only, not extension evidence)"
+          ],
+          "fullName": "account changes (fake adapters only, not extension evidence) surfaces a declined transaction once and does not retry it after an account event",
+          "status": "passed",
+          "title": "surfaces a declined transaction once and does not retry it after an account event",
+          "duration": 84.24358600000005,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "account changes (fake adapters only, not extension evidence)"
+          ],
+          "fullName": "account changes (fake adapters only, not extension evidence) invalidates a removed account once and never prompts it again",
+          "status": "passed",
+          "title": "invalidates a removed account once and never prompts it again",
+          "duration": 3.342905999999857,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "account changes (fake adapters only, not extension evidence)"
+          ],
+          "fullName": "account changes (fake adapters only, not extension evidence) invalidates loss of devnet permissions even when the address remains",
+          "status": "passed",
+          "title": "invalidates loss of devnet permissions even when the address remains",
+          "duration": 8.170828000000029,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "account changes (fake adapters only, not extension evidence)"
+          ],
+          "fullName": "account changes (fake adapters only, not extension evidence) ignores ordinary wallet events and unsubscribes cleanly",
+          "status": "passed",
+          "title": "ignores ordinary wallet events and unsubscribes cleanly",
+          "duration": 7.817748000000165,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "account changes (fake adapters only, not extension evidence)"
+          ],
+          "fullName": "account changes (fake adapters only, not extension evidence) discards an authentication signature if the account changes during the prompt",
+          "status": "passed",
+          "title": "discards an authentication signature if the account changes during the prompt",
+          "duration": 16.56504700000005,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "account changes (fake adapters only, not extension evidence)"
+          ],
+          "fullName": "account changes (fake adapters only, not extension evidence) discards transaction output when the signing wallet disconnects during its prompt",
+          "status": "passed",
+          "title": "discards transaction output when the signing wallet disconnects during its prompt",
+          "duration": 85.05379199999993,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "browser signing boundary (fake Wallet Standard adapters only)"
+          ],
+          "fullName": "browser signing boundary (fake Wallet Standard adapters only) preserves all 2 owners' signatures and immutable message",
+          "status": "passed",
+          "title": "preserves all 2 owners' signatures and immutable message",
+          "duration": 132.91994799999998,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "browser signing boundary (fake Wallet Standard adapters only)"
+          ],
+          "fullName": "browser signing boundary (fake Wallet Standard adapters only) preserves all 3 owners' signatures and immutable message",
+          "status": "passed",
+          "title": "preserves all 3 owners' signatures and immutable message",
+          "duration": 141.200914,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "browser signing boundary (fake Wallet Standard adapters only)"
+          ],
+          "fullName": "browser signing boundary (fake Wallet Standard adapters only) rejects extra transfer instructions before opening a wallet prompt",
+          "status": "passed",
+          "title": "rejects extra transfer instructions before opening a wallet prompt",
+          "duration": 21.947479999999814,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "browser signing boundary (fake Wallet Standard adapters only)"
+          ],
+          "fullName": "browser signing boundary (fake Wallet Standard adapters only) rejects a terms revision and mainnet before opening a wallet prompt",
+          "status": "passed",
+          "title": "rejects a terms revision and mainnet before opening a wallet prompt",
+          "duration": 21.71699199999989,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "browser signing boundary (fake Wallet Standard adapters only)"
+          ],
+          "fullName": "browser signing boundary (fake Wallet Standard adapters only) rejects corrupt earlier signatures before opening a wallet prompt",
+          "status": "passed",
+          "title": "rejects corrupt earlier signatures before opening a wallet prompt",
+          "duration": 25.805521999999883,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "browser signing boundary (fake Wallet Standard adapters only)"
+          ],
+          "fullName": "browser signing boundary (fake Wallet Standard adapters only) rejects a wallet that drops a prior signature",
+          "status": "passed",
+          "title": "rejects a wallet that drops a prior signature",
+          "duration": 62.71931900000004,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "browser signing boundary (fake Wallet Standard adapters only)"
+          ],
+          "fullName": "browser signing boundary (fake Wallet Standard adapters only) rejects a wallet that changes the blockhash",
+          "status": "passed",
+          "title": "rejects a wallet that changes the blockhash",
+          "duration": 45.289321999999856,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": [
+            "browser signing boundary (fake Wallet Standard adapters only)"
+          ],
+          "fullName": "browser signing boundary (fake Wallet Standard adapters only) verifies exact message signatures and rejects altered signed text",
+          "status": "passed",
+          "title": "verifies exact message signatures and rejects altered signed text",
+          "duration": 3.0645690000001196,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1790318050817,
+      "endTime": 1790318051794.0645,
+      "status": "passed",
+      "message": "",
+      "name": "/home/riley/dev/barterbook/tests/wallet.test.ts"
+    }
+  ]
+}

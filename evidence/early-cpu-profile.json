@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-25T04:28:49.650Z",
+  "runtime": "v26.8.2",
+  "scope": "EARLY LOCAL NODE PROCESS CPU PROFILE. Not deployed Worker CPU. Free 10ms gate requires workerd and hosted metrics.",
+  "rows": [
+    {
+      "name": "strictVerification",
+      "iterations": 100,
+      "medianCpuMs": 2.848,
+      "p95CpuMs": 8.925,
+      "maxCpuMs": 12.214,
+      "medianWallMs": 2.847776000000067
+    },
+    {
+      "name": "allThreeNativeSignatures",
+      "iterations": 100,
+      "medianCpuMs": 3.951,
+      "p95CpuMs": 8.016,
+      "maxCpuMs": 11.578,
+      "medianWallMs": 3.882237000000032
+    }
+  ]
+}

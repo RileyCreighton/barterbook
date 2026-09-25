@@ -1,0 +1,39 @@
+{
+  "executedAt": "2026-09-25T04:51:43.880935+00:00",
+  "environment": "LOCAL_BROWSER_UI_ONLY",
+  "browser": "Codex in-app browser",
+  "walletExtensionAvailable": false,
+  "actualBrowserWalletSigningProof": false,
+  "publicNetworkSettlementProof": false,
+  "checks": [
+    {
+      "check": "Signing spike renders devnet-only and test-asset labels; absent compatible wallet disables wallet prompts",
+      "result": "passed"
+    },
+    {
+      "check": "Main marketplace renders and names unconfigured live asset registry honestly",
+      "result": "passed"
+    },
+    {
+      "check": "No-wallet three-way walkthrough renders selected lots and expected receipts",
+      "result": "passed"
+    },
+    {
+      "check": "Walkthrough local evidence page displays successful basket/ring and failing-last-leg rollback from recorded LiteSVM artifact",
+      "result": "passed"
+    },
+    {
+      "check": "Expanded basket evidence shows exact source deltas, recipient net and withheld fee raw strings",
+      "result": "passed"
+    },
+    {
+      "check": "No-wallet connection dialog shows absent extension clearly and offers no simulated-signing shortcut",
+      "result": "passed"
+    }
+  ],
+  "limitations": [
+    "No wallet extension was available; actual browser wallet sign-message/partial-signing milestone remains unproven.",
+    "Authenticated UI flow requires configured devnet mints, RPC and test wallets; API and fake-adapter boundaries are tested separately.",
+    "No receipt in this UI smoke is claimed as public devnet or mainnet execution."
+  ]
+}

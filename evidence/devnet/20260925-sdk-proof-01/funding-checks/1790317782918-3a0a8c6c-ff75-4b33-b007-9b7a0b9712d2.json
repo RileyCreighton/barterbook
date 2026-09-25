@@ -1,0 +1,15 @@
+{
+  "cluster": "devnet",
+  "runId": "20260925-sdk-proof-01",
+  "existingUserFundsUsed": false,
+  "checkedAt": "2026-09-25T06:29:42.918Z",
+  "wallet": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+  "finalizedLamports": "0",
+  "history": [],
+  "priorRequests": [
+    {
+      "at": "2026-09-25T04:24:32.868Z",
+      "state": "REQUEST_STARTED"
+    }
+  ]
+}

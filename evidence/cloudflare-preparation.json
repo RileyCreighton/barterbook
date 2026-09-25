@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-09-25T06:41:56.980Z",
+  "accountSignedIn": true,
+  "worker": "barterbook-devnet",
+  "preparedOrigin": "https://barterbook-devnet.rileycreighton.workers.dev",
+  "deployed": false,
+  "database": "barterbook-devnet",
+  "databaseId": "2cba38c7-365a-4168-8c71-c8988d9461ab",
+  "remoteMigrationsApplied": [
+    "0001_initial.sql",
+    "0002_guard_hardening.sql",
+    "0003_public_asset_cache.sql",
+    "0004_rpc_budget.sql",
+    "0005_terminal_allocations.sql",
+    "0006_public_history.sql"
+  ],
+  "migrationRepair": "Parenthesized CASE expressions; no guard removed. First failure left no application tables; retry succeeded.",
+  "heliusDevnetHealth": "ok; credentials omitted",
+  "paidPlanChanged": false,
+  "billingPlanConfirmed": false,
+  "hostedCpuMeasured": false,
+  "telemetryApiAccess": "403: existing Wrangler OAuth lacks Workers Observability Write; dashboard or a specifically scoped token required"
+}

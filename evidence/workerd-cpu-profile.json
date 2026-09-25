@@ -1,0 +1,50 @@
+{
+  "at": "2026-09-25T04:33:49.303Z",
+  "scope": "LOCAL workerd V8 sampling profile; warmed batch average, not hosted per-request CPU percentile. Real Free-tier gate remains unverified.",
+  "iterations": 100,
+  "wallMs": 487.21562300000005,
+  "sampledActiveMs": 473.909,
+  "sampledActiveMsPerVerification": 4.73909,
+  "topFunctions": [
+    [
+      "encode",
+      232238
+    ],
+    [
+      "compileMessage",
+      33922
+    ],
+    [
+      "",
+      29778
+    ],
+    [
+      "toBytes",
+      26360
+    ],
+    [
+      "(idle)",
+      24245
+    ],
+    [
+      "decodeUnsafe",
+      21519
+    ],
+    [
+      "createBuffer",
+      14170
+    ],
+    [
+      "fromArrayBuffer",
+      13966
+    ],
+    [
+      "(garbage collector)",
+      10256
+    ],
+    [
+      "write",
+      9486
+    ]
+  ]
+}

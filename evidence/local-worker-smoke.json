@@ -1,0 +1,34 @@
+{
+  "scope": "Actual local workerd + migrated D1 HTTP smoke. Ephemeral SDK identity; no browser wallet or chain execution.",
+  "at": "2026-09-25T04:57:06.660Z",
+  "/health": {
+    "name": "BarterBook",
+    "cluster": "devnet",
+    "settlementEnabled": false,
+    "rpcConfigured": false
+  },
+  "/assets": {
+    "assets": [],
+    "cluster": "devnet",
+    "settlementEnabled": false,
+    "rpcConfigured": false
+  },
+  "/listings": {
+    "listings": [],
+    "limit": 50
+  },
+  "/matches": {
+    "matches": [],
+    "bounded": true,
+    "scanned": 0,
+    "maximumCandidatePairs": 625
+  },
+  "auth": {
+    "verified": true,
+    "sessionPersisted": true,
+    "replayRejected": true,
+    "cookieFlags": "; Max-Age=3600; Path=/; HttpOnly; Secure; SameSite=Strict"
+  },
+  "roomPrivacy": true,
+  "logout": true
+}

@@ -1,0 +1,12 @@
+{
+  "cluster": "devnet",
+  "checkedAt": "2026-09-25T04:25:20.726Z",
+  "wallet": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+  "balanceLamports": "0",
+  "signatures": [],
+  "state": "FAUCET_ERROR_RECONCILIATION",
+  "requestResult": "JSON-RPC -32603 Internal error",
+  "mintsCreated": false,
+  "exchangesBroadcast": false,
+  "existingUserFundsUsed": false
+}

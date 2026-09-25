@@ -1,0 +1,27 @@
+{
+  "executedAt": "2026-09-25T04:46:22.543398+00:00",
+  "scope": "Local binary-fixture compatibility tests only. No RPC calls, public-network transactions or browser wallet operations.",
+  "command": "vitest run tests/compatibility.test.ts",
+  "tests": 27,
+  "passed": 27,
+  "failed": 0,
+  "checks": [
+    "u64 fee caps and supply preserved exactly",
+    "raw spendable token balance does not subtract withheld fees twice",
+    "active transfer hook rejected; inactive hook permitted",
+    "paused mint rejected; unpaused permitted",
+    "changed current/pending/nonfinite scaled multiplier rejected; 1 preserved",
+    "unknown mint extension and changed manifest rejected",
+    "wrong token-program account ownership rejected",
+    "wrong mint decimals, uninitialized and missing mint rejected",
+    "fee extension policy mismatch rejected",
+    "frozen/uninitialized/native token accounts rejected",
+    "wrong token mint and spending authority rejected",
+    "unexpected delegate or close authority rejected",
+    "required incoming memo rejected; inactive memo permitted",
+    "confidential, CPI guard and unknown account extensions rejected",
+    "fee-bearing immutable-owner token account accepted",
+    "base64 raw account encoding required"
+  ],
+  "rootCodeChangedByThisTask": false
+}

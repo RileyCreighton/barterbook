@@ -1,0 +1,41 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: 26.8.2
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run release:scan
+      - run: npm test -- --reporter=json --outputFile=test-results/test-results.json
+      - run: npm run build
+      - run: npm run db:migrate
+        env:
+          CI: 'true'
+          WRANGLER_SEND_METRICS: 'false'
+      - name: Retain local test evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: local-test-evidence
+          path: |
+            test-results/test-results.json
+            test-results/litesvm-execution.json
+          retention-days: 14

@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-09-25T04:35:14.341736+00:00",
+  "scope": "Local SDK and mocked RPC tests only; no chain or browser-wallet execution proof.",
+  "command": "vitest run tests/adversarial.test.ts",
+  "latestResult": {
+    "tests": 9,
+    "passed": 9,
+    "failed": 0
+  },
+  "coverage": [
+    "encoded priority fee underreported versus accepted SOL cap",
+    "duplicate metadata account-index rejection",
+    "frozen message/full signed bytes receipt identity",
+    "unsafe metadata numeric fee rejection",
+    "original finalized success via getTransaction despite missing status",
+    "prior confirmed success preserved versus absent histories",
+    "processed observation blocks absence-based retry",
+    "full official devnet genesis guard",
+    "Token-2022 receiving ATA rent includes ImmutableOwner"
+  ],
+  "initialIssuesReproduced": 5,
+  "reviewFixesAppliedBy": "root agent",
+  "networkFundsRequestedDuringReview": false
+}

@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-09-25T06:12:20.792294+00:00",
+  "method": "Fresh public submit HTML fetched; script URLs rediscovered from that response; current linked scripts read without authentication.",
+  "formUrl": "https://hackathons.solana.com/hackathons/stocklana/submit",
+  "htmlSha256": "dfc485a6e760c98856b9b7e52eee063be0a61e63346b771465e10b4ebf1306e9",
+  "scripts": [
+    {
+      "url": "https://hackathons.solana.com/_next/static/chunks/9032bfd6f2a41198.js",
+      "sha256": "ba36338030fb353edd5057a8a7d844d4aefe9d831e975c60f2bbb6a090dcf6ee"
+    },
+    {
+      "url": "https://hackathons.solana.com/_next/static/chunks/9028d10e94052f9f.js",
+      "sha256": "aa2df98c956091cbf90a0ac6e3f32999fc1b188da063037359d8ddd079da6d7c"
+    }
+  ],
+  "limits": {
+    "shortDescriptionUtf16": 280,
+    "fullDescriptionUtf16": 5000,
+    "maximumSponsorTracks": 3,
+    "pitchSeconds": 180,
+    "technicalVideoSeconds": 300
+  },
+  "fields": [
+    "Project Name",
+    "Short Description",
+    "Full Description (Markdown)",
+    "GitHub Repository",
+    "Demo URL",
+    "Pitch Video URL",
+    "Technical Video URL",
+    "Team",
+    "Sponsor Tracks",
+    "Review & Submit"
+  ],
+  "clientGates": [
+    "Signed-in account with linked wallet",
+    "Nonempty project name",
+    "At least one valid external project link",
+    "Save Draft is distinct from Submit Project"
+  ],
+  "deadlineUtc": "2026-09-25T20:00:00Z",
+  "sources": [
+    "https://hackathons.solana.com/hackathons/stocklana",
+    "https://hackathons.solana.com/how-it-works"
+  ],
+  "fixtureEligibility": "General devnet demo is supported by platform guidance. PRE bounty calls for using PreStocks and excludes other issuers pre-IPO tokens. Generic mock fixtures alone are not expressly confirmed eligible.",
+  "limitations": [
+    "No authenticated account or backend submission validation exercised",
+    "No draft saved, entry submitted or external message sent"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-25T06:25:49Z",
+  "scope": "Client finishing pass: consent steps, wallet account changes, devnet disclosures, public history, evidence downloads and accessibility",
+  "browserQa": {
+    "status": "BLOCKED",
+    "method": "Codex CUA only",
+    "inventory": { "apps": [], "browsers": [] },
+    "tabCreation": "Browser is not available: iab",
+    "finalInventoryRetry": { "apps": [], "browsers": [] },
+    "claim": "No browser execution or responsive visual verification is claimed for this finishing pass. The earlier browser-ui-smoke.json remains a distinct earlier run."
+  },
+  "checksActuallyExecuted": [
+    {
+      "command": "npx vitest run tests/wallet.test.ts tests/signing.test.ts tests/recovery.test.ts",
+      "result": "PASS",
+      "testsPassed": 25,
+      "escalated": false,
+      "limitation": "Wallet tests use explicit fake adapters. They are not browser-extension compatibility evidence."
+    },
+    {
+      "command": "npx vite build",
+      "result": "PASS",
+      "modulesTransformed": 279,
+      "limitation": "Bundle construction does not prove live browser behavior or deployment."
+    },
+    {
+      "command": "npm run check",
+      "result": "BLOCKED_OUTSIDE_CLIENT",
+      "observedError": "scripts/devnet-board-seed.ts(35,75): error TS2554: Expected 0 arguments, but got 1.",
+      "note": "Parent informed; concurrent devnet script work is outside this agent's ownership."
+    }
+  ],
+  "browserExtensionSigningProven": false,
+  "newPublicNetworkSettlementClaimed": false,
+  "newDeploymentClaimed": false
+}

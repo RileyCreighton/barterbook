@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-09-25T06:14:49.030470+00:00",
+  "package": "rpc-websockets",
+  "version": "9.3.9",
+  "license": "LGPL-3.0-only",
+  "gitCommit": "af8980776b55c2320b790556f775266fd5afc3ce",
+  "source": "https://codeload.github.com/elpheria/rpc-websockets/tar.gz/af8980776b55c2320b790556f775266fd5afc3ce",
+  "sha256": "afa61746aac88e804d0509d01f996ffa66c1bc7214ff7613bafbae5fc4698245",
+  "bytes": 1410864,
+  "modified": false,
+  "identitySource": "https://registry.npmjs.org/rpc-websockets/9.3.9"
+}

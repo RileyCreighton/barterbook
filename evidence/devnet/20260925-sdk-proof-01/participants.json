@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "runId": "20260925-sdk-proof-01",
+  "cluster": "devnet",
+  "assetKind": "mock tokens, not PRE",
+  "participants": [
+    {
+      "id": "sdk-0",
+      "label": "Disposable SDK participant 1",
+      "publicKey": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+      "kind": "sdk-disposable",
+      "signingEvidence": "SDK-only"
+    },
+    {
+      "id": "sdk-1",
+      "label": "Disposable SDK participant 2",
+      "publicKey": "bQG1z1SaJKpitQKTUeEuxiuenoBMrP4RSy1vbJ5iUW3",
+      "kind": "sdk-disposable",
+      "signingEvidence": "SDK-only"
+    },
+    {
+      "id": "sdk-2",
+      "label": "Disposable SDK participant 3",
+      "publicKey": "7PYpa2dL6hqxjPSGuh5b3EwjeWJYDvLWwaj8sWb3NiLC",
+      "kind": "sdk-disposable",
+      "signingEvidence": "SDK-only"
+    }
+  ]
+}

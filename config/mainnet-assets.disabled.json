@@ -1,0 +1,13 @@
+{
+  "cluster": "mainnet-beta",
+  "settlementEnabled": false,
+  "eligibilityConfirmed": false,
+  "source": "https://prestocks.com/api/prestocks",
+  "identityReferenceDate": "2026-09-25",
+  "warning": "Identity references only. No live mainnet compatibility, eligible participant or settlement proof is claimed. Fresh raw mint and account validation required before any real PRE test.",
+  "assets": [
+    {"symbol":"PRE Kalshi","mint":"PreLWGkkeqG1s4HEfFZSy9moCrJ7btsHuUtfcCeoRua","tested":false,"mock":false},
+    {"symbol":"PRE Neuralink","mint":"PrekqLJvJ3qVdXmBGDiexvwUTF4rLFDa6HWS4HJbw9S","tested":false,"mock":false},
+    {"symbol":"PRE Anduril","mint":"PresTj4Yc2bAR197Er7wz4UUKSfqt6FryBEdAriBoQB","tested":false,"mock":false}
+  ]
+}

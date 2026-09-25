@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-09-25T06:30:16.200770+00:00",
+  "scope": "Release documentation and helper validation only; no GitHub workflow run, deploy, browser wallet operation or hosted telemetry query.",
+  "checks": {
+    "deploymentConfigValidIsolatedCase": "passed",
+    "deploymentConfigInvalidInputCases": 6,
+    "deploymentConfigRejectedInputs": "passed",
+    "localWranglerConfigPreserved": "passed",
+    "cpuCollectorSyntax": "passed",
+    "cpuCollectorMockSanitization": "passed; temporary output removed; not actual CPU evidence",
+    "workflowYamlParsing": "passed",
+    "localMarkdownLinks": "passed",
+    "apacheLicenseMatchesOfficialBytes": "passed",
+    "lgplSourceArchiveSha256": "passed",
+    "shortDescriptionUtf16": 254,
+    "shortDescriptionLimit": 280,
+    "fullDescriptionUtf16": 3936,
+    "fullDescriptionLimit": 5000,
+    "pitchSeconds": 170
+  },
+  "remoteActionsPerformed": false
+}

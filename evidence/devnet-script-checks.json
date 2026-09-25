@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-09-25T04:26:59.912102+00:00",
+  "scope": "Filesystem permission and ignored-path configuration check only. No wallet secrets included.",
+  "modes": {
+    ".test-wallets": "0o700",
+    ".test-wallets/wallet-0.json": "0o600",
+    ".test-wallets/wallet-1.json": "0o600",
+    ".test-wallets/wallet-2.json": "0o600",
+    ".test-wallets/faucet-request.json": "0o600"
+  },
+  "gitignoreContainsTestWallets": true,
+  "offlineMintSetup": {
+    "wireBytes": 775,
+    "signaturesValid": true,
+    "scope": "In-memory SDK keys; no network execution"
+  },
+  "gitIgnoreCommandVerified": false,
+  "gitIgnoreCommandLimitation": "git check-ignore did not resolve a repository in this execution environment; .gitignore entry and filesystem modes were read directly."
+}

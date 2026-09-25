@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-09-25T04:35:14.341884+00:00",
+  "scope": "Read-only public source inspection; no faucet claim, wallet signature, signup, CAPTCHA or tool installation.",
+  "officialGuide": "https://solana.com/developers/cookbook/development/airdrops-and-faucets",
+  "foundationFaucet": "https://faucet.solana.com/",
+  "proofOfWork": {
+    "repository": "https://github.com/jarry-xiao/proof-of-work-faucet",
+    "commit": "1efbcbf87497ed6d75a9bda373766ab11c5b4501",
+    "cliVersion": "0.1.4",
+    "finding": "Requires upfront transaction fee from payer. If payer balance is below 5000 lamports, CLI requests ordinary 1 SOL airdrop before mining. Does not solve current zero-balance bootstrap.",
+    "installed": false,
+    "miningExecuted": false
+  },
+  "otherSources": {
+    "https://devnetfaucet.org/": "Public UI requires GitHub airdrop authentication. No login attempted.",
+    "https://solfaucet.com/": "Official guide identifies this as a UI for public RPC airdrops. No duplicate request made.",
+    "https://faucet.quicknode.com/solana/devnet": "Read-only follow-up returned HTTP 403; not pursued."
+  },
+  "result": "No available zero-balance/no-login alternative established."
+}

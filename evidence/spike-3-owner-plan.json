@@ -1,0 +1,175 @@
+{
+  "plan": {
+    "terms": {
+      "cluster": "devnet",
+      "version": 1,
+      "mode": "RING",
+      "owners": [
+        "HkRvNWKZqRfVDUKCqT8jq2XNHWfX46KWiGurkGoHYbmC",
+        "3MTp4zgb4DkGeYf4Jn9vptPxJQQ4q3LMF9CVp3ryd9iJ",
+        "DSYT24ZCPJ19iXijDvd4GTSB9o2kbwtL5dmeMyzAabAj"
+      ],
+      "feePayer": "HkRvNWKZqRfVDUKCqT8jq2XNHWfX46KWiGurkGoHYbmC",
+      "maxNetworkFeeLamports": "50000",
+      "maxAccountRentLamports": "20000000",
+      "legs": [
+        {
+          "fromOwner": "HkRvNWKZqRfVDUKCqT8jq2XNHWfX46KWiGurkGoHYbmC",
+          "toOwner": "3MTp4zgb4DkGeYf4Jn9vptPxJQQ4q3LMF9CVp3ryd9iJ",
+          "mint": "7ofxmNSH8AAXDS6TK9XTK1NSht1djC84wceAyWK2X2ub",
+          "tokenProgram": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "sourceAccount": "J8AZ4LLTu9FJTcSycknw76gzmGFev3SR4gofvVA3shr8",
+          "destinationATA": "tRVbx3zvb8UhsJEfToTW962BuzcGGqHcY4PeegBUAEi",
+          "grossRaw": "10000000",
+          "expectedFeeRaw": "100000",
+          "netRaw": "9900000",
+          "decimals": 6
+        },
+        {
+          "fromOwner": "3MTp4zgb4DkGeYf4Jn9vptPxJQQ4q3LMF9CVp3ryd9iJ",
+          "toOwner": "DSYT24ZCPJ19iXijDvd4GTSB9o2kbwtL5dmeMyzAabAj",
+          "mint": "7q54g6k2zxcBJ16YwFguEn6RBGqAm78S87dfZfY21gMR",
+          "tokenProgram": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "sourceAccount": "2u9whb1zYfDf4B3ViHNUcWmeMuY6y66jk5ka1mQEbQ6u",
+          "destinationATA": "9ymMVzT3kkYRtNBTeWQ68MC6Q9nNpPLVVrCXMDJm5CJv",
+          "grossRaw": "20000000",
+          "expectedFeeRaw": "200000",
+          "netRaw": "19800000",
+          "decimals": 6
+        },
+        {
+          "fromOwner": "DSYT24ZCPJ19iXijDvd4GTSB9o2kbwtL5dmeMyzAabAj",
+          "toOwner": "HkRvNWKZqRfVDUKCqT8jq2XNHWfX46KWiGurkGoHYbmC",
+          "mint": "CBKkc6KRkgcJWsFNjdrTVoW7CxBXx16KqD4wZUyfGgxH",
+          "tokenProgram": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "sourceAccount": "8ZNPmZAKE2jKpc8ZmMMdgBxH11udfha7XmTKDZxtG5Ub",
+          "destinationATA": "BKrofjvfVzfzYZos6wsALzoPhLem9ibUwjht2iLdNy9K",
+          "grossRaw": "30000000",
+          "expectedFeeRaw": "300000",
+          "netRaw": "29700000",
+          "decimals": 6
+        }
+      ],
+      "minima": [
+        {
+          "owner": "3MTp4zgb4DkGeYf4Jn9vptPxJQQ4q3LMF9CVp3ryd9iJ",
+          "mint": "7ofxmNSH8AAXDS6TK9XTK1NSht1djC84wceAyWK2X2ub",
+          "minNetRaw": "9900000"
+        },
+        {
+          "owner": "DSYT24ZCPJ19iXijDvd4GTSB9o2kbwtL5dmeMyzAabAj",
+          "mint": "7q54g6k2zxcBJ16YwFguEn6RBGqAm78S87dfZfY21gMR",
+          "minNetRaw": "19800000"
+        },
+        {
+          "owner": "HkRvNWKZqRfVDUKCqT8jq2XNHWfX46KWiGurkGoHYbmC",
+          "mint": "CBKkc6KRkgcJWsFNjdrTVoW7CxBXx16KqD4wZUyfGgxH",
+          "minNetRaw": "29700000"
+        }
+      ],
+      "expiresAt": 1790316305391
+    },
+    "assets": [
+      {
+        "cluster": "devnet",
+        "mint": "7ofxmNSH8AAXDS6TK9XTK1NSht1djC84wceAyWK2X2ub",
+        "symbol": "TEST-A",
+        "name": "Devnet test fixture",
+        "decimals": 6,
+        "tokenProgram": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "hasTransferFee": true,
+        "olderFee": {
+          "epoch": "0",
+          "basisPoints": 100,
+          "maximumFeeRaw": "1000000000"
+        },
+        "newerFee": {
+          "epoch": "100",
+          "basisPoints": 300,
+          "maximumFeeRaw": "1000000000"
+        },
+        "observedEpoch": "1",
+        "observedSlot": "1",
+        "observedAt": 1790312705387,
+        "extensions": [
+          1
+        ],
+        "multiplier": "1",
+        "pendingMultiplier": "1",
+        "tested": true,
+        "mock": true
+      },
+      {
+        "cluster": "devnet",
+        "mint": "7q54g6k2zxcBJ16YwFguEn6RBGqAm78S87dfZfY21gMR",
+        "symbol": "TEST-B",
+        "name": "Devnet test fixture",
+        "decimals": 6,
+        "tokenProgram": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "hasTransferFee": true,
+        "olderFee": {
+          "epoch": "0",
+          "basisPoints": 100,
+          "maximumFeeRaw": "1000000000"
+        },
+        "newerFee": {
+          "epoch": "100",
+          "basisPoints": 300,
+          "maximumFeeRaw": "1000000000"
+        },
+        "observedEpoch": "1",
+        "observedSlot": "1",
+        "observedAt": 1790312705387,
+        "extensions": [
+          1
+        ],
+        "multiplier": "1",
+        "pendingMultiplier": "1",
+        "tested": true,
+        "mock": true
+      },
+      {
+        "cluster": "devnet",
+        "mint": "CBKkc6KRkgcJWsFNjdrTVoW7CxBXx16KqD4wZUyfGgxH",
+        "symbol": "TEST-C",
+        "name": "Devnet test fixture",
+        "decimals": 6,
+        "tokenProgram": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "hasTransferFee": true,
+        "olderFee": {
+          "epoch": "0",
+          "basisPoints": 100,
+          "maximumFeeRaw": "1000000000"
+        },
+        "newerFee": {
+          "epoch": "100",
+          "basisPoints": 300,
+          "maximumFeeRaw": "1000000000"
+        },
+        "observedEpoch": "1",
+        "observedSlot": "1",
+        "observedAt": 1790312705387,
+        "extensions": [
+          1
+        ],
+        "multiplier": "1",
+        "pendingMultiplier": "1",
+        "tested": true,
+        "mock": true
+      }
+    ],
+    "blockhash": "H4JGfpkFN2afYQAUPjySt9kxMn1XBZkGnqGjnB5spZiP",
+    "lastValidBlockHeight": "500",
+    "contextSlot": "1",
+    "computeUnitLimit": 300000,
+    "microLamports": "0",
+    "createAtas": [
+      "tRVbx3zvb8UhsJEfToTW962BuzcGGqHcY4PeegBUAEi",
+      "9ymMVzT3kkYRtNBTeWQ68MC6Q9nNpPLVVrCXMDJm5CJv",
+      "BKrofjvfVzfzYZos6wsALzoPhLem9ibUwjht2iLdNy9K"
+    ],
+    "networkFeeLamports": "15000",
+    "accountRentLamports": "6472800"
+  },
+  "wireBase64": "AwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMCBxD42ySYwr7HtMnkJ5dAzix7v0pdCK/rDg5bvO5TKdnVoyL1TlF0GSk0D0ytIG+tYj6A5eRvIzEMy3ILsaC4QCM7uNdSh2kurqNe38E5Km4bbjYuByNWgSDvCsZ44YflM1QcOABBFC3i/0MBzSeh3r7gotBkVfEvNQmCO9tVZ0weEnBMlUBjg0nOrMtcosSUBbmEvCcu9cpQsiT1WmxbhD64hWgr25s5yqCSPciSTWHOCZqZHiY3OWcZbs/XwPdFaJuZaaNZ2NdlbxaXYz5hbxfPk//Yk9RXcAN+pM+og4wt6v5si3GDoVLA6Pg4Z6pVZPcbTKJo7MA9HUh86WKz1hLRDSxQ1TW9wMzLoWoVs7Qn1Jw/nf+SdFaH/F90iTtOzVcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGUa5IRg18Adg64sxldLj3/pFRupFmHwWOA6t+0GAPROZXaYRxZ11xlge0ckdSYiQQc+OG7TkmRilxj5Q/UinAyMlyWPTiSJ8bs9ECkUjg2DC1oTmdr/EIQEjnvY2+n4WaYVkShFhEvKsx0Lj25vrfdvVqcJYlr9y+eFet5wdM16AwZGb+UhFzL/7K26csOb57yM5bvF9xJrLEObOkAAAAAG3fbh7nWP3hhCXbzkbM3athr8TYO5DSf+vfko2KGL/O6TQrwZ6m4hmskYm2lN7R1hyxn5ZrIyDIbQcnvieN3YCA4ABQLgkwQADgAJAwAAAAAAAAAADAYABQILCQ8BAQwGAAYADQkPAQEMBgAIAQoJDwEBDwQDCwUBExoBAC0xAQAAAAAGQA0DAAAAAAAPBAQNBgITGgGAw8kBAAAAAAbgkwQAAAAAAA8EBwoIABMaAYCWmAAAAAAABqCGAQAAAAAA"
+}

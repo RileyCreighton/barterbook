@@ -1,0 +1,56 @@
+{
+  "checkedAt": "2026-09-25T06:37:46.714Z",
+  "environment": "LOCAL_BROWSER_NO_WALLET",
+  "url": "http://localhost:5173",
+  "browser": "Codex in-app browser; no wallet extension",
+  "checks": [
+    {
+      "name": "Three-owner illustration, directions and exact 1% net fees",
+      "passed": true
+    },
+    {
+      "name": "Two-for-one illustration matches TEST-A/B/C fixture quantities",
+      "passed": true
+    },
+    {
+      "name": "Authentication, acceptance and transaction approval distinguished",
+      "passed": true
+    },
+    {
+      "name": "Local execution evidence and absent public receipts remain distinct",
+      "passed": true
+    },
+    {
+      "name": "Public history loads an empty verified-receipt list",
+      "passed": true
+    },
+    {
+      "name": "No-compatible-wallet message and Escape dismissal",
+      "passed": true
+    },
+    {
+      "name": "Mobile horizontal overflow repaired and rechecked",
+      "passed": true,
+      "cssViewportWidth": 312,
+      "documentScrollWidth": 312,
+      "tableContainerWidth": 227,
+      "tableScrollWidth": 318
+    },
+    {
+      "name": "Browser console error/warning log check",
+      "passed": true,
+      "entries": 0
+    }
+  ],
+  "screenshots": [
+    "docs/screenshots/local-guide-desktop.png",
+    "docs/screenshots/local-guide-mobile.png"
+  ],
+  "notProven": [
+    "Public deployment",
+    "Browser-extension authentication/signing",
+    "Successful public devnet settlement",
+    "Hosted Worker CPU",
+    "Wallet decline through real extension"
+  ]
+}

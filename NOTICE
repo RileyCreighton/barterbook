@@ -1,0 +1,20 @@
+BarterBook
+Copyright 2026 BarterBook contributors
+
+Original BarterBook source is licensed under Apache License 2.0.
+Third-party libraries and their copyrights retain their original licenses.
+See docs/third-party-attribution.md and docs/third-party-licenses.txt.
+
+The Solana web3.js dependency incorporates rpc-websockets 9.3.9, copyright
+Elpheria j.d.o.o., under LGPL-3.0-only. The exact unmodified upstream source,
+full LGPL/GPL license texts, revision and checksum are retained in docs/vendor.
+Application source, pinned dependencies and build instructions are provided
+so recipients can modify the library and rebuild the combined application.
+This notice does not relicense third-party code as Apache-2.0.
+
+Development test tooling includes Playwright:
+Playwright
+Copyright (c) Microsoft Corporation
+
+This software contains code derived from the Puppeteer project (https://github.com/puppeteer/puppeteer),
+available under the Apache 2.0 license (https://github.com/puppeteer/puppeteer/blob/master/LICENSE).
