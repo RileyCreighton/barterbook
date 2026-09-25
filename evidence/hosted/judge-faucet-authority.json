@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-09-25T19:37:23.710Z",
+  "cluster": "devnet",
+  "authority": "HNQ83apbgdiZ9sLTCfborwhM2cVGWTP4hqRQ89ZzQgXw",
+  "scope": "Dedicated mint-only key for three valueless Devnet mock tokens. No participant spending authority, no funding, no transfer-fee authority change.",
+  "mints": [
+    "kyEZzbcEZhJTmHesLTZFaKnmkisvLirFrgfKZrtJbQx",
+    "EZ2xuTV73HqM5AE8SrDjzQeHtae6cDV6TU6tzLBtEVxD",
+    "3y3QsQtR3pK9fe3ZxCcwTdc5AHN87panLaFzR3GfzZvz"
+  ],
+  "finalized": true
+}

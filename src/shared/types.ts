@@ -201,4 +201,5 @@ export interface Env {
   SITE_URL?: string;
   REPOSITORY_URL?: string;
   BUILD_ID?: string;
+  DEMO_FAUCET_MINT_SECRET?: string;
 }

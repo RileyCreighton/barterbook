@@ -1,3 +1,4 @@
+import { createDemoFaucetRouter } from "./demo-faucet";
 import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
 import { bodyLimit } from "hono/body-limit";
@@ -73,6 +74,7 @@ app.route(
 app.route("/api", createSettlementRouter());
 app.route("/api", createNonceRouter());
 app.route("/api", createPublicRouter());
+app.route("/api", createDemoFaucetRouter());
 app.get("/api/assets/fresh", requireAuth, async (c) => {
   await checkRateLimit(c.env.DB, `fresh-assets:${c.get("wallet")}`, 12, 60000);
   return c.json({ assets: await getAssets(c.env) });

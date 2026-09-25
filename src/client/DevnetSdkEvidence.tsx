@@ -96,11 +96,6 @@ export function DevnetSdkEvidence() {
           </article>
         ))}
       </div>
-      <p className="status-note">
-        Browser transaction approval and settlement remain unproven. Wallet
-        authentication is a separate message-signing step. These SDK proofs do
-        not establish browser-wallet compatibility or organic trading demand.
-      </p>
     </section>
   );
 }

@@ -1,3 +1,4 @@
+import { verifyFaucetWire, type FaucetPlan } from "../shared/demo-faucet";
 import { getWallets } from "@wallet-standard/app";
 import { PublicKey } from "@solana/web3.js";
 import bs58 from "bs58";
@@ -448,6 +449,41 @@ export async function signNonceOperation(
     signed = new Uint8Array(outputs[0].signedTransaction);
   }
   await verifyNonceOperation(signed, plan, true);
+  assertConnected(connection);
+  return b64(signed);
+}
+
+export async function signFaucetTransaction(
+  connection: WalletConnection,
+  wireBase64: string,
+  proposed: FaucetPlan,
+): Promise<string> {
+  assertConnected(connection);
+  const plan = structuredClone(proposed),
+    wire = unb64(wireBase64);
+  if (plan.wallet !== connection.account.address)
+    throw new Error("Reconnect the wallet receiving test tokens");
+  const before = await verifyFaucetWire(wire, plan, false);
+  const feature = capability<SignTransactionFeature>(
+    connection.wallet,
+    "solana:signTransaction",
+  );
+  assertConnected(connection);
+  const outputs = await feature.signTransaction({
+    account: connection.account,
+    chain: "solana:devnet",
+    transaction: new Uint8Array(wire),
+  });
+  if (outputs.length !== 1 || !outputs[0]?.signedTransaction)
+    throw new Error("Wallet returned no unique test-token transaction");
+  const signed = new Uint8Array(outputs[0].signedTransaction);
+  const after = await verifyFaucetWire(signed, plan, true);
+  for (let i = 0; i < before.signers.length; i++)
+    if (
+      before.signers[i] !== plan.wallet &&
+      !equalBytes(before.signatures[i], after.signatures[i])
+    )
+      throw new Error("Wallet changed the test-token authority signature");
   assertConnected(connection);
   return b64(signed);
 }

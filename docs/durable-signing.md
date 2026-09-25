@@ -32,7 +32,7 @@ The nonce is initially observed at a finalized bank, which anchors the history s
 
 The pinned LiteSVM 0.8.0 rolls back nonce advancement when a later token instruction fails, unlike the documented Solana behavior. That test proves token rollback and verifies that the application refuses replacement while the nonce remains live. It is not claimed as proof of nonce consumption on a public network. No dependency upgrade or hidden emulator patch was made.
 
-Bob’s setup and the two-person browser basket are now finalized. The three-person browser receipt remains the owner’s next live verification step. Follow the [updated rehearsal guide](browser-transaction-retest.md).
+Bob’s setup and the two-person browser basket are now finalized. The three-person browser receipt is also finalized; see [browser execution evidence](browser-execution-evidence.md). Follow the [updated rehearsal guide](browser-transaction-retest.md).
 
 ## Version 9 compatibility follow-up
 
@@ -42,4 +42,4 @@ Renewal now requires explicit longer-lived terms. Browser requests identified by
 
 ## Actual wallet follow-up
 
-Bob’s setup finalized and the owner reached a real version 10 durable attempt. Solflare’s subsequent Devnet/Mainnet warning is now reproduced with a separately created, valid Devnet SDK nonce account. See the [wallet compatibility investigation](solflare-durable-nonce-compatibility.md). The owner then reported successful Phantom approval, and [independent checks verified version 10 finalized](../evidence/hosted/browser-v10-finalized-verification.json), including both signatures, exact token deltas and nonce consumption. [The room is complete and its locks are released](../evidence/hosted/browser-v10-finalized-database.json). Bob can reuse the signing account for the three-person browser test, which remains pending. This success does not establish Solflare compatibility.
+Bob’s setup finalized and the owner reached a real version 10 durable attempt. Solflare’s subsequent Devnet/Mainnet warning is now reproduced with a separately created, valid Devnet SDK nonce account. See the [wallet compatibility investigation](solflare-durable-nonce-compatibility.md). The owner then reported successful Phantom approval, and [independent checks verified version 10 finalized](../evidence/hosted/browser-v10-finalized-verification.json), including both signatures, exact token deltas and nonce consumption. [The room is complete and its locks are released](../evidence/hosted/browser-v10-finalized-database.json). Bob can reuse the signing account for the three-person browser test, which has now finalized. This success does not establish Solflare compatibility.

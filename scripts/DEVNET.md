@@ -1,5 +1,7 @@
 # Disposable devnet fixtures, evidence and board seeding
 
+**Judges:** use the hosted [self-service token faucet and testing guide](../docs/judging-guide.md). No script or operator key is needed. Both browser exchange flows are [finalized and independently verified](../docs/browser-execution-evidence.md). The commands below are for fixture operators.
+
 These commands use **new disposable devnet wallets and faucet SOL only**. They never import a user's funded wallet, acquire PRE tokens or purchase a service. TEST-A, TEST-B and TEST-C are minted mock assets, not PRE holdings. The SDK scripts do not prove browser-extension compatibility. No competition submission or external message is sent.
 
 Run commands from the repository root. Install the pinned dependencies with `npm ci`. Node 22 or newer is needed; this project was exercised with Node 26. Keep `.test-wallets/` private and backed up locally: it contains keys and transaction recovery journals and is ignored by Git. Never paste keys, seed phrases, cookies, provider URLs containing credentials, or `.test-wallets` files into chat or a submission.
@@ -220,7 +222,7 @@ All nine browser-inventory transactions finalized: each of Alice, Bob and Carol 
 
 The separate setup helper then transferred **0.05 SOL each to Alice and Carol** from the faucet-funded SDK payer, retaining its reserve. The actual network fee was 5,000 lamports. Bob already had the verified 1 SOL faucet credit and received no additional setup SOL. See the [verified setup funding receipt](../evidence/devnet/20260925-sdk-proof-01/browser-sol-alice-carol-01-receipt.json) and [raw finalized archive](../evidence/devnet/20260925-sdk-proof-01/browser-sol-alice-carol-01-transaction.json).
 
-**All completed chain proofs above are SDK proofs.** Browser wallets now have mock inventory and devnet SOL, but real browser-extension approval, partial signing and application settlement still need their own proof. These results establish no mainnet or PRE-token eligibility.
+The setup and SDK proofs above retain their original provenance. The subsequent [browser basket and three-way match](../docs/browser-execution-evidence.md) have their own finalized transaction archives. The hosted faucet now uses a dedicated mint-only authority; operator replenishment loads that ignored key when the live mint requires it.
 
 To inspect the preserved run without requesting funds:
 

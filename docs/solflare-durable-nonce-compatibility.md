@@ -28,6 +28,6 @@ The owner subsequently reported successful Phantom signing. [Independent checks 
 
 [The room and attempt are finalized, with two stored signatures and no remaining locks](../evidence/hosted/browser-v10-finalized-database.json). Bob's nonce was consumed and his signing account remains under his authority. No replacement attempt, message-verification relaxation, network switch or new owner setup was needed for this success.
 
-Continue with [the three-person rehearsal](browser-transaction-retest.md#next-test-alice-bob-and-carol), using Phantom on Devnet for the same Alice, Bob and Carol addresses and Bob as fee payer. Actual three-person browser settlement remains pending. There is no automatic fallback prompt or automatic wallet switch.
+Continue with [the three-person rehearsal](browser-transaction-retest.md#next-test-alice-bob-and-carol), using Phantom on Devnet for the same Alice, Bob and Carol addresses and Bob as fee payer. The [three-person browser settlement subsequently finalized](browser-execution-evidence.md). There is no automatic fallback prompt or automatic wallet switch.
 
 For future prepared durable attempts, the app review period does not revoke saved signatures. Cancellation must be signed by the fee payer using a compatible wallet and the original outcome reconciled before renewal. Solflare's cancellation request uses a nonce too and may hit the same simulation limitation. No owner attempt or lock was manually changed during this diagnosis.

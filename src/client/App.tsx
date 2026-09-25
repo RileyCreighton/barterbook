@@ -1,3 +1,5 @@
+import { JudgeGuide } from "./JudgeGuide";
+import { BrowserEvidence } from "./BrowserEvidence";
 import { useEffect, useRef, useState } from "react";
 import { formatAmount } from "../shared/amounts";
 import { canonical } from "../shared/crypto";
@@ -51,6 +53,7 @@ import {
 } from "./TradeViews";
 
 type Page =
+  | "try"
   | "market"
   | "portfolio"
   | "basket"
@@ -74,6 +77,7 @@ function route() {
     .split("/");
   return {
     page: ([
+      "try",
       "market",
       "portfolio",
       "basket",
@@ -611,6 +615,7 @@ export function App() {
             ["matches", "Matches"],
             ["rooms", "Trade rooms"],
             ["history", "Evidence"],
+            ["try", "Try the demo"],
           ].map(([p, label]) => (
             <a
               key={p}
@@ -633,8 +638,8 @@ export function App() {
         </div>
       </header>
       <div className="environment-strip">
-        <span>TEST ENVIRONMENT</span> Test assets only. No real PRE holdings or
-        mainnet settlement.
+        <span>SOLANA DEVNET</span> Live exchanges with TEST-A, TEST-B and TEST-C
+        · test tokens with no monetary value.
       </div>
       <main id="main-content" tabIndex={-1}>
         {error && !showRoomFeedback && !picker && (
@@ -656,7 +661,13 @@ export function App() {
             original status before doing anything else.
           </p>
         )}
-        {page === "spike" ? (
+        {page === "try" ? (
+          <JudgeGuide
+            connection={connection}
+            owner={owner}
+            onConnect={() => setPicker(true)}
+          />
+        ) : page === "spike" ? (
           <SigningSpike />
         ) : page === "walkthrough" ? (
           <Walkthrough />
@@ -1118,6 +1129,7 @@ export function App() {
                     <span>Your wallet approves every exchange</span>
                   </div>
                 </section>
+                <BrowserEvidence />
                 <GettingStarted
                   demo={demo}
                   connected={Boolean(identity)}
@@ -1666,7 +1678,14 @@ export function App() {
         <div>
           <a href="#/walkthrough">Judge walkthrough</a>
           <a href="#/history">Evidence & receipts</a>
-          <a href="#/spike">Wallet signing test</a>
+          <a href="#/try">Try the demo</a>
+          <a
+            href="https://github.com/RileyCreighton/barterbook"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub ↗
+          </a>
           <a href="/legal/LICENSE">Apache-2.0</a>
           <a href="/legal/NOTICE">Notices</a>
           <a href="/legal/third-party-licenses.txt">

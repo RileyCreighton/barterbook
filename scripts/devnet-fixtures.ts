@@ -1,4 +1,9 @@
-import { PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
+import {
+  Keypair,
+  PublicKey,
+  SystemProgram,
+  Transaction,
+} from "@solana/web3.js";
 import {
   ExtensionType,
   TOKEN_2022_PROGRAM_ID,
@@ -223,6 +228,28 @@ for (const participant of recipients)
   for (let i = 0; i < assets.length; i++) {
     const mint = new PublicKey(assets[i].mint);
     const owner = new PublicKey(participant.publicKey);
+    const mintState = await getMint(
+      connection,
+      mint,
+      "finalized",
+      TOKEN_2022_PROGRAM_ID,
+    );
+    let inventoryAuthority = payer;
+    if (mintState.mintAuthority?.toBase58() !== payer.publicKey.toBase58()) {
+      const key = readJson<{ purpose: string; secretKey: number[] }>(
+        join(process.cwd(), ".test-wallets", "judge-faucet-authority.json"),
+      );
+      if (key.purpose !== "barterbook-devnet-mint-only")
+        throw new Error("Wrong fixture mint authority purpose");
+      inventoryAuthority = Keypair.fromSecretKey(
+        Uint8Array.from(key.secretKey),
+      );
+      if (
+        mintState.mintAuthority?.toBase58() !==
+        inventoryAuthority.publicKey.toBase58()
+      )
+        throw new Error("Fixture mint authority unavailable");
+    }
     const destination = getAssociatedTokenAddressSync(
       mint,
       owner,
@@ -247,14 +274,14 @@ for (const participant of recipients)
           createMintToCheckedInstruction(
             mint,
             destination,
-            payer.publicKey,
+            inventoryAuthority.publicKey,
             1_000_000_000n,
             6,
             [],
             TOKEN_2022_PROGRAM_ID,
           ),
         ),
-      [payer],
+      inventoryAuthority === payer ? [payer] : [payer, inventoryAuthority],
     );
   }
 console.log(

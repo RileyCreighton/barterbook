@@ -1,4 +1,6 @@
-# Browser transaction retest with longer-lived signing
+# Browser transaction rehearsal
+
+Both browser tests are now complete: [verified basket and three-way evidence](browser-execution-evidence.md). For a fresh judge-controlled test, use [the current testing guide](judging-guide.md). The original rehearsal below preserves its exact recipe.
 
 ## Completed: Alice and Bob
 
@@ -15,7 +17,7 @@ The deployed build remains **`07b09d4`**. [Deployment verification](../evidence/
 
 ## Wallet choice for the three-person test
 
-Use **Phantom on Devnet** for the same Alice, Bob and Carol addresses. Solflare's simulation service still [misclassifies valid Devnet nonce transactions as Mainnet](solflare-durable-nonce-compatibility.md). The successful Phantom basket does not establish Solflare compatibility or complete the three-person browser test.
+Use **Phantom on Devnet** for the same Alice, Bob and Carol addresses. Solflare's simulation service still [misclassifies valid Devnet nonce transactions as Mainnet](solflare-durable-nonce-compatibility.md). The successful Phantom basket does not establish Solflare compatibility ; both browser flows have since finalized.
 
 ## Prepare the existing wallet windows
 
@@ -31,7 +33,7 @@ Use **Phantom on Devnet** for the same Alice, Bob and Carol addresses. Solflare'
 
 4. In **Portfolio**, refresh holdings and confirm the required test tokens are available. Have every participant's room open and wallet unlocked before preparing a transaction. The new room will explicitly show **Longer-lived signing**. Its exchange signatures no longer depend on the short recent-blockhash window. Complete the app review/signing round within its one-hour review period.
 
-## Next test: Alice, Bob and Carol
+## Completed recipe: Alice, Bob and Carol
 
 Each person uses **Portfolio → Publish an exact lot** to enter and publish their own row. The quantity is what leaves the sender; the minimum is what that sender wants to receive after token fees.
 

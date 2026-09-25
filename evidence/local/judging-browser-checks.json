@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-09-25T19:47:50.306Z",
+  "origin": "http://127.0.0.1:4173",
+  "checks": [
+    {
+      "route": "market",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "market",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "route": "try",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "try",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "route": "history",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "history",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "route": "walkthrough",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "route": "walkthrough",
+      "width": 390,
+      "overflow": false
+    }
+  ],
+  "pageErrors": [],
+  "passed": true
+}

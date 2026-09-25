@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-09-25T19:46:17.625Z",
+  "total": 301,
+  "passed": 301,
+  "failed": 0,
+  "files": 26,
+  "scope": "Full local suite; faucet-focused tests repeated after rent and expiry recovery changes. Build and typecheck passed."
+}

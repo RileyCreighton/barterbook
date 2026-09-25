@@ -99,3 +99,12 @@ npx wrangler d1 export barterbook-devnet --remote --output .wrangler/before-repa
 An operator-reviewed restore, if required after that reconciliation, is `npx wrangler d1 time-travel restore barterbook-devnet --bookmark ACTUAL_BOOKMARK --config .wrangler/deploy.json`. Free-plan history is seven days. No automatic database restore or deletion is included in the workflows.
 
 For repeat deployments, use [the manual GitHub workflow guide](github-release.md). The workflow has not been executed remotely as part of preparation.
+
+
+## Self-service judging faucet
+
+Migration `0008_demo_faucet.sql` adds a separate authenticated request journal. The hosted faucet uses the exact three Devnet mints and dedicated `FAUCET_AUTHORITY` in `src/shared/demo-faucet.ts`. Its unfunded key has only minting authority; transfer-fee configuration and participant spending authority are separate. The operator stores its base64 Ed25519 secret only as the Worker secret `DEMO_FAUCET_MINT_SECRET`, never in public config or frontend variables. With the secret absent, preparation is disabled.
+
+The caller authenticates a wallet, gets a fixed 1,000-of-each mint transaction, reviews it in the wallet and pays less than 0.01 Devnet SOL for rent and fees. The server checks network identity, registered mocks, a balance floor and fee/rent caps. Both sides reconstruct every instruction; full signed bytes and the transaction identifier are saved before broadcast. An interrupted submission checks or resends its original request. Rate limits apply per wallet, IP and globally.
+
+This published faucet is deliberately bound to this demo's three mints. A separate deployment with different fixtures must configure and review its own mint-only authority and update the shared constants; copying the public source does not give access to the hosted mint key. Judges can use the hosted faucet directly without any server setup.

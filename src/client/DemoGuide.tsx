@@ -19,11 +19,10 @@ export function participantName(
 export function TestDisclosure() {
   return (
     <div className="test-disclosure">
-      <strong>Devnet demonstration · not audited</strong>
+      <strong>Live Devnet demo</strong>
       <span>
-        TEST-A, TEST-B and TEST-C have no monetary value and grant no stock,
-        company ownership or issuer rights. Configured demonstration wallets are
-        developer-controlled. This is not a real PRE trade.
+        Trade test tokens through your own wallets. Explore the completed basket
+        and three-way match, or get test inventory to run your own.
       </span>
     </div>
   );
@@ -71,12 +70,13 @@ export function GettingStarted({
           <div>
             <strong>Get test assets</strong>
             <p>
-              Use a disposable devnet wallet, faucet SOL and the coordinator’s
-              validated TEST-A/B/C fixtures.
+              Get Devnet SOL from the Solana faucet, then claim 1,000 of each
+              test token in the demo guide.
             </p>
+            <a href="#/try">Get TEST-A/B/C →</a>
             {safeFaucet && (
               <a href={faucet} target="_blank" rel="noreferrer">
-                Open devnet faucet ↗
+                Get network-fee SOL ↗
               </a>
             )}
           </div>

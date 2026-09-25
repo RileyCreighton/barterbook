@@ -1,0 +1,24 @@
+{
+  "proofs": [
+    {
+      "title": "Two-for-one basket",
+      "txid": "25qQJqb2jgTvY5VVhFsa2fizsxGaZ3pWoVjiREQ9NZkqDxKpy56E1w3ZCHV2RZuNrfh9NeLZgGgsGCix8MpU4XSS",
+      "owners": 2,
+      "slot": "504134584",
+      "blockTime": 1790363678,
+      "feeSOL": "0.00001",
+      "artifact": "browser-basket",
+      "summary": "Bob received 9.9 A + 4.95 B; Alice received 19.8 C."
+    },
+    {
+      "title": "Three-way match",
+      "txid": "2Cu3fwsynLDHVQzB67DUZGBqcxarquCZKtCEyVoAjneSHtoVeFKWeBdnYxieUgFnXxxGCbjirDC6Zoo6yVvHpy8Z",
+      "owners": 3,
+      "slot": "504137852",
+      "blockTime": 1790364219,
+      "feeSOL": "0.000015",
+      "artifact": "browser-ring",
+      "summary": "Bob received 9.9 A; Carol received 19.8 B; Alice received 29.7 C."
+    }
+  ]
+}

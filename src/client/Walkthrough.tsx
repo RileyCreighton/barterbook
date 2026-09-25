@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { LocalEvidence } from "./LocalEvidence";
-import { DevnetSdkEvidence } from "./DevnetSdkEvidence";
+import { BrowserEvidence } from "./BrowserEvidence";
 import { TestDisclosure } from "./DemoGuide";
 export function Walkthrough() {
   const [step, setStep] = useState(0),
@@ -18,9 +18,9 @@ export function Walkthrough() {
         ["Bob", "Alice", "TEST-C", "20", "0.2", "19.8"],
       ]
     : [
-        ["Alice", "Carol", "TEST-A", "10", "0.1", "9.9"],
-        ["Bob", "Alice", "TEST-B", "20", "0.2", "19.8"],
-        ["Carol", "Bob", "TEST-C", "15", "0.15", "14.85"],
+        ["Alice", "Bob", "TEST-A", "10", "0.1", "9.9"],
+        ["Bob", "Carol", "TEST-B", "20", "0.2", "19.8"],
+        ["Carol", "Alice", "TEST-C", "30", "0.3", "29.7"],
       ];
   return (
     <>
@@ -29,7 +29,8 @@ export function Walkthrough() {
           <p className="eyebrow">No wallet needed</p>
           <h1>Three wants. One exchange.</h1>
           <p className="subhead">
-            Follow an exact-lot exchange from discovery to a verifiable result.
+            Explore the actual browser-executed basket and three-way match, from
+            agreed terms to finalized receipts.
           </p>
         </div>
         <a href="#/market" className="button-link secondary">
@@ -37,10 +38,10 @@ export function Walkthrough() {
         </a>
       </div>
       <div className="example-notice">
-        <strong>Illustrative walkthrough</strong>
+        <strong>Recorded browser walkthrough</strong>
         <span>
-          Sample holders and test quantities. No tokens are held, signed or
-          transferred here. No chain receipt is claimed.
+          These are the terms of the completed Alice, Bob and Carol trades.
+          Explore the recorded flow, then open the real receipts in step 4.
         </span>
       </div>
       <TestDisclosure />
@@ -101,10 +102,10 @@ export function Walkthrough() {
               <p>
                 {basket
                   ? "Alice offers two test assets for one of Bob’s. Both sides accept the exact package together."
-                  : "Alice wants TEST-B, Bob wants TEST-C, and Carol wants TEST-A. These fixed lots form a three-way cycle."}
+                  : "Alice wants TEST-C, Bob wants TEST-A, and Carol wants TEST-B. These fixed lots form a three-way cycle."}
               </p>
               <div className={`cycle-diagram ${basket ? "two-owner" : ""}`}>
-                {(basket ? ["Alice", "Bob"] : ["Alice", "Carol", "Bob"]).map(
+                {(basket ? ["Alice", "Bob"] : ["Alice", "Bob", "Carol"]).map(
                   (name, i) => (
                     <div className="person-card" key={name}>
                       <span className="avatar">{name[0]}</span>
@@ -133,21 +134,21 @@ export function Walkthrough() {
               <p className="diagram-route">
                 {basket
                   ? "Alice sends TEST-A + TEST-B to Bob; Bob sends TEST-C to Alice."
-                  : "Transfer loop: Alice → Carol → Bob → Alice. Each holder receives the whole lot from the previous holder."}
+                  : "Transfer loop: Alice → Bob → Carol → Alice. Each holder receives the whole lot from the previous holder."}
               </p>
             </>
           )}
           {step === 1 && (
             <>
               <p>
-                This example uses a 1% issuer transfer fee. The live engine
-                reads the current mint schedule, rounds in raw integer units and
-                checks fee caps.
+                These executed trades used a 1% issuer transfer fee. The live
+                engine reads the current mint schedule, rounds in raw integer
+                units and checks fee caps.
               </p>
               <div
                 className="table-scroll"
                 role="region"
-                aria-label="Example transfer fees and net receipts"
+                aria-label="Executed transfer fees and net receipts"
                 tabIndex={0}
               >
                 <table>
@@ -217,26 +218,14 @@ export function Walkthrough() {
                 Earlier signatures must survive each wallet round trip.
               </p>
               <div className="status-note">
-                This explains the live flow. No wallet approval is simulated
-                here. Every counterparty must be online to approve during the
-                transaction’s signing window.
+                Longer-lived signing lets each participant review in their own
+                wallet. Every signature authorizes the same accepted exchange.
               </div>
             </>
           )}
           {step === 3 && (
             <>
-              <DevnetSdkEvidence />
-              <div className="evidence-empty">
-                <h3>Application and browser proof remain separate</h3>
-                <p>
-                  The SDK demonstrations above executed on devnet. This
-                  walkthrough remains illustrative and does not simulate a
-                  browser approval or create an application receipt.{" "}
-                  <a href="#/history">
-                    Inspect the recorded evidence and receipt history.
-                  </a>
-                </p>
-              </div>
+              <BrowserEvidence />
               <details className="separate-local-evidence">
                 <summary>
                   Inspect the separate local LiteSVM execution checks
@@ -254,7 +243,9 @@ export function Walkthrough() {
             </>
           )}
           <div className="walk-controls">
-            <span className="muted">Illustration · devnet test assets</span>
+            <span className="muted">
+              Recorded exchange · Devnet test assets
+            </span>
             {step < 3 ? (
               <button onClick={() => setStep(step + 1)}>
                 Next: {steps[step + 1]} →

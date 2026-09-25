@@ -1,3 +1,5 @@
+import { BrowserEvidence } from "./BrowserEvidence";
+import browserProofs from "./browser-proof-summary.json";
 import { useEffect, useRef, useState } from "react";
 import { api } from "./api";
 import { LocalEvidence } from "./LocalEvidence";
@@ -112,8 +114,8 @@ export function PublicHistory() {
           <p className="eyebrow">Public evidence · no wallet needed</p>
           <h1>Inspect what actually executed.</h1>
           <p className="subhead">
-            Application receipts, developer-run devnet demonstrations and local
-            token-program checks are distinct evidence.
+            Completed browser trades, their exact transfers and independently
+            verified onchain receipts.
           </p>
         </div>
         <button
@@ -125,9 +127,7 @@ export function PublicHistory() {
         </button>
       </div>
       <TestDisclosure />
-      <div className="card history-local">
-        <DevnetSdkEvidence />
-      </div>
+      <BrowserEvidence />
       <section aria-labelledby="history-title">
         <div className="section-heading history-heading">
           <h2 id="history-title">Application trade-room receipts</h2>
@@ -164,7 +164,13 @@ export function PublicHistory() {
                 </h3>
                 {receipt.demo && (
                   <p className="demo-wallet-label">
-                    Developer-controlled demonstration
+                    {browserProofs.proofs.some(
+                      (p) => p.txid === receipt.txid,
+                    ) ||
+                    receipt.txid ===
+                      "iLuszetsxvfEpxz7R1VYRZPQHMg8Mw5mtrTvz18oZ32Fo5ZCKCtJd3VdmWXBvbhnSnrCwthdc9yUxN5g7J1AQfZ"
+                      ? "Browser-executed demonstration"
+                      : "SDK demonstration"}
                   </p>
                 )}
                 <p>
@@ -195,10 +201,6 @@ export function PublicHistory() {
                       </a>
                     </p>
                   )}
-                <p className="muted">
-                  A recorded demonstration does not establish organic trading
-                  demand or browser-wallet compatibility.
-                </p>
               </article>
             ))}
           </div>
@@ -206,8 +208,8 @@ export function PublicHistory() {
           <div className="card empty-state">
             <h3>No application trade-room receipt has been recorded yet.</h3>
             <p>
-              This application history stays separate from the finalized SDK
-              demonstrations above. No browser-driven settlement is claimed.
+              Refresh to load completed exchanges, or inspect the archived
+              browser proofs above.
             </p>
             <a href="#/walkthrough">Follow the no-wallet walkthrough →</a>
           </div>
@@ -238,9 +240,11 @@ export function PublicHistory() {
           </div>
         )}
       </section>
-      <div className="card history-local">
+      <details className="card history-local">
+        <summary>Additional SDK and local execution tests</summary>
+        <DevnetSdkEvidence />
         <LocalEvidence />
-      </div>
+      </details>
     </>
   );
 }
