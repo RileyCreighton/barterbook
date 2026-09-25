@@ -1,6 +1,6 @@
 # BarterBook
 
-**September 25 signing repair:** The newer version 6 report is an altered-transaction rejection after Bob approved Solflare’s default prompt. D1 shows no saved signatures or transaction ID. A [transaction-message signing repair](docs/solflare-transaction-signing.md) is prepared and passes focused local checks; actual extension settlement still needs the owner-controlled rehearsal. The version 5 network-warning investigation below is historical and does not diagnose this new error.
+**September 25 signing repair:** The newer version 6 report is an altered-transaction rejection after Bob approved Solflare’s default prompt. D1 shows no saved signatures or transaction ID. A [transaction-message signing repair](docs/solflare-transaction-signing.md) is prepared: all 262 tests, typecheck, production build and release scan pass. Publication/deployment awaits explicit approval after automatic review rejected the direct main-branch push; the live app is unchanged. Actual extension settlement still needs the owner-controlled rehearsal. The version 5 network-warning investigation below is historical and does not diagnose this new error.
 
 BarterBook combines a selected-inventory offer board, exact two-owner token baskets, and bounded three-owner exact-lot matching. Participants authorize one atomic Solana transaction using existing token programs. The application has no onchain program, custody wallet, trading key, pool, or standing token delegation.
 

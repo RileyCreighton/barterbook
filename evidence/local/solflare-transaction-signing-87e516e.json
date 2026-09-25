@@ -1,0 +1,44 @@
+{
+  "recordedAt": "2026-09-25T17:19:41.803180+00:00",
+  "sourceCommit": "87e516ee48da12757181166d48d8e5dc1cb3b985",
+  "status": "Validated locally; publication to main blocked by automatic approval review pending explicit user authorization; live app unchanged.",
+  "ownerReport": {
+    "wallet": "Solflare",
+    "participant": "Bob",
+    "approvedDefaultSettings": true,
+    "error": "Transaction contains altered or unapproved instructions/accounts/message"
+  },
+  "observedAttempt": {
+    "id": "1c3f8189-1965-4f10-9941-de24f53f768f",
+    "roomId": "4cff89cad977b4c3d0c50c8d8f6faeb89542ad9a73b49b13",
+    "state": "SIGNING",
+    "safeToRetry": false,
+    "txid": null
+  },
+  "termsVersion": 6,
+  "storedSignatureCount": 0,
+  "sdkOriginalWireRoundTrips": {
+    "legacy": true,
+    "versioned": true
+  },
+  "verification": {
+    "focusedTestsPassed": 62,
+    "fullTestsPassed": 262,
+    "testFilesPassed": 22,
+    "fullSuiteCommand": "npm test -- --maxWorkers=1 --reporter=verbose",
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "releaseSecretScan": "passed; zero findings",
+    "extensionSigning": "not executed",
+    "browserSettlement": "not established",
+    "workerDeploymentDryRun": "passed; packaged successfully without publishing; sandbox blocked only the default log-file write"
+  },
+  "originalPackageSha256": "ef8d0e39bc5951aa5ab956da11224c6359edd05e6d88d11a2b7d821a23058120",
+  "priorWorkerVersion": "f041aa3d-8363-4656-92b3-3f77ff8a2e8f",
+  "preRepairD1Bookmark": "0000001a-00000000-000050f1-f6fcb5ab4bc44f2a62ce7d3b6ab6292d",
+  "limitations": [
+    "Returned browser transaction not captured; exact altered fields unknown.",
+    "Static public-package inspection and fake-provider cryptographic tests are not real extension evidence.",
+    "Full parallel test runs were interrupted after startup stalls; sequential full suite passed."
+  ]
+}

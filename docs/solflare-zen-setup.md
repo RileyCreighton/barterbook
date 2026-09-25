@@ -1,6 +1,6 @@
 # Use the existing devnet wallets with Solflare in Zen
 
-**September 25 signing repair:** The newer version 6 report is an altered-transaction rejection after Bob approved Solflare’s default prompt. D1 shows no saved signatures or transaction ID. A [transaction-message signing repair](solflare-transaction-signing.md) is prepared and passes focused local checks; actual extension settlement still needs the owner-controlled rehearsal. The version 5 network-warning investigation below is historical and does not diagnose this new error.
+**September 25 signing repair:** The newer version 6 report is an altered-transaction rejection after Bob approved Solflare’s default prompt. D1 shows no saved signatures or transaction ID. A [transaction-message signing repair](solflare-transaction-signing.md) is prepared: all 262 tests, typecheck, production build and release scan pass. Publication/deployment awaits explicit approval after automatic review rejected the direct main-branch push; the live app is unchanged. Actual extension settlement still needs the owner-controlled rehearsal. The version 5 network-warning investigation below is historical and does not diagnose this new error.
 
 This is the current alternative being evaluated after Phantom could not load balances with BarterBook closed, including after a full Zen restart. **Solflare's complete BarterBook signing workflow is not yet verified.** No Chrome test was performed; see the [owner-report correction](../evidence/hosted/browser-second-attempt-owner-report-correction-77036da8.json).
 

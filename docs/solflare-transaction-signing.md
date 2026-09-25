@@ -29,3 +29,7 @@ Regression tests use fake providers and real cryptographic signatures. They cove
 After the repair is deployed, refresh both participants' app tabs so they load the updated signer. In the existing room, use **Reconcile original status** for version 6. Only after the server independently reports a safe terminal result, renew the terms using the existing room controls. Both participants must accept and mark ready for the new version; prepare once, then Bob signs first and Alice signs second. Keep Solflare on Devnet and review its normal transaction approval. Claim completion only after the app records the actual finalized receipt.
 
 The earlier version 5 network warning is a separate historical observation. This repair does not establish that warning's cause. If it recurs, report it without switching networks.
+
+## Release readiness
+
+Commit `87e516e` passed all 262 tests across 22 files with one test worker, typecheck, production build and the release secret scan. [Sanitized readiness evidence](../evidence/local/solflare-transaction-signing-87e516e.json) records the original attempt snapshot and recovery bookmark. Automatic approval review rejected publishing directly to the default `main` branch because that durable external publication lacked explicit authorization. No source push or deployment occurred; publication and deployment need the owner’s approval.
