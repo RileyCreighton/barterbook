@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-25T06:45:33.013Z",
+  "checkedAt": "2026-09-25T07:00:42.353Z",
   "testReport": "evidence/local/release-tests-2026-09-25T06-43-55-544Z.json",
   "runtimeReport": "evidence/local/litesvm-execution-2026-09-25T06-34-09-692Z.json",
   "testCount": 143,
@@ -11,5 +11,13 @@
   "devnetSettlements": 0,
   "browserWalletProof": false,
   "hostedCpuMeasured": false,
-  "remoteD1MigrationsApplied": 6
+  "remoteD1MigrationsApplied": 6,
+  "siteUrl": "https://barterbook-devnet.rileycreighton.workers.dev",
+  "repositoryUrl": "https://github.com/RileyCreighton/barterbook",
+  "hostedHttpEvidence": "evidence/hosted/http-smoke-1790319106255.json",
+  "hostedHttpChecksPassed": 16,
+  "hostedBrowserEvidence": "evidence/hosted/browser-guide-2026-09-25.json",
+  "followupPublicTestsPassed": 5,
+  "settlementEnabled": false,
+  "accountFreePlanConfirmed": false
 }

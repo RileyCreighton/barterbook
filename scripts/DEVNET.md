@@ -103,7 +103,7 @@ node --import tsx scripts/devnet-fixtures.ts --run demo-2026-09-25-a --browser-p
 
 The script reuses finalized setup operations, creates each recipient's ATA and mints the same mock inventory from this run's disposable mint authority. It appends a public `participants-browser-*.json` manifest. Browser records remain `signingEvidence: "not-yet-proven"`; receiving inventory is not signing proof. The browser fee payer will separately need faucet SOL in its own new devnet wallet. No SDK private key is exported into an extension.
 
-For the app's optional `DEMO_PARTICIPANTS_JSON`, use up to three public `{ "address": "…", "label": "…" }` entries. The scripts' public manifests call that field `publicKey`; map it to `address`. Configure provider credentials only in server `.dev.vars`/Worker secrets. A browser participant creates its own authenticated listings and approvals through the UI.
+For the app's optional `DEMO_PARTICIPANTS_JSON`, use up to six public `{ "address": "…", "label": "…" }` entries. This labels both SDK and browser developer wallets without changing the three-owner maximum per trade. The scripts' public manifests call that field `publicKey`; map it to `address`. Configure provider credentials only in server `.dev.vars`/Worker secrets. A browser participant creates its own authenticated listings and approvals through the UI.
 
 If a demo has consumed its mock inventory, explicitly name a replenishment batch:
 
@@ -125,7 +125,7 @@ npm run dev:api
 npm run dev
 ```
 
-Keep the app's settlement switch off until its runtime/CPU gate and real browser signing checks have passed. Use the origin matching `APP_ORIGIN` (normally `http://localhost:5173`). Preview the seed, then execute it:
+Keep settlement off during initial deployment and inventory setup. Once all three mints are separately validated and preliminary hosted checks pass, enable settlement for the authorized Devnet rehearsal. Measure the actual hosted financial paths and complete real browser signing before describing trading as verified. Use the origin matching `APP_ORIGIN` (normally `http://localhost:5173` locally, or the deployed HTTPS origin). Preview the seed, then execute it:
 
 ```sh
 node --import tsx scripts/devnet-board-seed.ts --run demo-2026-09-25-a --batch judge-01 --url http://localhost:5173

@@ -2,7 +2,9 @@
 
 BarterBook combines a selected-inventory offer board, exact two-owner token baskets, and bounded three-owner exact-lot matching. Participants authorize one atomic Solana transaction using existing token programs. The application has no onchain program, custody wallet, trading key, pool, or standing token delegation.
 
-**Current delivery: a working local application configured for devnet.** Test assets are explicitly mock tokens, never PRE holdings. Mainnet is disabled. The repository includes a persistent API, shared transaction verifier, passing local tests and production build, and actual local Token-2022 execution evidence for a two-for-one basket, a three-owner exchange and atomic rollback. A hosted deployment, real browser-extension signing proof, and successful public devnet transaction receipts remain pending.
+**Live Devnet-configured prototype:** [open the no-wallet guide](https://barterbook-devnet.rileycreighton.workers.dev/#/walkthrough), [source](https://github.com/RileyCreighton/barterbook), [passing CI](https://github.com/RileyCreighton/barterbook/actions/runs/36104365100).
+
+The hosted website, API and D1 authentication/persistence checks pass. **Live settlement is disabled:** faucet funding, real browser-extension approvals, public devnet exchanges and hosted financial-path CPU measurements remain pending. Actual local Token-2022 basket/ring/rollback evidence is available and labeled separately. Mock assets never represent PRE holdings; mainnet is disabled.
 
 ## Start here
 
@@ -11,7 +13,7 @@ BarterBook combines a selected-inventory offer board, exact two-owner token bask
 - [GitHub release, CI and deployment workflow](docs/github-release.md)
 - [Current delivery status](docs/delivery-status.md) and [troubleshooting](docs/troubleshooting.md)
 
-**Public URL:** not deployed yet. `https://barterbook-devnet.<account-subdomain>.workers.dev` is an illustrative URL only. The selected repository target is `RileyCreighton/barterbook`; public upload has not occurred. Stocklana currently lists **September 25, 2026, 4 p.m. Eastern** as its deadline; see the [fresh official-rule check](docs/submission.md). A prepared package is not a submitted entry.
+**Public URL:** https://barterbook-devnet.rileycreighton.workers.dev. **Repository:** https://github.com/RileyCreighton/barterbook. See [the next account/wallet steps](docs/next-steps.md). Stocklana currently lists **September 25, 2026, 4 p.m. Eastern** as its deadline; see the [fresh official-rule check](docs/submission.md). No entry has been submitted.
 
 ## What is implemented
 
@@ -65,7 +67,7 @@ To preview built static assets through the Worker directly, build first and set 
 | `DEVNET_ASSETS_JSON` | JSON array of up to three tested devnet mock `Asset` records. Empty by default. |
 | `RPC_HISTORY_TRUSTED` | `true` only after verifying that the primary endpoint provides authoritative history. |
 | `FALLBACK_HISTORY_TRUSTED` | Equivalent independently verified property for the fallback. |
-| `DEMO_PARTICIPANTS_JSON` | Up to three public fixture wallet addresses; matching offers/history receive explicit “Demo wallet” labels. |
+| `DEMO_PARTICIPANTS_JSON` | Up to six public fixture wallet addresses (three SDK plus three browser participants); matching offers/history receive explicit “Demo wallet” labels. |
 | `SITE_URL`, `REPOSITORY_URL` | Real public HTTPS links, configured only after deployment/publication. |
 | `BUILD_ID` | Reviewed Git commit identity archived with new finalized evidence. |
 | `DB` | Cloudflare D1 binding configured in `wrangler.jsonc`. |
@@ -88,7 +90,7 @@ Read [the disposable-devnet script guide](scripts/DEVNET.md) before execution. T
 
 These scripts use SDK signers and **do not prove browser-wallet compatibility**. The browser signing laboratory and [wallet smoke checklist](docs/evidence-and-wallet-smoke.md) must separately verify real wallet message signing, sign-without-broadcast partial transaction signing, signature preservation, and unchanged message bytes for two and three owners. Wallet approvals belong to the user controlling those authorized test wallets.
 
-The original faucet request and one explicit, journaled retry did not establish funding. The latest check at 06:30:49 UTC found zero finalized lamports and no signatures. Therefore no funded fixture exchange or actual devnet settlement receipt is claimed in this repository's current evidence. Do not delete an unresolved faucet or transaction journal to force a fresh attempt. See [faucet evidence](evidence/devnet-faucet.json), [reconciliation](evidence/devnet-faucet-reconciliation.json), [alternative-faucet inspection](evidence/devnet-faucet-alternatives.json), and [the new run’s funding checks](evidence/devnet/20260925-sdk-proof-01/funding-checks/).
+The original faucet request and one explicit, journaled retry did not establish funding. The latest Helius check at 06:59:08 UTC found zero finalized lamports and no signatures. Therefore no funded fixture exchange or actual devnet settlement receipt is claimed in this repository's current evidence. Do not delete an unresolved faucet or transaction journal to force a fresh attempt. See [faucet evidence](evidence/devnet-faucet.json), [reconciliation](evidence/devnet-faucet-reconciliation.json), [alternative-faucet inspection](evidence/devnet-faucet-alternatives.json), and [the new run’s funding checks](evidence/devnet/20260925-sdk-proof-01/funding-checks/).
 
 Real PRE tests require a separate eligibility confirmation, explicit asset/fee authorization, fresh mint/account compatibility checks, separate mainnet registry/database records, and separately recorded receipts. Mock tokens are not proof of eligibility or PRE-bounty qualification.
 
@@ -128,7 +130,7 @@ Hosted Free-tier headroom remains a release gate. Never weaken signature/instruc
 
 ## Hosting and release
 
-Cloudflare sign-in, the free `rileycreighton.workers.dev` hostname, all six remote D1 migrations and a healthy Helius Devnet endpoint are prepared. There is no live URL or public release yet. Follow [deployment](docs/deployment.md) for an ignored deployment config, additive D1 migrations, server-only secrets, verification and rollback. The checked-in `wrangler.jsonc` keeps safe local defaults. The GitHub workflow is manual so a push does not silently deploy.
+Cloudflare sign-in, the free `rileycreighton.workers.dev` hostname, all six remote D1 migrations and a healthy Helius Devnet endpoint are prepared. The prototype is deployed and the repository is public; a GitHub release draft is being prepared. Follow [deployment](docs/deployment.md) for an ignored deployment config, additive D1 migrations, server-only secrets, verification and rollback. The checked-in `wrangler.jsonc` keeps safe local defaults. The GitHub workflow is manual so a push does not silently deploy.
 
 The target recurring cost is **$0 at demonstration traffic levels**. [Current published allowances](docs/release/provider-limits.md) include Workers Free's 100,000 dynamic requests/day and 10 ms CPU/request, D1's 5 million rows read and 100,000 written/day, and Helius Free's 1 million credits/month. Actual hosted verification CPU remains unmeasured; no paid upgrade is authorized.
 
@@ -136,11 +138,11 @@ The intended production shape is **one Worker serving static assets plus a Hono 
 
 ## Screenshots
 
-The current local no-wallet guide, with illustrations clearly separated from execution proof:
+The deployed no-wallet guide, with illustrations clearly separated from execution proof:
 
-![Local desktop guide](docs/screenshots/local-guide-desktop.png)
+![Hosted desktop guide](docs/screenshots/hosted-guide-desktop.png)
 
-[Mobile guide screenshot](docs/screenshots/local-guide-mobile.png). These screenshots do not prove a hosted deployment or browser-wallet settlement.
+[Hosted mobile guide screenshot](docs/screenshots/hosted-guide-mobile.png). These screenshots show the public guide, not browser-wallet settlement.
 
 ## License and contribution
 

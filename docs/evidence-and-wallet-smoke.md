@@ -4,7 +4,7 @@ This ledger separates recorded local results from the remaining public-network a
 
 ## Evidence ledger
 
-The final recorded local run passed **110 tests across 13 files**; use [the machine-readable test report](../evidence/test-results.json) for its current test count and individual results. The production build also passed. Further changes require their relevant checks again; an older report does not prove a newer build.
+The earlier recorded local run passed **110 tests across 13 files**; [its machine-readable report](../evidence/test-results.json) retains that historical run. The production build also passed. The later published-build checkpoint below records GitHub CI separately. Further changes require their relevant checks again; an older report does not prove a newer build.
 
 | Run | UTC time | Environment | Evidence | Result and limits |
 |---|---|---|---|---|
@@ -16,13 +16,20 @@ The final recorded local run passed **110 tests across 13 files**; use [the mach
 | Worker/API smoke | 2026-09-25 04:57:06 | Local workerd and migrated D1 | [Worker smoke](../evidence/local-worker-smoke.json) | Authentication, replay rejection, session persistence, privacy and public endpoints passed using an ephemeral SDK identity. |
 | Early Worker CPU profile | 2026-09-25 04:33:49 | Local workerd | [Sampling profile](../evidence/workerd-cpu-profile.json) | About 4.74 ms sampled active CPU per strict three-owner verification in a warmed batch. Hosted/full-request Free-tier headroom remains unverified. |
 | Devnet faucet reconciliation | 2026-09-25 04:25:20 | Public devnet; new disposable wallet | [Faucet](../evidence/devnet-faucet.json), [follow-up](../evidence/devnet-faucet-reconciliation.json) | One faucet request failed; finalized balance was zero and signature history empty. No fixture mint or exchange was broadcast. |
-| Public devnet basket and ring | pending | Public devnet | No receipts yet | Await faucet funding, validated fixture mints and configured RPC. |
+| Public devnet basket and ring | pending | Public devnet | No receipts yet | Await faucet funding and validated fixture mints; the current registry is empty. |
 | Browser wallet signing and recovery | pending | Authorized devnet wallets in actual extensions | No live-wallet proof yet | Requires message signing, partial signing, unchanged bytes and cancel/reload/recovery checks. |
-| Hosted demo and CPU | pending | Cloudflare Free | No deployment yet | User will configure Cloudflare and Helius. No paid service was purchased. |
+| Hosted demo HTTP checks | 2026-09-25 06:51:46 | Public Cloudflare Worker and D1 | [16-check report](../evidence/hosted/http-smoke-1790319106255.json) | Public endpoints, SDK authentication/session controls and legal downloads passed. No browser-extension signing or onchain exchange. |
+| Hosted financial CPU | pending | Cloudflare Worker | No full-path CPU proof | Telemetry access returned 403; deployment and HTTP success do not establish CPU headroom. |
 
 Local LiteSVM signatures identify executions inside that isolated runtime; they have **no public explorer page**. Its account effects come from actual local program execution. They are not manufactured public `getTransaction` responses. Public settlement receipts must independently pass the transaction-metadata checks below.
 
 Store shareable evidence under `evidence/local/`, `evidence/devnet/` and `evidence/mainnet/`, keeping the environment explicit. Existing top-level evidence files retain an explicit scope. Do not add wallet secrets or full provider endpoints. Keep signed transaction bytes in durable attempt storage; publish historical bytes only after resolving their lifetime/outcome and deciding that the disclosure is intended. Record commit/build, wallet and browser versions, attempt ID and transaction ID for each future live signing run.
+
+### Published-build checkpoint — 2026-09-25 06:58 UTC
+
+The [public devnet demo](https://barterbook-devnet.rileycreighton.workers.dev) and [source repository](https://github.com/RileyCreighton/barterbook) are accessible. [First GitHub CI](https://github.com/RileyCreighton/barterbook/actions/runs/36104365100) passed **143 tests** for initial commit `629ed20`, alongside its production build and local migration checks. All six migrations were applied to remote D1. Hosted desktop/mobile no-wallet walkthrough checks passed; the separately saved HTTP report above covers 16 real hosted checks using an ephemeral SDK identity.
+
+The fixture payer remains at zero faucet SOL, `DEVNET_ASSETS_JSON` is `[]`, and settlement is disabled. There is still no browser-extension signature round trip, public devnet settlement receipt, or hosted financial-path CPU proof. Telemetry returned HTTP 403. The GitHub `devnet` environment has nine variables and the account-ID secret; its deployment API-token secret is still missing. Earlier local evidence is preserved and is not relabeled as public-network proof.
 
 ## Authorization and network gate
 

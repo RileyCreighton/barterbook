@@ -1,6 +1,8 @@
 # Put the reviewed release on GitHub
 
-Repository creation and public upload need the user's explicit choice of owner/name and visibility. This guide prepares those actions; it does not create a repository, publish code or submit the competition entry.
+**Current status — 2026-09-25 06:58 UTC:** [RileyCreighton/barterbook](https://github.com/RileyCreighton/barterbook) is public, and initial commit `629ed20` passed [first CI with 143 tests](https://github.com/RileyCreighton/barterbook/actions/runs/36104365100). The [devnet demo](https://barterbook-devnet.rileycreighton.workers.dev) is live with settlement disabled and an empty asset registry. The GitHub `devnet` environment has all nine variables and `CLOUDFLARE_ACCOUNT_ID`; `CLOUDFLARE_API_TOKEN` is still missing, so manual Actions deployment is not ready. The published Worker was deployed separately. No competition entry has been submitted.
+
+The initial publication below is complete for this repository; retain it as a setup reference for a new repository. Future changes still require a reviewed commit and passing checks.
 
 ## First repository
 
@@ -14,7 +16,7 @@ If any credential entered Git history, stop publication and rotate it; deleting 
 
 ## Continuous checks
 
-`.github/workflows/ci.yml` runs local tests (including SDK signing checks), the production build and local D1 migrations on pushes to `main` and pull requests. It scans the working files and full fetched Git history for secrets. It never deploys or asks for provider/wallet secrets. Test evidence is retained as a GitHub artifact for 14 days. GitHub Actions execution itself remains unverified until this repository exists and its first run completes.
+`.github/workflows/ci.yml` runs local tests (including SDK signing checks), the production build and local D1 migrations on pushes to `main` and pull requests. It scans the working files and full fetched Git history for secrets. It never deploys or asks for provider/wallet secrets. Test evidence is retained as a GitHub artifact for 14 days. The first run linked above passed; it proves the reviewed commit's CI checks, not later uncommitted changes or live-wallet settlement.
 
 Node is pinned to 26.8.2 because tests use `node:sqlite`. Official checkout/setup/upload actions are pinned to verified full commit IDs. The token has read-only repository permissions, and checkout credentials are not persisted. The dependency lockfile controls package versions. [GitHub's workflow security guidance](https://docs.github.com/en/actions/reference/security/secure-use) explains these choices.
 

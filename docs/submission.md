@@ -14,7 +14,7 @@ The current fields are project name, short description, full description (Markdo
 
 Generic devnet demonstrations are allowed by the platform guidance. The PRE bounty asks for a project using PreStocks and excludes other issuers' pre-IPO tokens; it does not explicitly confirm that generic mock-token fixtures alone qualify. Do not select that bounty as if eligibility were established. Real PRE testing still needs issuer eligibility and explicit asset authorization.
 
-The current draft measures **254 / 280** UTF-16 code units for the short description and **4,249 / 5,000** for the full description. The count includes spaces and paragraph breaks, matching the public form’s JavaScript length convention.
+The current draft measures **254 / 280** UTF-16 code units for the short description and **4,387 / 5,000** for the full description. The count includes spaces and paragraph breaks, matching the public form’s JavaScript length convention.
 
 ## Project name
 
@@ -48,16 +48,24 @@ The coordinator records an immutable message, signatures, full signed bytes, tra
 
 The stack is React, Vite and TypeScript, with one Cloudflare Worker serving static assets and a Hono API, D1 persistence and server-side Helius RPC access. Wallet keys remain in browser wallets. Provider credentials stay on the server. Active rooms use short HTTP polling.
 
-The delivered app runs locally and is configured for devnet. The no-wallet walkthrough labels illustrative examples separately from actual local execution evidence. All assets are test fixtures, not real PRE holdings, private-company shares or evidence of mainnet PRE settlement. PRE Kalshi, Neuralink and Anduril are intended mainnet integrations subject to fresh mint compatibility checks and eligible, explicitly authorized participants. Fixture-only PRE bounty eligibility has not been established.
+The prototype is publicly hosted on one Cloudflare Worker and configured for devnet; live settlement remains disabled. The no-wallet walkthrough labels illustrative examples separately from actual local execution evidence. All assets are test fixtures, not real PRE holdings, private-company shares or evidence of mainnet PRE settlement. PRE Kalshi, Neuralink and Anduril are intended mainnet integrations subject to fresh mint compatibility checks and eligible, explicitly authorized participants. Fixture-only PRE bounty eligibility has not been established.
 
 The recorded automated suite and production build pass. Actual Token-2022 and associated-token programs execute locally in LiteSVM 0.8.0: a fee-aware two-for-one basket, a three-owner exchange and a failing final leg with complete token/account-creation rollback. SDK signers preserve one immutable message. These are local program executions, not public-network receipts or browser-wallet proof. Local no-wallet browser checks cover the guide, evidence view, exact example quantities and responsive mobile layout. Public history and finalized metadata downloads are implemented, with privacy and pagination tests.
 
-Public devnet settlement remains pending: the original disposable-wallet faucet request and one journaled retry did not establish funding; current finalized reconciliation shows zero SOL. No fixture exchange was broadcast. No wallet extension was available, so real browser partial signing is also pending. Cloudflare sign-in, a free hostname, the D1 migrations and Helius Devnet configuration are prepared. Public deployment, hosted CPU measurements and browser-wallet settlement remain pending; no paid service is claimed. The evidence ledger records these boundaries. This prototype is not an audited trading service.
+Public devnet settlement remains pending: the original disposable-wallet faucet request and one journaled retry did not establish funding; current finalized reconciliation shows zero SOL. No fixture exchange was broadcast. No wallet extension was available, so real browser partial signing is also pending. The public Worker, D1 migrations and server-side Helius Devnet configuration are live. GitHub CI and hosted authentication/persistence checks pass. Hosted financial-path CPU measurements and browser-wallet settlement remain pending; no paid plan was enabled. The evidence ledger records these boundaries. This prototype is not an audited trading service.
 
-The source documentation attributes React, Vite, TypeScript, Hono, Cloudflare tooling, Solana SDKs and other installed dependencies. Research also acknowledges prior bilateral barter, auction and multi-user matching work. The project makes no claim to have invented barter or order cycles.
+Development used AI coding assistance. The source documentation attributes React, Vite, TypeScript, Hono, Cloudflare tooling, Solana SDKs and other installed dependencies. Research also acknowledges prior bilateral barter, auction and multi-user matching work. The project makes no claim to have invented barter or order cycles.
 <!-- full:end -->
 
 ## Links and final review
+
+Repository: https://github.com/RileyCreighton/barterbook
+
+Demo: https://barterbook-devnet.rileycreighton.workers.dev/#/walkthrough
+
+Evidence: https://github.com/RileyCreighton/barterbook/blob/main/evidence/finish-verification.json
+
+Pitch video: not recorded. Technical video: not recorded. No public devnet transaction proof links exist yet.
 
 Keep actual repository, hosted-demo, pitch-video and technical-video URLs in their dedicated fields. Do not substitute localhost, private credentials, a placeholder URL or a private repository the judges cannot access. At least one accessible supporting link is required by the event.
 

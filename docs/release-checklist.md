@@ -1,5 +1,9 @@
 # Review before making the MVP public
 
+**Published checkpoint — 2026-09-25 06:58 UTC:** the [public demo](https://barterbook-devnet.rileycreighton.workers.dev) and [repository](https://github.com/RileyCreighton/barterbook) are live. Initial commit `629ed20` passed [CI with 143 tests](https://github.com/RileyCreighton/barterbook/actions/runs/36104365100). All six remote D1 migrations applied; hosted desktop/mobile no-wallet checks and [16 HTTP checks](../evidence/hosted/http-smoke-1790319106255.json) passed. Hosted legal downloads include the notices and LGPL source archive.
+
+Settlement remains disabled with an empty asset registry and an unfunded disposable SDK payer. Browser-extension signing, public devnet settlement and hosted financial CPU evidence remain pending; telemetry access returned 403. GitHub's `devnet` environment has nine variables and the account-ID secret, but still needs `CLOUDFLARE_API_TOKEN` for its manual deploy workflow. No competition entry has been submitted. Use the checklist below for subsequent releases and for any proposal to enable settlement; unchecked items are not retroactive claims about the initial publication.
+
 - [ ] The user chose the actual repository owner/name and authorized its visibility and the target Cloudflare account.
 - [ ] The reviewed commit passes relevant financial/signing/recovery checks, the full suite and production build; evidence records that exact run.
 - [ ] Secret scan and staged-file review exclude provider credentials, wallet exports, cookies and executable attempt journals.

@@ -1,0 +1,46 @@
+{
+  "recordedAt": "2026-09-25T06:59:25.314Z",
+  "environment": "HOSTED_BROWSER_NO_WALLET",
+  "url": "https://barterbook-devnet.rileycreighton.workers.dev/#/walkthrough",
+  "buildId": "629ed20da12e68f80bc167cfbca87506110bdf15",
+  "browser": "Codex in-app browser; no wallet extension",
+  "checks": [
+    {
+      "name": "Public guide loads with exact two-for-one basket and three-owner fee-aware illustrations",
+      "passed": true
+    },
+    {
+      "name": "Authentication, acceptance and transaction approval distinguished",
+      "passed": true
+    },
+    {
+      "name": "Empty public history loads and survives refresh without fabricated receipts",
+      "passed": true
+    },
+    {
+      "name": "Mobile layout fits document viewport",
+      "passed": true,
+      "cssViewportWidth": 375,
+      "documentScrollWidth": 375
+    },
+    {
+      "name": "No-wallet dialog explains required capabilities and supports Escape",
+      "passed": true
+    },
+    {
+      "name": "Browser console error and warning check",
+      "passed": true,
+      "entries": 0
+    }
+  ],
+  "screenshots": [
+    "docs/screenshots/hosted-guide-desktop.png",
+    "docs/screenshots/hosted-guide-mobile.png"
+  ],
+  "notProven": [
+    "Browser-extension authentication or transaction signing",
+    "Devnet token settlement",
+    "Hosted financial-path CPU",
+    "Real wallet decline"
+  ]
+}

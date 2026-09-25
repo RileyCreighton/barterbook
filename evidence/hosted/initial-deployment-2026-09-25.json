@@ -1,0 +1,25 @@
+{
+  "recordedAt": "2026-09-25T06:59:25.314Z",
+  "cluster": "devnet",
+  "siteUrl": "https://barterbook-devnet.rileycreighton.workers.dev",
+  "repositoryUrl": "https://github.com/RileyCreighton/barterbook",
+  "buildId": "629ed20da12e68f80bc167cfbca87506110bdf15",
+  "workerVersionId": "5cc79369-ceb0-45e2-910b-96a05374f2df",
+  "workerVersionCreatedAt": "2026-09-25T06:47:21.824Z",
+  "d1MigrationsApplied": 6,
+  "rpcConfigured": true,
+  "settlementEnabled": false,
+  "validatedAssets": 0,
+  "ci": {
+    "url": "https://github.com/RileyCreighton/barterbook/actions/runs/36104365100",
+    "result": "success",
+    "testCount": 143
+  },
+  "httpEvidence": "evidence/hosted/http-smoke-1790319106255.json",
+  "browserEvidence": "evidence/hosted/browser-guide-2026-09-25.json",
+  "paidPlanChanged": false,
+  "accountFreePlanConfirmed": false,
+  "hostedCpuMeasured": false,
+  "devnetSettlements": 0,
+  "browserWalletProof": false
+}

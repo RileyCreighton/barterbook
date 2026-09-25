@@ -7,9 +7,9 @@ export function demoParticipants(
   env: Env,
 ): { address: string; label: string }[] {
   const data: unknown = JSON.parse(env.DEMO_PARTICIPANTS_JSON || "[]");
-  if (!Array.isArray(data) || data.length > 3)
+  if (!Array.isArray(data) || data.length > 6)
     throw new Error(
-      "Demo configuration must contain up to three public addresses",
+      "Demo configuration must contain up to six public addresses",
     );
   const participants = data.map((item, index) => ({
     address: walletAddress(typeof item === "string" ? item : item?.address),

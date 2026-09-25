@@ -226,4 +226,19 @@ describe("public history and evidence privacy", () => {
     });
     expect(JSON.stringify(config)).not.toContain("secret");
   });
+  it("labels SDK and browser fixture participants without increasing the trade owner limit", async () => {
+    const t = setup();
+    const browser = fixture(3).terms.owners;
+    t.env.DEMO_PARTICIPANTS_JSON = JSON.stringify([
+      ...t.f.terms.owners,
+      ...browser,
+    ]);
+    const response = await t.request("/demo");
+    expect(response.status).toBe(200);
+    const data = (await response.json()) as {
+      participants: { address: string; label: string }[];
+    };
+    expect(data.participants).toHaveLength(5);
+    expect(data.participants[4].label).toBe("Demo wallet 5");
+  });
 });

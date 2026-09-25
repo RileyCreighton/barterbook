@@ -39,11 +39,42 @@ for (const route of [
   checks.push({ name: `GET ${route}`, passed: true });
 }
 const signer = Keypair.generate();
-const session = await authenticateSdkWallet(url.origin, signer);
+let verificationBody: BodyInit | null | undefined;
+const session = await authenticateSdkWallet(
+  url.origin,
+  signer,
+  async (input, init) => {
+    if (String(input).endsWith("/api/auth/verify"))
+      verificationBody = init?.body;
+    return fetch(input, init);
+  },
+);
 checks.push({
   name: "Real hosted challenge, native Ed25519 verification, secure cookie and durable session",
   passed: true,
 });
+const replay = await fetch(`${url.origin}/api/auth/verify`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json", Origin: url.origin },
+  body: verificationBody,
+});
+if (replay.status !== 401)
+  throw new Error("Hosted authentication nonce replay was not rejected");
+checks.push({
+  name: "Hosted one-use authentication challenge rejects replay",
+  passed: true,
+});
+const foreignOrigin = await fetch(`${url.origin}/api/auth/challenge`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Origin: "https://unrelated.invalid",
+  },
+  body: JSON.stringify({ wallet: signer.publicKey.toBase58() }),
+});
+if (foreignOrigin.status !== 403)
+  throw new Error("Hosted cross-origin mutation was not rejected");
+checks.push({ name: "Hosted cross-origin mutation rejected", passed: true });
 await session("/rooms");
 checks.push({ name: "Authenticated room listing", passed: true });
 try {
