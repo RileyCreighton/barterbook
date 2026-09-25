@@ -338,11 +338,15 @@ export async function saveAttempt(
     sql += " AND payload_json=?";
     args.push(JSON.stringify(expectedPayload));
   }
+  // D1's changes count includes trigger writes (room state and terminal locks).
+  // RETURNING identifies the guarded attempt row itself, so a successful CAS is
+  // not mistaken for a conflict after its update has already committed.
+  sql += " RETURNING id";
   const result = await db
     .prepare(sql)
     .bind(...args)
-    .run();
-  if (result.meta.changes !== 1)
+    .all<{ id: string }>();
+  if (result.results.length !== 1 || result.results[0].id !== attempt.id)
     throw new HTTPException(409, {
       message: "Attempt changed concurrently; reload its original status",
     });

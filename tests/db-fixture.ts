@@ -8,6 +8,9 @@ export function testDatabase(): D1Database & { close(): void } {
     .filter((name) => name.endsWith(".sql"))
     .sort())
     sqlite.exec(readFileSync(new URL(file, migrations), "utf8"));
+  function totalChanges(): number {
+    return Number(sqlite.prepare("SELECT total_changes() AS n").get()!.n);
+  }
   class Statement {
     values: (string | number | null)[] = [];
     constructor(readonly sql: string) {}
@@ -17,7 +20,10 @@ export function testDatabase(): D1Database & { close(): void } {
       return bound;
     }
     execute() {
-      return sqlite.prepare(this.sql).run(...this.values);
+      const before = totalChanges();
+      const result = sqlite.prepare(this.sql).run(...this.values);
+      // D1 includes writes made by triggers, unlike SQLite's direct changes().
+      return { ...result, changes: totalChanges() - before };
     }
     async run() {
       const result = this.execute();
@@ -36,8 +42,13 @@ export function testDatabase(): D1Database & { close(): void } {
       return (column ? row[column] : row) as T;
     }
     async all<T>() {
+      const before = totalChanges();
       const results = sqlite.prepare(this.sql).all(...this.values) as T[];
-      return { success: true, meta: { changes: 0 }, results };
+      return {
+        success: true,
+        meta: { changes: totalChanges() - before },
+        results,
+      };
     }
   }
   return {

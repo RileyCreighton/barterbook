@@ -220,6 +220,68 @@ describe("durable room and attempt constraints", () => {
       acquireAttemptLocks(database, room, attempt(room)),
     ).rejects.toThrow();
   });
+  it("recognizes the returned CAS row when D1 counts the reflected room trigger as another change", async () => {
+    const database = db(),
+      room = await ready(
+        database,
+        await createRoom(database, { terms: terms(), termsHash: "v1" }),
+      ),
+      original = attempt(room);
+    await acquireAttemptLocks(database, room, original);
+    const reflected = await database
+      .prepare("UPDATE attempts SET state=state WHERE id=? RETURNING id")
+      .bind(original.id)
+      .all<{ id: string }>();
+    expect(reflected.results).toEqual([{ id: original.id }]);
+    expect(reflected.meta.changes).toBe(2); // attempt + reflect_attempt_state room update
+    const first = {
+      ...original,
+      wireBase64: "cGFydGlhbA==",
+      txid: "first-payer-signature-id",
+      signatures: { Alice: "signature-a" },
+    };
+    await expect(
+      saveAttempt(database, first, "SIGNING", original),
+    ).resolves.toBeUndefined();
+    expect(await getAttempt(database, original.id)).toEqual(first);
+    expect((await getRoom(database, room.id))?.state).toBe("SIGNING");
+    await expect(
+      saveAttempt(
+        database,
+        { ...original, signatures: { Bob: "stale-signature-b" } },
+        "SIGNING",
+        original,
+      ),
+    ).rejects.toThrow("changed concurrently");
+    expect(await getAttempt(database, original.id)).toEqual(first);
+    const complete: Attempt = {
+      ...first,
+      state: "FULLY_SIGNED",
+      fullWireBase64: "ZnVsbHktc2lnbmVk",
+      signatures: { Alice: "signature-a", Bob: "signature-b" },
+    };
+    await expect(
+      saveAttempt(database, complete, "SIGNING", first),
+    ).resolves.toBeUndefined();
+    expect((await getRoom(database, room.id))?.state).toBe("FULLY_SIGNED");
+    await expect(
+      saveAttempt(
+        database,
+        { ...complete, error: "stale-state" },
+        "SIGNING",
+        complete,
+      ),
+    ).rejects.toThrow("changed concurrently");
+    expect(await getAttempt(database, original.id)).toEqual(complete);
+    await expect(
+      saveAttempt(
+        database,
+        { ...complete, id: "missing-attempt" },
+        "FULLY_SIGNED",
+        complete,
+      ),
+    ).rejects.toThrow("changed concurrently");
+  });
   it("uses compare-and-swap to prevent concurrent signatures overwriting each other", async () => {
     const database = db(),
       room = await ready(
