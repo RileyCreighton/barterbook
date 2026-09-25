@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-09-25T18:27:53.793Z",
+  "scope": "Isolated Firefox with generated dummy keys, fake wallet provider and mocked API. No real wallet or network transaction.",
+  "browser": "146.0.1",
+  "results": [
+    {
+      "kind": "setup",
+      "signatureVerified": true,
+      "errors": [],
+      "calls": [
+        {
+          "path": "/api/nonce/status",
+          "method": "GET"
+        },
+        {
+          "path": "/api/nonce/setup",
+          "method": "POST"
+        },
+        {
+          "path": "/api/nonce/operations/local-operation/submit",
+          "method": "POST"
+        }
+      ]
+    },
+    {
+      "kind": "cancel",
+      "signatureVerified": true,
+      "errors": [],
+      "calls": [
+        {
+          "path": "/api/nonce/status",
+          "method": "GET"
+        },
+        {
+          "path": "/api/attempts/local-attempt/cancel-onchain",
+          "method": "POST"
+        },
+        {
+          "path": "/api/nonce/operations/local-operation/submit",
+          "method": "POST"
+        }
+      ]
+    }
+  ]
+}

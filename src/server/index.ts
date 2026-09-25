@@ -11,6 +11,8 @@ import {
 } from "./auth";
 import { createBoardRouter } from "./board";
 import { createSettlementRouter } from "./settlement";
+import { createNonceRouter } from "./nonce";
+import { nonceAddress } from "../shared/nonce";
 import { getAssets, getPublicAssets, getHoldings } from "./chain";
 import { createPublicRouter } from "./public";
 import { createRoom, getListing, listingFromRow, type ListingRow } from "./db";
@@ -68,6 +70,7 @@ app.route(
   createBoardRouter({ getAssets, getHoldings, validateTerms, hashTerms }),
 );
 app.route("/api", createSettlementRouter());
+app.route("/api", createNonceRouter());
 app.route("/api", createPublicRouter());
 app.get("/api/assets/fresh", requireAuth, async (c) => {
   await checkRateLimit(c.env.DB, `fresh-assets:${c.get("wallet")}`, 12, 60000);
@@ -152,6 +155,9 @@ app.post("/api/matches/room", requireMutationOrigin, requireAuth, async (c) => {
     mode: match.mode,
     owners,
     feePayer: body.feePayer,
+    ...(body.signingMode === "durable"
+      ? { nonceAccount: await nonceAddress(body.feePayer) }
+      : {}),
     maxNetworkFeeLamports: body.maxNetworkFeeLamports,
     maxAccountRentLamports: body.maxAccountRentLamports,
     legs: match.legs,

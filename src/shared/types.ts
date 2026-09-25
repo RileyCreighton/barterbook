@@ -46,6 +46,8 @@ export interface Terms {
   mode: "BASKET" | "RING";
   owners: string[];
   feePayer: string;
+  /** Explicit consent to durable signing; the fee payer controls cancellation. */
+  nonceAccount?: string;
   maxNetworkFeeLamports: string;
   maxAccountRentLamports: string;
   legs: TransferLeg[];
@@ -137,6 +139,7 @@ export interface SigningStatus {
   expired: boolean;
   signingAllowed: boolean;
   reason: string | null;
+  lifetime?: "recent-blockhash" | "durable-nonce";
 }
 export interface ReceiptDelta {
   account: string;

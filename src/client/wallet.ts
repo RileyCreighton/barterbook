@@ -4,6 +4,7 @@ import bs58 from "bs58";
 import { b64, equalBytes, unb64, verifyEd25519 } from "../shared/crypto";
 import { verifyWireSignatures } from "../shared/transactions";
 import type { FrozenPlan, Terms } from "../shared/types";
+import { verifyNonceOperation, type NonceOperation } from "../shared/nonce";
 
 export type BrowserWallet = ReturnType<
   ReturnType<typeof getWallets>["get"]
@@ -333,7 +334,11 @@ export async function signFrozenTransaction(
   if (plan.terms.cluster !== "devnet" || terms.cluster !== "devnet")
     throw new Error("This release signs devnet transactions only.");
   if (terms.expiresAt <= Date.now())
-    throw new Error("Accepted terms expired. Review new terms before signing.");
+    throw new Error(
+      terms.nonceAccount
+        ? "The review period ended. The fee payer must cancel on chain and reconcile before a new revision."
+        : "Accepted terms expired. Review new terms before signing.",
+    );
   const originalWire = unb64(wireBase64);
   let before: Awaited<ReturnType<typeof verifyWireSignatures>>;
   try {
@@ -404,4 +409,45 @@ export async function signFrozenTransaction(
     throw new Error("Wallet did not sign its required slot.");
   assertConnected(connection);
   return b64(signedWire);
+}
+
+/** Setup/cancellation have one payer; they never pass the barter verifier. */
+export async function signNonceOperation(
+  connection: WalletConnection,
+  operation: NonceOperation,
+): Promise<string> {
+  assertConnected(connection);
+  const plan = structuredClone(operation.plan),
+    wire = unb64(operation.wireBase64);
+  if (
+    plan.wallet !== connection.account.address ||
+    operation.state !== "PREPARED"
+  )
+    throw new Error(
+      "Reconnect the fee payer to review this signing operation.",
+    );
+  const before = await verifyNonceOperation(wire, plan, false);
+  const feature = capability<SignTransactionFeature>(
+    connection.wallet,
+    "solana:signTransaction",
+  );
+  if (!feature.supportedTransactionVersions.includes("legacy"))
+    throw new Error("Legacy transaction signing is required.");
+  assertConnected(connection);
+  let signed: Uint8Array;
+  if (connection.wallet.name === "Solflare") {
+    signed = await signSolflareTransaction(connection, wire, before.message, 0);
+  } else {
+    const outputs = await feature.signTransaction({
+      account: connection.account,
+      chain: "solana:devnet",
+      transaction: new Uint8Array(wire),
+    });
+    if (outputs.length !== 1 || !outputs[0]?.signedTransaction)
+      throw new Error("Wallet returned no unique transaction.");
+    signed = new Uint8Array(outputs[0].signedTransaction);
+  }
+  await verifyNonceOperation(signed, plan, true);
+  assertConnected(connection);
+  return b64(signed);
 }

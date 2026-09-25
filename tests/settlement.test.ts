@@ -6,7 +6,13 @@ import {
   TransferFeeAmountLayout,
   TransferFeeConfigLayout,
 } from "@solana/spl-token";
-import { Message, PublicKey, Transaction } from "@solana/web3.js";
+import {
+  Keypair,
+  Message,
+  PublicKey,
+  Transaction,
+  SystemProgram,
+} from "@solana/web3.js";
 import { Buffer } from "buffer";
 import { HTTPException } from "hono/http-exception";
 import {
@@ -23,6 +29,7 @@ import {
 import type { TransactionEvidence } from "../src/shared/receipt";
 import type { Asset, Attempt, Env } from "../src/shared/types";
 import { fixture } from "./fixtures";
+import { nonceAddress } from "../src/shared/nonce";
 import { testDatabase } from "./db-fixture";
 const databases: ReturnType<typeof testDatabase>[] = [];
 afterEach(() => {
@@ -143,13 +150,15 @@ function metadata(wire: string, attempt: Attempt): TransactionEvidence {
     }
   return evidence;
 }
-async function setup(options: { rentCap?: string } = {}) {
+async function setup(options: { rentCap?: string; durable?: boolean } = {}) {
   const db = testDatabase();
   databases.push(db);
   const f = fixture(),
     origin = "https://barterbook.test";
   if (options.rentCap !== undefined)
     f.terms.maxAccountRentLamports = options.rentCap;
+  if (options.durable)
+    f.terms.nonceAccount = await nonceAddress(f.terms.feePayer);
   const env = {
     DB: db,
     APP_ORIGIN: origin,
@@ -206,6 +215,9 @@ async function setup(options: { rentCap?: string } = {}) {
     tokens.set(wallet, token);
   }
   const state = {
+    nonceValue: f.plan.blockhash,
+    nonceAuthority: f.terms.feePayer,
+    nonceSlot: 100,
     genesis: "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
     height: 100,
     blockhashValid: true,
@@ -231,6 +243,25 @@ async function setup(options: { rentCap?: string } = {}) {
     };
     let result: unknown;
     switch (method) {
+      case "getAccountInfo": {
+        if (params[0] !== f.terms.nonceAccount)
+          throw new Error("Unexpected signing account");
+        const data = Buffer.alloc(80);
+        data.writeUInt32LE(1, 0);
+        data.writeUInt32LE(1, 4);
+        data.set(new PublicKey(state.nonceAuthority).toBytes(), 8);
+        data.set(new PublicKey(state.nonceValue).toBytes(), 40);
+        data.writeBigUInt64LE(5000n, 72);
+        result = {
+          context: { slot: state.nonceSlot },
+          value: {
+            owner: SystemProgram.programId.toBase58(),
+            data: [b64(data), "base64"],
+            executable: false,
+          },
+        };
+        break;
+      }
       case "getGenesisHash":
         result = state.genesis;
         break;
@@ -331,6 +362,10 @@ async function setup(options: { rentCap?: string } = {}) {
         state.sentWire = params[0];
         state.persistedAtSend = await getAttempt(db, state.attemptId!);
         state.receipt = metadata(params[0], state.persistedAtSend!);
+        if (options.durable) {
+          state.nonceValue = Keypair.generate().publicKey.toBase58();
+          state.nonceSlot = 200;
+        }
         state.finalized = true;
         if (state.timeoutSend)
           throw new Error("transport failed after node accepted transaction");
@@ -431,6 +466,56 @@ async function setup(options: { rentCap?: string } = {}) {
   };
 }
 describe("settlement HTTP + SQLite + mocked RPC integration (not onchain evidence)", () => {
+  it("collects durable signatures past any block height and recovers the exact finalized receipt after nonce advancement", async () => {
+    const s = await setup({ durable: true });
+    let attempt = await s.prepare();
+    expect(attempt.plan.lastValidBlockHeight).toBe("0");
+    s.state.height = 999999999;
+    expect(await (await s.signingStatus(attempt.id)).json()).toMatchObject({
+      lifetime: "durable-nonce",
+      signingAllowed: true,
+      expired: false,
+    });
+    for (let i = 0; i < s.f.owners.length; i++) {
+      const signed = await s.sign(attempt, i);
+      expect(signed.status).toBe(200);
+      attempt = ((await signed.json()) as { attempt: Attempt }).attempt;
+    }
+    expect((await s.request(`/attempts/${attempt.id}/submit`)).status).toBe(
+      200,
+    );
+    const result = await reconcileAttempt(
+      s.env,
+      (await getAttempt(s.db, attempt.id))!,
+    );
+    expect(result).toMatchObject({
+      state: "FINALIZED",
+      safeToRetry: false,
+      receipt: { verified: true },
+    });
+  });
+  it("holds durable authorizations after a reversible authority change", async () => {
+    const s = await setup({ durable: true }),
+      attempt = await s.prepare();
+    s.state.height = 999999999;
+    s.state.nonceAuthority = s.f.terms.owners[1];
+    s.state.nonceSlot = 101;
+    expect((await s.sign(attempt, 0)).status).toBe(409);
+    const result = await reconcileAttempt(s.env, attempt);
+    expect(result.safeToRetry).toBe(false);
+    expect(
+      result.lastRecoveryObservations?.every(
+        (o) => o.nonceInvalidated === false,
+      ),
+    ).toBe(true);
+  });
+  it("rejects stale nonce snapshots before storing a durable signature", async () => {
+    const s = await setup({ durable: true }),
+      attempt = await s.prepare();
+    s.state.nonceSlot = 99;
+    expect((await s.sign(attempt, 0)).status).toBe(409);
+    expect((await getAttempt(s.db, attempt.id))!.signatures).toEqual({});
+  });
   it("checks Devnet lifetime without changing the attempt, including expired and unavailable blockhashes", async () => {
     const s = await setup();
     const attempt = await s.prepare();

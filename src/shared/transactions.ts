@@ -2,6 +2,7 @@ import {
   ComputeBudgetProgram,
   Message,
   PublicKey,
+  SystemProgram,
   Transaction,
 } from "@solana/web3.js";
 import {
@@ -94,6 +95,11 @@ export function legFor(
   };
 }
 export function validateTerms(terms: Terms, assets: Asset[]): void {
+  if (terms.nonceAccount !== undefined) {
+    pk(terms.nonceAccount);
+    if (terms.cluster !== "devnet" || terms.owners.includes(terms.nonceAccount))
+      throw new Error("Invalid durable signing account.");
+  }
   if (
     !["devnet", "mainnet-beta"].includes(terms.cluster) ||
     !Number.isInteger(terms.version) ||
@@ -250,6 +256,18 @@ function buildValidatedTransaction(plan: FrozenPlan): {
     feePayer: pk(plan.terms.feePayer),
     recentBlockhash: plan.blockhash,
   });
+  if (plan.terms.nonceAccount) {
+    if (plan.lastValidBlockHeight !== "0")
+      throw new Error(
+        "Durable signing must not use a recent-blockhash deadline.",
+      );
+    tx.add(
+      SystemProgram.nonceAdvance({
+        noncePubkey: pk(plan.terms.nonceAccount),
+        authorizedPubkey: pk(plan.terms.feePayer),
+      }),
+    );
+  }
   tx.add(
     ComputeBudgetProgram.setComputeUnitLimit({ units: plan.computeUnitLimit }),
     ComputeBudgetProgram.setComputeUnitPrice({
@@ -337,8 +355,9 @@ export function wireParts(wire: Uint8Array): {
     throw new Error("Wrong signer count");
   return {
     message,
-    signatures: Array.from({ length: count }, (_, i) =>
-      new Uint8Array(wire.subarray(1 + i * 64, 1 + (i + 1) * 64)),
+    signatures: Array.from(
+      { length: count },
+      (_, i) => new Uint8Array(wire.subarray(1 + i * 64, 1 + (i + 1) * 64)),
     ),
     signers: decoded.accountKeys.slice(0, count).map((k) => k.toBase58()),
   };

@@ -36,6 +36,7 @@ import {
 } from "./DemoGuide";
 import { RenewAttempt } from "./RenewAttempt";
 import { TransactionCheck } from "./TransactionCheck";
+import { NonceControls } from "./NonceControls";
 import {
   amount,
   AssetMark,
@@ -556,8 +557,9 @@ export function App() {
     try {
       await api(`/attempts/${attempt.id}/signatures`, { wireBase64 });
     } catch (cause) {
+      const message = cause instanceof Error ? cause.message : "Request failed";
       throw new Error(
-        `While saving the signature to the server: ${cause instanceof Error ? cause.message : "Request failed"}. Reconcile the original status before another attempt.`,
+        `While saving the signature to the server: ${message}${/reconcile/i.test(message) ? "" : ". Reconcile the original status before another attempt."}`,
       );
     }
     await loadRoom(r.id);
@@ -816,9 +818,10 @@ export function App() {
                             Message hash <code>{room.attempt.messageHash}</code>
                           </p>
                           <p>
-                            Last valid block height:{" "}
-                            {room.attempt.plan.lastValidBlockHeight}. Network
-                            fee:{" "}
+                            {room.terms.nonceAccount
+                              ? "Longer-lived authorization. "
+                              : `Last valid block height: ${room.attempt.plan.lastValidBlockHeight}. `}
+                            Network fee:{" "}
                             {formatAmount(
                               room.attempt.plan.networkFeeLamports,
                               9,
@@ -982,6 +985,13 @@ export function App() {
                         </div>
                       )}
                     </div>
+                    {room.terms.nonceAccount && (
+                      <NonceControls
+                        room={room}
+                        connection={connection}
+                        onChanged={() => loadRoom(room.id)}
+                      />
+                    )}
                     {room.attempt && (
                       <TransactionCheck
                         key={`${room.attempt.id}:${owner}`}
@@ -1500,6 +1510,7 @@ export function App() {
                               {
                                 listingIds: m.listings.map((l) => l.id),
                                 feePayer: wallet.account.address,
+                                signingMode: "durable",
                                 maxNetworkFeeLamports: "100000",
                                 maxAccountRentLamports: "30000000",
                               },

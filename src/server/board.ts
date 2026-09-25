@@ -142,6 +142,13 @@ export function createBoardRouter(deps: BoardDependencies): Hono<AppContext> {
           : "A basket needs exactly two participants on this deployment network",
       });
     terms.owners.forEach(walletAddress);
+    if (terms.nonceAccount !== undefined) {
+      const { nonceAddress } = await import("../shared/nonce");
+      if (terms.nonceAccount !== (await nonceAddress(terms.feePayer)))
+        throw new Error(
+          "Durable signing must use the fee payer's BarterBook signing account.",
+        );
+    }
     expiry(terms.expiresAt);
     version(terms.version);
     try {

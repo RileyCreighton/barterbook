@@ -5,6 +5,8 @@ export interface ChainObservation {
   historyTrusted: boolean;
   finalizedBlockHeight: string;
   blockhashValid: boolean | null;
+  /** Finalized account evidence proves the old nonce cannot execute again. */
+  nonceInvalidated?: boolean;
   status: null | {
     confirmation: "processed" | "confirmed" | "finalized";
     err: unknown | null;
@@ -48,9 +50,16 @@ export function reconcileDecision(
   const stillLive = observations.some(
     (o) =>
       o.healthy &&
-      BigInt(o.finalizedBlockHeight) <=
-        BigInt(attempt.plan.lastValidBlockHeight),
+      (attempt.plan.terms.nonceAccount
+        ? o.blockhashValid === true
+        : BigInt(o.finalizedBlockHeight) <=
+          BigInt(attempt.plan.lastValidBlockHeight)),
   );
+  const lifetimeEnded = (o: ChainObservation) =>
+    attempt.plan.terms.nonceAccount
+      ? o.nonceInvalidated === true
+      : BigInt(o.finalizedBlockHeight) >
+        BigInt(attempt.plan.lastValidBlockHeight);
   if (!attempt.txid) {
     if (
       attempt.successObserved ||
@@ -75,8 +84,7 @@ export function reconcileDecision(
         o.healthy &&
         o.historyTrusted &&
         o.addressHistoryComplete === true &&
-        BigInt(o.finalizedBlockHeight) >
-          BigInt(attempt.plan.lastValidBlockHeight) &&
+        lifetimeEnded(o) &&
         o.blockhashValid === false &&
         o.status === null &&
         !o.transactionFound,
@@ -134,7 +142,11 @@ export function reconcileDecision(
   )
     return {
       state: "FAILED_ONCHAIN",
-      safeToRetry: true,
+      safeToRetry:
+        !attempt.plan.terms.nonceAccount ||
+        (good.length >= 2 &&
+          good.every((o) => o.historyTrusted && o.nonceInvalidated === true) &&
+          new Set(good.map((o) => o.endpoint)).size >= 2),
       reason:
         "Finalized onchain failure; no intended token leg settled. Network fees may have been charged.",
     };
@@ -163,8 +175,7 @@ export function reconcileDecision(
   const authoritative = good.filter(
     (o) =>
       o.historyTrusted &&
-      BigInt(o.finalizedBlockHeight) >
-        BigInt(attempt.plan.lastValidBlockHeight) &&
+      lifetimeEnded(o) &&
       o.blockhashValid === false &&
       o.status === null &&
       !o.transactionFound,

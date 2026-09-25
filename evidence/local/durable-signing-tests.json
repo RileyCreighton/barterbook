@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-09-25T18:30:11.030Z",
+  "success": true,
+  "tests": 292,
+  "passed": 292,
+  "failed": 0,
+  "pending": 0,
+  "files": 25,
+  "scope": "Local regression, SQLite/mock-RPC integration and actual LiteSVM program execution. Real browser-wallet Devnet execution remains unverified.",
+  "limitations": [
+    "The pinned LiteSVM 0.8.0 rolls back nonce advancement on instruction failure; recovery explicitly holds whenever finalized nonce invalidation has not been proven."
+  ]
+}

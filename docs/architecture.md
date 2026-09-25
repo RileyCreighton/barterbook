@@ -13,7 +13,7 @@ BarterBook is one application: a selected-inventory board, negotiated two-owner 
 | Chain access | Server-only JSON-RPC adapter | Raw mint/account reads, simulation, lifetime/fee queries, broadcasts, history and transaction metadata. |
 | Hosting | One Cloudflare Worker with static assets | Same origin for app and API; Worker-first routing only for `/api/*`. |
 
-The runtime SDK pair is pinned: `@solana/web3.js` 1.99.0 with `@solana/spl-token` 0.4.15. Legacy transactions are the only settlement format. There are no address lookup tables, durable nonces, platform-fee transfers, custom programs, delegated orders, or server signing authorities.
+The runtime SDK pair is pinned: `@solana/web3.js` 1.99.0 with `@solana/spl-token` 0.4.15. Legacy transactions are the only settlement format. New browser exchanges support wallet-controlled durable nonces; older frozen recent-blockhash attempts retain their original lifecycle. See [durable signing](durable-signing.md) for setup, cancellation and recovery. There are no address lookup tables, platform-fee transfers, custom programs, delegated orders, or server signing authorities.
 
 ## Asset and amount policy
 

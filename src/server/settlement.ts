@@ -9,6 +9,7 @@ import {
   verifyEd25519,
 } from "../shared/crypto";
 import bs58 from "bs58";
+import { decodeNonceAccount, nonceAddress } from "../shared/nonce";
 import { VersionedTransaction } from "@solana/web3.js";
 import {
   hashTerms,
@@ -46,11 +47,13 @@ import {
 } from "./db";
 import {
   assertDevnet,
+  assertPlanLifetime,
   getAssets,
   integer,
   preparePlan,
   rpcFor,
   Rpc,
+  readSigningNonce,
 } from "./chain";
 interface DiscoveredTransaction {
   txid: string;
@@ -68,6 +71,7 @@ async function scanFeePayerHistory(
   attempt: Attempt,
   original: ReturnType<typeof wireParts>,
   onSuccess: () => void,
+  minimumRoot?: string,
 ): Promise<DiscoveredTransaction[]> {
   const floor = BigInt(attempt.plan.contextSlot);
   // Bind the history's minimum slot to an expired finalized bank in ONE RPC.
@@ -81,22 +85,32 @@ async function scanFeePayerHistory(
     !Number.isSafeInteger(Number(height))
   )
     throw new Error("Address history slot cannot be represented safely");
-  if (BigInt(height) <= BigInt(attempt.plan.lastValidBlockHeight))
+  if (
+    !attempt.plan.terms.nonceAccount &&
+    BigInt(height) <= BigInt(attempt.plan.lastValidBlockHeight)
+  )
     throw new Error("Address history bank has not finalized original expiry");
+  if (minimumRoot && BigInt(root) < BigInt(minimumRoot))
+    throw new Error("Address history bank is behind nonce invalidation.");
   if (BigInt(root) < floor)
     throw new Error("Finalized history root is behind attempt");
   // RPC context can be later than the blockhash's originating bank. It is only
   // a safe history cutoff after proving this exact block produced the hash.
-  const anchor = await call("getBlock", [
-    Number(floor),
-    {
-      commitment: "finalized",
-      transactionDetails: "none",
-      rewards: false,
-      maxSupportedTransactionVersion: 0,
-    },
-  ]);
-  if (!anchor || anchor.blockhash !== attempt.plan.blockhash)
+  const anchor = attempt.plan.terms.nonceAccount
+    ? null
+    : await call("getBlock", [
+        Number(floor),
+        {
+          commitment: "finalized",
+          transactionDetails: "none",
+          rewards: false,
+          maxSupportedTransactionVersion: 0,
+        },
+      ]);
+  if (
+    !attempt.plan.terms.nonceAccount &&
+    (!anchor || anchor.blockhash !== attempt.plan.blockhash)
+  )
     throw new Error("Original blockhash origin could not be anchored");
   const options = {
     commitment: "finalized",
@@ -298,10 +312,43 @@ export async function observe(
         !Number.isSafeInteger(Number(root))
       )
         throw new Error("Recovery bank cannot be represented safely");
-      const valid = await call("isBlockhashValid", [
-        attempt.plan.blockhash,
-        { commitment: "finalized", minContextSlot: Number(root) },
-      ]);
+      let nonceInvalidated = false;
+      let valid: { context: { slot: string | number }; value: boolean };
+      if (attempt.plan.terms.nonceAccount) {
+        if (
+          attempt.plan.terms.nonceAccount !==
+          (await nonceAddress(attempt.plan.terms.feePayer))
+        )
+          throw new Error("Unexpected signing account in frozen attempt.");
+        const info = await call("getAccountInfo", [
+          attempt.plan.terms.nonceAccount,
+          {
+            encoding: "base64",
+            commitment: "finalized",
+            minContextSlot: Number(root),
+          },
+        ]);
+        const nonce = decodeNonceAccount(info.value);
+        const nonceSlot = integer(info.context?.slot);
+        if (BigInt(nonceSlot) < BigInt(root))
+          throw new Error("Stale signing account evidence.");
+        // Authority changes alone are reversible. Only a changed/closed nonce
+        // at a later finalized bank proves this original nonce cannot return.
+        nonceInvalidated =
+          BigInt(nonceSlot) > BigInt(attempt.plan.contextSlot) &&
+          (!nonce || nonce.value !== attempt.plan.blockhash);
+        valid = {
+          context: { slot: nonceSlot },
+          value:
+            !!nonce &&
+            nonce.value === attempt.plan.blockhash &&
+            nonce.authority === attempt.plan.terms.feePayer,
+        };
+      } else
+        valid = await call("isBlockhashValid", [
+          attempt.plan.blockhash,
+          { commitment: "finalized", minContextSlot: Number(root) },
+        ]);
       const requireFreshBlockhashEvidence = () => {
         if (
           typeof valid?.value !== "boolean" ||
@@ -359,7 +406,10 @@ export async function observe(
         // Only absence needs both contexts fenced at the expired finalized bank.
         if (status === null && !transaction?.meta) {
           requireFreshBlockhashEvidence();
-          if (BigInt(integer(s.context?.slot)) < BigInt(root))
+          if (
+            BigInt(integer(s.context?.slot)) <
+            BigInt(attempt.plan.terms.nonceAccount ? valid.context.slot : root)
+          )
             throw new Error(
               "Signature absence context is behind the recovery bank",
             );
@@ -368,7 +418,9 @@ export async function observe(
         entry.trust &&
         entry.addressTrust &&
         coversLifetime &&
-        BigInt(height) > BigInt(attempt.plan.lastValidBlockHeight) &&
+        (attempt.plan.terms.nonceAccount
+          ? nonceInvalidated
+          : BigInt(height) > BigInt(attempt.plan.lastValidBlockHeight)) &&
         valid.value === false
       ) {
         requireFreshBlockhashEvidence();
@@ -382,6 +434,9 @@ export async function observe(
           () => {
             observedSuccess = true;
           },
+          attempt.plan.terms.nonceAccount
+            ? String(valid.context.slot)
+            : undefined,
         );
         addressHistoryComplete = true;
         for (const match of matches) {
@@ -429,6 +484,7 @@ export async function observe(
         historyTrusted: entry.trust && coversLifetime,
         finalizedBlockHeight: height,
         blockhashValid: valid.value,
+        nonceInvalidated,
         status: status
           ? {
               confirmation: status.confirmationStatus ?? "processed",
@@ -733,6 +789,39 @@ export function createSettlementRouter(): Hono<AppContext> {
     const attempt = await owned(c, c.req.param("id"));
     await assertDevnet(c.env);
     const rpc = rpcFor(c.env);
+    if (attempt.plan.terms.nonceAccount) {
+      const nonce = await readSigningNonce(
+        rpc,
+        attempt.plan.terms.feePayer,
+        "confirmed",
+        Number(attempt.plan.contextSlot),
+      );
+      const valid =
+        nonce.address === attempt.plan.terms.nonceAccount &&
+        nonce.account?.value === attempt.plan.blockhash &&
+        nonce.account.authority === attempt.plan.terms.feePayer;
+      const reason =
+        attempt.state !== "SIGNING" || attempt.stopRequested
+          ? "This attempt is not collecting signatures. Reconcile original status."
+          : attempt.plan.terms.expiresAt <= Date.now()
+            ? "The review period ended. Cancel on chain and reconcile before renewing."
+            : !valid
+              ? "This signing authorization was used or changed. Reconcile original status."
+              : null;
+      return c.json({
+        attemptId: attempt.id,
+        network: "devnet",
+        lifetime: "durable-nonce",
+        buildId: c.env.BUILD_ID ?? null,
+        checkedAt: Date.now(),
+        currentBlockHeight: "0",
+        lastValidBlockHeight: "0",
+        blockhashValid: valid,
+        expired: false,
+        signingAllowed: reason === null,
+        reason,
+      } satisfies SigningStatus);
+    }
     const [height, validity] = await Promise.all([
       rpc.call("getBlockHeight", [{ commitment: "confirmed" }]),
       rpc.call("isBlockhashValid", [
@@ -764,6 +853,7 @@ export function createSettlementRouter(): Hono<AppContext> {
               ? "The Devnet provider cannot validate this transaction's blockhash. Keep your wallet on Devnet and reconcile original status."
               : null;
     const status: SigningStatus = {
+      lifetime: "recent-blockhash",
       attemptId: attempt.id,
       network: "devnet",
       buildId: c.env.BUILD_ID ?? null,
@@ -803,19 +893,16 @@ export function createSettlementRouter(): Hono<AppContext> {
           "Attempt is not collecting signatures; reconcile original status",
       });
     }
-    await assertDevnet(c.env);
-    const rpc = rpcFor(c.env);
-    if (
-      BigInt(
-        integer(
-          await rpc.call("getBlockHeight", [{ commitment: "confirmed" }]),
-        ),
-      ) > BigInt(old.plan.lastValidBlockHeight)
-    )
+    try {
+      await assertPlanLifetime(c.env, old.plan);
+    } catch (cause) {
       throw new HTTPException(409, {
         message:
-          "Signing lifetime passed. Reconcile original status before another attempt",
+          cause instanceof Error
+            ? cause.message
+            : "Signing lifetime unavailable",
       });
+    }
     validateTerms(old.plan.terms, await getAssets(c.env));
     const merged = await mergeSignature(
       unb64(old.wireBase64),
@@ -864,6 +951,7 @@ export function createSettlementRouter(): Hono<AppContext> {
       });
     await assertDevnet(c.env);
     await verifyWireSignatures(unb64(old.fullWireBase64), old.plan, true);
+    await assertPlanLifetime(c.env, old.plan);
     const rpc = rpcFor(c.env);
     // The complete bytes and ID already exist. Commit SUBMISSION_STARTED before ANY
     // send. Even a preflight rejection after this marker cannot authorize a rebuild.
@@ -934,14 +1022,11 @@ export function createSettlementRouter(): Hono<AppContext> {
     )
       return c.json({ attempt: reconciled });
     const rpc = rpcFor(c.env);
-    if (
-      BigInt(
-        integer(
-          await rpc.call("getBlockHeight", [{ commitment: "confirmed" }]),
-        ),
-      ) > BigInt(reconciled.plan.lastValidBlockHeight)
-    )
+    try {
+      await assertPlanLifetime(c.env, reconciled.plan);
+    } catch {
       return c.json({ attempt: reconciled });
+    }
     await checkRateLimit(c.env.DB, `rebroadcast:${old.id}`, 2, 60000);
     await verifyWireSignatures(
       unb64(reconciled.fullWireBase64),

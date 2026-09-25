@@ -13,11 +13,19 @@ import {
   connectWallet,
   connectionIsCurrent,
   signFrozenTransaction,
+  signNonceOperation,
   signWalletMessage,
   watchWalletConnection,
 } from "../src/client/wallet";
 import type { BrowserAccount, BrowserWallet } from "../src/client/wallet";
 import { fixture } from "./fixtures";
+import {
+  nonceAddress,
+  nonceOperationWire,
+  verifyNonceOperation,
+  type NonceOperation,
+  type NonceOperationPlan,
+} from "../src/shared/nonce";
 
 function detachedSignature(key: Keypair, message: Uint8Array): Uint8Array {
   const privateKey = createPrivateKey({
@@ -135,6 +143,62 @@ function fakeSolflare(key: Keypair) {
 
 describe("Solflare transaction-message compatibility (fake provider, not extension proof)", () => {
   afterEach(() => vi.unstubAllGlobals());
+  for (const count of [2, 3])
+    it(`collects ${count} durable approvals through Solflare's exact-message path`, async () => {
+      const f = fixture(count);
+      f.terms.feePayer = f.owners[1].publicKey.toBase58();
+      f.terms.nonceAccount = await nonceAddress(f.terms.feePayer);
+      f.plan.lastValidBlockHeight = "0";
+      let wire = unsignedWire(f.plan);
+      const original = wireParts(unb64(wire)).message;
+      for (const key of [f.owners[1], f.owners[0], ...f.owners.slice(2)]) {
+        const adapter = fakeSolflare(key);
+        wire = await signFrozenTransaction(
+          await connectWallet(adapter.wallet),
+          wire,
+          f.plan,
+          f.terms,
+        );
+        expect(wireParts(unb64(wire)).message).toEqual(original);
+      }
+      await verifyWireSignatures(unb64(wire), f.plan, true);
+    });
+  for (const kind of ["setup", "cancel"] as const)
+    it(`uses transaction approval for the single-signer ${kind} without signMessage`, async () => {
+      const f = fixture(),
+        key = f.owners[0],
+        wallet = key.publicKey.toBase58(),
+        adapter = fakeSolflare(key);
+      const plan: NonceOperationPlan = {
+        kind,
+        wallet,
+        nonceAccount: await nonceAddress(wallet),
+        blockhash: f.plan.blockhash,
+        contextSlot: "1",
+        lastValidBlockHeight: kind === "cancel" ? "0" : "500",
+        rentLamports: kind === "setup" ? "1447680" : "0",
+        networkFeeLamports: "5000",
+        ...(kind === "cancel" ? { attemptId: "original" } : {}),
+      };
+      const op: NonceOperation = {
+        id: "local",
+        plan,
+        wireBase64: await nonceOperationWire(plan),
+        signedWireBase64: null,
+        txid: null,
+        state: "PREPARED",
+        createdAt: Date.now(),
+        error: null,
+      };
+      const wire = await signNonceOperation(
+        await connectWallet(adapter.wallet),
+        op,
+      );
+      await verifyNonceOperation(unb64(wire), plan, true);
+      expect(adapter.provider.request).toHaveBeenCalledOnce();
+      expect(adapter.signMessage).not.toHaveBeenCalled();
+      expect(adapter.signTransaction).not.toHaveBeenCalled();
+    });
 
   for (const count of [2, 3])
     it(`collects ${count} exact signatures with Bob as payer without sending earlier signatures to Solflare`, async () => {

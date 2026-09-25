@@ -2,17 +2,11 @@
 
 The diagnostic update is live at [BarterBook Devnet](https://barterbook-devnet.rileycreighton.workers.dev), build `a91581c`. [Deployment verification](../evidence/hosted/signing-check-deployment-a91581c.json) confirms the served files match the tested build; [all 272 local tests passed](../evidence/local/signing-check-tests.json). [CI also passed all 272 tests](https://github.com/RileyCreighton/barterbook/actions/runs/36169861192). Actual Solflare signing still needs the owner-controlled rehearsal below.
 
-## Version 7 diagnosis and next retry
+## Current next step: longer-lived signing
 
-The owner reports the altered-transaction error in a refreshed version 7, followed on a later retry by Solflare's Devnet/Mainnet warning. Both configured RPCs independently confirmed the exact frozen blockhash originated on **Devnet**; it was expired at the later check. This does not establish why Solflare described it as Mainnet, and does not reconcile its onchain outcome.
+Version 8 saved Bob's signature, then Alice's verified signature reached the server after its roughly 25-second Devnet blockhash lifetime. [The timing is confirmed by finalized blocks](../evidence/hosted/browser-v8-signing-expiry.json). The owner chose [longer-lived signing](durable-signing.md). This requires a fresh room revision, one-time setup by the fee payer, and new consent from everyone.
 
-The diagnostic update is deployed. Keep Solflare on **Devnet**, close the old approval popup, and hard-refresh Bob's app tab. Open the existing Alice/Bob room and click **Check transaction without signing**, then **Copy check report**. Send the report back for diagnosis. This check works on the existing expired attempt, does not open a wallet, and does not authorize a replacement. There is no need to rebuild or renew to obtain this report.
-
-**Report received:** Bob’s actual browser returned `verified: true`, identical saved/reconstructed message hashes, the expected Solflare transaction-message signing path, and a matching connected account. The live status check confirmed Devnet and an expired signing window. Proceed with Test 1 below only after the original attempt safely reconciles. Keep both profiles open and unlocked before preparing the next transaction. If signing fails, retain the exact new error prefix and stop; do not repeat approval against the expired attempt.
-
-The update checks the configured provider's Devnet genesis and the attempt's remaining blockhash lifetime before opening a signing prompt. It also distinguishes verification before the wallet, verification after approval, and server upload failures. Expiry can still occur while a wallet prompt is open; the server continues to enforce the lifetime at upload and submission.
-
-The two-person sequence below is the next diagnostic rehearsal; complete it before the three-person sequence. A replacement still requires the original attempt's normal safe reconciliation and fresh consent.
+Keep Solflare on **Devnet**. A review period ending does not revoke signatures in this new mode. To abandon a prepared durable exchange, the fee payer must use **Cancel on chain in wallet**, wait for its result, and reconcile the original exchange before renewing.
 
 ## Prepare the existing wallet windows
 
@@ -26,16 +20,16 @@ The two-person sequence below is the next diagnostic rehearsal; complete it befo
 | Bob | Demo wallet 2 | `H8jpK…5bBk8` |
 | Carol | Demo wallet 3 | `EqEnS…HAz5J` |
 
-4. In **Portfolio**, refresh holdings and confirm the required test tokens are available. Have every participant's room open and wallet unlocked before preparing a transaction. Once prepared, move through the signatures and submission consecutively; the frozen transaction has a short lifetime.
+4. In **Portfolio**, refresh holdings and confirm the required test tokens are available. Have every participant's room open and wallet unlocked before preparing a transaction. The renewed room will explicitly show **Longer-lived signing**. Its exchange signatures no longer depend on the short recent-blockhash window. Complete the app review/signing round within its one-hour review period.
 
 ## Test 1: Alice and Bob, using the existing room
 
-1. Open the [existing Alice/Bob room](https://barterbook-devnet.rileycreighton.workers.dev/#/room/4cff89cad977b4c3d0c50c8d8f6faeb89542ad9a73b49b13) in both profiles. Version 7 is the current reported failure. At the diagnostic snapshot it was marked `SIGNING`, with no stored signatures or transaction ID; that is not proof of non-execution.
+1. Open the [existing Alice/Bob room](https://barterbook-devnet.rileycreighton.workers.dev/#/room/4cff89cad977b4c3d0c50c8d8f6faeb89542ad9a73b49b13) in both profiles. Version 8 is the current reported expiry, with Bob’s signature saved. Preserve this original attempt until reconciliation finishes.
 2. In either profile, click **Reconcile original status**. Wait for the app to establish that the original expired without landing and display **Original attempt reconciled** / the renewal controls. If the outcome remains unknown, report the displayed message before creating a replacement.
-3. In one profile, click **Refresh fees and preview renewal**, review the preview, then **Create revision for everyone to review**. This creates the next terms version (after version 7, normally version 8). Reuse the room; it has no source-listing dependency that requires rebuilding the offer.
+3. In one profile, click **Refresh fees and preview renewal**, review the preview, then **Create revision for everyone to review**. This creates the next terms version (after version 8, normally version 9). The preview must show **Longer-lived signing**. Reuse the room; it has no source-listing dependency that requires rebuilding the offer.
 4. Confirm the terms: Alice gives **10 TEST-A + 5 TEST-B**; Bob gives **20 TEST-C** and pays the network fee. With the current 1% token fees, Bob receives **9.9 TEST-A + 4.95 TEST-B**, and Alice receives **19.8 TEST-C**.
 5. In **both** profiles, check the review box, click **Accept exact terms**, then **I’m ready**. If the page was refreshed after preparation, use **Confirm this browser’s review** to restore that browser's local review.
-6. Once both participants show ready, click **Prepare one transaction** once, in Bob's window.
+6. In Bob’s window, find **Longer-lived signing** and click **Set up signing in wallet**. Approve this separate Devnet setup transaction in Solflare. It holds at most **0.002 Devnet SOL** in Bob’s signing account, plus the displayed network-fee cap. If needed, click **Check signing account status** until it reports ready. This setup has one approval and still uses a short blockhash lifetime; the exchange itself will not. Once setup and both participants are ready, Bob clicks **Prepare one transaction** once.
 7. Bob clicks **Verify and sign in wallet**, reviews the transaction in Solflare and approves. Wait for BarterBook to show **Your signature is saved** or **Signature verified and saved for the frozen message**.
 8. Alice clicks **Verify and sign in wallet**, approves in Solflare, and waits for her saved-signature confirmation.
 9. In Bob's window, click **Submit signed exchange**. Keep the room open until **Receipt verified** says **finalized**. If necessary, use **Reconcile original status** to check the same submission.
@@ -56,7 +50,7 @@ Each person uses **Portfolio → Publish an exact lot** to enter and publish the
 3. Verify the match shows **9.9 TEST-A from Alice to Bob**, **19.8 TEST-B from Bob to Carol**, and **29.7 TEST-C from Carol to Alice**. These quantities were checked against the current 1% fees and the existing matcher before delivery of this guide.
 4. Bob clicks **Review in shared room**. The profile opening the room becomes the fee payer, so use Bob here. Copy this room URL into Alice's and Carol's profiles, or open it from their **Trade rooms** list.
 5. All three review the same terms, check the box, click **Accept exact terms**, and click **I’m ready**.
-6. Bob clicks **Prepare one transaction** once. Sign in sequence: **Bob → Alice → Carol**, waiting for the saved-signature confirmation after each approval.
+6. Confirm the room shows **Longer-lived signing** and **Signing account ready** for Bob. His setup from the first exchange is reused. Bob clicks **Prepare one transaction** once. Sign in sequence: **Bob → Alice → Carol**, waiting for the saved-signature confirmation after each approval.
 7. After all three signatures are saved, Bob clicks **Submit signed exchange**. Wait for the verified finalized receipt, then save its shareable link and download the evidence.
 
-If either signing round fails or expires, keep its original room and reconcile that attempt. A fresh terms revision and new signatures are required for a replacement after safe expiry. If the altered-transaction error or earlier Devnet/Mainnet warning returns, stop at that point and report which participant, the exact text, and whether the app saved the signature. Do not change networks to proceed.
+If either signing round fails, keep its original room and reconcile that attempt. For a prepared longer-lived exchange, expiry of the review period does not revoke signatures: Bob must approve **Cancel on chain in wallet**, then reconcile the original outcome before renewal. A fresh terms revision and new signatures are required for a replacement. If the altered-transaction error or earlier Devnet/Mainnet warning returns, stop at that point and report which participant, the exact text, and whether the app saved the signature. Do not change networks to proceed.

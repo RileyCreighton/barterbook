@@ -3,6 +3,7 @@ import { PublicKey } from "@solana/web3.js";
 import { formatAmount, netFor, parseAmount } from "../shared/amounts";
 import { legFor, validateTerms } from "../shared/transactions";
 import type { Asset, Receipt, Terms } from "../shared/types";
+import { nonceAddress } from "../shared/nonce";
 export const short = (s: string) =>
   s.length > 14 ? `${s.slice(0, 5)}…${s.slice(-5)}` : s;
 export const amount = (raw: string, asset?: Asset) =>
@@ -122,6 +123,14 @@ export function TermsView({
         <summary>Exact raw quantities, accounts and minimum receipts</summary>
         <pre>{JSON.stringify(terms, null, 2)}</pre>
       </details>
+      {terms.nonceAccount && (
+        <p className="approval-help">
+          <strong>Time to review every signature.</strong> This exchange uses
+          longer-lived signing. The fee payer controls its signing account.
+          Closing the page or ending the review period does not revoke
+          signatures; cancellation requires the fee payer's on-chain approval.
+        </p>
+      )}
     </>
   );
 }
@@ -359,7 +368,7 @@ export function BasketComposer({
     setLines(lines.map((l, n) => (n === i ? { ...l, ...patch } : l)));
     setPreview(null);
   }
-  function calculate() {
+  async function calculate() {
     setError("");
     try {
       if (!owner) {
@@ -392,6 +401,7 @@ export function BasketComposer({
         version: counter ? counter.version + 1 : 1,
         owners: [owner, target],
         feePayer: payer === "you" ? owner : target,
+        nonceAccount: await nonceAddress(payer === "you" ? owner : target),
         maxNetworkFeeLamports: parseAmount(network, 9),
         maxAccountRentLamports: parseAmount(rent, 9),
         legs,

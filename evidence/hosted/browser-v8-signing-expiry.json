@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-09-25T18:02:23.387Z",
+  "attemptId": "afbbd6fc-6c23-4513-9853-ea0a4c367224",
+  "termsVersion": 8,
+  "lastValidBlockHeight": "491359176",
+  "preparedAt": "2026-09-25T17:57:20.183Z",
+  "bobSavedAt": "2026-09-25T17:57:33.333Z",
+  "aliceRejectedAt": "2026-09-25T17:57:50.939Z",
+  "preparationWallTimeMs": 2615,
+  "bobUploadWallTimeMs": 729,
+  "aliceUploadWallTimeMs": 182,
+  "blocks": [
+    {
+      "slot": 504106651,
+      "blockTime": 1790359039,
+      "blockHeight": 491359026,
+      "time": "2026-09-25T17:57:19.000Z"
+    },
+    {
+      "slot": 504106801,
+      "blockTime": 1790359064,
+      "blockHeight": 491359176,
+      "time": "2026-09-25T17:57:44.000Z"
+    },
+    {
+      "slot": 504106802,
+      "blockTime": 1790359065,
+      "blockHeight": 491359177,
+      "time": "2026-09-25T17:57:45.000Z"
+    }
+  ],
+  "scope": "Read-only database timestamps, sanitized Worker telemetry, finalized Devnet block metadata. Alice’s original signed wire is not stored; her client passed strict verification before the server rejected its expired lifetime."
+}

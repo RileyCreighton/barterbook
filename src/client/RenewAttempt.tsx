@@ -4,6 +4,7 @@ import { legFor, validateTerms } from "../shared/transactions";
 import type { Asset, Room, Terms } from "../shared/types";
 import { api } from "./api";
 import { TermsView } from "./TradeViews";
+import { nonceAddress } from "../shared/nonce";
 
 export function RenewAttempt({
   room,
@@ -74,6 +75,7 @@ export function RenewAttempt({
       const terms: Terms = {
         ...room.terms,
         version: room.terms.version + 1,
+        nonceAccount: await nonceAddress(room.terms.feePayer),
         owners: [...room.terms.owners],
         legs,
         minima: room.terms.minima.map((minimum) => ({ ...minimum })),
@@ -152,9 +154,10 @@ export function RenewAttempt({
             }
           />
           <p className="muted">
-            New room terms expire in one hour. Source listings retain their own
-            expiry. Every acceptance and readiness choice resets; this step
-            requests no wallet signature.
+            New reviews must finish within one hour. Signed authorizations stay
+            usable until execution or on-chain cancellation. Source listings
+            retain their own expiry. Every acceptance and readiness choice
+            resets; this step requests no wallet signature.
           </p>
           <button disabled={busy} onClick={() => void renew()}>
             Create revision for everyone to review

@@ -24,6 +24,7 @@ import {
   validateTerms,
 } from "../shared/transactions";
 import type { Asset, Env, FrozenPlan, Holding, Terms } from "../shared/types";
+import { decodeNonceAccount, nonceAddress } from "../shared/nonce";
 export function integer(value: unknown): string {
   if (typeof value === "string") return raw(value).toString();
   if (typeof value !== "number" || !Number.isSafeInteger(value) || value < 0)
@@ -330,6 +331,57 @@ export async function assertDevnet(env: Env): Promise<void> {
   if (genesis !== "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG")
     throw new Error("RPC is not Solana devnet");
 }
+export async function readSigningNonce(
+  rpc: Rpc,
+  wallet: string,
+  commitment: "confirmed" | "finalized" = "confirmed",
+  minContextSlot?: number,
+) {
+  const address = await nonceAddress(wallet);
+  const result = await rpc.call("getAccountInfo", [
+    address,
+    {
+      encoding: "base64",
+      commitment,
+      ...(minContextSlot === undefined ? {} : { minContextSlot }),
+    },
+  ]);
+  const slot = integer(result.context?.slot);
+  if (minContextSlot !== undefined && BigInt(slot) < BigInt(minContextSlot))
+    throw new Error("Signing account evidence is behind the required bank.");
+  return { address, slot, account: decodeNonceAccount(result.value) };
+}
+export async function assertPlanLifetime(
+  env: Env,
+  plan: FrozenPlan,
+): Promise<void> {
+  await assertDevnet(env);
+  const rpc = rpcFor(env);
+  if (plan.terms.nonceAccount) {
+    const nonce = await readSigningNonce(
+      rpc,
+      plan.terms.feePayer,
+      "confirmed",
+      Number(plan.contextSlot),
+    );
+    if (
+      nonce.address !== plan.terms.nonceAccount ||
+      !nonce.account ||
+      nonce.account.authority !== plan.terms.feePayer ||
+      nonce.account.value !== plan.blockhash
+    )
+      throw new Error(
+        "This signing authorization was used or changed. Reconcile original status.",
+      );
+  } else if (
+    BigInt(
+      integer(await rpc.call("getBlockHeight", [{ commitment: "confirmed" }])),
+    ) > BigInt(plan.lastValidBlockHeight)
+  )
+    throw new Error(
+      "Signing lifetime passed. Reconcile original status before another attempt",
+    );
+}
 export async function preparePlan(env: Env, terms: Terms): Promise<FrozenPlan> {
   await assertDevnet(env);
   if (terms.expiresAt <= Date.now()) throw new Error("Terms expired");
@@ -402,9 +454,28 @@ export async function preparePlan(env: Env, terms: Terms): Promise<FrozenPlan> {
       rent += maximumRent;
     }
   }
-  const latest = await rpc.call("getLatestBlockhash", [
-    { commitment: "confirmed", minContextSlot: validationSlot },
-  ]);
+  // A finalized nonce read also provides the lower bound for future history
+  // recovery. Never freeze a nonce that was only observed on an unrooted fork.
+  const nonce = terms.nonceAccount
+    ? await readSigningNonce(rpc, terms.feePayer, "finalized")
+    : null;
+  if (
+    nonce &&
+    (nonce.address !== terms.nonceAccount ||
+      !nonce.account ||
+      nonce.account.authority !== terms.feePayer)
+  )
+    throw new Error(
+      "The fee payer must finish the one-time signing setup first.",
+    );
+  const latest = nonce
+    ? {
+        value: { blockhash: nonce.account!.value, lastValidBlockHeight: "0" },
+        context: { slot: nonce.slot },
+      }
+    : await rpc.call("getLatestBlockhash", [
+        { commitment: "confirmed", minContextSlot: validationSlot },
+      ]);
   const plan: FrozenPlan = {
     terms,
     assets,
@@ -425,7 +496,7 @@ export async function preparePlan(env: Env, terms: Terms): Promise<FrozenPlan> {
       sigVerify: false,
       replaceRecentBlockhash: false,
       commitment: "confirmed",
-      minContextSlot: Number(plan.contextSlot),
+      minContextSlot: Math.max(validationSlot, Number(plan.contextSlot)),
     },
   ]);
   if (simulation.value.err)
@@ -439,9 +510,11 @@ export async function preparePlan(env: Env, terms: Terms): Promise<FrozenPlan> {
     400000,
     Math.max(30000, Math.ceil(consumed * 1.2) + 10000),
   );
-  const fresh = await rpc.call("getLatestBlockhash", [
-    { commitment: "confirmed", minContextSlot: Number(plan.contextSlot) },
-  ]);
+  const fresh = nonce
+    ? latest
+    : await rpc.call("getLatestBlockhash", [
+        { commitment: "confirmed", minContextSlot: Number(plan.contextSlot) },
+      ]);
   plan.blockhash = fresh.value.blockhash;
   plan.lastValidBlockHeight = integer(fresh.value.lastValidBlockHeight);
   plan.contextSlot = integer(fresh.context.slot);
