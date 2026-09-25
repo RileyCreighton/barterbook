@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "runId": "20260925-sdk-proof-01",
+  "buildId": "sha256:ad6eb527c1ea0a1edaef8577bccb2b80daf64542fecce386a0cf54558dc0ff8e",
+  "cluster": "devnet",
+  "scope": "Actual devnet SDK test; not browser-wallet proof; mock tokens, not PRE",
+  "txid": "RXoASStrWUmT7oJXzjgyNSrEMY47vUrvYmDFC8gvH7Acv7pKSYg8yqYf5vevShqDm5ecYhjNmTvpi3PAnzhyioz",
+  "explorer": "https://explorer.solana.com/tx/RXoASStrWUmT7oJXzjgyNSrEMY47vUrvYmDFC8gvH7Acv7pKSYg8yqYf5vevShqDm5ecYhjNmTvpi3PAnzhyioz?cluster=devnet",
+  "commitment": "finalized",
+  "slot": "504147677",
+  "blockTime": 1790365845,
+  "capturedAt": "2026-09-25T19:50:52.418Z",
+  "networkFeeLamports": "5000",
+  "messageBase64": "AQABA0B8u+pzcdQFdVUgivCAQEqhyScDKr7SsMJjjjRSvExKTj9YsQYyXPzICtvhXSNH7yAQFGbT4xeGeMI/l3PV7BIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANY54En7FMubdGWFOjrY9RE/767fD6R3QdQJO4hSWCLmAQICAAEMAgAAAAAtMQEAAAAA",
+  "signedWireBase64": "ARUnkgpAvKgrjzjecG7t8IaAQzMYMj/X1CWl2g0JdYqHq3THhoRzNtR1nqejhkAR0hOBjhUR8gUwF270bavMBwkBAAEDQHy76nNx1AV1VSCK8IBASqHJJwMqvtKwwmOONFK8TEpOP1ixBjJc/MgK2+FdI0fvIBAUZtPjF4Z4wj+Xc9XsEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1jngSfsUy5t0ZYU6Otj1ET/vrt8PpHdB1Ak7iFJYIuYBAgIAAQwCAAAAAC0xAQAAAAA=",
+  "rawGetTransaction": {
+    "jsonrpc": "2.0",
+    "result": {
+      "blockTime": 1790365845,
+      "meta": {
+        "computeUnitsConsumed": 150,
+        "costUnits": 1481,
+        "err": null,
+        "fee": 5000,
+        "innerInstructions": [],
+        "loadedAddresses": {
+          "readonly": [],
+          "writable": []
+        },
+        "logMessages": [
+          "Program 11111111111111111111111111111111 invoke [1]",
+          "Program 11111111111111111111111111111111 success"
+        ],
+        "postBalances": [
+          844234520,
+          20000000,
+          1
+        ],
+        "postTokenBalances": [],
+        "preBalances": [
+          864239520,
+          0,
+          1
+        ],
+        "preTokenBalances": [],
+        "rewards": [],
+        "status": {
+          "Ok": null
+        }
+      },
+      "slot": 504147677,
+      "transaction": [
+        "ARUnkgpAvKgrjzjecG7t8IaAQzMYMj/X1CWl2g0JdYqHq3THhoRzNtR1nqejhkAR0hOBjhUR8gUwF270bavMBwkBAAEDQHy76nNx1AV1VSCK8IBASqHJJwMqvtKwwmOONFK8TEpOP1ixBjJc/MgK2+FdI0fvIBAUZtPjF4Z4wj+Xc9XsEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1jngSfsUy5t0ZYU6Otj1ET/vrt8PpHdB1Ak7iFJYIuYBAgIAAQwCAAAAAC0xAQAAAAA=",
+        "base64"
+      ],
+      "transactionIndex": 12,
+      "version": "legacy"
+    },
+    "id": "RXoASStrWUmT7oJXzjgyNSrEMY47vUrvYmDFC8gvH7Acv7pKSYg8yqYf5vevShqDm5ecYhjNmTvpi3PAnzhyioz"
+  },
+  "transaction": {
+    "blockTime": 1790365845,
+    "meta": {
+      "computeUnitsConsumed": 150,
+      "costUnits": 1481,
+      "err": null,
+      "fee": 5000,
+      "innerInstructions": [],
+      "loadedAddresses": {
+        "readonly": [],
+        "writable": []
+      },
+      "logMessages": [
+        "Program 11111111111111111111111111111111 invoke [1]",
+        "Program 11111111111111111111111111111111 success"
+      ],
+      "postBalances": [
+        844234520,
+        20000000,
+        1
+      ],
+      "postTokenBalances": [],
+      "preBalances": [
+        864239520,
+        0,
+        1
+      ],
+      "preTokenBalances": [],
+      "rewards": [],
+      "status": {
+        "Ok": null
+      }
+    },
+    "slot": 504147677,
+    "transaction": {
+      "message": {
+        "header": {
+          "numReadonlySignedAccounts": 0,
+          "numReadonlyUnsignedAccounts": 1,
+          "numRequiredSignatures": 1
+        },
+        "accountKeys": [
+          "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+          "6GSpp7AyxQ5EYJVCAM9qdiWA4CNV5FkX3jawG626xEXj",
+          "11111111111111111111111111111111"
+        ],
+        "recentBlockhash": "FRFS8VkDBS9Y6ncpCKcEpZhjtkfwLugMP9Gpdu79NGnH",
+        "instructions": [
+          {
+            "accounts": [
+              0,
+              1
+            ],
+            "data": "3Bxs3ztNaW5EjZkb",
+            "programIdIndex": 2,
+            "stackHeight": 1
+          }
+        ],
+        "indexToProgramIds": {}
+      },
+      "signatures": [
+        "RXoASStrWUmT7oJXzjgyNSrEMY47vUrvYmDFC8gvH7Acv7pKSYg8yqYf5vevShqDm5ecYhjNmTvpi3PAnzhyioz"
+      ]
+    },
+    "transactionIndex": 12,
+    "version": "legacy"
+  }
+}

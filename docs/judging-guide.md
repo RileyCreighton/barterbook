@@ -19,7 +19,7 @@ BarterBook is a working Solana Devnet demo. You can inspect the completed basket
 4. Open **Try the demo**, connect Phantom and approve the login message in each profile. This authenticates the wallet; it does not authorize a transfer.
 5. Click **Get 1,000 TEST-A, TEST-B & TEST-C** and approve the separate token-setup transaction. It costs less than **0.01 Devnet SOL** to create the three token accounts and pay its network fee. Click **Check token request** after a few seconds until it is finalized, then refresh Portfolio.
 
-The token faucet issues only the three supported mock mints. Its separate key has minting authority only; it cannot spend your tokens or SOL. The wallet pays setup rent and network fees. Rate limits allow eight preparations per wallet per day and impose a shared service limit. Private keys and recovery phrases stay in your wallet.
+The [live faucet check](../evidence/hosted/judge-faucet-live-check.json) finalized delivery of exactly 1,000 of each token into a fresh disposable wallet through the hosted API. The token faucet issues only the three supported mock mints. Its separate key has minting authority only; it cannot spend your tokens or SOL. The wallet pays setup rent and network fees. Rate limits allow eight preparations per wallet per day and impose a shared service limit. Private keys and recovery phrases stay in your wallet.
 
 ## Test a two-wallet basket
 

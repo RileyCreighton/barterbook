@@ -2,6 +2,8 @@
 
 BarterBook now presents its completed browser transactions as the primary product evidence. Both the two-for-one basket and three-person match finalized through the live app; two independent providers verified every signature and token-account change.
 
+Build **`a7569bc`** is deployed as Worker **`8259ab6a-f779-491e-8ee1-4c36a218fb3f`**. [Served-file verification](../evidence/hosted/judging-deployment-a7569bc.json) passed, [GitHub CI succeeded](https://github.com/RileyCreighton/barterbook/actions/runs/36181898767), and [desktop/mobile browser checks](../evidence/local/judging-browser-checks.json) found no page errors or horizontal overflow. The [live token faucet test](../evidence/hosted/judge-faucet-live-check.json) finalized all three exact token credits to a new disposable recipient.
+
 ## Included
 
 - Browser-proof cards on the market, walkthrough and evidence pages, linked to actual receipts, Explorer and raw transaction archives.

@@ -67,6 +67,8 @@ Run `npm run dev:api` and `npm run dev` in separate terminals, then open `http:/
 
 ## Validation and scope
 
+**301 tests passed.** [GitHub CI](https://github.com/RileyCreighton/barterbook/actions/runs/36181898767) covers the deployed judging build, including the production build, local migrations and secret scan. [Desktop/mobile checks](evidence/local/judging-browser-checks.json) and the [live faucet test](evidence/hosted/judge-faucet-live-check.json) passed.
+
 The test suite covers integer fees, strict transaction reconstruction, partial signatures, account changes, room concurrency, interrupted submission, nonce cancellation, recovery and public-receipt privacy. LiteSVM tests exercise actual token programs, including atomic rollback. Public Devnet evidence includes browser baskets and a three-person match, hosted SDK trades and a deliberate failing final leg.
 
 The current browser path is Phantom. [Solflare's Devnet nonce simulation limitation](docs/solflare-durable-nonce-compatibility.md) remains documented. This is a Devnet prototype, not an audited mainnet service. Historical Worker CPU measurements exceed the published Free-plan budget on some financial routes; see [delivery status](docs/delivery-status.md). Test results, real-chain proofs and known operational limits are recorded separately.

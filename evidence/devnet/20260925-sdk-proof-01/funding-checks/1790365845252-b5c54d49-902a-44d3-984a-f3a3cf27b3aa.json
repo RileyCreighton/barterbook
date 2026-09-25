@@ -1,0 +1,168 @@
+{
+  "cluster": "devnet",
+  "runId": "20260925-sdk-proof-01",
+  "existingUserFundsUsed": false,
+  "checkedAt": "2026-09-25T19:50:45.252Z",
+  "wallet": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+  "finalizedLamports": "864239520",
+  "history": [
+    {
+      "signature": "2oTwT8jGZZ6bToXWVjNj1EGowzQEkfEMyKyqEz1Yv1wMnNb54JNr6rQ8XgbMVfh2L2bCGpKcJMEH9hCh2aRaDxCX",
+      "slot": 504142770,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790365035
+    },
+    {
+      "signature": "2Cpzboo2wC2LsvhrnTQQK1m9XZUD9gCH7Zf9deKosYfkA7HhP11vsFFn9xSvp1cnjby5q6f5nXtRxDQfMDYMb2kv",
+      "slot": 504128402,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790362655
+    },
+    {
+      "signature": "3wfDTWASADuBTxAfgziKaYyQRJFbPHzMwxk1STQD4qLSKtnEr3rLXyHmzW9YfiKRg4movuuBn7xT3HptJ74QPFUn",
+      "slot": 503906516,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790325820
+    },
+    {
+      "signature": "5CQDkJnbjsEG8JBmvEQFGmzUeT573CywExFx2ajkR884CJrkruXcSwdvA2ZWsY8TJK7B8XWDk21Q6v2CWmPZXqwV",
+      "slot": 503906415,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790325803
+    },
+    {
+      "signature": "Egor5yrT3AXee5otWCdZi1ufCfmqNKBBYVZohAsELwfhzQDbeBycNEY3XZXjjbtrSSRai4dGd88XNnoHB8YyNj6",
+      "slot": 503881861,
+      "err": {
+        "InstructionError": [
+          7,
+          {
+            "Custom": 1
+          }
+        ]
+      },
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321733
+    },
+    {
+      "signature": "3YfomqM1UoyqHkqobn2sUQYMoLh5CcUMsecsbF6o4Zcrrjvzbfsp4E1A6a54etPxcuSvT5z1LXmjmzHVy6coWsC2",
+      "slot": 503881813,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321725
+    },
+    {
+      "signature": "4TLQ55rcPS79kRAQTw52JH2SRTodvH5UzQgeczaRngpbHqu7YBqzfifr126N1BK8cD9GqDhAegdsKr3ofyKgPrP9",
+      "slot": 503881770,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321717
+    },
+    {
+      "signature": "5HQduJtbwwhr1sPLVg3sntjGbTn3gc39nzVntPJ7xTJASM2Q2bkTTnX5j9TDtQu8B7HCBUBXUxj94r5s2ACxmBCz",
+      "slot": 503881471,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321668
+    },
+    {
+      "signature": "5BndRZo91kfDuEf3brCZUkGaJGHWQBNP3r2P61qdfMWkTJnrcEhMPqyTRX8nY4NTctcNaKNa5UYsQnhggWuTkKqC",
+      "slot": 503881194,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321621
+    },
+    {
+      "signature": "uTvdVcC45rFEiHxp9NwYKrYv3ddPKKapsgaMcwxo9Y9nVJRYekZJE3tnxiWJFFANVdVrZ2gN6sMAeeK6Q84F1mM",
+      "slot": 503881148,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321614
+    },
+    {
+      "signature": "4zNnXKVNEpdfteNiiqg88tfhLkCpmyhqxV3UP4Zpzkyw6SdQym2mASeYQ1baxVcvYJvMW8euRLwogNxSqoxgoV7y",
+      "slot": 503881101,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321606
+    },
+    {
+      "signature": "2NaWiBkuRgfv2Emv8U9JNoQt9JeyJD4fNzPpZhWNFhbo9i5dnsGEJKh78XAx2EdwGTvrJmhA5QAGr7shViM4Hbu4",
+      "slot": 503881057,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321598
+    },
+    {
+      "signature": "7c4xTzqRJufxsRVnAqWgcqktD2qdroro1uDqLH8ZcH1fdV6n6NeMGhGDtbwKgQ3ccWNAvjEftsapfZDHqK1z1Dj",
+      "slot": 503881012,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321591
+    },
+    {
+      "signature": "smsckunWZCNTjFw6LDhgwdbE54YF4riEk4TapbfwF7f7QdBSt1vT3iMob1rvnizrbQbK2S5c4XYp5T4Q2R5pGxc",
+      "slot": 503880968,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321583
+    },
+    {
+      "signature": "53qrnNx42Em6xjk1T1UvN4aCUJK2NuCGUTG9QrJWtwegLKmqB1V3JLb65vuZggRvyHnjFgn2XdqvdHBLjHNCNc9y",
+      "slot": 503880922,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321575
+    },
+    {
+      "signature": "5cxJCYvPX6TWh17X5sdLYauu71GqykzugprzUBbEgD8mVBu8omv6N7h7bqBBs4nDJ6trEirAUhVfvnBmLEMFzRH8",
+      "slot": 503880875,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321568
+    },
+    {
+      "signature": "2dY4juPJ5apvSY5joMFu3gTB4YrHGChXotGicA7MuBzPeND3Ug9SkR75hBneJ5vd9v5kykDkHDSyVmLuEMmu3VxM",
+      "slot": 503880832,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321560
+    },
+    {
+      "signature": "3b6x8mhSk4r6VZ3pzEnXGRTQvmbTpjpNf5TvRMfBgzdsQot9PhPftdYPkU5gnBaPmwkDVLc4tgwMH9ZF9KBKtC3o",
+      "slot": 503880784,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321553
+    },
+    {
+      "signature": "5y4s3jqzp8AAZwLPzfvQcYkr5qf48g4r4jCcPj1iza65rzEXfRBQmXP66noosqHsnQ6rkGkLx5B6BRHRkTKRHy9Y",
+      "slot": 503880741,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321545
+    },
+    {
+      "signature": "4gJttgiBN5VtrJDLuvBRrCjHPFWbhap83xYwt2NHosGQLK4s2ZqepSiSdCzDWw3GNmqfriBhKn7M934gS89a84Yk",
+      "slot": 503880692,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321537
+    }
+  ],
+  "priorRequests": [
+    {
+      "at": "2026-09-25T04:24:32.868Z",
+      "state": "REQUEST_STARTED"
+    },
+    {
+      "at": "2026-09-25T06:29:42.938Z",
+      "state": "BLOCKED_OR_UNCERTAIN",
+      "reason": "The faucet returned an error or timed out. Inspect finalized funding/history before any later explicit retry."
+    }
+  ]
+}

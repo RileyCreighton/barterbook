@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-09-25T19:51:00.913Z",
+  "source": "Hosted API test using a fresh disposable SDK recipient; not a browser extension test",
+  "cluster": "devnet",
+  "wallet": "6GSpp7AyxQ5EYJVCAM9qdiWA4CNV5FkX3jawG626xEXj",
+  "claimId": "66d1f1ea-7181-48dd-9b22-7e5feadaef54",
+  "txid": "hnWcPDMhyqAZ1M7h7HN41m1L33ud2PGqHCkz8vasSxmKuMvLUCVfjUsRaQeqgVy6iULMwEEvRx178fTXYPTpKcV",
+  "state": "FINALIZED",
+  "slot": 504147731,
+  "feeLamports": 10000,
+  "balances": [
+    {
+      "mint": "kyEZzbcEZhJTmHesLTZFaKnmkisvLirFrgfKZrtJbQx",
+      "account": "ArTKVuSS8rH2xFbqQ6jXggKTLw4KGV7CpHQiufYgbkAP",
+      "amountRaw": "1000000000",
+      "decimals": 6
+    },
+    {
+      "mint": "EZ2xuTV73HqM5AE8SrDjzQeHtae6cDV6TU6tzLBtEVxD",
+      "account": "AvJSYfwq63EJ6YuaVVujn5b6MKQUDtfCBcDvvNysiGsy",
+      "amountRaw": "1000000000",
+      "decimals": 6
+    },
+    {
+      "mint": "3y3QsQtR3pK9fe3ZxCcwTdc5AHN87panLaFzR3GfzZvz",
+      "account": "8PUHvggPTg47vhSmERTSCYG9pK5b4HVRDJpGGjYjkb3e",
+      "amountRaw": "1000000000",
+      "decimals": 6
+    }
+  ],
+  "requesterPaidRentAndFee": true,
+  "passed": true
+}

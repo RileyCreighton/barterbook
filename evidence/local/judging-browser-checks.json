@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-09-25T19:47:50.306Z",
-  "origin": "http://127.0.0.1:4173",
+  "checkedAt": "2026-09-25T19:50:47.594Z",
+  "origin": "https://barterbook-devnet.rileycreighton.workers.dev",
   "checks": [
     {
       "route": "market",

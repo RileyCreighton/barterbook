@@ -1,5 +1,7 @@
 # Delivery status — September 25, 2026
 
+[Deployed build `a7569bc`](../evidence/hosted/judging-deployment-a7569bc.json) · [Passing GitHub CI](https://github.com/RileyCreighton/barterbook/actions/runs/36181898767) · [Live faucet verification](../evidence/hosted/judge-faucet-live-check.json)
+
 ## Ready for judging
 
 - The public site and GitHub repository are live.

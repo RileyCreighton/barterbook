@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-09-25T19:52:01.204Z",
+  "buildId": "a7569bca6d54c187a815163f522ff830bdadec23",
+  "workerVersion": "8259ab6a-f779-491e-8ee1-4c36a218fb3f",
+  "databaseBookmarkBeforeMigration": "0000002f-00000006-000050f1-ec4dc6edb1aa2686703c3e8a45d77306",
+  "migration": "0008_demo_faucet.sql",
+  "origin": "https://barterbook-devnet.rileycreighton.workers.dev",
+  "indexMatches": true,
+  "checks": [
+    {
+      "path": "/assets/index-DWZn6g3w.js",
+      "sha256": "c66344faf1451a66751b8b1556ff40474db32b1f1532e354e112bbae191d2d9a",
+      "matches": true
+    },
+    {
+      "path": "/assets/index-D8RYcAnn.css",
+      "sha256": "c461f0a4e40564789253d2519629fcfadb5a3a2955f42d5e91b5f82078b2c29a",
+      "matches": true
+    },
+    {
+      "path": "/assets/App-ULfK6Spz.js",
+      "sha256": "585c8070066ac972270be13370faa7129048954a6ebc5ea2113798882d1452c7",
+      "matches": true
+    },
+    {
+      "path": "/assets/litesvm-execution-mWUClHY3.json",
+      "sha256": "8e39eaebfa59da36bac22d28dfa8cfaf462226416f09413862adb469cb66c9ac",
+      "matches": true
+    }
+  ],
+  "health": {
+    "name": "BarterBook",
+    "cluster": "devnet",
+    "settlementEnabled": true,
+    "rpcConfigured": true
+  },
+  "verifiedPublicReceipts": 5
+}

@@ -1,0 +1,43 @@
+{
+  "cluster": "devnet",
+  "runId": "20260925-sdk-proof-01",
+  "txid": "RXoASStrWUmT7oJXzjgyNSrEMY47vUrvYmDFC8gvH7Acv7pKSYg8yqYf5vevShqDm5ecYhjNmTvpi3PAnzhyioz",
+  "buildId": "sha256:ad6eb527c1ea0a1edaef8577bccb2b80daf64542fecce386a0cf54558dc0ff8e",
+  "scope": "Simulation only, not execution",
+  "simulation": {
+    "context": {
+      "apiVersion": "4.3.0",
+      "slot": 504147673
+    },
+    "value": {
+      "accounts": null,
+      "err": null,
+      "fee": 5000,
+      "innerInstructions": null,
+      "loadedAccountsDataSize": 142,
+      "loadedAddresses": {
+        "readonly": [],
+        "writable": []
+      },
+      "logs": [
+        "Program 11111111111111111111111111111111 invoke [1]",
+        "Program 11111111111111111111111111111111 success"
+      ],
+      "postBalances": [
+        844234520,
+        20000000,
+        1
+      ],
+      "postTokenBalances": [],
+      "preBalances": [
+        864239520,
+        0,
+        1
+      ],
+      "preTokenBalances": [],
+      "replacementBlockhash": null,
+      "returnData": null,
+      "unitsConsumed": 150
+    }
+  }
+}
