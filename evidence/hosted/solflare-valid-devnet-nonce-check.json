@@ -1,0 +1,96 @@
+{
+  "checkedAt": "2026-09-25T18:58:41.494Z",
+  "scope": "Developer-controlled disposable Devnet SDK fixture only. One-time bounded nonce setup through the normal immutable application journal. Subsequent transactions are unsigned zero-value self-transfers for simulation only; no owner wallet or exchange data used.",
+  "fixtureWallet": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+  "nonceAccount": "C9W4AwoNdYZ5m9pNcqtp7PpfNFmrVp5ypQKSBsMRBFPS",
+  "setup": {
+    "id": "36ccc249-fe0f-4d64-b1a9-101f470981e8",
+    "state": "FINALIZED",
+    "txid": "2Cpzboo2wC2LsvhrnTQQK1m9XZUD9gCH7Zf9deKosYfkA7HhP11vsFFn9xSvp1cnjby5q6f5nXtRxDQfMDYMb2kv",
+    "rentLamports": "1056640",
+    "networkFeeLamports": "5000"
+  },
+  "devnetGenesisVerified": true,
+  "devnetNonceSimulationError": null,
+  "devnetSimulationSlot": 504128787,
+  "results": [
+    {
+      "name": "valid-devnet-recent",
+      "type": "compiledMessage",
+      "status": 200,
+      "action": "warn",
+      "alerts": [
+        {
+          "key": "unknown-site",
+          "message": "We don't recognize this domain and don't know if it's safe. Only sign transactions on sites you trust."
+        }
+      ],
+      "failedSimulation": false
+    },
+    {
+      "name": "valid-devnet-recent",
+      "type": "wireTransaction",
+      "status": 200,
+      "action": "warn",
+      "alerts": [
+        {
+          "key": "unknown-site",
+          "message": "We don't recognize this domain and don't know if it's safe. Only sign transactions on sites you trust."
+        }
+      ],
+      "failedSimulation": false
+    },
+    {
+      "name": "valid-devnet-nonce",
+      "type": "compiledMessage",
+      "status": 200,
+      "action": "block",
+      "alerts": [
+        {
+          "key": "network-mismatch",
+          "message": "Your current network is set to devnet, but this transaction is for mainnet. Switch to the correct network before signing."
+        }
+      ],
+      "failedSimulation": true
+    },
+    {
+      "name": "valid-devnet-nonce",
+      "type": "wireTransaction",
+      "status": 200,
+      "action": "block",
+      "alerts": [
+        {
+          "key": "network-mismatch",
+          "message": "Your current network is set to devnet, but this transaction is for mainnet. Switch to the correct network before signing."
+        }
+      ],
+      "failedSimulation": true
+    },
+    {
+      "name": "valid-devnet-nonce-v0",
+      "type": "compiledMessage",
+      "status": 200,
+      "action": "block",
+      "alerts": [
+        {
+          "key": "network-mismatch",
+          "message": "Your current network is set to devnet, but this transaction is for mainnet. Switch to the correct network before signing."
+        }
+      ],
+      "failedSimulation": true
+    },
+    {
+      "name": "valid-devnet-nonce-v0",
+      "type": "wireTransaction",
+      "status": 200,
+      "action": "block",
+      "alerts": [
+        {
+          "key": "network-mismatch",
+          "message": "Your current network is set to devnet, but this transaction is for mainnet. Switch to the correct network before signing."
+        }
+      ],
+      "failedSimulation": true
+    }
+  ]
+}

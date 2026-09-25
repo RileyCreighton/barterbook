@@ -1,0 +1,177 @@
+{
+  "schema": "barterbook-browser-finalization-verification-v1",
+  "checkedAt": "2026-09-25T19:06:35.889Z",
+  "roomId": "4cff89cad977b4c3d0c50c8d8f6faeb89542ad9a73b49b13",
+  "attemptId": "0c3f3eb5-1c5d-41ee-a81e-ae21f69db786",
+  "termsVersion": 10,
+  "txid": "iLuszetsxvfEpxz7R1VYRZPQHMg8Mw5mtrTvz18oZ32Fo5ZCKCtJd3VdmWXBvbhnSnrCwthdc9yUxN5g7J1AQfZ",
+  "cluster": "devnet",
+  "state": "FINALIZED",
+  "signingMode": "durable-nonce",
+  "signingClient": {
+    "source": "owner report",
+    "reportedWallet": "Phantom",
+    "clientNotInferredFromChain": true
+  },
+  "signatures": [
+    {
+      "wallet": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+      "valid": true
+    },
+    {
+      "wallet": "8B9FCGFGFjqqQhdkLSChG3Jxnjo4sLn3FdYjd18DeuTi",
+      "valid": true
+    }
+  ],
+  "frozenMessageHashMatches": true,
+  "firstInstructionAdvancesFeePayerNonce": true,
+  "providers": [
+    {
+      "provider": "primary",
+      "devnetGenesisVerified": true,
+      "confirmationStatus": "finalized",
+      "transactionError": null,
+      "slot": 504129295,
+      "blockTime": 1790362802,
+      "exactArchivedWireMatches": true,
+      "feeLamports": 10000,
+      "payerLamportDelta": -10000,
+      "tokenDeltas": [
+        {
+          "account": "AExLxYrDBBkXQNmpxNgE6y8rv84fweQFAzhEPVabgheK",
+          "owner": "8B9FCGFGFjqqQhdkLSChG3Jxnjo4sLn3FdYjd18DeuTi",
+          "mint": "kyEZzbcEZhJTmHesLTZFaKnmkisvLirFrgfKZrtJbQx",
+          "beforeRaw": "1000000000",
+          "afterRaw": "990000000",
+          "deltaRaw": "-10000000",
+          "matchesAcceptedTransfer": true
+        },
+        {
+          "account": "9yJJwp8KKP8MTf6szFkfwVKtMx4sYuoHuP23H5tUdcdv",
+          "owner": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+          "mint": "kyEZzbcEZhJTmHesLTZFaKnmkisvLirFrgfKZrtJbQx",
+          "beforeRaw": "1000000000",
+          "afterRaw": "1009900000",
+          "deltaRaw": "9900000",
+          "matchesAcceptedTransfer": true
+        },
+        {
+          "account": "BX86NkdU3VGmfvmr42gwJd9jVVtgwyuKB3gjtjAvsWj3",
+          "owner": "8B9FCGFGFjqqQhdkLSChG3Jxnjo4sLn3FdYjd18DeuTi",
+          "mint": "EZ2xuTV73HqM5AE8SrDjzQeHtae6cDV6TU6tzLBtEVxD",
+          "beforeRaw": "1000000000",
+          "afterRaw": "995000000",
+          "deltaRaw": "-5000000",
+          "matchesAcceptedTransfer": true
+        },
+        {
+          "account": "22ZRth2VzgTSGuYhnvKiNNamcVDziWzjzy15qVz61Xkb",
+          "owner": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+          "mint": "EZ2xuTV73HqM5AE8SrDjzQeHtae6cDV6TU6tzLBtEVxD",
+          "beforeRaw": "1000000000",
+          "afterRaw": "1004950000",
+          "deltaRaw": "4950000",
+          "matchesAcceptedTransfer": true
+        },
+        {
+          "account": "8WmssdXkfW7ToXUP3DTQBjtyzu4e8i4GkwxnYkKmuJ11",
+          "owner": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+          "mint": "3y3QsQtR3pK9fe3ZxCcwTdc5AHN87panLaFzR3GfzZvz",
+          "beforeRaw": "1000000000",
+          "afterRaw": "980000000",
+          "deltaRaw": "-20000000",
+          "matchesAcceptedTransfer": true
+        },
+        {
+          "account": "6s8MmVt8q1EeUyEb1XGEBzD3ef88J92afKbhfAL5qyTf",
+          "owner": "8B9FCGFGFjqqQhdkLSChG3Jxnjo4sLn3FdYjd18DeuTi",
+          "mint": "3y3QsQtR3pK9fe3ZxCcwTdc5AHN87panLaFzR3GfzZvz",
+          "beforeRaw": "1000000000",
+          "afterRaw": "1019800000",
+          "deltaRaw": "19800000",
+          "matchesAcceptedTransfer": true
+        }
+      ],
+      "signingAccount": {
+        "address": "2FaJHz5gJKiBfWiN8dXZYmqig4P5tbrE5tAQhXKLUAcW",
+        "authorityMatchesFeePayer": true,
+        "originalNonceConsumed": true,
+        "observedSlot": 504131636
+      }
+    },
+    {
+      "provider": "independentFallback",
+      "devnetGenesisVerified": true,
+      "confirmationStatus": "finalized",
+      "transactionError": null,
+      "slot": 504129295,
+      "blockTime": 1790362802,
+      "exactArchivedWireMatches": true,
+      "feeLamports": 10000,
+      "payerLamportDelta": -10000,
+      "tokenDeltas": [
+        {
+          "account": "AExLxYrDBBkXQNmpxNgE6y8rv84fweQFAzhEPVabgheK",
+          "owner": "8B9FCGFGFjqqQhdkLSChG3Jxnjo4sLn3FdYjd18DeuTi",
+          "mint": "kyEZzbcEZhJTmHesLTZFaKnmkisvLirFrgfKZrtJbQx",
+          "beforeRaw": "1000000000",
+          "afterRaw": "990000000",
+          "deltaRaw": "-10000000",
+          "matchesAcceptedTransfer": true
+        },
+        {
+          "account": "9yJJwp8KKP8MTf6szFkfwVKtMx4sYuoHuP23H5tUdcdv",
+          "owner": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+          "mint": "kyEZzbcEZhJTmHesLTZFaKnmkisvLirFrgfKZrtJbQx",
+          "beforeRaw": "1000000000",
+          "afterRaw": "1009900000",
+          "deltaRaw": "9900000",
+          "matchesAcceptedTransfer": true
+        },
+        {
+          "account": "BX86NkdU3VGmfvmr42gwJd9jVVtgwyuKB3gjtjAvsWj3",
+          "owner": "8B9FCGFGFjqqQhdkLSChG3Jxnjo4sLn3FdYjd18DeuTi",
+          "mint": "EZ2xuTV73HqM5AE8SrDjzQeHtae6cDV6TU6tzLBtEVxD",
+          "beforeRaw": "1000000000",
+          "afterRaw": "995000000",
+          "deltaRaw": "-5000000",
+          "matchesAcceptedTransfer": true
+        },
+        {
+          "account": "22ZRth2VzgTSGuYhnvKiNNamcVDziWzjzy15qVz61Xkb",
+          "owner": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+          "mint": "EZ2xuTV73HqM5AE8SrDjzQeHtae6cDV6TU6tzLBtEVxD",
+          "beforeRaw": "1000000000",
+          "afterRaw": "1004950000",
+          "deltaRaw": "4950000",
+          "matchesAcceptedTransfer": true
+        },
+        {
+          "account": "8WmssdXkfW7ToXUP3DTQBjtyzu4e8i4GkwxnYkKmuJ11",
+          "owner": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+          "mint": "3y3QsQtR3pK9fe3ZxCcwTdc5AHN87panLaFzR3GfzZvz",
+          "beforeRaw": "1000000000",
+          "afterRaw": "980000000",
+          "deltaRaw": "-20000000",
+          "matchesAcceptedTransfer": true
+        },
+        {
+          "account": "6s8MmVt8q1EeUyEb1XGEBzD3ef88J92afKbhfAL5qyTf",
+          "owner": "8B9FCGFGFjqqQhdkLSChG3Jxnjo4sLn3FdYjd18DeuTi",
+          "mint": "3y3QsQtR3pK9fe3ZxCcwTdc5AHN87panLaFzR3GfzZvz",
+          "beforeRaw": "1000000000",
+          "afterRaw": "1019800000",
+          "deltaRaw": "19800000",
+          "matchesAcceptedTransfer": true
+        }
+      ],
+      "signingAccount": {
+        "address": "2FaJHz5gJKiBfWiN8dXZYmqig4P5tbrE5tAQhXKLUAcW",
+        "authorityMatchesFeePayer": true,
+        "originalNonceConsumed": true,
+        "observedSlot": 504131636
+      }
+    }
+  ],
+  "scope": "Read-only public receipt and independent finalized RPC checks; no signing or broadcast."
+}

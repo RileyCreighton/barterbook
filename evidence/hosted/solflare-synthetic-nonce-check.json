@@ -1,0 +1,92 @@
+{
+  "checkedAt": "2026-09-25T18:55:02.406Z",
+  "scope": "Synthetic unsigned transactions using newly generated, unfunded dummy addresses and fake nonce accounts. No user transaction data, signing or broadcast.",
+  "results": [
+    {
+      "name": "zero-sol-recent",
+      "type": "compiledMessage",
+      "status": 200,
+      "action": "warn",
+      "alerts": [
+        {
+          "key": "unknown-site",
+          "message": "We don't recognize this domain and don't know if it's safe. Only sign transactions on sites you trust."
+        },
+        {
+          "key": "simulation-error",
+          "message": "This transaction couldn't be simulated, so we can't predict the balance changes if you sign."
+        }
+      ],
+      "exactEnrichedMessage": false
+    },
+    {
+      "name": "zero-sol-recent",
+      "type": "wireTransaction",
+      "status": 200,
+      "action": "warn",
+      "alerts": [
+        {
+          "key": "unknown-site",
+          "message": "We don't recognize this domain and don't know if it's safe. Only sign transactions on sites you trust."
+        },
+        {
+          "key": "simulation-error",
+          "message": "This transaction couldn't be simulated, so we can't predict the balance changes if you sign."
+        }
+      ],
+      "exactEnrichedMessage": false
+    },
+    {
+      "name": "zero-sol-nonce",
+      "type": "compiledMessage",
+      "status": 200,
+      "action": "block",
+      "alerts": [
+        {
+          "key": "network-mismatch",
+          "message": "Your current network is set to devnet, but this transaction is for mainnet. Switch to the correct network before signing."
+        }
+      ],
+      "exactEnrichedMessage": false
+    },
+    {
+      "name": "zero-sol-nonce",
+      "type": "wireTransaction",
+      "status": 200,
+      "action": "block",
+      "alerts": [
+        {
+          "key": "network-mismatch",
+          "message": "Your current network is set to devnet, but this transaction is for mainnet. Switch to the correct network before signing."
+        }
+      ],
+      "exactEnrichedMessage": false
+    },
+    {
+      "name": "dummy-token2022-basket-nonce",
+      "type": "compiledMessage",
+      "status": 200,
+      "action": "block",
+      "alerts": [
+        {
+          "key": "network-mismatch",
+          "message": "Your current network is set to devnet, but this transaction is for mainnet. Switch to the correct network before signing."
+        }
+      ],
+      "exactEnrichedMessage": false
+    },
+    {
+      "name": "dummy-token2022-basket-nonce",
+      "type": "wireTransaction",
+      "status": 200,
+      "action": "block",
+      "alerts": [
+        {
+          "key": "network-mismatch",
+          "message": "Your current network is set to devnet, but this transaction is for mainnet. Switch to the correct network before signing."
+        }
+      ],
+      "exactEnrichedMessage": false
+    }
+  ]
+}

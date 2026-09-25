@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-09-25T18:53:31.723Z",
+  "attemptId": "0c3f3eb5-1c5d-41ee-a81e-ae21f69db786",
+  "termsVersion": 10,
+  "signingMode": "durable-nonce",
+  "setupFinalized": true,
+  "setupTxid": "3uvzDivPPgq5cDvp1NfAps3QRx3JGrUEsR6QbJd4p4F5837oRXYa6CGjnrZm9pKY8JniRhpwCyog9NV16j5UrwW8",
+  "storedSignatureCountAtDatabaseRead": 0,
+  "providers": [
+    {
+      "provider": "primary",
+      "devnet": true,
+      "slot": 504126903,
+      "account": "2FaJHz5gJKiBfWiN8dXZYmqig4P5tbrE5tAQhXKLUAcW",
+      "authorityMatches": true,
+      "nonceMatches": true
+    },
+    {
+      "provider": "independent-backup",
+      "devnet": true,
+      "slot": 504126902,
+      "account": "2FaJHz5gJKiBfWiN8dXZYmqig4P5tbrE5tAQhXKLUAcW",
+      "authorityMatches": true,
+      "nonceMatches": true
+    }
+  ],
+  "scope": "Read-only database metadata and finalized nonce account checks. No user transaction sent to any external simulation service."
+}

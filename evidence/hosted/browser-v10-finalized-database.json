@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-09-25T19:07:24.366Z",
+  "scope": "Read-only D1 query; no database rows changed",
+  "room_id": "4cff89cad977b4c3d0c50c8d8f6faeb89542ad9a73b49b13",
+  "room_state": "FINALIZED",
+  "terms_version": 10,
+  "current_attempt_id": "0c3f3eb5-1c5d-41ee-a81e-ae21f69db786",
+  "attempt_state": "FINALIZED",
+  "txid": "iLuszetsxvfEpxz7R1VYRZPQHMg8Mw5mtrTvz18oZ32Fo5ZCKCtJd3VdmWXBvbhnSnrCwthdc9yUxN5g7J1AQfZ",
+  "safe_to_retry": 0,
+  "receipt_status": "FINALIZED",
+  "receipt_verified": 1,
+  "attempt_error": null,
+  "remaining_attempt_locks": 0,
+  "saved_signature_count": 2
+}
