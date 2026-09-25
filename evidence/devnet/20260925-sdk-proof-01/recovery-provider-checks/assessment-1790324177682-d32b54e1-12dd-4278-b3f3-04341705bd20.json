@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "assessedAt": "2026-09-25T08:16:17.681Z",
+  "cluster": "devnet",
+  "scope": "Operational assessment of the two configured providers for recent devnet attempts; read-only, no configuration changed",
+  "probeRecord": "1790324087981-ab21495f-ac72-4c60-b918-2d54baa12822.json",
+  "identityRecord": "identity-1790324140751-0459fbd3-2427-4823-9e92-8734709c1d77.json",
+  "observations": [
+    "Both providers were healthy, reported the expected devnet genesis and retained history earlier than the original context slot.",
+    "Both returned matching finalized status and transaction metadata for the known successful basket and the known failed transaction.",
+    "Both reported the original blockhash invalid at finalized heights beyond its last valid height; both history-aware status and finalized transaction lookups returned null for the original identifier.",
+    "The two provider hosts returned different node identities. This does not establish permanent independence of every archival storage backend."
+  ],
+  "assessment": "Enabling the existing flags is supportable as an explicit operator trust decision for this recent devnet test, subject to the existing per-attempt health, genesis, history coverage, finalized height, invalid blockhash, no-conflict and original-status/metadata checks. The probe does not establish arbitrary-age history completeness or a production archival guarantee.",
+  "requiredNextStep": "Root decides configuration. If trust is enabled, run fresh backend reconciliation of the original attempt and require its durable safeToRetry decision before a new terms revision or new signatures. Do not release locks or replace attempts based on this report alone.",
+  "limitations": [
+    "getFirstAvailableBlock reports the lowest available confirmed ledger slot; it is not an assertion that every transaction index is complete.",
+    "getTransaction null means not found at the requested commitment; null alone is not sufficient recovery evidence.",
+    "Solana public RPC is rate-limited and devnet can reset. Helius standard-RPC history documentation is broad and does not specifically promise indefinite devnet retention.",
+    "Any RPC error, coverage loss, conflicting status, or prior observed success must keep the original attempt unresolved."
+  ],
+  "sources": [
+    {
+      "url": "https://solana.com/docs/rpc/http/getfirstavailableblock",
+      "supports": "Meaning of earliest available ledger slot."
+    },
+    {
+      "url": "https://solana.com/docs/rpc/http/getsignaturestatuses",
+      "supports": "searchTransactionHistory avoids limiting status lookup to the recent signature cache."
+    },
+    {
+      "url": "https://solana.com/docs/rpc/http/gettransaction",
+      "supports": "Commitment-specific transaction lookup and null semantics."
+    },
+    {
+      "url": "https://solana.com/docs/references/clusters",
+      "supports": "Public devnet endpoint operation, rate limits and possible ledger resets."
+    },
+    {
+      "url": "https://www.helius.dev/docs/faqs/rpc",
+      "supports": "Standard RPC historical access and distinction from dedicated-node retention."
+    }
+  ],
+  "configurationChanged": false,
+  "broadcastsPerformed": false,
+  "replacementsPrepared": false
+}

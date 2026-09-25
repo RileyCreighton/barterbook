@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-09-25T09:13:59.870Z",
+  "url": "https://barterbook-devnet.rileycreighton.workers.dev",
+  "buildId": "63378c69a5c831f46058f8d5adee6dcc4bb040c9",
+  "workerVersion": "82b42cd9-aa9c-4111-96e7-666060f13c2d",
+  "addressHistoryAssertionsEnabled": true,
+  "sourceCommit": "https://github.com/RileyCreighton/barterbook/commit/63378c69a5c831f46058f8d5adee6dcc4bb040c9",
+  "originalBrowserAttempt": "026ed6d7-5368-455e-a1b2-c0963cdeeab7",
+  "browserRecovery": "User fresh reconciliation requested; not yet observed",
+  "paidPlanChange": false
+}

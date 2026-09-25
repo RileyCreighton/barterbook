@@ -1,0 +1,8 @@
+{
+  "startedAt": "2026-09-25T08:43:37.872Z",
+  "method": "GET",
+  "path": "/api/attempts/e6191827-a842-42f9-8192-7f0f4afb75a3",
+  "httpStatus": 200,
+  "wallTimeMs": 33.373600999999326,
+  "measurement": "Client wall-clock latency, NOT Worker CPU; correlate with Cloudflare request CPU telemetry"
+}

@@ -1,0 +1,8 @@
+{
+  "startedAt": "2026-09-25T08:43:39.542Z",
+  "method": "GET",
+  "path": "/api/assets/fresh",
+  "httpStatus": 200,
+  "wallTimeMs": 198.30008599999928,
+  "measurement": "Client wall-clock latency, NOT Worker CPU; correlate with Cloudflare request CPU telemetry"
+}

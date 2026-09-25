@@ -1,0 +1,22 @@
+{
+  "at": "2026-09-25T08:29:57.641Z",
+  "scope": "LOCAL read-only public dRPC probe, not hosted Cloudflare reachability and not a replacement authorization",
+  "host": "solana-devnet.drpc.org",
+  "results": [
+    {
+      "method": "getHealth",
+      "httpStatus": 400,
+      "elapsedMs": 234
+    }
+  ],
+  "health": null,
+  "officialPage": {
+    "url": "https://drpc.org/chainlist/solana-devnet-rpc",
+    "httpStatus": 403,
+    "endpointLiteralPresent": false,
+    "endpointHostPresent": false,
+    "hasDevnet": false,
+    "hasArchive": false
+  },
+  "completedAt": "2026-09-25T08:29:57.935Z"
+}

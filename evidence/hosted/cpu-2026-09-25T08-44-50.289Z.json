@@ -1,0 +1,775 @@
+{
+  "executedAt": "2026-09-25T08:44:50.289Z",
+  "environment": "HOSTED_CLOUDFLARE_TELEMETRY",
+  "worker": "barterbook-devnet",
+  "timeWindow": {
+    "from": "2026-09-25T08:42:00.000Z",
+    "to": "2026-09-25T08:44:30.000Z"
+  },
+  "scope": "Cloudflare invocation CPU in milliseconds, grouped from returned events. Not wall-clock request timing.",
+  "source": "https://developers.cloudflare.com/workers/observability/query-builder/",
+  "returnedEvents": 55,
+  "providerMatchingCount": 55,
+  "truncatedOrAtLimit": false,
+  "samples": 55,
+  "summaries": [
+    {
+      "route": "GET /api/receipts/:id/evidence",
+      "samples": 2,
+      "cpuP50Ms": 1,
+      "cpuP95Ms": 1,
+      "cpuP99Ms": 1,
+      "cpuMaxMs": 1,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "POST /api/attempts/:id/reconcile",
+      "samples": 4,
+      "cpuP50Ms": 19,
+      "cpuP95Ms": 19,
+      "cpuP99Ms": 19,
+      "cpuMaxMs": 19,
+      "observedAbove10Ms": 4,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "POST /api/attempts/:id/submit",
+      "samples": 2,
+      "cpuP50Ms": 10,
+      "cpuP95Ms": 13,
+      "cpuP99Ms": 13,
+      "cpuMaxMs": 13,
+      "observedAbove10Ms": 1,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "POST /api/attempts/:id/signatures",
+      "samples": 5,
+      "cpuP50Ms": 9,
+      "cpuP95Ms": 11,
+      "cpuP99Ms": 11,
+      "cpuMaxMs": 11,
+      "observedAbove10Ms": 2,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "GET /api/assets/fresh",
+      "samples": 5,
+      "cpuP50Ms": 3,
+      "cpuP95Ms": 4,
+      "cpuP99Ms": 4,
+      "cpuMaxMs": 4,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "GET /api/attempts/:id",
+      "samples": 5,
+      "cpuP50Ms": 1,
+      "cpuP95Ms": 1,
+      "cpuP99Ms": 1,
+      "cpuMaxMs": 1,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "POST /api/rooms/:id/attempts",
+      "samples": 2,
+      "cpuP50Ms": 26,
+      "cpuP95Ms": 52,
+      "cpuP99Ms": 52,
+      "cpuMaxMs": 52,
+      "observedAbove10Ms": 2,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "GET /api/history",
+      "samples": 1,
+      "cpuP50Ms": 3,
+      "cpuP95Ms": 3,
+      "cpuP99Ms": 3,
+      "cpuMaxMs": 3,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "GET /api/demo",
+      "samples": 1,
+      "cpuP50Ms": 6,
+      "cpuP95Ms": 6,
+      "cpuP99Ms": 6,
+      "cpuMaxMs": 6,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "GET /api/health",
+      "samples": 5,
+      "cpuP50Ms": 0,
+      "cpuP95Ms": 5,
+      "cpuP99Ms": 5,
+      "cpuMaxMs": 5,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "POST /api/rooms/:id/ready",
+      "samples": 5,
+      "cpuP50Ms": 2,
+      "cpuP95Ms": 2,
+      "cpuP99Ms": 2,
+      "cpuMaxMs": 2,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "POST /api/rooms/:id/accept",
+      "samples": 5,
+      "cpuP50Ms": 3,
+      "cpuP95Ms": 3,
+      "cpuP99Ms": 3,
+      "cpuMaxMs": 3,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "POST /api/matches/room",
+      "samples": 1,
+      "cpuP50Ms": 19,
+      "cpuP95Ms": 19,
+      "cpuP99Ms": 19,
+      "cpuMaxMs": 19,
+      "observedAbove10Ms": 1,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "GET /api/rooms",
+      "samples": 1,
+      "cpuP50Ms": 2,
+      "cpuP95Ms": 2,
+      "cpuP99Ms": 2,
+      "cpuMaxMs": 2,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "GET /api/rooms/:id",
+      "samples": 1,
+      "cpuP50Ms": 2,
+      "cpuP95Ms": 2,
+      "cpuP99Ms": 2,
+      "cpuMaxMs": 2,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "GET /api/auth/me",
+      "samples": 3,
+      "cpuP50Ms": 0,
+      "cpuP95Ms": 1,
+      "cpuP99Ms": 1,
+      "cpuMaxMs": 1,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "POST /api/auth/verify",
+      "samples": 3,
+      "cpuP50Ms": 2,
+      "cpuP95Ms": 4,
+      "cpuP99Ms": 4,
+      "cpuMaxMs": 4,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "POST /api/auth/challenge",
+      "samples": 3,
+      "cpuP50Ms": 1,
+      "cpuP95Ms": 2,
+      "cpuP99Ms": 2,
+      "cpuMaxMs": 2,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "GET /api/assets",
+      "samples": 1,
+      "cpuP50Ms": 8,
+      "cpuP95Ms": 8,
+      "cpuP99Ms": 8,
+      "cpuMaxMs": 8,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    }
+  ],
+  "rows": [
+    {
+      "timestamp": "2026-09-25T08:43:51.240Z",
+      "path": "/api/receipts/:id/evidence",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 10,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:51.126Z",
+      "path": "/api/attempts/:id/reconcile",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 19,
+      "wallTimeMs": 1891,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:46.201Z",
+      "path": "/api/attempts/:id/reconcile",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 19,
+      "wallTimeMs": 2188,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:40.974Z",
+      "path": "/api/attempts/:id/submit",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 10,
+      "wallTimeMs": 616,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:40.287Z",
+      "path": "/api/attempts/:id/signatures",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 11,
+      "wallTimeMs": 518,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:39.727Z",
+      "path": "/api/assets/fresh",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 185,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:39.521Z",
+      "path": "/api/attempts/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 0,
+      "wallTimeMs": 16,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:39.464Z",
+      "path": "/api/attempts/:id/signatures",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 9,
+      "wallTimeMs": 508,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:38.927Z",
+      "path": "/api/assets/fresh",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 199,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:38.706Z",
+      "path": "/api/attempts/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 0,
+      "wallTimeMs": 15,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:38.644Z",
+      "path": "/api/attempts/:id/signatures",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 9,
+      "wallTimeMs": 501,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:38.115Z",
+      "path": "/api/assets/fresh",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 199,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:37.893Z",
+      "path": "/api/attempts/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 19,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:37.801Z",
+      "path": "/api/rooms/:id/attempts",
+      "method": "POST",
+      "status": 201,
+      "cpuTimeMs": 26,
+      "wallTimeMs": 1340,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:36.863Z",
+      "path": "/api/history",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 15,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:36.823Z",
+      "path": "/api/demo",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 6,
+      "wallTimeMs": 10,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:36.783Z",
+      "path": "/api/health",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 5,
+      "wallTimeMs": 5,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:36.440Z",
+      "path": "/api/rooms/:id/ready",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 87,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:36.328Z",
+      "path": "/api/rooms/:id/accept",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 78,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:36.224Z",
+      "path": "/api/rooms/:id/ready",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 76,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:36.131Z",
+      "path": "/api/rooms/:id/accept",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 75,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:36.026Z",
+      "path": "/api/rooms/:id/ready",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 86,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:35.906Z",
+      "path": "/api/rooms/:id/accept",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 160,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:35.691Z",
+      "path": "/api/matches/room",
+      "method": "POST",
+      "status": 201,
+      "cpuTimeMs": 19,
+      "wallTimeMs": 1446,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:34.237Z",
+      "path": "/api/rooms",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 42,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:34.166Z",
+      "path": "/api/receipts/:id/evidence",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 9,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:34.065Z",
+      "path": "/api/attempts/:id/reconcile",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 19,
+      "wallTimeMs": 1995,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:29.019Z",
+      "path": "/api/attempts/:id/reconcile",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 19,
+      "wallTimeMs": 2159,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:23.829Z",
+      "path": "/api/attempts/:id/submit",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 13,
+      "wallTimeMs": 812,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:22.944Z",
+      "path": "/api/attempts/:id/signatures",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 9,
+      "wallTimeMs": 528,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:22.351Z",
+      "path": "/api/assets/fresh",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 200,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:22.126Z",
+      "path": "/api/attempts/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 16,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:22.052Z",
+      "path": "/api/attempts/:id/signatures",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 11,
+      "wallTimeMs": 478,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:21.506Z",
+      "path": "/api/assets/fresh",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 4,
+      "wallTimeMs": 226,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:21.260Z",
+      "path": "/api/attempts/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 15,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:21.154Z",
+      "path": "/api/rooms/:id/attempts",
+      "method": "POST",
+      "status": 201,
+      "cpuTimeMs": 52,
+      "wallTimeMs": 1589,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:19.550Z",
+      "path": "/api/rooms/:id/ready",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 87,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:19.438Z",
+      "path": "/api/rooms/:id/accept",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 96,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:19.317Z",
+      "path": "/api/rooms/:id/ready",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 84,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:19.209Z",
+      "path": "/api/rooms/:id/accept",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 81,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:19.085Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 31,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:19.039Z",
+      "path": "/api/auth/me",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 0,
+      "wallTimeMs": 8,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:19.003Z",
+      "path": "/api/auth/verify",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 54,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:18.930Z",
+      "path": "/api/auth/challenge",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 62,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:18.851Z",
+      "path": "/api/health",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 0,
+      "wallTimeMs": 0,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:18.828Z",
+      "path": "/api/auth/me",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 0,
+      "wallTimeMs": 7,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:18.789Z",
+      "path": "/api/auth/verify",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 53,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:18.713Z",
+      "path": "/api/auth/challenge",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 67,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:18.628Z",
+      "path": "/api/health",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 0,
+      "wallTimeMs": 0,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:18.601Z",
+      "path": "/api/auth/me",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 10,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:18.563Z",
+      "path": "/api/auth/verify",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 4,
+      "wallTimeMs": 56,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:18.484Z",
+      "path": "/api/auth/challenge",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 64,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:18.402Z",
+      "path": "/api/health",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 0,
+      "wallTimeMs": 0,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:18.350Z",
+      "path": "/api/assets",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 8,
+      "wallTimeMs": 572,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    },
+    {
+      "timestamp": "2026-09-25T08:43:17.759Z",
+      "path": "/api/health",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 3,
+      "outcome": "ok",
+      "versionId": "f3221118-0847-45f2-9c36-e2799cba82b7"
+    }
+  ],
+  "diagnostics": {
+    "skipped": {
+      "noWorkerMetrics": 0,
+      "wrongWorker": 0,
+      "missingCpu": 0,
+      "missingIdentity": 0,
+      "duplicate": 0
+    },
+    "fieldNames": []
+  },
+  "limitations": [
+    "Log retention, sampling and ingestion delay can omit requests.",
+    "Empty data, unknown paths, an unexercised path or only rejected/unauthenticated requests do not establish full-path headroom.",
+    "This script does not generate traffic, broadcast transactions, enable settlement or certify the plan tier.",
+    "Review actual auth/prepare/signature/submit/reconcile paths and version IDs alongside the exercise record."
+  ]
+}

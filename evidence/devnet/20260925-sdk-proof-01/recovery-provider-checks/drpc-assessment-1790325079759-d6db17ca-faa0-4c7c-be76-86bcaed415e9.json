@@ -1,0 +1,43 @@
+{
+  "at": "2026-09-25T08:31:19.759Z",
+  "scope": "Read-only independent provider assessment; no configuration changes, signup, paid services, broadcasts or attempt release",
+  "provider": "dRPC",
+  "host": "solana-devnet.drpc.org",
+  "observations": [
+    {
+      "at": "2026-09-25T08:30:26.303Z",
+      "method": "getHealth",
+      "httpStatus": 400,
+      "rpcErrorCode": 35,
+      "errorMessage": "chain is not available on free plan, please upgrade to paid plan"
+    },
+    {
+      "at": "2026-09-25T08:30:26.350Z",
+      "method": "getGenesisHash",
+      "httpStatus": 400,
+      "rpcErrorCode": 35,
+      "errorMessage": "chain is not available on free plan, please upgrade to paid plan"
+    }
+  ],
+  "decision": "Not usable as a free independent recovery provider. No history probes completed because basic required methods were plan-blocked.",
+  "officialDocumentation": {
+    "drpcStatus": "https://status.drpc.org/",
+    "drpcSolanaOverview": "https://drpc.org/docs/solana-api",
+    "drpcDevnetChainPage": "https://drpc.org/chainlist/solana-devnet-rpc",
+    "limitation": "Official chainlist title found, but no endpoint literal could be retrieved from its content; direct HTML fetch returned403. The endpoint itself returned the plan restriction."
+  },
+  "recommendedFreeAccountAlternative": {
+    "provider": "Alchemy",
+    "network": "Solana Devnet",
+    "endpointTemplate": "https://solana-devnet.g.alchemy.com/v2/<api-key>",
+    "devnetPage": "https://www.alchemy.com/rpc/solana-devnet",
+    "historyDocs": "https://www.alchemy.com/docs/solana-api-faq",
+    "validationPending": true,
+    "requirements": [
+      "User creates/selects free account and devnet app; no automatic paid upgrade",
+      "Store keyed endpoint only in server secrets",
+      "Probe health, correct devnet genesis, coverage, known success+failed transaction metadata and original status",
+      "Verify actual hosted Cloudflare reachability before trusting provider for original reconciliation"
+    ]
+  }
+}

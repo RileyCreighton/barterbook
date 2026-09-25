@@ -1,0 +1,8 @@
+{
+  "startedAt": "2026-09-25T08:11:45.479Z",
+  "method": "POST",
+  "path": "/api/auth/challenge",
+  "httpStatus": 200,
+  "wallTimeMs": 80.05203600000004,
+  "measurement": "Client wall-clock latency, NOT Worker CPU; correlate with Cloudflare request CPU telemetry"
+}

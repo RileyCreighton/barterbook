@@ -1,0 +1,15 @@
+{
+  "recordedAt": "2026-09-25T08:19:13.955Z",
+  "scope": "Fresh normal hosted API reconciliation of original SDK attempt after two-provider validation; no replacement or broadcast",
+  "buildId": "f71b03decc624965ed74d0d4ff9b8844cb350d5d",
+  "workerVersion": "0714cb11-6087-44db-abaa-c4127f72f61b",
+  "attemptId": "c4bba8a0-95c1-4930-a493-53965a7bbb8e",
+  "roomId": "4c3b8e97618bb01bfacf715dfb656641df8641e61eedf219",
+  "txid": "2zPf1p1rmiMUJJ8nfhQBYnLjLxcdd5hzQz83rAfDmDeuzQdizmNyr9wVFCNa9q3Rb9U8RQrPnyxnJmqUbSVisR7f",
+  "state": "STATUS_UNKNOWN",
+  "safeToRetry": false,
+  "submissionStartedAt": null,
+  "lastCheckedAt": 1790324353881,
+  "messageHash": "13b9c557590ab6fa79105a54f4fcbe3ac82fa9d2f05d9fdea54d716070e6e5e3",
+  "reason": "Original outcome unresolved. RPC errors, cache misses and UI cancellation do not permit new signatures."
+}

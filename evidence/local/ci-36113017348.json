@@ -1,0 +1,11 @@
+{
+  "verifiedAt": "2026-09-25T08:31:41.272Z",
+  "commit": "25cae1414a4ce42bf2cb8347c875b311c00dd5c5",
+  "source": "https://github.com/RileyCreighton/barterbook/actions/runs/36113017348",
+  "scope": "GitHub CI downloaded test report; local SQLite/mocked-RPC/LiteSVM tests, not browser or hosted CPU proof",
+  "tests": 194,
+  "passed": 194,
+  "failed": 0,
+  "pending": 0,
+  "success": true
+}

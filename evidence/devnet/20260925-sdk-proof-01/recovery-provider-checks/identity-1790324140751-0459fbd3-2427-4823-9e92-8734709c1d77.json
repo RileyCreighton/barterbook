@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-09-25T08:15:40.751Z",
+  "scope": "Read-only node-identity follow-up; no endpoint keys or signed bytes",
+  "cluster": "devnet",
+  "providers": [
+    {
+      "role": "primary",
+      "host": "devnet.helius-rpc.com",
+      "lookupSucceeded": true,
+      "identity": "CzTo55HmEkDn1PXcYSM2MxLcHf7peEC36ZMUJ4unifZt",
+      "error": null
+    },
+    {
+      "role": "fallback",
+      "host": "api.devnet.solana.com",
+      "lookupSucceeded": true,
+      "identity": "GpBapv4buU7GZXrY4bVchyrWm3EH4FezAzt8u1Q85rzd",
+      "error": null
+    }
+  ],
+  "differentReturnedNodeIdentities": true
+}

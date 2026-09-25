@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-09-25T09:16:01.791Z",
+  "source": "Read-only projected hosted D1 state after owner clicked the normal authenticated reconciliation control",
+  "cluster": "devnet",
+  "buildId": "63378c69a5c831f46058f8d5adee6dcc4bb040c9",
+  "attempt": {
+    "id": "026ed6d7-5368-455e-a1b2-c0963cdeeab7",
+    "room_id": "4cff89cad977b4c3d0c50c8d8f6faeb89542ad9a73b49b13",
+    "state": "EXPIRED_UNLANDED",
+    "safeToRetry": 1,
+    "messageHash": "9ecb62a9203dee248586639183bdfe0e16a4e293e342ce45c62c90b6b20c3421",
+    "txid": null,
+    "submissionStartedAt": null,
+    "lastCheckedAt": 1790327679901,
+    "error": "Original message expired; both independently trusted complete fee-payer histories prove no matching transaction",
+    "observations": [
+      {
+        "endpoint": "devnet.helius-rpc.com",
+        "healthy": true,
+        "historyTrusted": true,
+        "finalizedBlockHeight": "491170115",
+        "blockhashValid": false,
+        "status": null,
+        "transactionFound": false,
+        "transactionErr": null,
+        "transactionFinalized": false,
+        "addressHistoryComplete": true
+      },
+      {
+        "endpoint": "solana-devnet.g.alchemy.com",
+        "healthy": true,
+        "historyTrusted": true,
+        "finalizedBlockHeight": "491170121",
+        "blockhashValid": false,
+        "status": null,
+        "transactionFound": false,
+        "transactionErr": null,
+        "transactionFinalized": false,
+        "addressHistoryComplete": true
+      }
+    ]
+  },
+  "note": "Original attempt preserved. Both fresh independently trusted complete fee-payer histories established expiry and no matching transaction. No transaction signature or onchain receipt is invented for this attempt."
+}

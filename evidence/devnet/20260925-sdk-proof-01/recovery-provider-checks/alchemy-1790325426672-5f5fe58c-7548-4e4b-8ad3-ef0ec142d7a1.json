@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-09-25T08:37:05.644Z",
+  "scope": "LOCAL read-only Alchemy endpoint validation; hosted Cloudflare reachability remains to be verified; no attempt release or broadcast",
+  "host": "solana-devnet.g.alchemy.com",
+  "originalAttempt": {
+    "id": "c4bba8a0-95c1-4930-a493-53965a7bbb8e",
+    "txid": "2zPf1p1rmiMUJJ8nfhQBYnLjLxcdd5hzQz83rAfDmDeuzQdizmNyr9wVFCNa9q3Rb9U8RQrPnyxnJmqUbSVisR7f",
+    "blockhash": "HcdBvET2oLrdZP4nuJMquv6N5Khr1Tx6naxVKziSwTWP",
+    "lastValidBlockHeight": "491147584",
+    "contextSlot": "503894951",
+    "cluster": "devnet"
+  },
+  "queries": [
+    {
+      "method": "getHealth",
+      "ok": true,
+      "elapsedMs": 252
+    },
+    {
+      "method": "getGenesisHash",
+      "ok": true,
+      "elapsedMs": 59
+    },
+    {
+      "method": "getIdentity",
+      "ok": true,
+      "elapsedMs": 58
+    },
+    {
+      "method": "getFirstAvailableBlock",
+      "ok": true,
+      "elapsedMs": 37
+    },
+    {
+      "method": "getBlockHeight",
+      "ok": true,
+      "elapsedMs": 35
+    },
+    {
+      "method": "isBlockhashValid",
+      "ok": true,
+      "elapsedMs": 60
+    },
+    {
+      "method": "getSignatureStatuses",
+      "ok": true,
+      "elapsedMs": 56
+    },
+    {
+      "method": "getTransaction",
+      "ok": true,
+      "elapsedMs": 43
+    },
+    {
+      "method": "getTransaction",
+      "ok": true,
+      "elapsedMs": 37
+    },
+    {
+      "method": "getTransaction",
+      "ok": true,
+      "elapsedMs": 168
+    },
+    {
+      "method": "getTransaction",
+      "ok": true,
+      "elapsedMs": 202
+    }
+  ],
+  "health": "ok",
+  "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "identity": {
+    "identity": "FnxXv8ZFbnPYkFtvYuFU2BDN9TwNXa7nSkND1VgR8Yoe"
+  },
+  "firstAvailableBlock": 501820343,
+  "finalizedBlockHeight": 491156556,
+  "originalBlockhashValid": {
+    "context": {
+      "apiVersion": "4.3.0",
+      "slot": 503904100
+    },
+    "value": false
+  },
+  "controls": [
+    {
+      "label": "devnet-two-for-one",
+      "txid": "4TLQ55rcPS79kRAQTw52JH2SRTodvH5UzQgeczaRngpbHqu7YBqzfifr126N1BK8cD9GqDhAegdsKr3ofyKgPrP9",
+      "status": {
+        "confirmationStatus": "finalized",
+        "confirmations": null,
+        "err": null,
+        "slot": 503881770,
+        "status": {
+          "Ok": null
+        }
+      },
+      "finalizedMetadataQuerySucceeded": true,
+      "metadataFound": true,
+      "slot": 503881770,
+      "blockTime": 1790321717,
+      "feeLamports": 10000,
+      "error": null,
+      "checks": {
+        "wireMatchesArchivedFinalizedBytes": true,
+        "slotMatches": true,
+        "blockTimeMatches": true,
+        "feeMatches": true,
+        "errorMatches": true,
+        "solBalanceMetadataMatches": true,
+        "tokenBalanceMetadataMatches": true
+      },
+      "allChecksPassed": true
+    },
+    {
+      "label": "devnet-atomic-last-leg-failure",
+      "txid": "Egor5yrT3AXee5otWCdZi1ufCfmqNKBBYVZohAsELwfhzQDbeBycNEY3XZXjjbtrSSRai4dGd88XNnoHB8YyNj6",
+      "status": {
+        "confirmationStatus": "finalized",
+        "confirmations": null,
+        "err": {
+          "InstructionError": [
+            7,
+            {
+              "Custom": 1
+            }
+          ]
+        },
+        "slot": 503881861,
+        "status": {
+          "Err": {
+            "InstructionError": [
+              7,
+              {
+                "Custom": 1
+              }
+            ]
+          }
+        }
+      },
+      "finalizedMetadataQuerySucceeded": true,
+      "metadataFound": true,
+      "slot": 503881861,
+      "blockTime": 1790321733,
+      "feeLamports": 15000,
+      "error": {
+        "InstructionError": [
+          7,
+          {
+            "Custom": 1
+          }
+        ]
+      },
+      "checks": {
+        "wireMatchesArchivedFinalizedBytes": true,
+        "slotMatches": true,
+        "blockTimeMatches": true,
+        "feeMatches": true,
+        "errorMatches": true,
+        "solBalanceMetadataMatches": true,
+        "tokenBalanceMetadataMatches": true
+      },
+      "allChecksPassed": true
+    }
+  ],
+  "originalStatus": {
+    "historyQuerySucceeded": true,
+    "status": null,
+    "finalizedMetadataQuerySucceeded": true,
+    "finalizedTransactionFound": false,
+    "confirmedMetadataQuerySucceeded": true,
+    "confirmedTransactionFound": false
+  },
+  "checks": {
+    "allQueriesSucceeded": true,
+    "healthy": true,
+    "devnetGenesis": true,
+    "earliestAvailableCoversOriginalContext": true,
+    "finalizedHeightPastLifetime": true,
+    "originalHashInvalid": true,
+    "knownControlsMatch": true,
+    "originalAbsent": true
+  },
+  "allLocalChecksPassed": true,
+  "completedAt": "2026-09-25T08:37:06.672Z",
+  "limitations": [
+    "Endpoint key remains only in the ignored local file; no endpoint URL is recorded.",
+    "A local probe does not prove reachability from the Cloudflare Worker.",
+    "Earliest retained block and known controls do not cryptographically prove a gap-free transaction index.",
+    "Provider history trust remains an explicit operator assumption; original attempt requires durable server reconciliation."
+  ]
+}

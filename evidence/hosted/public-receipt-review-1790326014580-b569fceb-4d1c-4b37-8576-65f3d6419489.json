@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-09-25T08:46:54.421Z",
+  "scope": "Independent GET-only verification of hosted application receipts and finalized public evidence. SDK signers; NOT browser-wallet signing proof.",
+  "origin": "https://barterbook-devnet.rileycreighton.workers.dev",
+  "historyObservedAt": "2026-09-25T08:44:34.604Z",
+  "historyReceipts": 2,
+  "expectedHostedBuildId": "837b06c735b8fad6ac6302031a6469be84be28ef",
+  "checks": [
+    {
+      "mode": "BASKET",
+      "txid": "5CQDkJnbjsEG8JBmvEQFGmzUeT573CywExFx2ajkR884CJrkruXcSwdvA2ZWsY8TJK7B8XWDk21Q6v2CWmPZXqwV",
+      "slot": "503906415",
+      "blockTime": 1790325803,
+      "networkFeeLamports": "10000",
+      "netCredits": [
+        {
+          "mint": "kyEZzbcEZhJTmHesLTZFaKnmkisvLirFrgfKZrtJbQx",
+          "recipient": "bQG1z1SaJKpitQKTUeEuxiuenoBMrP4RSy1vbJ5iUW3",
+          "netRaw": "9900000",
+          "feeRaw": "100000"
+        },
+        {
+          "mint": "3y3QsQtR3pK9fe3ZxCcwTdc5AHN87panLaFzR3GfzZvz",
+          "recipient": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+          "netRaw": "19800000",
+          "feeRaw": "200000"
+        },
+        {
+          "mint": "EZ2xuTV73HqM5AE8SrDjzQeHtae6cDV6TU6tzLBtEVxD",
+          "recipient": "bQG1z1SaJKpitQKTUeEuxiuenoBMrP4RSy1vbJ5iUW3",
+          "netRaw": "4950000",
+          "feeRaw": "50000"
+        }
+      ],
+      "signatureChecks": [
+        {
+          "owner": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+          "valid": true
+        },
+        {
+          "owner": "bQG1z1SaJKpitQKTUeEuxiuenoBMrP4RSy1vbJ5iUW3",
+          "valid": true
+        }
+      ],
+      "checks": {
+        "allSignaturesVerified": true,
+        "signatureCountExpected": true,
+        "requiredOwnersExact": true,
+        "publishedSignersExact": true,
+        "txidDerivedFromPayerSignature": true,
+        "messageBytesMatchPublished": true,
+        "messageHashMatches": true,
+        "expectedInstructionMessageExact": true,
+        "computeBudgetWithinBounds": true,
+        "expectedTransfersExact": true,
+        "publicReceiptEqualsLocal": true,
+        "historyReceiptEqualsLocal": true,
+        "evidenceReceiptEqualsLocal": true,
+        "allRawIntegerFields": true,
+        "transactionDeltasExact": true,
+        "feeMetadataMatches": true,
+        "payerSolPaysOnlyFee": true,
+        "zeroRent": true,
+        "noOnchainError": true,
+        "slotAndBlockTimeMatch": true,
+        "archivedWireMatches": true,
+        "localOriginalWireUnchanged": true,
+        "eachLocalSigningMessageUnchanged": true,
+        "buildIdExact": true,
+        "finalizedAndDemo": true,
+        "publicSourceDoesNotInferBrowser": true,
+        "privateTermsNotPublished": true
+      },
+      "passed": true,
+      "localReceiptPath": "evidence/devnet/20260925-sdk-proof-01/hosted-hosted-financial-02-basket-receipt.json",
+      "cacheControl": "no-store",
+      "contentDisposition": "attachment; filename=\"devnet-5CQDkJnbjsEG8JBmvEQFGmzUeT573CywExFx2ajkR884CJrkruXcSwdvA2ZWsY8TJK7B8XWDk21Q6v2CWmPZXqwV.json\""
+    },
+    {
+      "mode": "RING",
+      "txid": "3wfDTWASADuBTxAfgziKaYyQRJFbPHzMwxk1STQD4qLSKtnEr3rLXyHmzW9YfiKRg4movuuBn7xT3HptJ74QPFUn",
+      "slot": "503906516",
+      "blockTime": 1790325820,
+      "networkFeeLamports": "15000",
+      "netCredits": [
+        {
+          "mint": "3y3QsQtR3pK9fe3ZxCcwTdc5AHN87panLaFzR3GfzZvz",
+          "recipient": "bQG1z1SaJKpitQKTUeEuxiuenoBMrP4RSy1vbJ5iUW3",
+          "netRaw": "14850000",
+          "feeRaw": "150000"
+        },
+        {
+          "mint": "EZ2xuTV73HqM5AE8SrDjzQeHtae6cDV6TU6tzLBtEVxD",
+          "recipient": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+          "netRaw": "19800000",
+          "feeRaw": "200000"
+        },
+        {
+          "mint": "kyEZzbcEZhJTmHesLTZFaKnmkisvLirFrgfKZrtJbQx",
+          "recipient": "7PYpa2dL6hqxjPSGuh5b3EwjeWJYDvLWwaj8sWb3NiLC",
+          "netRaw": "9900000",
+          "feeRaw": "100000"
+        }
+      ],
+      "signatureChecks": [
+        {
+          "owner": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+          "valid": true
+        },
+        {
+          "owner": "7PYpa2dL6hqxjPSGuh5b3EwjeWJYDvLWwaj8sWb3NiLC",
+          "valid": true
+        },
+        {
+          "owner": "bQG1z1SaJKpitQKTUeEuxiuenoBMrP4RSy1vbJ5iUW3",
+          "valid": true
+        }
+      ],
+      "checks": {
+        "allSignaturesVerified": true,
+        "signatureCountExpected": true,
+        "requiredOwnersExact": true,
+        "publishedSignersExact": true,
+        "txidDerivedFromPayerSignature": true,
+        "messageBytesMatchPublished": true,
+        "messageHashMatches": true,
+        "expectedInstructionMessageExact": true,
+        "computeBudgetWithinBounds": true,
+        "expectedTransfersExact": true,
+        "publicReceiptEqualsLocal": true,
+        "historyReceiptEqualsLocal": true,
+        "evidenceReceiptEqualsLocal": true,
+        "allRawIntegerFields": true,
+        "transactionDeltasExact": true,
+        "feeMetadataMatches": true,
+        "payerSolPaysOnlyFee": true,
+        "zeroRent": true,
+        "noOnchainError": true,
+        "slotAndBlockTimeMatch": true,
+        "archivedWireMatches": true,
+        "localOriginalWireUnchanged": true,
+        "eachLocalSigningMessageUnchanged": true,
+        "buildIdExact": true,
+        "finalizedAndDemo": true,
+        "publicSourceDoesNotInferBrowser": true,
+        "privateTermsNotPublished": true
+      },
+      "passed": true,
+      "localReceiptPath": "evidence/devnet/20260925-sdk-proof-01/hosted-hosted-financial-02-ring-receipt.json",
+      "cacheControl": "no-store",
+      "contentDisposition": "attachment; filename=\"devnet-3wfDTWASADuBTxAfgziKaYyQRJFbPHzMwxk1STQD4qLSKtnEr3rLXyHmzW9YfiKRg4movuuBn7xT3HptJ74QPFUn.json\""
+    }
+  ],
+  "passed": true,
+  "completedAt": "2026-09-25T08:46:54.580Z"
+}

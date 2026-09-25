@@ -1,0 +1,8 @@
+{
+  "startedAt": "2026-09-25T08:43:34.149Z",
+  "method": "GET",
+  "path": "/api/receipts/5CQDkJnbjsEG8JBmvEQFGmzUeT573CywExFx2ajkR884CJrkruXcSwdvA2ZWsY8TJK7B8XWDk21Q6v2CWmPZXqwV/evidence",
+  "httpStatus": 200,
+  "wallTimeMs": 24.74648299999899,
+  "measurement": "Client wall-clock latency, NOT Worker CPU; correlate with Cloudflare request CPU telemetry"
+}

@@ -14,7 +14,7 @@ The current fields are project name, short description, full description (Markdo
 
 Generic devnet demonstrations are allowed by the platform guidance. The PRE bounty asks for a project using PreStocks and excludes other issuers' pre-IPO tokens; it does not explicitly confirm that generic mock-token fixtures alone qualify. Do not select that bounty as if eligibility were established. Real PRE testing still needs issuer eligibility and explicit asset authorization.
 
-The current draft measures **258 / 280** UTF-16 code units for the short description and **4,593 / 5,000** for the full description. The count includes spaces and paragraph breaks, matching the public form’s JavaScript length convention.
+The current draft measures **253 / 280** UTF-16 code units for the short description and **4,901 / 5,000** for the full description. The count includes spaces and paragraph breaks, matching the public form’s JavaScript length convention.
 
 ## Project name
 
@@ -27,7 +27,7 @@ Your inventory. Shared terms. One atomic exchange.
 ## Short description
 
 <!-- short:start -->
-BarterBook combines token offers, two-for-one baskets and three-owner matches. Developer-run SDK tests finalized a fee-aware basket, three-way exchange and atomic failure on Solana devnet. Browser settlement remains pending. Mock tokens are not PRE holdings.
+BarterBook combines token offers, two-for-one baskets and three-owner matches. Hosted API tests with SDK signers finalized both exchanges on Solana devnet. Browser settlement and the Free CPU budget gate remain pending. Mock tokens are not PRE holdings.
 <!-- short:end -->
 
 ## Full description
@@ -50,11 +50,11 @@ The stack is React, Vite and TypeScript, with one Cloudflare Worker serving stat
 
 The public Worker offers a no-wallet walkthrough with clearly labeled examples and local execution evidence. Three mock devnet mints have passed actual compatibility transfers. They are not PRE holdings, private-company shares or mainnet settlement proof. Real PRE integrations require fresh mint validation and eligible, explicitly authorized participants. Fixture-only PRE bounty eligibility remains unestablished.
 
-Developer-run SDK tests now finalized a fee-aware two-for-one basket and three-owner exchange on public Solana devnet. Both preserve one message across signatures, and transaction metadata verifies exact gross debits and net receipts. A deliberate final-leg failure finalized with all intended token deltas zero in existing accounts. Network fees were 10,000, 15,000 and 15,000 lamports respectively. Separate local LiteSVM tests prove rollback of newly created receiving accounts. These are controlled SDK tests, not browser-wallet settlements.
+Developer-run SDK tests finalized a fee-aware basket and three-owner exchange through the hosted API on public devnet; public application history contains both receipts. Both preserve one message across signatures, and transaction metadata verifies exact gross debits and net receipts. A deliberate final-leg failure finalized with all intended token deltas zero in existing accounts. Network fees were 10,000, 15,000 and 15,000 lamports respectively. Separate local LiteSVM tests prove rollback of newly created receiving accounts. These are controlled SDK tests, not browser-wallet settlements.
 
-Actual devnet proofs: [basket](https://explorer.solana.com/tx/4TLQ55rcPS79kRAQTw52JH2SRTodvH5UzQgeczaRngpbHqu7YBqzfifr126N1BK8cD9GqDhAegdsKr3ofyKgPrP9?cluster=devnet) and [three-way exchange](https://explorer.solana.com/tx/3YfomqM1UoyqHkqobn2sUQYMoLh5CcUMsecsbF6o4Zcrrjvzbfsp4E1A6a54etPxcuSvT5z1LXmjmzHVy6coWsC2?cluster=devnet).
+Actual devnet proofs: [basket](https://explorer.solana.com/tx/5CQDkJnbjsEG8JBmvEQFGmzUeT573CywExFx2ajkR884CJrkruXcSwdvA2ZWsY8TJK7B8XWDk21Q6v2CWmPZXqwV?cluster=devnet) and [three-way exchange](https://explorer.solana.com/tx/3wfDTWASADuBTxAfgziKaYyQRJFbPHzMwxk1STQD4qLSKtnEr3rLXyHmzW9YfiKRg4movuuBn7xT3HptJ74QPFUn?cluster=devnet).
 
-Three new browser wallets received mock inventory and faucet-only setup funds. Their authentication records were independently found in D1; the user reports successful Phantom logins and portfolios. Alice created the correct two-for-one offer, with acceptance/readiness pending. The hosted three-mint registry is live, but settlement stays disabled pending browser transaction proof and financial CPU checks. The owner reports 2 ms CPU for GET /holdings on Workers Free; that is not financial-path telemetry. Deployed commit b02e90b passed 158 CI tests. New wallet/session/mobile fixes passed local checks and await deployment and combined CI. Hosted HTTP checks used an SDK identity. No paid plan was enabled. This is not an audited trading service.
+Three browser wallets received mock inventory and faucet-only funds. D1 confirmed authentication and Alice/Bob's accepted READY state. Their stopped attempt safely reconciled as expired and unlanded through deployed repair 63378c6, with its journal and null transaction ID preserved. The owner reports both ready on renewed version 2; browser transaction approvals remain unverified. The hosted SDK receipts do not establish browser compatibility. Alchemy is verified and configured; both trusted providers reconciled the earlier expired attempt as unlanded before the new batch, preserving its journal. Deployment 837b06c completes hosted SDK execution, but not the Free CPU gate: earlier samples show prepare 26/52 ms, signatures 9–11 ms and submit 10/13 ms; the latest original-message recovery took 60 ms in one sample against a published 10 ms allowance. All invocation outcomes were ok; optimization and remeasurement remain necessary. No paid upgrade was made. This is not an audited trading service.
 
 Development used AI coding assistance. The source documentation attributes React, Vite, TypeScript, Hono, Cloudflare tooling, Solana SDKs and other installed dependencies. Research also acknowledges prior bilateral barter, auction and multi-user matching work. The project makes no claim to have invented barter or order cycles.
 <!-- full:end -->
@@ -69,7 +69,7 @@ Evidence: https://github.com/RileyCreighton/barterbook/blob/main/evidence/finish
 
 Pitch video: not recorded. Technical video: not recorded.
 
-Developer-run SDK devnet proofs: [basket](https://explorer.solana.com/tx/4TLQ55rcPS79kRAQTw52JH2SRTodvH5UzQgeczaRngpbHqu7YBqzfifr126N1BK8cD9GqDhAegdsKr3ofyKgPrP9?cluster=devnet), [three-way exchange](https://explorer.solana.com/tx/3YfomqM1UoyqHkqobn2sUQYMoLh5CcUMsecsbF6o4Zcrrjvzbfsp4E1A6a54etPxcuSvT5z1LXmjmzHVy6coWsC2?cluster=devnet), and [controlled final-leg failure](https://explorer.solana.com/tx/Egor5yrT3AXee5otWCdZi1ufCfmqNKBBYVZohAsELwfhzQDbeBycNEY3XZXjjbtrSSRai4dGd88XNnoHB8YyNj6?cluster=devnet). These are finalized public transactions, not hosted browser-wallet execution.
+Hosted API SDK devnet proofs (plus the earlier direct controlled failure): [basket](https://explorer.solana.com/tx/5CQDkJnbjsEG8JBmvEQFGmzUeT573CywExFx2ajkR884CJrkruXcSwdvA2ZWsY8TJK7B8XWDk21Q6v2CWmPZXqwV?cluster=devnet), [three-way exchange](https://explorer.solana.com/tx/3wfDTWASADuBTxAfgziKaYyQRJFbPHzMwxk1STQD4qLSKtnEr3rLXyHmzW9YfiKRg4movuuBn7xT3HptJ74QPFUn?cluster=devnet), and [controlled final-leg failure](https://explorer.solana.com/tx/Egor5yrT3AXee5otWCdZi1ufCfmqNKBBYVZohAsELwfhzQDbeBycNEY3XZXjjbtrSSRai4dGd88XNnoHB8YyNj6?cluster=devnet). The basket and ring were settled through the hosted API with SDK signers. None of these is browser-wallet execution.
 
 Keep actual repository, hosted-demo, pitch-video and technical-video URLs in their dedicated fields. Do not substitute localhost, private credentials, a placeholder URL or a private repository the judges cannot access. At least one accessible supporting link is required by the event.
 

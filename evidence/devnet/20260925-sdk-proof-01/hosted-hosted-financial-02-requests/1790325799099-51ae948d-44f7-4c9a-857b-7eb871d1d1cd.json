@@ -1,0 +1,8 @@
+{
+  "startedAt": "2026-09-25T08:43:19.054Z",
+  "method": "GET",
+  "path": "/api/rooms/7ccd72c4468d3a53a57ac9089e50b5506b02df89322ab155",
+  "httpStatus": 200,
+  "wallTimeMs": 44.298677,
+  "measurement": "Client wall-clock latency, NOT Worker CPU; correlate with Cloudflare request CPU telemetry"
+}

@@ -1,0 +1,35 @@
+{
+  "startedAt": "2026-09-25T08:38:35.607Z",
+  "finishedAt": "2026-09-25T08:38:37.997Z",
+  "attemptId": "c4bba8a0-95c1-4930-a493-53965a7bbb8e",
+  "state": "EXPIRED_UNLANDED",
+  "safeToRetry": true,
+  "txid": "2zPf1p1rmiMUJJ8nfhQBYnLjLxcdd5hzQz83rAfDmDeuzQdizmNyr9wVFCNa9q3Rb9U8RQrPnyxnJmqUbSVisR7f",
+  "messageHash": "13b9c557590ab6fa79105a54f4fcbe3ac82fa9d2f05d9fdea54d716070e6e5e3",
+  "submissionStartedAt": null,
+  "error": "Expired at finalized height; both trusted histories show no original landing",
+  "observations": [
+    {
+      "endpoint": "devnet.helius-rpc.com",
+      "healthy": true,
+      "historyTrusted": true,
+      "finalizedBlockHeight": "491157100",
+      "blockhashValid": false,
+      "status": null,
+      "transactionFound": false,
+      "transactionErr": null,
+      "transactionFinalized": false
+    },
+    {
+      "endpoint": "solana-devnet.g.alchemy.com",
+      "healthy": true,
+      "historyTrusted": true,
+      "finalizedBlockHeight": "491157106",
+      "blockhashValid": false,
+      "status": null,
+      "transactionFound": false,
+      "transactionErr": null,
+      "transactionFinalized": false
+    }
+  ]
+}

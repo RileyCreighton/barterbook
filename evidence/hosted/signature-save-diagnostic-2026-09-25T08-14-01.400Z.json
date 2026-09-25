@@ -1,0 +1,22 @@
+{
+  "recordedAt": "2026-09-25T08:14:01.401Z",
+  "site": "https://barterbook-devnet.rileycreighton.workers.dev",
+  "buildId": "46c9f400d61bbfa12d6a01e9cdfe0189a445444e",
+  "workerVersion": "4f36538e-6a17-4eb0-bd7a-288fc32ba738",
+  "scope": "HostedSDKrehearsal, not browser transaction proof",
+  "attemptId": "c4bba8a0-95c1-4930-a493-53965a7bbb8e",
+  "roomId": "4c3b8e97618bb01bfacf715dfb656641df8641e61eedf219",
+  "signatureEndpointStatus": 409,
+  "error": "Attempt changed concurrently; reload its original status",
+  "subsequentIndependentD1Read": {
+    "state": "SIGNING",
+    "signatureOwners": [
+      "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV"
+    ],
+    "txid": "2zPf1p1rmiMUJJ8nfhQBYnLjLxcdd5hzQz83rAfDmDeuzQdizmNyr9wVFCNa9q3Rb9U8RQrPnyxnJmqUbSVisR7f",
+    "submissionStartedAt": null
+  },
+  "finding": "The first partial signature persisted despite a409response; saveAttempt checks D1 meta.changes===1 but database triggers also update the parent room. Fix will check the exact matched row using RETURNING while retaining strict state+payload compare-and-swap.",
+  "resolution": "In progress. Original immutable attempt and journals retained. No fresh executable replacement authorized by this error.",
+  "browserRoomId": "4cff89cad977b4c3d0c50c8d8f6faeb89542ad9a73b49b13"
+}

@@ -1,0 +1,74 @@
+{
+  "startedAt": "2026-09-25T09:14:00.877Z",
+  "finishedAt": "2026-09-25T09:14:01.837Z",
+  "url": "https://barterbook-devnet.rileycreighton.workers.dev",
+  "scope": "Real hosted HTTP/Worker/D1; ephemeral SDK authentication only. No browser-wallet signing or onchain exchange.",
+  "wallet": "44cDWby5v8S8gfp7YKmpZkLwDEqVP9U9sFpNonhEHpFA",
+  "checks": [
+    {
+      "name": "GET /health",
+      "passed": true
+    },
+    {
+      "name": "GET /demo",
+      "passed": true
+    },
+    {
+      "name": "GET /history",
+      "passed": true
+    },
+    {
+      "name": "GET /assets",
+      "passed": true
+    },
+    {
+      "name": "GET /listings",
+      "passed": true
+    },
+    {
+      "name": "GET /matches",
+      "passed": true
+    },
+    {
+      "name": "Real hosted challenge, native Ed25519 verification, secure cookie and durable session",
+      "passed": true
+    },
+    {
+      "name": "Hosted one-use authentication challenge rejects replay",
+      "passed": true
+    },
+    {
+      "name": "Hosted cross-origin mutation rejected",
+      "passed": true
+    },
+    {
+      "name": "Authenticated room listing",
+      "passed": true
+    },
+    {
+      "name": "Unknown/unauthorized room remains private",
+      "passed": true
+    },
+    {
+      "name": "Logout revokes session",
+      "passed": true
+    },
+    {
+      "name": "GET /legal/LICENSE",
+      "passed": true
+    },
+    {
+      "name": "GET /legal/NOTICE",
+      "passed": true
+    },
+    {
+      "name": "GET /legal/third-party-licenses.txt",
+      "passed": true
+    },
+    {
+      "name": "GET /legal/rpc-websockets-9.3.9-source.tar.gz",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

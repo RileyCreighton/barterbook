@@ -1,0 +1,213 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-09-25T08:14:47.981Z",
+  "scope": "Read-only validation of recent devnet history and the original hosted attempt. No keys, endpoints, signed transaction bytes, broadcasts or replacements.",
+  "cluster": "devnet",
+  "runId": "20260925-sdk-proof-01",
+  "originalAttempt": {
+    "id": "c4bba8a0-95c1-4930-a493-53965a7bbb8e",
+    "txid": "2zPf1p1rmiMUJJ8nfhQBYnLjLxcdd5hzQz83rAfDmDeuzQdizmNyr9wVFCNa9q3Rb9U8RQrPnyxnJmqUbSVisR7f",
+    "blockhash": "HcdBvET2oLrdZP4nuJMquv6N5Khr1Tx6naxVKziSwTWP",
+    "lastValidBlockHeight": "491147584",
+    "contextSlot": "503894951",
+    "cluster": "devnet"
+  },
+  "providers": [
+    {
+      "role": "primary",
+      "host": "devnet.helius-rpc.com",
+      "configuredHistoryTrusted": false,
+      "health": {
+        "ok": true,
+        "value": "ok"
+      },
+      "genesisMatchesDevnet": true,
+      "firstAvailableBlock": "116113408",
+      "finalizedBlockHeight": "491148491",
+      "coversOriginalContextSlot": true,
+      "pastOriginalLastValidBlockHeight": true,
+      "originalBlockhashValid": false,
+      "blockhashContextSlot": "503896008",
+      "transactions": [
+        {
+          "kind": "known-finalized-success",
+          "txid": "4TLQ55rcPS79kRAQTw52JH2SRTodvH5UzQgeczaRngpbHqu7YBqzfifr126N1BK8cD9GqDhAegdsKr3ofyKgPrP9",
+          "historyStatus": {
+            "slot": 503881770,
+            "confirmations": null,
+            "status": {
+              "Ok": null
+            },
+            "err": null,
+            "confirmationStatus": "finalized"
+          },
+          "statusLookupSucceeded": true,
+          "transactionLookupSucceeded": true,
+          "transactionFound": true,
+          "metadataFound": true,
+          "returnedSignatureMatches": true,
+          "slot": "503881770",
+          "blockTime": 1790321717,
+          "metaError": null,
+          "networkFeeLamports": "10000"
+        },
+        {
+          "kind": "known-finalized-failure",
+          "txid": "Egor5yrT3AXee5otWCdZi1ufCfmqNKBBYVZohAsELwfhzQDbeBycNEY3XZXjjbtrSSRai4dGd88XNnoHB8YyNj6",
+          "historyStatus": {
+            "slot": 503881861,
+            "confirmations": null,
+            "status": {
+              "Err": {
+                "InstructionError": [
+                  7,
+                  {
+                    "Custom": 1
+                  }
+                ]
+              }
+            },
+            "err": {
+              "InstructionError": [
+                7,
+                {
+                  "Custom": 1
+                }
+              ]
+            },
+            "confirmationStatus": "finalized"
+          },
+          "statusLookupSucceeded": true,
+          "transactionLookupSucceeded": true,
+          "transactionFound": true,
+          "metadataFound": true,
+          "returnedSignatureMatches": true,
+          "slot": "503881861",
+          "blockTime": 1790321733,
+          "metaError": {
+            "InstructionError": [
+              7,
+              {
+                "Custom": 1
+              }
+            ]
+          },
+          "networkFeeLamports": "15000"
+        },
+        {
+          "kind": "original-hosted-attempt",
+          "txid": "2zPf1p1rmiMUJJ8nfhQBYnLjLxcdd5hzQz83rAfDmDeuzQdizmNyr9wVFCNa9q3Rb9U8RQrPnyxnJmqUbSVisR7f",
+          "historyStatus": null,
+          "statusLookupSucceeded": true,
+          "transactionLookupSucceeded": true,
+          "transactionFound": false,
+          "metadataFound": false,
+          "returnedSignatureMatches": null,
+          "slot": null,
+          "blockTime": null,
+          "metaError": null,
+          "networkFeeLamports": null
+        }
+      ],
+      "errors": []
+    },
+    {
+      "role": "fallback",
+      "host": "api.devnet.solana.com",
+      "configuredHistoryTrusted": false,
+      "health": {
+        "ok": true,
+        "value": "ok"
+      },
+      "genesisMatchesDevnet": true,
+      "firstAvailableBlock": "116113408",
+      "finalizedBlockHeight": "491148493",
+      "coversOriginalContextSlot": true,
+      "pastOriginalLastValidBlockHeight": true,
+      "originalBlockhashValid": false,
+      "blockhashContextSlot": "503896012",
+      "transactions": [
+        {
+          "kind": "known-finalized-success",
+          "txid": "4TLQ55rcPS79kRAQTw52JH2SRTodvH5UzQgeczaRngpbHqu7YBqzfifr126N1BK8cD9GqDhAegdsKr3ofyKgPrP9",
+          "historyStatus": {
+            "confirmationStatus": "finalized",
+            "confirmations": null,
+            "err": null,
+            "slot": 503881770,
+            "status": {
+              "Ok": null
+            }
+          },
+          "statusLookupSucceeded": true,
+          "transactionLookupSucceeded": true,
+          "transactionFound": true,
+          "metadataFound": true,
+          "returnedSignatureMatches": true,
+          "slot": "503881770",
+          "blockTime": 1790321717,
+          "metaError": null,
+          "networkFeeLamports": "10000"
+        },
+        {
+          "kind": "known-finalized-failure",
+          "txid": "Egor5yrT3AXee5otWCdZi1ufCfmqNKBBYVZohAsELwfhzQDbeBycNEY3XZXjjbtrSSRai4dGd88XNnoHB8YyNj6",
+          "historyStatus": {
+            "confirmationStatus": "finalized",
+            "confirmations": null,
+            "err": {
+              "InstructionError": [
+                7,
+                {
+                  "Custom": 1
+                }
+              ]
+            },
+            "slot": 503881861,
+            "status": {
+              "Err": {
+                "InstructionError": [
+                  7,
+                  {
+                    "Custom": 1
+                  }
+                ]
+              }
+            }
+          },
+          "statusLookupSucceeded": true,
+          "transactionLookupSucceeded": true,
+          "transactionFound": true,
+          "metadataFound": true,
+          "returnedSignatureMatches": true,
+          "slot": "503881861",
+          "blockTime": 1790321733,
+          "metaError": {
+            "InstructionError": [
+              7,
+              {
+                "Custom": 1
+              }
+            ]
+          },
+          "networkFeeLamports": "15000"
+        },
+        {
+          "kind": "original-hosted-attempt",
+          "txid": "2zPf1p1rmiMUJJ8nfhQBYnLjLxcdd5hzQz83rAfDmDeuzQdizmNyr9wVFCNa9q3Rb9U8RQrPnyxnJmqUbSVisR7f",
+          "historyStatus": null,
+          "statusLookupSucceeded": true,
+          "transactionLookupSucceeded": true,
+          "transactionFound": false,
+          "metadataFound": false,
+          "returnedSignatureMatches": null,
+          "slot": null,
+          "blockTime": null,
+          "metaError": null,
+          "networkFeeLamports": null
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

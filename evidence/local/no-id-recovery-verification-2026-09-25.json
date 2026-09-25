@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-09-25T09:04:07.044Z",
+  "baseCommit": "837b06c735b8fad6ac6302031a6469be84be28ef",
+  "scope": "Uncommitted bounded no-ID recovery repair and explicit browser-review guidance",
+  "tests": {
+    "fullSuite": {
+      "passed": 232,
+      "total": 237,
+      "note": "Five secret scanner tests could not spawn temporary git fixtures under the restricted sandbox; all five passed when rerun with required filesystem/process permission."
+    },
+    "secretScannerRerun": {
+      "passed": 5,
+      "total": 5
+    },
+    "financialSigningReceiptSubset": {
+      "passed": 45,
+      "total": 45
+    },
+    "build": "passed",
+    "typecheck": "passed",
+    "settlementRecoveryWalletDatabaseSubset": {
+      "passed": 86,
+      "total": 86
+    },
+    "finalRecoverySettlementSuite": {
+      "passed": 58,
+      "total": 58,
+      "durationSeconds": 75.38,
+      "note": "Includes paired finalized-bank freshness fixes, stale status/hash context holds, immutable message discovery, prior-success recovery and full existing settlement suite."
+    },
+    "productionBuildAfterFinalEdits": "passed"
+  },
+  "browser": {
+    "publicHostedBasketReceipt": "Verified rendered finalized metadata after page reload in the no-wallet browser; this is SDK settlement evidence, not wallet signing proof."
+  },
+  "devnet": {
+    "newTransactionsExecuted": false,
+    "originalBrowserAttempt": "026ed6d7-5368-455e-a1b2-c0963cdeeab7",
+    "originalUnresolved": true
+  },
+  "safety": "No wallet material or recovery journals overwritten. No attempt manually unlocked. No new signatures or broadcasts.",
+  "finalReviewAt": "2026-09-25T09:13:10.166Z",
+  "sourceCommit": "63378c6",
+  "independentReview": "Expiry/history freshness finding fixed and re-reviewed; no further blocker found in the targeted durable-state review."
+}

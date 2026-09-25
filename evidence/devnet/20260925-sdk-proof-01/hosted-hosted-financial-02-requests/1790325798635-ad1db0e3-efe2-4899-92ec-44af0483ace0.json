@@ -1,0 +1,8 @@
+{
+  "startedAt": "2026-09-25T08:43:18.620Z",
+  "method": "GET",
+  "path": "/api/health",
+  "httpStatus": 200,
+  "wallTimeMs": 14.735640999999987,
+  "measurement": "Client wall-clock latency, NOT Worker CPU; correlate with Cloudflare request CPU telemetry"
+}

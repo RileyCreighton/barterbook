@@ -1,0 +1,38 @@
+{
+  "startedAt": "2026-09-25T08:28:04.361Z",
+  "finishedAt": "2026-09-25T08:28:06.082Z",
+  "attemptId": "c4bba8a0-95c1-4930-a493-53965a7bbb8e",
+  "state": "STATUS_UNKNOWN",
+  "safeToRetry": false,
+  "txid": "2zPf1p1rmiMUJJ8nfhQBYnLjLxcdd5hzQz83rAfDmDeuzQdizmNyr9wVFCNa9q3Rb9U8RQrPnyxnJmqUbSVisR7f",
+  "messageHash": "13b9c557590ab6fa79105a54f4fcbe3ac82fa9d2f05d9fdea54d716070e6e5e3",
+  "submissionStartedAt": null,
+  "error": "Original outcome unresolved. RPC errors, cache misses and UI cancellation do not permit new signatures.",
+  "observations": [
+    {
+      "endpoint": "devnet.helius-rpc.com",
+      "healthy": true,
+      "historyTrusted": true,
+      "finalizedBlockHeight": "491153306",
+      "blockhashValid": false,
+      "status": null,
+      "transactionFound": false,
+      "transactionErr": null,
+      "transactionFinalized": false
+    },
+    {
+      "endpoint": "api.devnet.solana.com",
+      "healthy": false,
+      "historyTrusted": false,
+      "finalizedBlockHeight": "0",
+      "blockhashValid": null,
+      "status": null,
+      "transactionFound": false,
+      "transactionErr": null,
+      "transactionFinalized": false,
+      "failureStage": "getHealth",
+      "failureKind": "provider_http",
+      "failureStatus": 403
+    }
+  ]
+}

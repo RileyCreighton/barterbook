@@ -1,0 +1,327 @@
+{
+  "schemaVersion": 1,
+  "at": "2026-09-25T08:56:05.176Z",
+  "scope": "LOCAL read-only provider address-index validation against original browser frozen plan. No config, signatures, settlement state or broadcasts changed; NOT backend absence release or browser signing proof.",
+  "originalAttempt": {
+    "attemptId": "026ed6d7-5368-455e-a1b2-c0963cdeeab7",
+    "contextSlot": "503907231",
+    "blockhash": "6qRWW73HmgjB2ZNjU4xpu8LN7Zy5k9ZygpSisN3e7EwB",
+    "lastValidBlockHeight": "491159811",
+    "messageHash": "9ecb62a9203dee248586639183bdfe0e16a4e293e342ce45c62c90b6b20c3421",
+    "feePayer": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8"
+  },
+  "providers": [
+    {
+      "host": "devnet.helius-rpc.com",
+      "at": "2026-09-25T08:56:05.176Z",
+      "calls": [
+        {
+          "method": "getHealth",
+          "ok": true
+        },
+        {
+          "method": "getGenesisHash",
+          "ok": true
+        },
+        {
+          "method": "getFirstAvailableBlock",
+          "ok": true
+        },
+        {
+          "method": "getBlock",
+          "ok": true
+        },
+        {
+          "method": "getSlot",
+          "ok": true
+        },
+        {
+          "method": "getBlockHeight",
+          "ok": true
+        },
+        {
+          "method": "isBlockhashValid",
+          "ok": true
+        },
+        {
+          "method": "getSignaturesForAddress",
+          "ok": true
+        },
+        {
+          "method": "getSignaturesForAddress",
+          "ok": true
+        },
+        {
+          "method": "getSignaturesForAddress",
+          "ok": true
+        }
+      ],
+      "health": "ok",
+      "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+      "firstAvailableBlock": 116113408,
+      "contextBlock": {
+        "blockhash": "6qRWW73HmgjB2ZNjU4xpu8LN7Zy5k9ZygpSisN3e7EwB",
+        "blockHeight": 491159661,
+        "parentSlot": 503907230
+      },
+      "finalizedRootSlot": 503910977,
+      "finalizedBlockHeight": 491163403,
+      "originalBlockhashValid": {
+        "context": {
+          "apiVersion": "4.3.0-rc.1",
+          "slot": 503910978
+        },
+        "value": false
+      },
+      "feePayerHistory": {
+        "pageValid": true,
+        "firstPage": [
+          {
+            "signature": "2NaWiBkuRgfv2Emv8U9JNoQt9JeyJD4fNzPpZhWNFhbo9i5dnsGEJKh78XAx2EdwGTvrJmhA5QAGr7shViM4Hbu4",
+            "slot": 503881057,
+            "err": null,
+            "confirmationStatus": "finalized",
+            "blockTime": 1790321598
+          },
+          {
+            "signature": "7c4xTzqRJufxsRVnAqWgcqktD2qdroro1uDqLH8ZcH1fdV6n6NeMGhGDtbwKgQ3ccWNAvjEftsapfZDHqK1z1Dj",
+            "slot": 503881012,
+            "err": null,
+            "confirmationStatus": "finalized",
+            "blockTime": 1790321591
+          },
+          {
+            "signature": "smsckunWZCNTjFw6LDhgwdbE54YF4riEk4TapbfwF7f7QdBSt1vT3iMob1rvnizrbQbK2S5c4XYp5T4Q2R5pGxc",
+            "slot": 503880968,
+            "err": null,
+            "confirmationStatus": "finalized",
+            "blockTime": 1790321583
+          },
+          {
+            "signature": "3ySLuxnXqGxUtv5Z4n6P3a4bShAVzGMyu6z3S8EP89Q5yq9b37NmVxnahuKCoaPheQ8TZisrEtRfCmbActSf9yp6",
+            "slot": 503875783,
+            "err": null,
+            "confirmationStatus": "finalized",
+            "blockTime": 1790320723
+          }
+        ],
+        "candidatesAtOrAfterOriginalContext": [],
+        "reachesStrictOlderBoundary": true,
+        "initialPageEmpty": false,
+        "nextPageValid": true,
+        "nextPageEmpty": true,
+        "nextPage": [],
+        "completeThroughOriginalContext": true
+      },
+      "sdkControls": {
+        "wallet": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+        "pageValid": true,
+        "pageLength": 22,
+        "oldestReturnedSlot": 503873620,
+        "controls": [
+          {
+            "signature": "5CQDkJnbjsEG8JBmvEQFGmzUeT573CywExFx2ajkR884CJrkruXcSwdvA2ZWsY8TJK7B8XWDk21Q6v2CWmPZXqwV",
+            "entry": {
+              "signature": "5CQDkJnbjsEG8JBmvEQFGmzUeT573CywExFx2ajkR884CJrkruXcSwdvA2ZWsY8TJK7B8XWDk21Q6v2CWmPZXqwV",
+              "slot": 503906415,
+              "err": null,
+              "confirmationStatus": "finalized",
+              "blockTime": 1790325803
+            }
+          },
+          {
+            "signature": "3wfDTWASADuBTxAfgziKaYyQRJFbPHzMwxk1STQD4qLSKtnEr3rLXyHmzW9YfiKRg4movuuBn7xT3HptJ74QPFUn",
+            "entry": {
+              "signature": "3wfDTWASADuBTxAfgziKaYyQRJFbPHzMwxk1STQD4qLSKtnEr3rLXyHmzW9YfiKRg4movuuBn7xT3HptJ74QPFUn",
+              "slot": 503906516,
+              "err": null,
+              "confirmationStatus": "finalized",
+              "blockTime": 1790325820
+            }
+          }
+        ]
+      },
+      "checks": {
+        "allReadsSucceeded": true,
+        "healthy": true,
+        "correctDevnetGenesis": true,
+        "retentionCoversContext": true,
+        "finalizedBlockAnchorsOriginalHash": true,
+        "rootCoversContext": true,
+        "heightPastOriginalLifetime": true,
+        "originalHashInvalid": true,
+        "bobIndexOrderedAndComplete": true,
+        "bobHasNoRecentCandidates": true,
+        "sdkIndexContainsBothControls": true
+      },
+      "passed": true,
+      "completedAt": "2026-09-25T08:56:07.625Z"
+    },
+    {
+      "host": "solana-devnet.g.alchemy.com",
+      "at": "2026-09-25T08:56:07.625Z",
+      "calls": [
+        {
+          "method": "getHealth",
+          "ok": true
+        },
+        {
+          "method": "getGenesisHash",
+          "ok": true
+        },
+        {
+          "method": "getFirstAvailableBlock",
+          "ok": true
+        },
+        {
+          "method": "getBlock",
+          "ok": true
+        },
+        {
+          "method": "getSlot",
+          "ok": true
+        },
+        {
+          "method": "getBlockHeight",
+          "ok": true
+        },
+        {
+          "method": "isBlockhashValid",
+          "ok": true
+        },
+        {
+          "method": "getSignaturesForAddress",
+          "ok": true
+        },
+        {
+          "method": "getSignaturesForAddress",
+          "ok": true
+        },
+        {
+          "method": "getSignaturesForAddress",
+          "ok": true
+        }
+      ],
+      "health": "ok",
+      "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+      "firstAvailableBlock": 501828012,
+      "contextBlock": {
+        "blockhash": "6qRWW73HmgjB2ZNjU4xpu8LN7Zy5k9ZygpSisN3e7EwB",
+        "blockHeight": 491159661,
+        "parentSlot": 503907230
+      },
+      "finalizedRootSlot": 503910988,
+      "finalizedBlockHeight": 491163416,
+      "originalBlockhashValid": {
+        "context": {
+          "apiVersion": "4.3.0",
+          "slot": 503910992
+        },
+        "value": false
+      },
+      "feePayerHistory": {
+        "pageValid": true,
+        "firstPage": [
+          {
+            "signature": "2NaWiBkuRgfv2Emv8U9JNoQt9JeyJD4fNzPpZhWNFhbo9i5dnsGEJKh78XAx2EdwGTvrJmhA5QAGr7shViM4Hbu4",
+            "slot": 503881057,
+            "err": null,
+            "confirmationStatus": "finalized",
+            "blockTime": 1790321598
+          },
+          {
+            "signature": "7c4xTzqRJufxsRVnAqWgcqktD2qdroro1uDqLH8ZcH1fdV6n6NeMGhGDtbwKgQ3ccWNAvjEftsapfZDHqK1z1Dj",
+            "slot": 503881012,
+            "err": null,
+            "confirmationStatus": "finalized",
+            "blockTime": 1790321591
+          },
+          {
+            "signature": "smsckunWZCNTjFw6LDhgwdbE54YF4riEk4TapbfwF7f7QdBSt1vT3iMob1rvnizrbQbK2S5c4XYp5T4Q2R5pGxc",
+            "slot": 503880968,
+            "err": null,
+            "confirmationStatus": "finalized",
+            "blockTime": 1790321583
+          },
+          {
+            "signature": "3ySLuxnXqGxUtv5Z4n6P3a4bShAVzGMyu6z3S8EP89Q5yq9b37NmVxnahuKCoaPheQ8TZisrEtRfCmbActSf9yp6",
+            "slot": 503875783,
+            "err": null,
+            "confirmationStatus": "finalized",
+            "blockTime": 1790320723
+          }
+        ],
+        "candidatesAtOrAfterOriginalContext": [],
+        "reachesStrictOlderBoundary": true,
+        "initialPageEmpty": false,
+        "nextPageValid": true,
+        "nextPageEmpty": true,
+        "nextPage": [],
+        "completeThroughOriginalContext": true
+      },
+      "sdkControls": {
+        "wallet": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+        "pageValid": true,
+        "pageLength": 22,
+        "oldestReturnedSlot": 503873620,
+        "controls": [
+          {
+            "signature": "5CQDkJnbjsEG8JBmvEQFGmzUeT573CywExFx2ajkR884CJrkruXcSwdvA2ZWsY8TJK7B8XWDk21Q6v2CWmPZXqwV",
+            "entry": {
+              "signature": "5CQDkJnbjsEG8JBmvEQFGmzUeT573CywExFx2ajkR884CJrkruXcSwdvA2ZWsY8TJK7B8XWDk21Q6v2CWmPZXqwV",
+              "slot": 503906415,
+              "err": null,
+              "confirmationStatus": "finalized",
+              "blockTime": 1790325803
+            }
+          },
+          {
+            "signature": "3wfDTWASADuBTxAfgziKaYyQRJFbPHzMwxk1STQD4qLSKtnEr3rLXyHmzW9YfiKRg4movuuBn7xT3HptJ74QPFUn",
+            "entry": {
+              "signature": "3wfDTWASADuBTxAfgziKaYyQRJFbPHzMwxk1STQD4qLSKtnEr3rLXyHmzW9YfiKRg4movuuBn7xT3HptJ74QPFUn",
+              "slot": 503906516,
+              "err": null,
+              "confirmationStatus": "finalized",
+              "blockTime": 1790325820
+            }
+          }
+        ]
+      },
+      "checks": {
+        "allReadsSucceeded": true,
+        "healthy": true,
+        "correctDevnetGenesis": true,
+        "retentionCoversContext": true,
+        "finalizedBlockAnchorsOriginalHash": true,
+        "rootCoversContext": true,
+        "heightPastOriginalLifetime": true,
+        "originalHashInvalid": true,
+        "bobIndexOrderedAndComplete": true,
+        "bobHasNoRecentCandidates": true,
+        "sdkIndexContainsBothControls": true
+      },
+      "passed": true,
+      "completedAt": "2026-09-25T08:56:10.791Z"
+    }
+  ],
+  "allChecksPassed": true,
+  "assessment": {
+    "operatorMayConsiderAddressIndexTrust": true,
+    "scope": "Only the configured recent Devnet history, conditioned on complete/current address indexes and fresh runtime fail-closed coverage checks.",
+    "limitations": [
+      "Read-only local provider validation does not itself release the attempt or prove hosted reachability.",
+      "History index lag or silent holes are provider-trust risks; earliest retained block alone is not completeness proof.",
+      "A signature/page/metadata cap, a malformed response, an unavailable candidate or an anchor mismatch must hold recovery.",
+      "Zero uploaded signatures and stopRequested are not non-execution evidence."
+    ],
+    "officialReferences": [
+      "https://solana.com/docs/rpc/http/getsignaturesforaddress",
+      "https://solana.com/docs/rpc/http/getblock",
+      "https://solana.com/docs/rpc/http/getfirstavailableblock",
+      "https://www.helius.dev/blog/introducing-gettransactionsforaddress",
+      "https://www.alchemy.com/docs/chains/solana/solana-api-endpoints/get-signatures-for-address",
+      "https://www.alchemy.com/docs/solana-api-faq"
+    ]
+  },
+  "completedAt": "2026-09-25T08:56:10.791Z"
+}

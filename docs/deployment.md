@@ -2,6 +2,8 @@
 
 The app works locally before any account setup. A public deployment needs your Cloudflare account; settlement also needs a server-side devnet RPC, three validated fixture mints and real browser-wallet checks. Keep settlement disabled while preparing the public walkthrough. No paid subscription is required by this guide, and no service should be upgraded automatically.
 
+The current hosted financial paths exceed the Free plan's 10 ms CPU allowance: after optimization, preparation measured 26/52 ms, signature collection 9–11 ms, submission 10/13 ms and recovery 19 ms. Those requests completed, but this is **not a Free CPU-budget pass**. [Actual measurements](../evidence/hosted/cpu-2026-09-25T08-44-50.289Z.json) and [current Cloudflare pricing](https://developers.cloudflare.com/workers/platform/pricing/) support the limitation. Workers Paid starts at $5/month with included usage and possible overages. No upgrade has been made; the owner must explicitly choose any paid change.
+
 ## 1. Prepare locally
 
 Install the recorded Node.js **26.8.2** toolchain, then open a terminal in the project folder:
@@ -41,9 +43,13 @@ DEMO_PARTICIPANTS_JSON=[]
 SETTLEMENT_ENABLED=false
 RPC_HISTORY_TRUSTED=false
 FALLBACK_HISTORY_TRUSTED=false
+RPC_ADDRESS_HISTORY_TRUSTED=false
+FALLBACK_ADDRESS_HISTORY_TRUSTED=false
 ```
 
 `APP_ORIGIN` must exactly match the HTTPS origin people use, with no path. The asset and participant arrays are public metadata, not secret-key storage. Fill them only from the validated fixture manifest and authorized public wallet addresses. The app validates their schema; preserve raw quantity strings.
+
+The address-history flags are separate operator assertions that each provider's finalized address index is complete for the attempt's lifetime. Keep them false until that property has been assessed. Recovery still requires fresh independent histories, a verified blockhash origin, complete bounded scans and exact message/signature checks. A partial scan or unavailable metadata keeps the attempt locked.
 
 ```sh
 node --env-file=.env.deploy.local .github/scripts/deployment-config.mjs

@@ -1,0 +1,8 @@
+{
+  "startedAt": "2026-09-25T08:43:39.783Z",
+  "method": "POST",
+  "path": "/api/attempts/e6191827-a842-42f9-8192-7f0f4afb75a3/signatures",
+  "httpStatus": 200,
+  "wallTimeMs": 531.9914410000019,
+  "measurement": "Client wall-clock latency, NOT Worker CPU; correlate with Cloudflare request CPU telemetry"
+}

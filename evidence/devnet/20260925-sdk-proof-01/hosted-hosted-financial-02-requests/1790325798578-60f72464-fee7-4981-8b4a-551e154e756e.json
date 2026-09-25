@@ -1,0 +1,8 @@
+{
+  "startedAt": "2026-09-25T08:43:18.507Z",
+  "method": "POST",
+  "path": "/api/auth/verify",
+  "httpStatus": 200,
+  "wallTimeMs": 70.89479700000015,
+  "measurement": "Client wall-clock latency, NOT Worker CPU; correlate with Cloudflare request CPU telemetry"
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "runId": "20260925-sdk-proof-01",
+  "buildId": "sha256:21a02a55b02de07a7f994e1fe4d285f8b58a863d6ee2238e184dc53be17e4535",
+  "cluster": "devnet",
+  "origin": "https://barterbook-devnet.rileycreighton.workers.dev",
+  "scope": "Developer board demo authenticated by disposable SDK keys through the HTTP API; NOT browser-wallet proof; no automatic settlement approvals",
+  "batch": "hosted-judge-02",
+  "listingIds": [
+    "2edc3660ceac29f3a10903c04a7d8d43282e06a3624d407a",
+    "6c9478d63ac844f781a00993e250be4f39f7545156f912bb",
+    "309a06480bb8524c5a0e118a82059d34b3627fe6f8000e42"
+  ],
+  "roomId": "7ccd72c4468d3a53a57ac9089e50b5506b02df89322ab155",
+  "idempotencyKeys": [
+    "seed-f32b9fd25fe0186e42a70a81a1eff7197cf15da4",
+    "seed-00fc7040b14d787bda288e24115d0b45269ccbd7",
+    "seed-8e22f7b36ed7f0c232225afca85e7ce21c7df777",
+    "seed-bd800d8dfd312a17f29f4dcff5813b14765d8002"
+  ]
+}
