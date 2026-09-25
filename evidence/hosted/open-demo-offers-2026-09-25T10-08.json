@@ -1,0 +1,59 @@
+{
+  "checkedAt": "2026-09-25T10:08:19.316Z",
+  "cluster": "devnet",
+  "finalizedContextSlot": 503937092,
+  "scope": "Public open listings with fresh read-only finalized source-account checks; developer-controlled counterparties must be online to approve, no standing execution authorization.",
+  "offers": [
+    {
+      "id": "671e283f1ac447932695c398f79039ebb38b33b120d5a631",
+      "owner": "7PYpa2dL6hqxjPSGuh5b3EwjeWJYDvLWwaj8sWb3NiLC",
+      "giveMint": "3y3QsQtR3pK9fe3ZxCcwTdc5AHN87panLaFzR3GfzZvz",
+      "wantMint": "kyEZzbcEZhJTmHesLTZFaKnmkisvLirFrgfKZrtJbQx",
+      "grossRaw": "15000000",
+      "minReceiveNetRaw": "9900000",
+      "expiresAt": 1790409485352,
+      "state": "OPEN",
+      "locked": false,
+      "sourceAccount": "Hmv27QkVAA3U6Arw5ruGgFVB2R8bp61UnrNYbUPTGAGY",
+      "finalizedBalanceRaw": "970000000",
+      "correctMint": true,
+      "correctOwner": true,
+      "unexpired": true,
+      "hasGrossInventory": true
+    },
+    {
+      "id": "f81b0d1e38db86e6485d4eeb7d312185be63aa52ea9bb7db",
+      "owner": "bQG1z1SaJKpitQKTUeEuxiuenoBMrP4RSy1vbJ5iUW3",
+      "giveMint": "EZ2xuTV73HqM5AE8SrDjzQeHtae6cDV6TU6tzLBtEVxD",
+      "wantMint": "3y3QsQtR3pK9fe3ZxCcwTdc5AHN87panLaFzR3GfzZvz",
+      "grossRaw": "20000000",
+      "minReceiveNetRaw": "14850000",
+      "expiresAt": 1790409485352,
+      "state": "OPEN",
+      "locked": false,
+      "sourceAccount": "GXjpgyf3kdP56d6HAqLqWm2uxoy6fub3ii9J1TY7HnNe",
+      "finalizedBalanceRaw": "969999000",
+      "correctMint": true,
+      "correctOwner": true,
+      "unexpired": true,
+      "hasGrossInventory": true
+    },
+    {
+      "id": "8636a92d73769d8a46078f9740cb32ecfd0dc3a22afbff35",
+      "owner": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+      "giveMint": "kyEZzbcEZhJTmHesLTZFaKnmkisvLirFrgfKZrtJbQx",
+      "wantMint": "EZ2xuTV73HqM5AE8SrDjzQeHtae6cDV6TU6tzLBtEVxD",
+      "grossRaw": "10000000",
+      "minReceiveNetRaw": "19800000",
+      "expiresAt": 1790409485352,
+      "state": "OPEN",
+      "locked": false,
+      "sourceAccount": "A2KU6xSy5T2r5SKsgrZTRoucXXUWwho4Bk5nbvbs3nTW",
+      "finalizedBalanceRaw": "959899999",
+      "correctMint": true,
+      "correctOwner": true,
+      "unexpired": true,
+      "hasGrossInventory": true
+    }
+  ]
+}

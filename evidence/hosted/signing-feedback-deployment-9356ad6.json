@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-09-25T10:03:47.785Z",
+  "origin": "https://barterbook-devnet.rileycreighton.workers.dev",
+  "workerVersion": "f041aa3d-8363-4656-92b3-3f77ff8a2e8f",
+  "buildId": "9356ad6aa5fc50d5d78840655815687fb9add5a4",
+  "health": {
+    "name": "BarterBook",
+    "cluster": "devnet",
+    "settlementEnabled": true,
+    "rpcConfigured": true
+  },
+  "checks": {
+    "devnet": true,
+    "waitingForSavedSignature": true,
+    "neutralTransactionDetails": true,
+    "inlineError": true,
+    "servedBundleMatchesTestedBuild": true
+  },
+  "historyReceiptCount": 2,
+  "historyTransactionIds": [
+    "3wfDTWASADuBTxAfgziKaYyQRJFbPHzMwxk1STQD4qLSKtnEr3rLXyHmzW9YfiKRg4movuuBn7xT3HptJ74QPFUn",
+    "5CQDkJnbjsEG8JBmvEQFGmzUeT573CywExFx2ajkR884CJrkruXcSwdvA2ZWsY8TJK7B8XWDk21Q6v2CWmPZXqwV"
+  ],
+  "limitation": "Public endpoint and deployed bundle checks only. Private user room rendering and new browser settlement not asserted; Solflare warning remains unresolved.",
+  "bundleSha256": "05b5a8987f04e0fe7f5c6f87cb3ed892e020bb10f1bc2cc55abbe4ff83dc33c5",
+  "buildIdentitySource": "Successful Wrangler deployment output; health endpoint intentionally does not expose buildId.",
+  "browserObservation": {
+    "browser": "Codex in-app browser",
+    "authenticated": false,
+    "path": "/#/history",
+    "verifiedApplicationReceiptsShown": 2,
+    "labels": "Developer-controlled demonstrations; browser-wallet compatibility not established"
+  }
+}
