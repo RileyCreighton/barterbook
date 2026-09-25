@@ -43,6 +43,7 @@ function fakeWallet(
   };
   let accounts: readonly BrowserAccount[] = [account];
   const listeners = new Set<() => void>();
+  const connect = vi.fn(async () => ({ accounts: [account] }));
   const signTransaction = vi.fn(async (input: { transaction: Uint8Array }) => {
     const transaction = Transaction.from(input.transaction);
     transaction.partialSign(key);
@@ -80,7 +81,7 @@ function fakeWallet(
       return accounts;
     },
     features: {
-      "standard:connect": { connect: async () => ({ accounts: [account] }) },
+      "standard:connect": { connect },
       "standard:events": {
         on: (_event: "change", listener: () => void) => {
           listeners.add(listener);
@@ -99,6 +100,7 @@ function fakeWallet(
     account,
     signTransaction,
     signMessage,
+    connect,
     setAccounts(next: readonly BrowserAccount[]) {
       accounts = next;
       listeners.forEach((listener) => listener());
@@ -107,6 +109,91 @@ function fakeWallet(
 }
 
 describe("account changes (fake adapters only, not extension evidence)", () => {
+  it("refuses to silently select one of multiple returned devnet accounts", async () => {
+    const first = fakeWallet(Keypair.generate()),
+      second = fakeWallet(Keypair.generate());
+    first.setAccounts([first.account, second.account]);
+    first.connect.mockResolvedValueOnce({
+      accounts: [first.account, second.account],
+    });
+    await expect(connectWallet(first.wallet)).rejects.toThrow(
+      /multiple devnet accounts/,
+    );
+    expect(first.signMessage).not.toHaveBeenCalled();
+    expect(first.signTransaction).not.toHaveBeenCalled();
+  });
+  it("invalidates reordered accounts even when the original account remains authorized", async () => {
+    const first = fakeWallet(Keypair.generate()),
+      second = fakeWallet(Keypair.generate());
+    first.setAccounts([first.account, second.account]);
+    const connection = await connectWallet(first.wallet);
+    const invalidated = vi.fn();
+    const unwatch = watchWalletConnection(connection, invalidated);
+    first.setAccounts([second.account, first.account]);
+    first.setAccounts([first.account, second.account]);
+    expect(invalidated).toHaveBeenCalledOnce();
+    expect(connectionIsCurrent(connection)).toBe(false);
+    await expect(
+      signWalletMessage(connection, "Do not retry old consent"),
+    ).rejects.toThrow(/account changed/);
+    expect(first.signMessage).not.toHaveBeenCalled();
+    unwatch();
+  });
+  it("invalidates added authorization and only reconnects to the uniquely returned account", async () => {
+    const first = fakeWallet(Keypair.generate()),
+      second = fakeWallet(Keypair.generate());
+    const previous = await connectWallet(first.wallet);
+    const invalidated = vi.fn();
+    const unwatch = watchWalletConnection(previous, invalidated);
+    first.setAccounts([first.account, second.account]);
+    expect(connectionIsCurrent(previous)).toBe(false);
+    first.connect.mockResolvedValueOnce({ accounts: [second.account] });
+    const reconnected = await connectWallet(first.wallet);
+    expect(reconnected.account.address).toBe(second.account.address);
+    expect(previous.account.address).toBe(first.account.address);
+    expect(connectionIsCurrent(reconnected)).toBe(true);
+    expect(connectionIsCurrent(previous)).toBe(false);
+    expect(first.signMessage).not.toHaveBeenCalled();
+    unwatch();
+  });
+  it("detects an in-place identity change rather than trusting wallet-owned references", async () => {
+    const first = fakeWallet(Keypair.generate()),
+      second = fakeWallet(Keypair.generate());
+    const connection = await connectWallet(first.wallet);
+    const invalidated = vi.fn();
+    const unwatch = watchWalletConnection(connection, invalidated);
+    Object.assign(first.account, second.account);
+    first.setAccounts([first.account]);
+    expect(invalidated).toHaveBeenCalledOnce();
+    expect(connectionIsCurrent(connection)).toBe(false);
+    await expect(
+      signWalletMessage(connection, "Old challenge"),
+    ).rejects.toThrow(/account changed/);
+    expect(first.signMessage).not.toHaveBeenCalled();
+    unwatch();
+  });
+  it("discards a transaction signed across an account-order change even if the order is restored", async () => {
+    const f = fixture();
+    const first = fakeWallet(f.owners[0]),
+      second = fakeWallet(f.owners[1]);
+    first.setAccounts([first.account, second.account]);
+    const connection = await connectWallet(first.wallet);
+    const invalidated = vi.fn();
+    const unwatch = watchWalletConnection(connection, invalidated);
+    const original = first.signTransaction.getMockImplementation()!;
+    first.signTransaction.mockImplementationOnce(async (input) => {
+      first.setAccounts([second.account, first.account]);
+      const output = await original(input);
+      first.setAccounts([first.account, second.account]);
+      return output;
+    });
+    await expect(
+      signFrozenTransaction(connection, unsignedWire(f.plan), f.plan, f.terms),
+    ).rejects.toThrow(/account changed/);
+    expect(first.signTransaction).toHaveBeenCalledOnce();
+    expect(invalidated).toHaveBeenCalledOnce();
+    unwatch();
+  });
   it("surfaces a declined transaction once and does not retry it after an account event", async () => {
     const f = fixture();
     const adapter = fakeWallet(f.owners[0]);

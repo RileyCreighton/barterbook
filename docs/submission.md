@@ -14,7 +14,7 @@ The current fields are project name, short description, full description (Markdo
 
 Generic devnet demonstrations are allowed by the platform guidance. The PRE bounty asks for a project using PreStocks and excludes other issuers' pre-IPO tokens; it does not explicitly confirm that generic mock-token fixtures alone qualify. Do not select that bounty as if eligibility were established. Real PRE testing still needs issuer eligibility and explicit asset authorization.
 
-The current draft measures **258 / 280** UTF-16 code units for the short description and **4,456 / 5,000** for the full description. The count includes spaces and paragraph breaks, matching the public form’s JavaScript length convention.
+The current draft measures **258 / 280** UTF-16 code units for the short description and **4,593 / 5,000** for the full description. The count includes spaces and paragraph breaks, matching the public form’s JavaScript length convention.
 
 ## Project name
 
@@ -54,7 +54,7 @@ Developer-run SDK tests now finalized a fee-aware two-for-one basket and three-o
 
 Actual devnet proofs: [basket](https://explorer.solana.com/tx/4TLQ55rcPS79kRAQTw52JH2SRTodvH5UzQgeczaRngpbHqu7YBqzfifr126N1BK8cD9GqDhAegdsKr3ofyKgPrP9?cluster=devnet) and [three-way exchange](https://explorer.solana.com/tx/3YfomqM1UoyqHkqobn2sUQYMoLh5CcUMsecsbF6o4Zcrrjvzbfsp4E1A6a54etPxcuSvT5z1LXmjmzHVy6coWsC2?cluster=devnet).
 
-Three new browser wallets received mock inventory; Alice and Carol received faucet-only setup SOL. Alice reports successful connection and authentication, but transaction partial signing remains unproven. The hosted app still has an empty registry and disabled settlement: Cloudflare account access currently blocks mint registration. Hosted financial CPU is unmeasured. Initial GitHub CI passed 143 tests; 35 focused script tests passed after helper changes, whose full-suite CI is pending. Hosted HTTP/authentication checks used an SDK identity. No paid plan was enabled. This is not an audited trading service.
+Three new browser wallets received mock inventory and faucet-only setup funds. Their authentication records were independently found in D1; the user reports successful Phantom logins and portfolios. Alice created the correct two-for-one offer, with acceptance/readiness pending. The hosted three-mint registry is live, but settlement stays disabled pending browser transaction proof and financial CPU checks. The owner reports 2 ms CPU for GET /holdings on Workers Free; that is not financial-path telemetry. Deployed commit b02e90b passed 158 CI tests. New wallet/session/mobile fixes passed local checks and await deployment and combined CI. Hosted HTTP checks used an SDK identity. No paid plan was enabled. This is not an audited trading service.
 
 Development used AI coding assistance. The source documentation attributes React, Vite, TypeScript, Hono, Cloudflare tooling, Solana SDKs and other installed dependencies. Research also acknowledges prior bilateral barter, auction and multi-user matching work. The project makes no claim to have invented barter or order cycles.
 <!-- full:end -->

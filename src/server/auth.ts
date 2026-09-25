@@ -116,6 +116,16 @@ export const requireAuth: MiddlewareHandler<AppContext> = async (c, next) => {
     throw new HTTPException(401, {
       message: "Connect your wallet and authenticate first",
     });
+  const expectedWallet = c.req.header("X-BarterBook-Expected-Wallet");
+  if (expectedWallet !== undefined && expectedWallet !== identity.wallet)
+    return c.json(
+      {
+        code: "WALLET_IDENTITY_MISMATCH",
+        error:
+          "The wallet session changed in another tab. Reconnect and review the original terms again. Existing signatures remain valid.",
+      },
+      409,
+    );
   c.set("wallet", identity.wallet);
   c.set("sessionHash", identity.tokenHash);
   await next();

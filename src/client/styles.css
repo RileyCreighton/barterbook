@@ -455,6 +455,17 @@ main {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 260px;
   gap: 30px;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+}
+.market-layout > section,
+.market-layout > aside {
+  min-width: 0;
+  max-width: 100%;
+}
+.market-layout .filter-bar > label {
+  min-width: 0;
 }
 .section-heading {
   display: flex;
@@ -1369,6 +1380,22 @@ footer b {
   .portfolio-layout,
   .room-layout {
     grid-template-columns: 1fr;
+  }
+  .market-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .market-layout .listing-table:has(tbody tr)::before {
+    content: "Scroll ↔ for full quantities and the Offer button";
+    display: block;
+    position: sticky;
+    left: 0;
+    width: 100%;
+    padding: 10px 12px;
+    border-bottom: 1px solid #dfe6db;
+    background: #f3f7ec;
+    color: #526451;
+    font-size: 11px;
+    white-space: normal;
   }
   .market-layout aside {
     display: grid;

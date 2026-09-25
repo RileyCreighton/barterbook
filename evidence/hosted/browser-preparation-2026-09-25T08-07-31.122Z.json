@@ -1,0 +1,38 @@
+{
+  "recordedAt": "2026-09-25T08:07:31.122Z",
+  "environment": "SOLANA_DEVNET_HOSTED_BROWSER_PREPARATION",
+  "site": "https://barterbook-devnet.rileycreighton.workers.dev",
+  "buildId": "b02e90b30d77d2c3bccf0bf313fc76a8a7babbb9",
+  "workerVersion": "69e2cdac-ab4d-423b-a424-837d799b1066",
+  "browserParticipants": [
+    "8B9FCGFGFjqqQhdkLSChG3Jxnjo4sLn3FdYjd18DeuTi",
+    "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+    "EqEnSeX2UXqF2stBPK1WGULz5Shs6CWBcU9JRUdHAz5J"
+  ],
+  "walletLogin": {
+    "ownerReports": "All three Phantom wallets connected and logged in, separate profiles",
+    "independentEvidence": "D1 read found a nonrevoked devnet authentication session for each of the three public addresses; no cookie/token hashes recorded"
+  },
+  "inventory": {
+    "ownerReports": "All three portfolios show 1000 TEST-A,1000 TEST-B,1000 TEST-C",
+    "chainFundingEvidence": "../devnet/20260925-sdk-proof-01/"
+  },
+  "cpuObservation": {
+    "source": "Owner reading Cloudflare invocation details in response to a request to inspect GET /api/holdings",
+    "cpuTimeMs": 2,
+    "rawTelemetryAvailable": false,
+    "scope": "One reported hosted inventory request only; no transaction preparation/signature/submission CPU measurement yet"
+  },
+  "browserBasket": {
+    "roomId": "4cff89cad977b4c3d0c50c8d8f6faeb89542ad9a73b49b13",
+    "stateAtRead": "NEGOTIATING",
+    "termsHash": "33f5c8e9c0a4a18e66e63d0c42b4e73f2e3395d4317091759531c74d6859db49",
+    "verifiedSavedTerms": "Alice 10 A +5 B for Bob20 C; Bobfee payer; netsBob9.9 A+4.95 B,Alice19.8 C",
+    "attemptAtRead": null
+  },
+  "limitations": [
+    "Owner operates the real browser wallets; no extension prompts were observed by the agent.",
+    "This verifies preparation/authentication only, not browser transaction signing or settlement.",
+    "CPU figure is owner-reported, not an independently collected telemetry archive."
+  ]
+}

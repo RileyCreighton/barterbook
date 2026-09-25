@@ -12,8 +12,27 @@ export type BrowserWallet = ReturnType<
 >[number];
 export type BrowserAccount = BrowserWallet["accounts"][number];
 export interface WalletConnection {
-  wallet: BrowserWallet;
-  account: BrowserAccount;
+  readonly wallet: BrowserWallet;
+  readonly account: BrowserAccount;
+}
+interface AccountSnapshot {
+  selected: string;
+  authorized: string;
+  invalidated: boolean;
+}
+// Keep consent identity separate from wallet-owned account objects, which an
+// adapter can replace or mutate while a prompt is open.
+const accountSnapshots = new WeakMap<WalletConnection, AccountSnapshot>();
+function accountIdentity(account: BrowserAccount): string {
+  return JSON.stringify({
+    address: account.address,
+    publicKey: b64(new Uint8Array(account.publicKey)),
+    chains: [...account.chains],
+    features: [...account.features],
+  });
+}
+function authorizedAccounts(wallet: BrowserWallet): string {
+  return JSON.stringify(wallet.accounts.map(accountIdentity));
 }
 
 // These are the narrow Wallet Standard capabilities this application uses. In
@@ -99,10 +118,20 @@ export async function connectWallet(
     wallet,
     "standard:connect",
   ).connect();
-  const account = result.accounts.find(validAccount);
+  const compatible = result.accounts.filter(validAccount);
+  if (compatible.length > 1)
+    throw new Error(
+      "The wallet returned multiple devnet accounts. Choose one account in your wallet and reconnect; BarterBook will not choose an account for you.",
+    );
+  const account = compatible[0];
   if (!account)
     throw new Error("The wallet did not provide a compatible devnet account.");
-  const connection = { wallet, account };
+  const connection = Object.freeze({ wallet, account });
+  accountSnapshots.set(connection, {
+    selected: accountIdentity(account),
+    authorized: authorizedAccounts(wallet),
+    invalidated: false,
+  });
   assertConnected(connection);
   return connection;
 }
@@ -110,28 +139,36 @@ export async function connectWallet(
 export async function disconnectWallet(
   connection: WalletConnection,
 ): Promise<void> {
+  const snapshot = accountSnapshots.get(connection);
+  if (snapshot) snapshot.invalidated = true;
   const feature = connection.wallet.features["standard:disconnect"] as
     { disconnect(): Promise<void> } | undefined;
   if (feature) await feature.disconnect();
 }
 
 export function connectionIsCurrent(connection: WalletConnection): boolean {
-  return (
-    isCompatible(connection.wallet) &&
-    validAccount(connection.account) &&
-    connection.wallet.accounts.some(
-      (account) =>
-        validAccount(account) &&
-        account.address === connection.account.address &&
-        equalBytes(
-          new Uint8Array(account.publicKey),
-          new Uint8Array(connection.account.publicKey),
-        ),
-    )
-  );
+  const snapshot = accountSnapshots.get(connection);
+  if (!snapshot || snapshot.invalidated) return false;
+  try {
+    const current =
+      isCompatible(connection.wallet) &&
+      validAccount(connection.account) &&
+      accountIdentity(connection.account) === snapshot.selected &&
+      authorizedAccounts(connection.wallet) === snapshot.authorized &&
+      connection.wallet.accounts.some(
+        (account) =>
+          validAccount(account) &&
+          accountIdentity(account) === snapshot.selected,
+      );
+    if (!current) snapshot.invalidated = true;
+    return current;
+  } catch {
+    snapshot.invalidated = true;
+    return false;
+  }
 }
 
-/** Account removal, disconnection or loss of devnet signing invalidates consent. */
+/** Any observed account-list, order, identity or permission change ends consent. */
 export function watchWalletConnection(
   connection: WalletConnection,
   invalidated: () => void,
@@ -216,6 +253,9 @@ export async function signFrozenTransaction(
   );
   if (!feature.supportedTransactionVersions.includes("legacy"))
     throw new Error("Wallet does not support the required legacy transaction.");
+  // Signature verification above is asynchronous: check the same authorized
+  // account snapshot again immediately before opening the wallet prompt.
+  assertConnected(connection);
   const outputs = await feature.signTransaction({
     account: connection.account,
     chain: "solana:devnet",

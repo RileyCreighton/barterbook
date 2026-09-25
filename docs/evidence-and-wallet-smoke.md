@@ -41,6 +41,14 @@ All three [mock mints](../evidence/devnet/20260925-sdk-proof-01/assets.json) pas
 
 Alice's connection and authentication success is user-reported only. Independent server-side inspection of that browser session was blocked by Cloudflare management error `7403` (“no accounts”). The live registry remains `[]` and settlement disabled: Cloudflare account access currently blocks registering the validated mints, and re-login was requested. Hosted financial CPU remains unmeasured. The focused script suite now passes **35 tests**, including **14 new helper regressions**; a new complete suite/CI run has not yet been recorded at this checkpoint. The initial 143-test CI remains historical. Browser partial signing, hosted settlement and recovery must still pass their own checklist below.
 
+### Hosted registry and browser preparation — September 25, after 07:56 UTC deployment
+
+Cloudflare account access is restored and correct-account D1 reads work. Deployed commit `b02e90b`, Worker version `69e2cdac-ab4d-423b-a424-837d799b1066`, now serves three validated mock mints, six demo participants and SDK execution evidence. [Sixteen new hosted HTTP checks passed](../evidence/hosted/http-smoke-1790323034655.json). [SDK board seeding through normal authenticated APIs](../evidence/devnet/20260925-sdk-proof-01/board-hosted-judge-01.json) created three open exact-lot listings and a separate basket room; it did not accept terms or settle automatically.
+
+[Browser preparation evidence](../evidence/hosted/browser-preparation-2026-09-25T08-07-31.122Z.json) records independently found authentication records for all three browser wallets, alongside the user's report of successful Phantom logins and portfolios with 1,000 of each test token. Alice created a browser offer for 10 TEST-A + 5 TEST-B against 20 TEST-C, with Bob as fee payer; its D1 terms were independently checked. Acceptance/readiness and transaction signing remain pending. Authentication is not a transaction-signing proof.
+
+The owner confirmed Workers Free, dashboard allowances of 100,000 requests and 200,000 events, and reports `GET /holdings` CPU of 2 ms. This is a dashboard report, not automated raw telemetry or financial-path CPU evidence; telemetry API access still returns 403. Settlement remains disabled. New wallet account-list handling, stale-cookie identity protection, mobile overflow and dated expiry fixes are locally verified but await deployment. The latest validation passed 177 tests and a separate corrected eight-test hosted-rehearsal suite, plus production build; the combined CI run is upcoming. Earlier blocked-account and empty-registry checkpoints above remain historical.
+
 ## Authorization and network gate
 
 - [ ] Test wallets are explicitly authorized, isolated demo wallets. Record public keys and authorization, never seed phrases or private keys.

@@ -1,0 +1,28 @@
+{
+  "recordedAt": "2026-09-25T08:08:58.771Z",
+  "scope": "Local verification before hosted browser rehearsal",
+  "priorPublishedCommit": "b02e90b30d77d2c3bccf0bf313fc76a8a7babbb9",
+  "initialFullRun": {
+    "total": 185,
+    "passed": 181,
+    "failed": 4,
+    "note": "Four new hosted-rehearsal tests exposed one final-poll completion bug while that script was under development. All177 tests outside the new8-test file passed."
+  },
+  "correctedFocusedRun": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0,
+    "success": true,
+    "note": "Rerun after checking FINALIZED once more after the final polling iteration."
+  },
+  "typecheck": true,
+  "productionBuild": true,
+  "newMeaningfulCoverage": [
+    "Wallet authorization changes invalidate consent even after restore",
+    "Stale displayed identity cannot use another tab cookie for private reads/mutations/logout",
+    "Hosted SDK rehearsal preserves original attempts across lost prepare/room-create/submit responses"
+  ],
+  "fullCiForUpcomingCommit": "Pending; do not label the initial full run a pass",
+  "browserTransactionSigning": false,
+  "hostedFinancialCpuMeasured": false
+}

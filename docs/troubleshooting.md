@@ -16,12 +16,30 @@
 | Worker error 1102 / CPU exhausted | Disable new settlement while profiling hosted full paths. Preserve pending journals; optimize repeated work without weakening verification. Do not silently move to a paid plan. |
 | Worker daily quota / D1 quota reached | Pause avoidable polling, keep unresolved attempts and wait for the provider reset or explicit plan approval. Database restoration is not a quota fix. |
 | Cloudflare authentication or D1 placeholder error | Sign in to the intended account, create the database, and generate `.wrangler/deploy.json` with its actual UUID. A local database is not a remote database. |
-| Cloudflare management read returns `7403` / “no accounts” | Recheck management-account authorization before retrying that read. This blocks independent D1 inspection; it does not by itself establish a hosted app or wallet-login failure. Preserve the existing deployed database and sessions. |
+| Cloudflare management read returns `7403` / “no accounts” | [Restore login in the correct Cloudflare browser/profile](#wrangler-login-opens-alices-zen-profile), then retry the read. This blocks independent D1 inspection; it does not by itself establish a hosted app or wallet-login failure. Preserve the existing deployed database and sessions. |
 | Migration or deployment fails | Inspect the failed step. Earlier successful migrations can remain applied. Prefer a compatible forward fix; never restore old D1 state over executable attempts. See [deployment recovery](deployment.md). |
 | GitHub Run workflow button missing | The manual workflow must exist on the repository's default branch. Check Actions permissions and environment settings. Do not enable automatic deployment as a workaround. |
 | Source or legal link broken | Run the legal packaging step after building, redeploy the reviewed bundle, and publish the matching source revision. Verify exact links logged out. |
 
 When reporting a problem, include build ID, environment, wallet/browser versions, error text and public attempt/transaction identifiers. Exclude keys, recovery phrases, cookies, provider URLs and unresolved signed transaction bytes.
+
+## Wrangler login opens Alice's Zen profile
+
+Choose the browser/profile already used for the Cloudflare account that owns the Worker. You do not need to change the default browser, wallet profiles, or Phantom's Devnet settings.
+
+1. In the terminal waiting for the earlier login, press **Ctrl+C** once.
+2. Run the following commands, then **leave this terminal open** for the local login callback:
+
+   ```sh
+   cd /home/riley/dev/barterbook
+   npx wrangler login --browser=false
+   ```
+
+3. Copy the **entire generated `https://dash.cloudflare.com` OAuth URL** from the terminal. Paste it into the address bar of your normal Cloudflare browser/profile, instead of Alice's Zen profile. Do not send that URL in chat.
+4. Sign into the Cloudflare account whose **Workers & Pages** page contains **barterbook-devnet**, then click **Allow** on the authorization page.
+5. Wait for the terminal to say **Successfully logged in**. Report only that success; do not share authorization codes, tokens or other secrets.
+
+The [`--browser=false` option](https://developers.cloudflare.com/workers/wrangler/commands/general/#login) prevents automatic browser opening while retaining the normal local callback flow. A wrong Cloudflare account/profile is separate from Phantom connectivity.
 
 ## Phantom warns that network balances or prices may be outdated
 

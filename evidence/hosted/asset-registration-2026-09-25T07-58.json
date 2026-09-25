@@ -1,0 +1,52 @@
+{
+  "recordedAt": "2026-09-25T07:59:22.505Z",
+  "environment": "HOSTED_CLOUDFLARE_DEVNET",
+  "site": "https://barterbook-devnet.rileycreighton.workers.dev",
+  "buildId": "b02e90b30d77d2c3bccf0bf313fc76a8a7babbb9",
+  "workerVersion": "69e2cdac-ab4d-423b-a424-837d799b1066",
+  "cluster": "devnet",
+  "registry": [
+    {
+      "mint": "kyEZzbcEZhJTmHesLTZFaKnmkisvLirFrgfKZrtJbQx",
+      "symbol": "TEST-A",
+      "tested": true,
+      "mock": true
+    },
+    {
+      "mint": "EZ2xuTV73HqM5AE8SrDjzQeHtae6cDV6TU6tzLBtEVxD",
+      "symbol": "TEST-B",
+      "tested": true,
+      "mock": true
+    },
+    {
+      "mint": "3y3QsQtR3pK9fe3ZxCcwTdc5AHN87panLaFzR3GfzZvz",
+      "symbol": "TEST-C",
+      "tested": true,
+      "mock": true
+    }
+  ],
+  "settlementEnabled": false,
+  "cloudflareAccessRestored": true,
+  "workersPlan": {
+    "value": "Free",
+    "source": "Owner reported checking Cloudflare dashboard in conversation",
+    "independentlyMeasured": false,
+    "reportedDailyRequestAllowance": 100000,
+    "reportedDailyObservabilityEvents": 200000
+  },
+  "browserAuthentication": {
+    "source": "Owner reports all three Phantom wallets connected/authenticated; read-only D1 inspection independently found Alice and Bob session records",
+    "transactionSigningProven": false
+  },
+  "hostedCpu": {
+    "measured": false,
+    "collectorHttpStatus": 403,
+    "next": "Dashboard invocation CPU or specifically scoped telemetry credential"
+  },
+  "databasePreserved": true,
+  "notes": [
+    "Only public metadata recorded; no cookies, authentication tokens, wallet keys or unresolved wire bytes.",
+    "Deployment registry matches separately validated Devnet fixture mints.",
+    "Public SDK proof panel is now hosted; those trades do not establish browser-wallet settlement."
+  ]
+}

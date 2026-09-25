@@ -153,6 +153,47 @@ This is labeled **SDK authentication for a developer demo**, not browser-wallet 
 
 The exact request bodies, expiries and `Idempotency-Key` values are saved before posting. Repeat the same batch command after a dropped response; it reuses those values and returns the same listings/room. It does not silently renew expired lots or change their prices. Once old listings expire or are intentionally retired, use a new explicit batch name for new reviewed terms. The script rejects an app registry that differs from this run's three separately validated mock mints.
 
+## 6. Rehearse the hosted financial API with SDK test wallets
+
+This separate script exercises the application's real authenticated financial routes using the existing disposable SDK keys. It never loads browser keys or operates on a browser participant's room. Run the board-seed command first against the intended hosted origin; the rehearsal requires that seed batch's existing immutable private intent and public room/listing manifest.
+
+For the existing run and hosted seed, preview without any HTTP mutations:
+
+```sh
+node --import tsx scripts/devnet-hosted-rehearsal.ts --run 20260925-sdk-proof-01 --batch hosted-financial-01 --seed-batch hosted-judge-01 --url https://barterbook-devnet.rileycreighton.workers.dev
+```
+
+After the hosted deployment has the matching three validated mock assets, its server RPC and settlement enabled for the authorized devnet rehearsal:
+
+```sh
+node --import tsx scripts/devnet-hosted-rehearsal.ts --run 20260925-sdk-proof-01 --batch hosted-financial-01 --seed-batch hosted-judge-01 --url https://barterbook-devnet.rileycreighton.workers.dev --execute
+```
+
+It completes the seed's two-for-one basket first, then opens the exact ring from the same three SDK-owned source listings. Each owner authenticates normally, accepts the exact terms, becomes ready, validates the complete transaction locally and contributes its SDK signature. The fee payer signs first. The script records the frozen message/lifetime, each signing observation, complete signed bytes and locally derived transaction ID, and a submission-started marker before calling the hosted submit endpoint. It verifies the finalized public API receipt against the original bytes and raw transaction metadata and saves `hosted-<batch>-basket-receipt.json` and `hosted-<batch>-ring-receipt.json` in this run's public evidence directory. These files are explicitly **hosted SDK proof, not browser-wallet proof**.
+
+After a timeout, continue only the same run, seed and rehearsal batch:
+
+```sh
+node --import tsx scripts/devnet-hosted-rehearsal.ts --run 20260925-sdk-proof-01 --batch hosted-financial-01 --seed-batch hosted-judge-01 --url https://barterbook-devnet.rileycreighton.workers.dev --execute --resume
+```
+
+The script adopts the original server attempt after a lost preparation response, reconciles an original submission before doing anything further, and never automatically changes its blockhash or renews terms. An uncertain ring-room creation is recovered through the authenticated room list, not blindly posted again. An unresolved, stopped or failed original attempt keeps its records and stops the rehearsal. It does not call the application's stop, renew or rebroadcast routes automatically.
+
+The `hosted-<batch>-requests/` records contain timestamp, method, path, HTTP status and client wall-clock latency only; they omit cookies, request bodies and provider secrets. **Latency is not Worker CPU time.** Correlate those request timestamps with Cloudflare's measured request CPU, especially:
+
+- `POST /api/auth/verify` and `GET /api/assets/fresh` for authentication and fresh mint validation.
+- `POST /api/listings`, `POST /api/offers` and `POST /api/matches/room` for inventory validation and exact-lot room construction.
+- `POST /api/rooms/:id/attempts` for fee/rent/inventory checks and frozen-message construction.
+- `POST /api/attempts/:id/signatures` for partial-signature verification and merging, including the final signer.
+- `POST /api/attempts/:id/submit` for all-signature verification, signed simulation and broadcast.
+- `POST /api/attempts/:id/reconcile` for finalized transaction metadata, exact receipt verification and durable recovery.
+
+The focused orchestration tests use real local SDK signatures and the shared verifier/receipt logic with an isolated mock HTTP service. They do not claim real hosted execution or CPU evidence:
+
+```sh
+npx vitest run tests/devnet-hosted-rehearsal.test.ts
+```
+
 ## Actual execution status, September 25, 2026
 
 The early public faucet request and the single authorized retry failed or remained uncertain. Their original wallet files, journals and zero-balance inspection records are preserved. Those records describe the earlier attempts; they are not the current execution status.

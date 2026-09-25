@@ -10,7 +10,7 @@ import type {
   Room,
   Terms,
 } from "../shared/types";
-import { api } from "./api";
+import { api, onWalletIdentityMismatch, setExpectedWallet } from "./api";
 import {
   availableWallets,
   connectWallet,
@@ -134,6 +134,7 @@ export function App() {
     lastReconcile = useRef(0),
     polling = useRef(false),
     sessionGeneration = useRef(0),
+    identityRef = useRef<string | null>(null),
     operationPending = useRef(false),
     pendingSignOut = useRef<Promise<void>>(Promise.resolve()),
     modalRef = useRef<HTMLElement>(null),
@@ -217,6 +218,12 @@ export function App() {
     return result.room;
   }
   useEffect(() => {
+    const unwatchIdentity = onWalletIdentityMismatch(() => {
+      clearPrivateState();
+      setError(
+        "The wallet session changed in another tab. Private data and this browser's review were cleared. Reconnect and review the original terms again. Existing signatures remain valid.",
+      );
+    });
     const changed = () => {
         setWhere(route());
         setError("");
@@ -240,7 +247,7 @@ export function App() {
     const generation = sessionGeneration.current;
     void api<{ wallet: string | null }>("/auth/me")
       .then((x) => {
-        if (generation === sessionGeneration.current) setIdentity(x.wallet);
+        if (generation === sessionGeneration.current) updateIdentity(x.wallet);
       })
       .catch(() => {});
     void api<DemoConfiguration>("/demo")
@@ -248,6 +255,7 @@ export function App() {
       .catch(() => {});
     return () => {
       unwatch();
+      unwatchIdentity();
       window.removeEventListener("hashchange", changed);
       window.removeEventListener("pointerdown", active);
       window.removeEventListener("keydown", active);
@@ -304,8 +312,9 @@ export function App() {
   useEffect(() => {
     if (!connection) return;
     return watchWalletConnection(connection, () => {
+      const previousIdentity = identityRef.current;
       clearPrivateState();
-      pendingSignOut.current = endServerSession().catch(() => {
+      pendingSignOut.current = endServerSession(previousIdentity).catch(() => {
         setError(
           "Private data was cleared, but the server session could not be closed. Reconnect to retry ending it.",
         );
@@ -348,9 +357,14 @@ export function App() {
       previousFocus?.focus();
     };
   }, [picker]);
+  function updateIdentity(wallet: string | null) {
+    identityRef.current = wallet;
+    setExpectedWallet(wallet);
+    setIdentity(wallet);
+  }
   function clearPrivateState() {
     sessionGeneration.current++;
-    setIdentity(null);
+    updateIdentity(null);
     setConnection(null);
     setRoom(null);
     setHoldings([]);
@@ -369,18 +383,21 @@ export function App() {
       /* In-memory consent remains usable when browser storage is disabled. */
     }
   }
-  async function endServerSession() {
+  async function endServerSession(wallet: string | null) {
+    // Only revoke the identity this screen knew, never a different tab's cookie.
+    if (!wallet) return;
     try {
-      await api("/auth/logout", {});
+      await api("/auth/logout", {}, undefined, { expectedWallet: wallet });
     } catch (cause) {
       if ((cause as { status?: number }).status !== 401) throw cause;
     }
   }
   async function login(wallet: BrowserWallet) {
+    const previousIdentity = identityRef.current;
     clearPrivateState();
     const generation = sessionGeneration.current;
     await pendingSignOut.current;
-    await endServerSession();
+    await endServerSession(previousIdentity);
     const next = await connectWallet(wallet);
     if (generation !== sessionGeneration.current)
       throw new Error("Wallet connection changed. Connect again.");
@@ -420,20 +437,22 @@ export function App() {
       !connectionIsCurrent(next) ||
       result.wallet !== next.account.address
     ) {
-      pendingSignOut.current = endServerSession();
-      await pendingSignOut.current;
+      const signOut = endServerSession(next.account.address);
+      pendingSignOut.current = signOut.catch(() => {});
+      await signOut;
       throw new Error(
         "Wallet changed before authentication finished. The session was ended.",
       );
     }
-    setIdentity(result.wallet);
+    updateIdentity(result.wallet);
     setPicker(false);
     setNotice("Wallet authenticated. Transfers require separate approvals.");
   }
   function requireWallet() {
     if (connection && !connectionIsCurrent(connection)) {
+      const previousIdentity = identityRef.current;
       clearPrivateState();
-      pendingSignOut.current = endServerSession().catch(() => {
+      pendingSignOut.current = endServerSession(previousIdentity).catch(() => {
         setError(
           "The wallet changed. Private data was cleared; reconnect to check the server session.",
         );
@@ -1070,10 +1089,19 @@ export function App() {
                                   </small>
                                 </td>
                                 <td>
-                                  {new Date(l.expiresAt).toLocaleTimeString(
-                                    [],
-                                    { hour: "2-digit", minute: "2-digit" },
-                                  )}
+                                  <time
+                                    dateTime={new Date(
+                                      l.expiresAt,
+                                    ).toISOString()}
+                                    title={new Date(l.expiresAt).toUTCString()}
+                                  >
+                                    {new Date(l.expiresAt).toLocaleString([], {
+                                      month: "short",
+                                      day: "numeric",
+                                      hour: "2-digit",
+                                      minute: "2-digit",
+                                    })}
+                                  </time>
                                   <small>
                                     {l.locked ? "Active attempt" : "Open"}
                                   </small>
@@ -1582,10 +1610,11 @@ export function App() {
                 onClick={() =>
                   void run(async () => {
                     const previous = connection;
+                    const previousIdentity = identityRef.current;
                     clearPrivateState();
                     setPicker(false);
                     const results = await Promise.allSettled([
-                      endServerSession(),
+                      endServerSession(previousIdentity),
                       previous ? disconnectWallet(previous) : Promise.resolve(),
                     ]);
                     if (results.some((result) => result.status === "rejected"))
