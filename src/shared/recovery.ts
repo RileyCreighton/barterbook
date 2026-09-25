@@ -12,6 +12,15 @@ export interface ChainObservation {
   transactionFound: boolean;
   transactionErr: unknown | null;
   transactionFinalized: boolean;
+  // Diagnostics never participate in an expiry/failure decision.
+  failureStage?: string;
+  failureKind?:
+    | "provider_http"
+    | "provider_rejected"
+    | "transport"
+    | "request_budget"
+    | "validation_or_internal";
+  failureStatus?: number;
 }
 export interface RecoveryDecision {
   state: AttemptState;

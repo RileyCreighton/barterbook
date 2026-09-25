@@ -69,21 +69,26 @@ export async function observe(
     // Same provider host is not an independent absence check, even with another key.
     const endpoint = new URL(entry.url!).host;
     const rpc = new Rpc(entry.url!, env.DB);
+    let stage = "getHealth";
+    const call = <T = any>(method: string, params: unknown[] = []) => {
+      stage = method;
+      return rpc.call<T>(method, params);
+    };
     try {
-      const health = await rpc.call("getHealth");
+      const health = await call("getHealth");
       if (health !== "ok") throw new Error("RPC unhealthy");
       if (
-        (await rpc.call("getGenesisHash")) !==
+        (await call("getGenesisHash")) !==
         "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG"
       )
         throw new Error("Recovery endpoint is not devnet");
-      const firstAvailable = integer(await rpc.call("getFirstAvailableBlock"));
+      const firstAvailable = integer(await call("getFirstAvailableBlock"));
       const coversLifetime =
         BigInt(firstAvailable) <= BigInt(attempt.plan.contextSlot);
       const height = integer(
-        await rpc.call("getBlockHeight", [{ commitment: "finalized" }]),
+        await call("getBlockHeight", [{ commitment: "finalized" }]),
       );
-      const valid = await rpc.call("isBlockhashValid", [
+      const valid = await call("isBlockhashValid", [
         attempt.plan.blockhash,
         { commitment: "finalized" },
       ]);
@@ -91,7 +96,7 @@ export async function observe(
         transaction: TransactionEvidence | null = null,
         transactionFinalized = false;
       if (attempt.txid) {
-        const s = await rpc.call("getSignatureStatuses", [
+        const s = await call("getSignatureStatuses", [
           [attempt.txid],
           { searchTransactionHistory: true },
         ]);
@@ -103,20 +108,17 @@ export async function observe(
           ["confirmed", "finalized"].includes(status.confirmationStatus)
         )
           observedSuccess = true;
-        transaction = await rpc.call<TransactionEvidence | null>(
-          "getTransaction",
-          [
-            attempt.txid,
-            {
-              encoding: "base64",
-              commitment: "finalized",
-              maxSupportedTransactionVersion: 0,
-            },
-          ],
-        );
+        transaction = await call<TransactionEvidence | null>("getTransaction", [
+          attempt.txid,
+          {
+            encoding: "base64",
+            commitment: "finalized",
+            maxSupportedTransactionVersion: 0,
+          },
+        ]);
         transactionFinalized = !!transaction;
         if (!transaction)
-          transaction = await rpc.call<TransactionEvidence | null>(
+          transaction = await call<TransactionEvidence | null>(
             "getTransaction",
             [
               attempt.txid,
@@ -161,7 +163,21 @@ export async function observe(
         transactionErr: transaction?.meta?.err ?? null,
         transactionFinalized,
       });
-    } catch {
+    } catch (error) {
+      // Keep only our own error categories/status, never provider bodies, URLs,
+      // credentials or D1 exception text. Unavailability still holds all locks.
+      const message = error instanceof Error ? error.message : "";
+      const http = /^RPC \w+ unavailable \((\d{3})\)$/.exec(message);
+      const failureKind: ChainObservation["failureKind"] = http
+        ? "provider_http"
+        : /^RPC \w+ rejected \(-?\d+\);/.test(message)
+          ? "provider_rejected"
+          : /^RPC \w+ transport unavailable;/.test(message)
+            ? "transport"
+            : message ===
+                "RPC request budget is busy; retry original status shortly"
+              ? "request_budget"
+              : "validation_or_internal";
       observations.push({
         endpoint,
         healthy: false,
@@ -172,6 +188,9 @@ export async function observe(
         transactionFound: false,
         transactionErr: null,
         transactionFinalized: false,
+        failureStage: stage,
+        failureKind,
+        ...(http ? { failureStatus: Number(http[1]) } : {}),
       });
     }
   }
@@ -222,6 +241,7 @@ export async function reconcileAttempt(
               observation.transactionErr === null)),
       ),
     lastCheckedAt: Date.now(),
+    lastRecoveryObservations: observations,
     error: decision.reason,
   };
   if (["CONFIRMED", "FINALIZED"].includes(next.state)) {

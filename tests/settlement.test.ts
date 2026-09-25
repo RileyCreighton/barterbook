@@ -663,6 +663,41 @@ describe("recovery proof integrity", () => {
     ).toHaveLength(0);
   });
 
+  it("durably records sanitized recovery diagnostics without releasing an uncertain attempt", async () => {
+    const t = await setup(),
+      attempt = await t.fullySigned();
+    t.state.height = 600;
+    t.state.blockhashValid = false;
+    const original = t.fetchMock.getMockImplementation()!;
+    t.fetchMock.mockImplementation(async (url, init) => {
+      const { method } = JSON.parse(String(init?.body));
+      if (method === "getHealth" && String(url).includes("rpc-fallback.test"))
+        return new Response("sensitive-provider-body", { status: 403 });
+      return original(url, init);
+    });
+    const current = await reconcileAttempt(t.env, attempt);
+    expect(current).toMatchObject({
+      state: "STATUS_UNKNOWN",
+      safeToRetry: false,
+    });
+    const stored = (await getAttempt(t.db, attempt.id))!;
+    expect(stored.lastRecoveryObservations?.[1]).toMatchObject({
+      endpoint: "rpc-fallback.test",
+      healthy: false,
+      historyTrusted: false,
+      failureStage: "getHealth",
+      failureKind: "provider_http",
+      failureStatus: 403,
+    });
+    expect(JSON.stringify(stored.lastRecoveryObservations)).not.toContain(
+      "sensitive-provider-body",
+    );
+    expect(stored.messageBase64).toBe(attempt.messageBase64);
+    expect(
+      (await t.db.prepare("SELECT lock_key FROM active_locks").all()).results,
+    ).toHaveLength(2);
+  });
+
   it("requires matching finalized failure metadata rather than a finalized status plus confirmed metadata", async () => {
     const t = await setup(),
       attempt = await t.fullySigned();

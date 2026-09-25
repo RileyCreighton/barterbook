@@ -45,17 +45,11 @@ export class Rpc {
         now = Date.now();
       const spacing = method === "sendTransaction" ? 1100 : 125,
         provider = host + (method === "sendTransaction" ? ":send" : ":read");
-      await this.db
-        .prepare(
-          "INSERT OR IGNORE INTO rpc_slots(provider,next_at) VALUES(?,?)",
-        )
-        .bind(provider, now)
-        .run();
       const slot = await this.db
         .prepare(
-          "UPDATE rpc_slots SET next_at=MAX(next_at,?)+? WHERE provider=? AND next_at<=? RETURNING next_at",
+          "INSERT INTO rpc_slots(provider,next_at) VALUES(?,?) ON CONFLICT(provider) DO UPDATE SET next_at=MAX(rpc_slots.next_at,?)+? WHERE rpc_slots.next_at<=? RETURNING next_at",
         )
-        .bind(now, spacing, provider, now + 2000)
+        .bind(provider, now + spacing, now, spacing, now + 2000)
         .first<{ next_at: number }>();
       if (!slot)
         throw new Error(

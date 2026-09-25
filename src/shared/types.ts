@@ -118,6 +118,7 @@ export interface Attempt {
   receipt: Receipt | null;
   error: string | null;
   successObserved?: boolean;
+  lastRecoveryObservations?: import("./recovery").ChainObservation[];
   publicEvidence?: {
     observedAt: number;
     buildId: string | null;

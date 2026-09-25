@@ -85,6 +85,8 @@ async function harness() {
     prepareOnce: false,
     extraInstruction: false,
     holdUnknown: false,
+    signatureOnce: false,
+    resumeState: null as Attempt["state"] | null,
   };
   const context: HostedContext = {
     run,
@@ -349,6 +351,10 @@ async function harness() {
             attempt.fullWireBase64 = b64(merged);
             attempt.state = "FULLY_SIGNED";
           }
+          if (failure.signatureOnce) {
+            failure.signatureOnce = false;
+            throw new Error("Lost signature response after commit");
+          }
           return response({ attempt });
         }
         if (attemptMatch[2] === "submit") {
@@ -373,7 +379,10 @@ async function harness() {
           }
           return response({ attempt });
         }
-        if (attempt.submissionStartedAt) {
+        if (failure.resumeState) {
+          attempt.state = failure.resumeState;
+          attempt.safeToRetry = attempt.state === "EXPIRED_UNLANDED";
+        } else if (attempt.submissionStartedAt) {
           if (failure.holdUnknown) attempt.state = "STATUS_UNKNOWN";
           else finalize(attempt);
         }
@@ -510,7 +519,64 @@ describe("hosted SDK rehearsal safety", () => {
     expect(
       calls.filter((call) => call.path === "/rooms/room-basket/attempts"),
     ).toHaveLength(1);
+    expect(
+      calls.findIndex(
+        (call) => call.path === `/attempts/${original.id}/reconcile`,
+      ),
+    ).toBeLessThan(
+      calls.findIndex(
+        (call) => call.path === `/attempts/${original.id}/signatures`,
+      ),
+    );
   });
+  it.each(["EXPIRED_UNLANDED", "STATUS_UNKNOWN"] as const)(
+    "resumes a cached SIGNING attempt by reconciling %s before producing a missing owner signature",
+    async (state) => {
+      const { context, calls, failure, rooms } = await harness();
+      failure.signatureOnce = true;
+      await expect(runHostedRehearsal(context)).rejects.toThrow(
+        /Lost signature response/,
+      );
+      const original = rooms.get("room-basket")!.attempt!,
+        frozenPath = join(context.root, "basket", "attempt.json"),
+        frozenBytes = readFileSync(frozenPath, "utf8"),
+        missingOwner = original.plan.terms.owners.find(
+          (owner) => !original.signatures[owner],
+        )!;
+      expect(original.state).toBe("SIGNING");
+      expect(Object.keys(original.signatures)).toEqual([
+        original.plan.terms.feePayer,
+      ]);
+      expect(original.txid).toBeTruthy();
+      const resumeStart = calls.length;
+      failure.resumeState = state;
+      context.run.resume = true;
+      await expect(runHostedRehearsal(context)).rejects.toThrow(
+        state === "EXPIRED_UNLANDED"
+          ? /stopped or failed/
+          : /still STATUS_UNKNOWN/,
+      );
+      expect(calls[resumeStart + 1].path).toBe(
+        `/attempts/${original.id}/reconcile`,
+      );
+      expect(
+        calls.filter((call) => call.path.endsWith("/signatures")),
+      ).toHaveLength(1);
+      expect(Object.keys(original.signatures)).toEqual([
+        original.plan.terms.feePayer,
+      ]);
+      expect(
+        existsSync(
+          join(context.root, "basket", `signature-${missingOwner}.json`),
+        ),
+      ).toBe(false);
+      expect(readFileSync(frozenPath, "utf8")).toBe(frozenBytes);
+      expect(
+        calls.filter((call) => call.path.endsWith("/attempts")),
+      ).toHaveLength(1);
+      expect(calls.some((call) => call.path.endsWith("/submit"))).toBe(false);
+    },
+  );
   it("lost ring creation response finds that exact room and never creates a duplicate", async () => {
     const { context, calls, failure } = await harness();
     failure.ringCreateOnce = true;

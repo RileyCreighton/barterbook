@@ -527,6 +527,17 @@ export async function rehearseRoom(
   if (attempt.roomId !== room.id)
     throw new Error("Hosted attempt belongs to another room");
   const frozen = await freezeAttempt(context, directory, attempt, room.terms);
+  // A cached SIGNING state does not prove this original lifetime is still open.
+  // Resume must reconcile before producing even one previously missing signature.
+  if (context.run.resume) {
+    attempt = (
+      await api(context)<{ attempt: Attempt }>(
+        `/attempts/${frozen.id}/reconcile`,
+        {},
+      )
+    ).attempt;
+    checkFrozen(attempt, frozen);
+  }
   if (attempt.state === "FINALIZED") {
     await archiveFinalized(context, directory, attempt, frozen);
     return attempt;
