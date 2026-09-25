@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-09-25T17:58:10.530Z",
+  "scope": "New unfunded random dummy addresses, zero-value unsigned transfer, public Devnet blockhash. No user data used or transmitted; no signing or broadcast.",
+  "fresh": [
+    {
+      "type": "compiledMessage",
+      "status": 200,
+      "alertKeys": [
+        "unknown-site",
+        "simulation-error"
+      ],
+      "networkMismatch": false,
+      "simulationFailed": true
+    },
+    {
+      "type": "wireTransaction",
+      "status": 200,
+      "alertKeys": [
+        "unknown-site",
+        "simulation-error"
+      ],
+      "networkMismatch": false,
+      "simulationFailed": true
+    }
+  ],
+  "expired": {
+    "devnetBlockhashValid": false,
+    "status": 200,
+    "alertKeys": [
+      "unknown-site",
+      "simulation-error"
+    ],
+    "networkMismatch": false
+  },
+  "limitations": "Dummy accounts are unfunded and simulations failed. Neither payload mode nor expiry alone reproduced the owner’s network warning. No user transaction was sent to the service. This does not establish real extension compatibility or the cause of the reported warning."
+}

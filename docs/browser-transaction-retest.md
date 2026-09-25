@@ -1,16 +1,18 @@
 # Browser transaction retest after the Solflare repair
 
-The repair is live at [BarterBook Devnet](https://barterbook-devnet.rileycreighton.workers.dev), build `b45551b`. [Deployment verification](../evidence/hosted/solflare-signing-deployment-b45551b.json) confirms the served files match the tested build. [CI passed all 262 tests](https://github.com/RileyCreighton/barterbook/actions/runs/36166658227). These checks do not replace the owner-controlled Solflare test below.
+The diagnostic update is live at [BarterBook Devnet](https://barterbook-devnet.rileycreighton.workers.dev), build `a91581c`. [Deployment verification](../evidence/hosted/signing-check-deployment-a91581c.json) confirms the served files match the tested build; [all 272 local tests passed](../evidence/local/signing-check-tests.json). [CI also passed all 272 tests](https://github.com/RileyCreighton/barterbook/actions/runs/36169861192). Actual Solflare signing still needs the owner-controlled rehearsal below.
 
-## Current next step: diagnose version 7 before another signature
+## Version 7 diagnosis and next retry
 
 The owner reports the altered-transaction error in a refreshed version 7, followed on a later retry by Solflare's Devnet/Mainnet warning. Both configured RPCs independently confirmed the exact frozen blockhash originated on **Devnet**; it was expired at the later check. This does not establish why Solflare described it as Mainnet, and does not reconcile its onchain outcome.
 
-After the diagnostic update is deployed, keep Solflare on **Devnet**, close the old approval popup, and hard-refresh Bob's app tab. Open the existing Alice/Bob room and click **Check transaction without signing**, then **Copy check report**. Send the report back for diagnosis. This check works on the existing expired attempt, does not open a wallet, and does not authorize a replacement. There is no need to rebuild or renew to obtain this report.
+The diagnostic update is deployed. Keep Solflare on **Devnet**, close the old approval popup, and hard-refresh Bob's app tab. Open the existing Alice/Bob room and click **Check transaction without signing**, then **Copy check report**. Send the report back for diagnosis. This check works on the existing expired attempt, does not open a wallet, and does not authorize a replacement. There is no need to rebuild or renew to obtain this report.
+
+**Report received:** Bob’s actual browser returned `verified: true`, identical saved/reconstructed message hashes, the expected Solflare transaction-message signing path, and a matching connected account. The live status check confirmed Devnet and an expired signing window. Proceed with Test 1 below only after the original attempt safely reconciles. Keep both profiles open and unlocked before preparing the next transaction. If signing fails, retain the exact new error prefix and stop; do not repeat approval against the expired attempt.
 
 The update checks the configured provider's Devnet genesis and the attempt's remaining blockhash lifetime before opening a signing prompt. It also distinguishes verification before the wallet, verification after approval, and server upload failures. Expiry can still occur while a wallet prompt is open; the server continues to enforce the lifetime at upload and submission.
 
-The two-person and three-person sequences below are the subsequent rehearsal steps once this diagnostic is resolved. A replacement still requires the original attempt's normal safe reconciliation and fresh consent.
+The two-person sequence below is the next diagnostic rehearsal; complete it before the three-person sequence. A replacement still requires the original attempt's normal safe reconciliation and fresh consent.
 
 ## Prepare the existing wallet windows
 

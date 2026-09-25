@@ -1,0 +1,12 @@
+{
+  "runId": 36169861192,
+  "commit": "a91581c622445627293782e74efec7880488dbd8",
+  "url": "https://github.com/RileyCreighton/barterbook/actions/runs/36169861192",
+  "success": true,
+  "tests": 272,
+  "passed": 272,
+  "failed": 0,
+  "pending": 0,
+  "files": 23,
+  "scope": "Automated CI; not an actual Solflare signing proof."
+}

@@ -95,5 +95,36 @@
     "Devnet origin and current expiry do not establish why Solflare reported Mainnet.",
     "This read-only investigation does not establish complete transaction history or authorize a replacement."
   ],
-  "nextStep": "Owner copies the read-only transaction report from Bob’s existing room after deployment."
+  "nextStep": "Owner retries both signatures on a freshly reviewed room revision only after original attempt safely reconciles; capture exact staged error if any.",
+  "ownerReportedCheck": {
+    "source": "Owner pasted Bob’s browser check into the task on September 25",
+    "diagnosticVersion": "2026-09-25.2",
+    "attemptId": "0ea1ed29-31e1-4ff1-9285-825bca6b4c95",
+    "termsVersion": 7,
+    "verified": true,
+    "messageMatches": true,
+    "termsMatch": true,
+    "frozenMessageHash": "51e96b9b2fd116e0c036df85a7fb1e2bf0d36891037e16ab4feb49797b1c95f5",
+    "reconstructedMessageHash": "51e96b9b2fd116e0c036df85a7fb1e2bf0d36891037e16ab4feb49797b1c95f5",
+    "storedSignatureCount": 0,
+    "walletName": "Solflare",
+    "signingPath": "solflare-transaction-message",
+    "connectionCurrent": true,
+    "solflareAvailable": true,
+    "solflareConnected": true,
+    "solflareAccountMatches": true,
+    "language": "en-US",
+    "locale": "en-US",
+    "browser": "Firefox/155.0 on Linux",
+    "networkStatus": {
+      "buildId": "a91581c622445627293782e74efec7880488dbd8",
+      "checkedAt": 1790358874039,
+      "network": "devnet",
+      "currentBlockHeight": "491358023",
+      "lastValidBlockHeight": "491349979",
+      "blockhashValid": false,
+      "expired": true,
+      "signingAllowed": false
+    }
+  }
 }

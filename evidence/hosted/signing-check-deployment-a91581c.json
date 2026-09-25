@@ -1,0 +1,49 @@
+{
+  "verifiedAt": "2026-09-25T17:54:01.713Z",
+  "buildId": "a91581c622445627293782e74efec7880488dbd8",
+  "workerVersion": "75041df9-ac2f-48b2-ad30-eea7ed58f681",
+  "previousWorkerVersion": "dd5624c1-15b3-4115-a30b-06cd53c31aba",
+  "databaseBookmark": "0000001f-00000000-000050f1-8f52b12bafdebe49a3a6bf379a22c0cb",
+  "health": {
+    "name": "BarterBook",
+    "cluster": "devnet",
+    "settlementEnabled": true,
+    "rpcConfigured": true
+  },
+  "assets": [
+    {
+      "path": "index.html",
+      "sha256": "f37175f29170b7954ed3f251ce7dbe383626cdd22626c40fc1e8caefb68b2fc3",
+      "matched": true
+    },
+    {
+      "path": "assets/App-BTEewkbv.js",
+      "sha256": "4e0503f61c2a4b0e25b77bc767eb1ab0e2f3f5bf1bf2e35b52ef591c64f7974e",
+      "matched": true
+    },
+    {
+      "path": "assets/index-B8pXj5kH.css",
+      "sha256": "2a2b323d32977f23197e36ec0056e0c8441ba1123efe283eee134a609c366d66",
+      "matched": true
+    },
+    {
+      "path": "assets/index-BMHQdcND.js",
+      "sha256": "e3ed7a6aff1cf95c7c1bc9d8a6a9e80def6572ea09aa13260415c5387467b9a0",
+      "matched": true
+    }
+  ],
+  "signingStatusUnauthenticatedStatus": 401,
+  "history": [
+    {
+      "txid": "3wfDTWASADuBTxAfgziKaYyQRJFbPHzMwxk1STQD4qLSKtnEr3rLXyHmzW9YfiKRg4movuuBn7xT3HptJ74QPFUn",
+      "status": "FINALIZED",
+      "verified": true
+    },
+    {
+      "txid": "5CQDkJnbjsEG8JBmvEQFGmzUeT573CywExFx2ajkR884CJrkruXcSwdvA2ZWsY8TJK7B8XWDk21Q6v2CWmPZXqwV",
+      "status": "FINALIZED",
+      "verified": true
+    }
+  ],
+  "scope": "Hosted build/configuration/asset verification. Actual Solflare signing remains unverified."
+}
