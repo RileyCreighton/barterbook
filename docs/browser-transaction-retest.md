@@ -1,6 +1,6 @@
-# Browser transaction retest after the Solflare repair
+# Browser transaction retest with longer-lived signing
 
-The diagnostic update is live at [BarterBook Devnet](https://barterbook-devnet.rileycreighton.workers.dev), build `a91581c`. [Deployment verification](../evidence/hosted/signing-check-deployment-a91581c.json) confirms the served files match the tested build; [all 272 local tests passed](../evidence/local/signing-check-tests.json). [CI also passed all 272 tests](https://github.com/RileyCreighton/barterbook/actions/runs/36169861192). Actual Solflare signing still needs the owner-controlled rehearsal below.
+The longer-lived signing update is live at [BarterBook Devnet](https://barterbook-devnet.rileycreighton.workers.dev), build `c9e9ee0`. [Deployment verification](../evidence/hosted/durable-signing-deployment-c9e9ee0.json) confirms the served files match the tested build; [all 292 local tests passed](../evidence/local/durable-signing-tests.json). [CI also passed all 292 tests](../evidence/local/ci-36174285244.json). Actual Solflare setup and finalized two-/three-person signing still need the owner-controlled rehearsal below.
 
 ## Current next step: longer-lived signing
 
