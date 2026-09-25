@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import {
   Keypair,
   SystemProgram,
@@ -13,6 +13,7 @@ import {
 } from "@solana/spl-token";
 import {
   buildTransaction,
+  buildTransactionBytes,
   mergeSignature,
   verifyTransaction,
   verifyWireSignatures,
@@ -21,6 +22,7 @@ import {
 } from "../src/shared/transactions";
 import { equalBytes } from "../src/shared/crypto";
 import { fixture } from "./fixtures";
+import type { FrozenPlan } from "../src/shared/types";
 const wire = (tx: Transaction) =>
   tx.serialize({ requireAllSignatures: false, verifySignatures: false });
 describe("immutable signing spike (SDK only)", () => {
@@ -120,5 +122,94 @@ describe("immutable signing spike (SDK only)", () => {
     expect(() =>
       verifyTransaction(bytes, f.plan, { ...f.terms, version: 2 }),
     ).toThrow(/accepted/);
+  });
+});
+
+describe("per-call transaction compilation reuse", () => {
+  it("builds matching wire/message bytes and strictly verifies with one SDK compilation per call", () => {
+    const f = fixture(3);
+    const compile = vi.spyOn(Transaction.prototype, "compileMessage");
+    try {
+      const built = buildTransactionBytes(f.plan);
+      expect(compile).toHaveBeenCalledTimes(1);
+      expect(built.message).toEqual(wireParts(built.wire).message);
+      compile.mockClear();
+      expect(verifyTransaction(built.wire, f.plan).message).toEqual(
+        built.message,
+      );
+      expect(compile).toHaveBeenCalledTimes(1);
+    } finally {
+      compile.mockRestore();
+    }
+  });
+  it("revalidates every reused mutable plan after fee, asset, receipt or lifetime changes", () => {
+    const f = fixture(3);
+    const original = structuredClone(f.plan),
+      originalWire = buildTransactionBytes(f.plan).wire;
+    const mutations: Array<(plan: FrozenPlan) => void> = [
+      (plan) => {
+        plan.networkFeeLamports = "0";
+      },
+      (plan) => {
+        plan.accountRentLamports = "0";
+      },
+      (plan) => {
+        plan.assets[0].tested = false;
+      },
+      (plan) => {
+        plan.assets[0].hasTransferFee = false;
+      },
+      (plan) => {
+        plan.terms.minima[0].minNetRaw = "18446744073709551615";
+      },
+      (plan) => {
+        plan.blockhash = Keypair.generate().publicKey.toBase58();
+      },
+      (plan) => {
+        plan.lastValidBlockHeight = "-1";
+      },
+      (plan) => {
+        plan.createAtas.pop();
+      },
+    ];
+    for (const mutate of mutations) {
+      Object.assign(f.plan, structuredClone(original));
+      expect(() => verifyTransaction(originalWire, f.plan)).not.toThrow();
+      mutate(f.plan);
+      expect(() => verifyTransaction(originalWire, f.plan)).toThrow();
+    }
+  });
+  it("caller mutations of returned bytes and SDK transactions cannot poison later builds", () => {
+    const f = fixture();
+    const first = buildTransactionBytes(f.plan),
+      expectedWire = new Uint8Array(first.wire),
+      expectedMessage = new Uint8Array(first.message);
+    first.wire.fill(7);
+    expect(first.message).toEqual(expectedMessage);
+    first.message.fill(9);
+    const transaction = buildTransaction(f.plan);
+    transaction.instructions[0].data.fill(0);
+    transaction.instructions.at(-1)!.programId = SystemProgram.programId;
+    expect(buildTransactionBytes(f.plan)).toEqual({
+      wire: expectedWire,
+      message: expectedMessage,
+    });
+    expect(() => verifyTransaction(expectedWire, f.plan)).not.toThrow();
+  });
+  it("combined signature verification returns independent strictly bound parts", async () => {
+    const f = fixture(3),
+      tx = buildTransaction(f.plan);
+    tx.partialSign(...f.owners);
+    const signed = tx.serialize();
+    const parts = await verifyWireSignatures(signed, f.plan, true, f.terms);
+    expect(parts).toEqual(wireParts(signed));
+    parts.message.fill(1);
+    parts.signatures[0].fill(2);
+    expect(await verifyWireSignatures(signed, f.plan, true, f.terms)).toEqual(
+      wireParts(signed),
+    );
+    await expect(
+      verifyWireSignatures(signed, f.plan, true, { ...f.terms, version: 2 }),
+    ).rejects.toThrow(/accepted terms/);
   });
 });

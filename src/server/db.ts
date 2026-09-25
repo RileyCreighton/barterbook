@@ -76,6 +76,21 @@ export async function getAttempt(
     .first<{ payload_json: string }>();
   return row ? (JSON.parse(row.payload_json) as Attempt) : null;
 }
+export async function getMemberAttempt(
+  db: D1Database,
+  id: string,
+  wallet: string,
+): Promise<Attempt | null> {
+  // Authorize in SQL before transferring any signed bytes to the Worker. This
+  // avoids loading the same attempt again through a full room/member snapshot.
+  const row = await db
+    .prepare(
+      "SELECT a.payload_json FROM attempts a JOIN room_members m ON m.room_id=a.room_id AND m.wallet=? WHERE a.id=?",
+    )
+    .bind(wallet, id)
+    .first<{ payload_json: string }>();
+  return row ? (JSON.parse(row.payload_json) as Attempt) : null;
+}
 export async function getRoom(
   db: D1Database,
   id: string,

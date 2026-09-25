@@ -3,6 +3,7 @@ import {
   acquireAttemptLocks,
   createRoom,
   getAttempt,
+  getMemberAttempt,
   getRoom,
   releaseAttemptLocks,
   requireRoomMember,
@@ -81,6 +82,24 @@ function attempt(room: Room): Attempt {
   };
 }
 describe("durable room and attempt constraints", () => {
+  it("loads a signed attempt only for its own room's participant", async () => {
+    const database = db();
+    const room = await ready(
+      database,
+      await createRoom(database, { terms: terms(), termsHash: "a" }),
+    );
+    const a = attempt(room);
+    await acquireAttemptLocks(database, room, a);
+    await createRoom(database, {
+      terms: terms(["Carol", "Dave"]),
+      termsHash: "b",
+    });
+    expect(await getMemberAttempt(database, a.id, "Alice")).toEqual(a);
+    expect(await getMemberAttempt(database, a.id, "Bob")).toEqual(a);
+    expect(await getMemberAttempt(database, a.id, "Carol")).toBeNull();
+    expect(await getMemberAttempt(database, a.id, "stranger")).toBeNull();
+    expect(await getMemberAttempt(database, "missing", "Alice")).toBeNull();
+  });
   it("atomically acquires every owner lock or none when rooms compete", async () => {
     const database = db();
     const a = await ready(

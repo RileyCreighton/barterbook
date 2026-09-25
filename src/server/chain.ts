@@ -19,7 +19,7 @@ import { raw } from "../shared/amounts";
 import {
   ata,
   ataAccountSize,
-  buildTransaction,
+  buildTransactionBytes,
   maximumAtaRentLamports,
   validateTerms,
 } from "../shared/transactions";
@@ -417,14 +417,9 @@ export async function preparePlan(env: Env, terms: Terms): Promise<FrozenPlan> {
     networkFeeLamports: (terms.owners.length * 5000).toString(),
     accountRentLamports: rent.toString(),
   };
-  const candidate = buildTransaction(plan);
+  const candidate = buildTransactionBytes(plan);
   const simulation = await rpc.call("simulateTransaction", [
-    b64(
-      candidate.serialize({
-        verifySignatures: false,
-        requireAllSignatures: false,
-      }),
-    ),
+    b64(candidate.wire),
     {
       encoding: "base64",
       sigVerify: false,
@@ -451,13 +446,13 @@ export async function preparePlan(env: Env, terms: Terms): Promise<FrozenPlan> {
   plan.lastValidBlockHeight = integer(fresh.value.lastValidBlockHeight);
   plan.contextSlot = integer(fresh.context.slot);
   const fee = await rpc.call("getFeeForMessage", [
-    b64(buildTransaction(plan).serializeMessage()),
+    b64(buildTransactionBytes(plan).message),
     { commitment: "confirmed" },
   ]);
   if (fee.value === null)
     throw new Error("Cannot price network fee for this message");
   plan.networkFeeLamports = integer(fee.value);
-  buildTransaction(plan);
+  buildTransactionBytes(plan);
   const balance = await rpc.call("getBalance", [
     terms.feePayer,
     { commitment: "confirmed", minContextSlot: Number(plan.contextSlot) },

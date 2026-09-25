@@ -203,7 +203,10 @@ export function validateTerms(terms: Terms, assets: Asset[]): void {
 export async function hashTerms(terms: Terms): Promise<string> {
   return sha256(canonical(terms));
 }
-export function buildTransaction(plan: FrozenPlan): Transaction {
+function buildValidatedTransaction(plan: FrozenPlan): {
+  transaction: Transaction;
+  wire: Uint8Array;
+} {
   validateTerms(plan.terms, plan.assets);
   if (
     !Number.isInteger(plan.computeUnitLimit) ||
@@ -298,7 +301,19 @@ export function buildTransaction(plan: FrozenPlan): Transaction {
   });
   if (wire.length > 1232)
     throw new Error("Transaction exceeds legacy packet size");
-  return tx;
+  return { transaction: tx, wire };
+}
+/** Fresh mutable SDK transaction. No transaction or caller object is cached. */
+export function buildTransaction(plan: FrozenPlan): Transaction {
+  return buildValidatedTransaction(plan).transaction;
+}
+/** Build, validate and compile once. Returned arrays own separate buffers. */
+export function buildTransactionBytes(plan: FrozenPlan): {
+  wire: Uint8Array;
+  message: Uint8Array;
+} {
+  const wire = new Uint8Array(buildValidatedTransaction(plan).wire);
+  return { wire, message: wire.slice(1 + wire[0] * 64) };
 }
 export function wireParts(wire: Uint8Array): {
   message: Uint8Array;
@@ -314,7 +329,8 @@ export function wireParts(wire: Uint8Array): {
     wire.length <= 1 + count * 64
   )
     throw new Error("Invalid legacy wire shape");
-  const message = wire.slice(1 + count * 64);
+  // Buffer.slice aliases its input; own copies also protect Node/SDK callers.
+  const message = new Uint8Array(wire.subarray(1 + count * 64));
   if (message[0] & 128) throw new Error("Only legacy transactions supported");
   const decoded = Message.from(message);
   if (decoded.header.numRequiredSignatures !== count)
@@ -322,7 +338,7 @@ export function wireParts(wire: Uint8Array): {
   return {
     message,
     signatures: Array.from({ length: count }, (_, i) =>
-      wire.slice(1 + i * 64, 1 + (i + 1) * 64),
+      new Uint8Array(wire.subarray(1 + i * 64, 1 + (i + 1) * 64)),
     ),
     signers: decoded.accountKeys.slice(0, count).map((k) => k.toBase58()),
   };
@@ -335,10 +351,10 @@ export function verifyTransaction(
   if (canonical(acceptedTerms) !== canonical(plan.terms))
     throw new Error("Message is not bound to locally accepted terms");
   const parts = wireParts(wire);
-  const expected = buildTransaction({
+  const expected = buildTransactionBytes({
     ...plan,
     terms: acceptedTerms,
-  }).serializeMessage();
+  }).message;
   // Exact reconstruction from independent accepted terms checks ALL instruction data,
   // ordered accounts, privileges, signers, compute settings, fee payer and lifetime.
   if (!equalBytes(parts.message, expected))
@@ -356,8 +372,9 @@ export async function verifyWireSignatures(
   wire: Uint8Array,
   plan: FrozenPlan,
   requireAll = false,
-): Promise<void> {
-  const p = verifyTransaction(wire, plan);
+  acceptedTerms: Terms = plan.terms,
+): Promise<ReturnType<typeof wireParts>> {
+  const p = verifyTransaction(wire, plan, acceptedTerms);
   for (let i = 0; i < p.signers.length; i++) {
     if (!p.signatures[i].some(Boolean)) {
       if (requireAll) throw new Error("Missing signature");
@@ -366,6 +383,7 @@ export async function verifyWireSignatures(
     if (!(await verifyEd25519(p.signers[i], p.signatures[i], p.message)))
       throw new Error("Invalid transaction signature");
   }
+  return p;
 }
 export async function mergeSignature(
   existingWire: Uint8Array,
@@ -409,12 +427,7 @@ export function transactionId(wire: Uint8Array): string {
   return bs58.encode(p.signatures[0]);
 }
 export function unsignedWire(plan: FrozenPlan): string {
-  return b64(
-    buildTransaction(plan).serialize({
-      requireAllSignatures: false,
-      verifySignatures: false,
-    }),
-  );
+  return b64(buildValidatedTransaction(plan).wire);
 }
 export function deserializeWalletTransaction(wireBase64: string): Transaction {
   return Transaction.from(Buffer.from(unb64(wireBase64)));

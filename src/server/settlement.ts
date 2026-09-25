@@ -6,7 +6,6 @@ import {
   mergeSignature,
   transactionId,
   unsignedWire,
-  verifyTransaction,
   verifyWireSignatures,
   wireParts,
   validateTerms,
@@ -30,7 +29,7 @@ import {
 } from "./auth";
 import {
   acquireAttemptLocks,
-  getAttempt,
+  getMemberAttempt,
   requireRoomMember,
   saveAttempt,
   releaseAttemptLocks,
@@ -258,8 +257,7 @@ export async function reconcileAttempt(
             "Original signed transaction metadata is unavailable",
           );
         const recovered = unb64(successEvidence.transaction[0]);
-        const parts = verifyTransaction(recovered, next.plan);
-        await verifyWireSignatures(recovered, next.plan, true);
+        const parts = await verifyWireSignatures(recovered, next.plan, true);
         if (
           transactionId(recovered) !== next.txid ||
           !equalBytes(parts.message, unb64(next.messageBase64))
@@ -319,8 +317,7 @@ export async function reconcileAttempt(
       )
         throw new Error("Matching failed transaction metadata is unavailable");
       const wire = unb64(failureEvidence.transaction[0]);
-      const parts = verifyTransaction(wire, next.plan);
-      await verifyWireSignatures(wire, next.plan, true);
+      const parts = await verifyWireSignatures(wire, next.plan, true);
       if (
         transactionId(wire) !== next.txid ||
         !equalBytes(parts.message, unb64(next.messageBase64)) ||
@@ -360,10 +357,9 @@ export function createSettlementRouter(): Hono<AppContext> {
   const app = new Hono<AppContext>();
   app.use("*", requireMutationOrigin);
   async function owned(c: Context<AppContext>, id: string): Promise<Attempt> {
-    const attempt = await getAttempt(c.env.DB, id);
+    const attempt = await getMemberAttempt(c.env.DB, id, c.get("wallet"));
     if (!attempt)
       throw new HTTPException(404, { message: "Attempt not found" });
-    await requireRoomMember(c.env.DB, attempt.roomId, c.get("wallet"));
     return attempt;
   }
   app.post("/rooms/:id/attempts", requireAuth, async (c) => {

@@ -1,10 +1,7 @@
 import { getWallets } from "@wallet-standard/app";
 import { PublicKey } from "@solana/web3.js";
 import { b64, equalBytes, unb64, verifyEd25519 } from "../shared/crypto";
-import {
-  verifyTransaction,
-  verifyWireSignatures,
-} from "../shared/transactions";
+import { verifyWireSignatures } from "../shared/transactions";
 import type { FrozenPlan, Terms } from "../shared/types";
 
 export type BrowserWallet = ReturnType<
@@ -242,11 +239,10 @@ export async function signFrozenTransaction(
   if (terms.expiresAt <= Date.now())
     throw new Error("Accepted terms expired. Review new terms before signing.");
   const originalWire = unb64(wireBase64);
-  const before = verifyTransaction(originalWire, plan, terms);
+  const before = await verifyWireSignatures(originalWire, plan, false, terms);
   const ownSlot = before.signers.indexOf(connection.account.address);
   if (ownSlot < 0)
     throw new Error("Connected wallet is not a participant in these terms.");
-  await verifyWireSignatures(originalWire, plan);
   const feature = capability<SignTransactionFeature>(
     connection.wallet,
     "solana:signTransaction",
@@ -265,7 +261,7 @@ export async function signFrozenTransaction(
   if (outputs.length !== 1 || !result)
     throw new Error("Wallet returned no unique signed transaction.");
   const signedWire = new Uint8Array(result);
-  const after = verifyTransaction(signedWire, plan, terms);
+  const after = await verifyWireSignatures(signedWire, plan, false, terms);
   if (!equalBytes(before.message, after.message))
     throw new Error(
       "Wallet changed the frozen transaction message. All participants must approve a new attempt.",
@@ -286,7 +282,6 @@ export async function signFrozenTransaction(
   }
   if (!after.signatures[ownSlot].some(Boolean))
     throw new Error("Wallet did not sign its required slot.");
-  await verifyWireSignatures(signedWire, plan);
   assertConnected(connection);
   return b64(signedWire);
 }

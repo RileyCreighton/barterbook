@@ -29,7 +29,7 @@ const findings = [];
 const skipped = [];
 const checked = [];
 const forbidden =
-  /(^|\/)(?:\.dev\.vars(?:\..*)?|\.test-wallets|\.env(?!\.example$)|node_modules|\.wrangler|test-results|playwright-report)(?:\/|$)|\.(?:sqlite|sqlite3|db|log|pem|key)$/i;
+  /(^|\/)(?:\.dev\.vars(?:\..*)?|\.test-wallets|\.env(?!\.example$)(?:\.[^/]*)?|node_modules|\.wrangler|test-results|playwright-report)(?:\/|$)|\.(?:sqlite|sqlite3|db|log|pem|key)$/i;
 const rules = [
   ["pem-private-key", /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/],
   [
@@ -42,24 +42,47 @@ const rules = [
     "rpc-url-credential",
     /https:\/\/[^\s"'<>]+[?&]api[-_]?key=(?!REPLACE|YOUR_|EXAMPLE|…|\.\.\.)[a-zA-Z0-9_-]{16,}/i,
   ],
+  [
+    "alchemy-url-credential",
+    /https:\/\/(?:[a-z0-9-]+\.)*alchemy\.com\/v2\/(?!REPLACE|YOUR[_-]|EXAMPLE|…|\.\.\.)[a-zA-Z0-9_-]{16,}/i,
+  ],
   ["bearer-literal", /(?:Bearer|oauth_token\s*=)\s*["']?[A-Za-z0-9_-]{35,}/],
 ];
 // Exact local credential/key matching catches values even if their format is new.
 // This list stays in memory and is never reported.
 const secrets = [];
-if (existsSync(".dev.vars")) {
-  for (const line of readFileSync(".dev.vars", "utf8").split("\n")) {
-    const match = line.match(/^(SOLANA_RPC(?:_FALLBACK)?_URL)=(.+)$/);
+function keepCredential(value) {
+  if (
+    value.length >= 16 &&
+    !/^(?:REPLACE|YOUR[_-]|EXAMPLE|<|…|\.\.\.|\$\{)/i.test(value)
+  )
+    secrets.push(value);
+}
+for (const localFile of [
+  ".dev.vars",
+  ".env.rpc-backup.local",
+  ".env.cloudflare-cpu.local",
+]) {
+  if (!existsSync(localFile)) continue;
+  for (const line of readFileSync(localFile, "utf8").split("\n")) {
+    const match = line.match(
+      /^\s*(?:export\s+)?([A-Z][A-Z0-9_]*)\s*=\s*(.+?)\s*$/i,
+    );
     if (!match) continue;
+    const value = match[2]
+      .replace(/\s+#.*$/, "")
+      .trim()
+      .replace(/^(['"])(.*)\1$/, "$2");
+    if (/(?:^|_)(?:TOKEN|SECRET|API_KEY)$/i.test(match[1]))
+      keepCredential(value);
     try {
-      const u = new URL(match[2].replace(/^['"]|['"]$/g, ""));
-      for (const [name, value] of u.searchParams)
-        if (
-          /key|token|secret/i.test(name) &&
-          value.length >= 16 &&
-          !/REPLACE|YOUR_/.test(value)
-        )
-          secrets.push(value);
+      const u = new URL(value);
+      for (const [name, credential] of u.searchParams)
+        if (/key|token|secret/i.test(name)) keepCredential(credential);
+      if (/(?:^|\.)alchemy\.com$/i.test(u.hostname)) {
+        const key = /^\/v2\/([^/]+)/.exec(u.pathname)?.[1];
+        if (key) keepCredential(decodeURIComponent(key));
+      }
     } catch {}
   }
 }
