@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-09-25T18:44:19.322Z",
+  "buildId": "c9e9ee014f78d177ae5666a85438b0b05c75ab94",
+  "roomId": "4cff89cad977b4c3d0c50c8d8f6faeb89542ad9a73b49b13",
+  "termsVersion": 9,
+  "attemptId": "d518c0e9-ec2e-47f5-a55e-f03a3b3e69ff",
+  "revisionCreatedAt": "2026-09-25T18:37:36.101Z",
+  "preparedAt": "2026-09-25T18:37:57.554Z",
+  "state": "FULLY_SIGNED",
+  "nonceAccount": null,
+  "lastValidBlockHeight": "491373744",
+  "storedSignatureCount": 2,
+  "submissionStartedAt": null,
+  "txid": "66Am9a4JHn9uNTAwEwUABhKxvgFQSWoxyEquPggwQxMRU6eDfTN54Ja1qm9ny6TNjryhphVFHiCn5R9XdYieEDtR",
+  "bobSetupOperations": 0,
+  "ownerReport": "No setup button was shown; submit rejected with Signing lifetime passed.",
+  "finding": "Revision 9 explicitly retained the recent-blockhash protocol. The current renewal component adds the durable account, so an older browser page is the likely source; the actual loaded browser bundle was not captured.",
+  "scope": "Read-only D1 metadata and current hosted build identity. No journal modifications or broadcasts."
+}

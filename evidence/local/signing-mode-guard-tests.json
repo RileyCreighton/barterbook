@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-09-25T18:46:43.760Z",
+  "success": true,
+  "tests": 52,
+  "passed": 52,
+  "failed": 0,
+  "pending": 0,
+  "files": 3,
+  "scope": "Targeted renewal, settlement and browser identity regression checks; production build and release credential scan also passed."
+}

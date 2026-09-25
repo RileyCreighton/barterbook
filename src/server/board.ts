@@ -1,6 +1,10 @@
 import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
 import type { Asset, Env, Holding, Terms } from "../shared/types";
+import {
+  requireBrowserSigningMode,
+  requireLongerLivedSigning,
+} from "./signing-mode";
 import { raw } from "../shared/amounts";
 import { canonical, sha256 } from "../shared/crypto";
 import {
@@ -321,6 +325,10 @@ export function createBoardRouter(deps: BoardDependencies): Hono<AppContext> {
     const body = await jsonObject(c),
       wallet = c.get("wallet");
     await checkRateLimit(c.env.DB, `offer:${wallet}`, 20, 60_000);
+    requireBrowserSigningMode(
+      c,
+      !!(body.terms as Partial<Terms> | undefined)?.nonceAccount,
+    );
     const { terms, termsHash } = await checkedTerms(body.terms, c.env, wallet);
     if (terms.version !== 1)
       throw new HTTPException(400, {
@@ -382,6 +390,10 @@ export function createBoardRouter(deps: BoardDependencies): Hono<AppContext> {
     if (!previous) throw new HTTPException(404, { message: "Offer not found" });
     const room = await requireRoomMember(c.env.DB, previous.room_id, wallet);
     const expectedVersion = version(body.expectedVersion);
+    requireBrowserSigningMode(
+      c,
+      !!(body.terms as Partial<Terms> | undefined)?.nonceAccount,
+    );
     const { terms, termsHash } = await checkedTerms(body.terms, c.env, wallet);
     if (
       canonical([...terms.owners].sort()) !==
@@ -504,6 +516,9 @@ export function createBoardRouter(deps: BoardDependencies): Hono<AppContext> {
         message:
           "Renewal requires the original attempt to have a reconciled finalized failure or authoritative expiry",
       });
+    requireLongerLivedSigning(
+      !!(body.terms as Partial<Terms> | undefined)?.nonceAccount,
+    );
     await checkRateLimit(c.env.DB, `renew:${wallet}`, 6, 60_000);
     const { terms, termsHash } = await checkedTerms(
       body.terms,

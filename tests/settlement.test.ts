@@ -391,6 +391,7 @@ async function setup(options: { rentCap?: string; durable?: boolean } = {}) {
     path: string,
     wallet = f.terms.owners[0],
     body: unknown = {},
+    browser = false,
   ) =>
     app.request(
       path,
@@ -400,6 +401,7 @@ async function setup(options: { rentCap?: string; durable?: boolean } = {}) {
           Origin: origin,
           "Content-Type": "application/json",
           Cookie: `__Host-bb_session=${tokens.get(wallet)}`,
+          ...(browser ? { "X-BarterBook-Expected-Wallet": wallet } : {}),
         },
         body: JSON.stringify(body),
       },
@@ -466,6 +468,30 @@ async function setup(options: { rentCap?: string; durable?: boolean } = {}) {
   };
 }
 describe("settlement HTTP + SQLite + mocked RPC integration (not onchain evidence)", () => {
+  it("blocks browser preparation of short-lived terms before RPC or freezing, and accepts durable terms", async () => {
+    for (const durable of [false, true]) {
+      const s = await setup({ durable });
+      const response = await s.request(
+        `/rooms/${s.room.id}/attempts`,
+        undefined,
+        {
+          version: 1,
+          termsHash: s.room.termsHash,
+        },
+        true,
+      );
+      expect(response.status).toBe(durable ? 201 : 409);
+      if (!durable) {
+        expect(await response.text()).toContain("Longer-lived signing");
+        expect(s.fetchMock).not.toHaveBeenCalled();
+        expect((await getRoom(s.db, s.room.id))?.attempt).toBeNull();
+      } else {
+        const { attempt } = (await response.json()) as { attempt: Attempt };
+        expect(attempt.plan.terms.nonceAccount).toBe(s.f.terms.nonceAccount);
+        expect(attempt.plan.lastValidBlockHeight).toBe("0");
+      }
+    }
+  });
   it("collects durable signatures past any block height and recovers the exact finalized receipt after nonce advancement", async () => {
     const s = await setup({ durable: true });
     let attempt = await s.prepare();

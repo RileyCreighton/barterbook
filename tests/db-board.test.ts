@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { Keypair } from "@solana/web3.js";
+import { nonceAddress } from "../src/shared/nonce";
 import { createBoardRouter } from "../src/server/board";
 import {
   acquireAttemptLocks,
@@ -94,6 +95,7 @@ async function setup(ownersCount = 2) {
     wallet?: string,
     body?: unknown,
     key?: string,
+    browser = false,
   ) {
     return app.request(
       path,
@@ -106,6 +108,9 @@ async function setup(ownersCount = 2) {
             ? { Cookie: `__Host-bb_session=${tokens.get(wallet)}` }
             : {}),
           ...(key ? { "Idempotency-Key": key } : {}),
+          ...(browser && wallet
+            ? { "X-BarterBook-Expected-Wallet": wallet }
+            : {}),
         },
         ...(body === undefined ? {} : { body: JSON.stringify(body) }),
       },
@@ -370,6 +375,63 @@ async function seededAttempt(
   return { room: (await getRoom(t.db, room.id))!, attempt: outcome };
 }
 describe("explicit room renewal after authoritative reconciliation", () => {
+  it("rejects an old browser renewal without changing the original journal or terms", async () => {
+    const t = await setup();
+    const { room, attempt } = await seededAttempt(t, "EXPIRED_UNLANDED", true);
+    const before = await getRoom(t.db, room.id);
+    const response = await t.request(
+      `/rooms/${room.id}/renew`,
+      t.f.terms.owners[0],
+      {
+        expectedVersion: 1,
+        attemptId: attempt.id,
+        terms: { ...room.terms, version: 2 },
+      },
+    );
+    expect(response.status).toBe(409);
+    expect(await response.text()).toContain(
+      'preview terms that say "Longer-lived signing"',
+    );
+    expect(await getRoom(t.db, room.id)).toEqual(before);
+    expect(
+      (
+        await t.db
+          .prepare("SELECT version FROM room_revisions WHERE room_id=?")
+          .bind(room.id)
+          .all()
+      ).results,
+    ).toHaveLength(1);
+  });
+  it("rejects old browser offers and preserves explicitly reviewed durable terms", async () => {
+    const t = await setup();
+    const wallet = t.f.terms.owners[0];
+    const old = await t.request(
+      "/offers",
+      wallet,
+      { terms: t.f.terms },
+      undefined,
+      true,
+    );
+    expect(old.status).toBe(409);
+    expect(
+      (await t.db.prepare("SELECT id FROM rooms").all()).results,
+    ).toHaveLength(0);
+    const terms = {
+      ...t.f.terms,
+      nonceAccount: await nonceAddress(t.f.terms.feePayer),
+    };
+    const updated = await t.request(
+      "/offers",
+      wallet,
+      { terms },
+      undefined,
+      true,
+    );
+    expect(updated.status).toBe(201);
+    expect(((await updated.json()) as { room: Room }).room.terms).toEqual(
+      terms,
+    );
+  });
   it("rejects renewal for timeout, cancellation, nonfinal failure and any prior success", async () => {
     const t = await setup();
     for (const [state, safeToRetry, stopped] of [
@@ -393,7 +455,11 @@ describe("explicit room renewal after authoritative reconciliation", () => {
         {
           expectedVersion: 1,
           attemptId: attempt.id,
-          terms: { ...room.terms, version: 2 },
+          terms: {
+            ...room.terms,
+            nonceAccount: await nonceAddress(room.terms.feePayer),
+            version: 2,
+          },
         },
       );
       expect(response.status).toBe(409);
@@ -407,7 +473,11 @@ describe("explicit room renewal after authoritative reconciliation", () => {
       (
         await t.request(`/rooms/${room.id}/renew`, t.f.terms.owners[0], {
           expectedVersion: 1,
-          terms: { ...room.terms, version: 2 },
+          terms: {
+            ...room.terms,
+            nonceAccount: await nonceAddress(room.terms.feePayer),
+            version: 2,
+          },
         })
       ).status,
     ).toBe(409);
@@ -422,7 +492,12 @@ describe("explicit room renewal after authoritative reconciliation", () => {
       const body = {
         expectedVersion: 1,
         attemptId: attempt.id,
-        terms: { ...room.terms, version: 2, expiresAt: Date.now() + 7200000 },
+        terms: {
+          ...room.terms,
+          nonceAccount: await nonceAddress(room.terms.feePayer),
+          version: 2,
+          expiresAt: Date.now() + 7200000,
+        },
       };
       expect(
         (await t.request(`/rooms/${room.id}/renew`, t.outsider, body)).status,
@@ -475,7 +550,11 @@ describe("explicit room renewal after authoritative reconciliation", () => {
       {
         expectedVersion: 1,
         attemptId: attempt.id,
-        terms: { ...room.terms, version: 2 },
+        terms: {
+          ...room.terms,
+          nonceAccount: await nonceAddress(room.terms.feePayer),
+          version: 2,
+        },
       },
     );
     expect(response.status).toBe(201);
@@ -495,7 +574,11 @@ describe("explicit room renewal after authoritative reconciliation", () => {
     const body = {
       expectedVersion: 1,
       attemptId: attempt.id,
-      terms: { ...room.terms, version: 2 },
+      terms: {
+        ...room.terms,
+        nonceAccount: await nonceAddress(room.terms.feePayer),
+        version: 2,
+      },
     };
     t.f.assets[0].observedEpoch = "100";
     expect(

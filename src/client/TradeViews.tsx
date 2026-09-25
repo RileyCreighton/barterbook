@@ -75,6 +75,14 @@ export function TermsView({
           {terms.owners.length} participants · {terms.legs.length} transfers
         </span>
       </div>
+      <p className="status-note">
+        <strong>
+          {terms.nonceAccount ? "Longer-lived signing" : "Short-lived signing"}
+        </strong>
+        {terms.nonceAccount
+          ? " · The fee payer must finish signing-account setup before preparation."
+          : " · This version uses a brief blockhash window. Reconcile any existing attempt, then review a new revision with longer-lived signing."}
+      </p>
       <div className="table-scroll">
         <table>
           <thead>
@@ -125,10 +133,9 @@ export function TermsView({
       </details>
       {terms.nonceAccount && (
         <p className="approval-help">
-          <strong>Time to review every signature.</strong> This exchange uses
-          longer-lived signing. The fee payer controls its signing account.
-          Closing the page or ending the review period does not revoke
-          signatures; cancellation requires the fee payer's on-chain approval.
+          The fee payer controls the signing account. Closing the page or ending
+          the review period does not revoke signatures; cancellation requires
+          the fee payer's on-chain approval.
         </p>
       )}
     </>

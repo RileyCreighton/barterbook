@@ -13,6 +13,7 @@ import { createBoardRouter } from "./board";
 import { createSettlementRouter } from "./settlement";
 import { createNonceRouter } from "./nonce";
 import { nonceAddress } from "../shared/nonce";
+import { requireBrowserSigningMode } from "./signing-mode";
 import { getAssets, getPublicAssets, getHoldings } from "./chain";
 import { createPublicRouter } from "./public";
 import { createRoom, getListing, listingFromRow, type ListingRow } from "./db";
@@ -101,6 +102,7 @@ app.get("/api/matches", async (c) => {
 });
 app.post("/api/matches/room", requireMutationOrigin, requireAuth, async (c) => {
   const body = await jsonObject(c);
+  requireBrowserSigningMode(c, body.signingMode === "durable");
   const ids = body.listingIds;
   if (
     !Array.isArray(ids) ||

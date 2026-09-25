@@ -11,7 +11,7 @@ Keep Solflare on **Devnet**. A review period ending does not revoke signatures i
 ## Prepare the existing wallet windows
 
 1. Use your existing separate Zen profiles for Alice, Bob and Carol. Keep Solflare on **Devnet**.
-2. Close any old approval popup. Hard-refresh the BarterBook page in all three profiles, then connect/authenticate the intended Solflare account in each if prompted. A login-message approval is separate from transaction approval.
+2. Close any old approval popup. Open [the fresh signing-update link](https://barterbook-devnet.rileycreighton.workers.dev/?release=signing-mode-guard) in all three profiles, then connect/authenticate the intended Solflare account in each if prompted. A login-message approval is separate from transaction approval.
 3. Check the identities below. The app may use the generic demo labels rather than Alice/Bob/Carol.
 
 | Person | App label | Public address as shortened by the app |
@@ -24,9 +24,9 @@ Keep Solflare on **Devnet**. A review period ending does not revoke signatures i
 
 ## Test 1: Alice and Bob, using the existing room
 
-1. Open the [existing Alice/Bob room](https://barterbook-devnet.rileycreighton.workers.dev/#/room/4cff89cad977b4c3d0c50c8d8f6faeb89542ad9a73b49b13) in both profiles. Version 8 is the current reported expiry, with Bob’s signature saved. Preserve this original attempt until reconciliation finishes.
+1. Open the [existing Alice/Bob room](https://barterbook-devnet.rileycreighton.workers.dev/#/room/4cff89cad977b4c3d0c50c8d8f6faeb89542ad9a73b49b13) in both profiles. Version 9 is the current reported expiry, with both signatures saved but short-lived terms and no setup operation. Preserve this original attempt until reconciliation finishes.
 2. In either profile, click **Reconcile original status**. Wait for the app to establish that the original expired without landing and display **Original attempt reconciled** / the renewal controls. If the outcome remains unknown, report the displayed message before creating a replacement.
-3. In one profile, click **Refresh fees and preview renewal**, review the preview, then **Create revision for everyone to review**. This creates the next terms version (after version 8, normally version 9). The preview must show **Longer-lived signing**. Reuse the room; it has no source-listing dependency that requires rebuilding the offer.
+3. In one profile, click **Refresh fees and preview renewal**, review the preview, then **Create revision for everyone to review**. This creates the next terms version (after version 9, normally version 10). The preview must show **Longer-lived signing**. If it says **Short-lived signing** or no mode is shown, stop before accepting and reopen the fresh update link. Reuse the room; it has no source-listing dependency that requires rebuilding the offer.
 4. Confirm the terms: Alice gives **10 TEST-A + 5 TEST-B**; Bob gives **20 TEST-C** and pays the network fee. With the current 1% token fees, Bob receives **9.9 TEST-A + 4.95 TEST-B**, and Alice receives **19.8 TEST-C**.
 5. In **both** profiles, check the review box, click **Accept exact terms**, then **I’m ready**. If the page was refreshed after preparation, use **Confirm this browser’s review** to restore that browser's local review.
 6. In Bob’s window, find **Longer-lived signing** and click **Set up signing in wallet**. Approve this separate Devnet setup transaction in Solflare. It holds at most **0.002 Devnet SOL** in Bob’s signing account, plus the displayed network-fee cap. If needed, click **Check signing account status** until it reports ready. This setup has one approval and still uses a short blockhash lifetime; the exchange itself will not. Once setup and both participants are ready, Bob clicks **Prepare one transaction** once.

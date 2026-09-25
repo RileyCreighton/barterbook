@@ -49,7 +49,9 @@ export function TransactionCheck({
         ),
       ]);
       result = {
-        diagnosticVersion: "2026-09-25.2",
+        diagnosticVersion: "2026-09-25.3",
+        signingMode: terms.nonceAccount ? "durable-nonce" : "recent-blockhash",
+        nonceAccount: terms.nonceAccount ?? null,
         ...transaction,
         networkStatus,
         attemptId: attempt.id,
@@ -61,7 +63,7 @@ export function TransactionCheck({
       };
     } catch (cause) {
       result = {
-        diagnosticVersion: "2026-09-25.2",
+        diagnosticVersion: "2026-09-25.3",
         attemptId: attempt.id,
         termsVersion: terms.version,
         verified: false,

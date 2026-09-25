@@ -9,6 +9,7 @@ import {
   verifyEd25519,
 } from "../shared/crypto";
 import bs58 from "bs58";
+import { requireBrowserSigningMode } from "./signing-mode";
 import { decodeNonceAccount, nonceAddress } from "../shared/nonce";
 import { VersionedTransaction } from "@solana/web3.js";
 import {
@@ -747,6 +748,7 @@ export function createSettlementRouter(): Hono<AppContext> {
           "Reconciled old attempt. Create a new terms revision and collect fresh consent before preparing again",
       });
     }
+    requireBrowserSigningMode(c, !!room.terms.nonceAccount);
     if (
       !room.members.every(
         (m) => m.acceptedVersion === room.terms.version && m.ready,
