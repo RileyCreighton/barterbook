@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-09-25T09:58:32.947009+00:00",
+  "scope": "Static read-only inspection of the public official Mozilla extension package; no installed wallet profile, private key or extension storage accessed. Package was not executed or installed.",
+  "extension": {
+    "name": "Solflare Wallet",
+    "version": "2.28.1",
+    "publisher": "Solflare",
+    "source": "https://addons.mozilla.org/firefox/downloads/file/4841247/solflare_wallet-2.28.1.xpi",
+    "metadata": "https://addons.mozilla.org/api/v5/addons/addon/solflare-wallet/",
+    "sha256": "ef8d0e39bc5951aa5ab956da11224c6359edd05e6d88d11a2b7d821a23058120",
+    "files": {
+      "inpage.js": "bb14dc7c5e1047e97be21f061de9069e3385dd8d08f2839be6eca9361fe3ddb7",
+      "background.js": "ab9765a93e8538e41fb19d1dc8e95e7ad4597936357a35285dbef864f6e0830a",
+      "static/2832.js": "3e3d2d7c31fe9f2cc7af9f6ddbaf096c2d99012af532da209899580f282a322a"
+    }
+  },
+  "appRequest": {
+    "feature": "solana:signTransaction",
+    "chain": "solana:devnet",
+    "networkSwitchRequested": false
+  },
+  "findings": [
+    "The Wallet Standard single-transaction wrapper validates the supplied chain then sends only the transaction to signTransactionV2.",
+    "The injected request dispatcher forwards only the transaction to the background signing handler. Adding a network field to the exposed request is not an established fix.",
+    "The extension independently reads its own configured network; its simulation request includes that network cluster. Therefore dropping the standard chain field alone does not establish the cause of the mismatch warning.",
+    "The background sign-only handler passes returned bytes to a vendor RPC proxy with a sign-specific header before returning them. The proxy behavior was not exercised or established by this static inspection. This does not prove a network broadcast, but sign-without-broadcast compatibility remains unverified."
+  ],
+  "actualAttemptEvidence": "solflare-network-diagnostic-256c575e.json",
+  "conclusion": "Login and displayed devnet balances succeeded by owner report. Full browser partial-signing and settlement remain blocked by the reported network-mismatch prompt. No secure application workaround is established. Do not switch to mainnet or bypass the warning. Preserve/reconcile original attempts.",
+  "changes": "UI feedback improvement only; no wallet adapter change, new SDK dependency, chain-message alteration, or security bypass."
+}

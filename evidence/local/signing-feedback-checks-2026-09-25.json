@@ -1,0 +1,27 @@
+{
+  "executedAt": "2026-09-25T10:00:23.298Z",
+  "scope": "Signing-room display feedback only; financial handlers, disabled-button guards, wallet adapter and server verifier unchanged.",
+  "checks": [
+    {
+      "command": "npm run build",
+      "result": "passed",
+      "executedBy": "wallet_spike subagent",
+      "includes": "TypeScript noEmit and Vite production build"
+    },
+    {
+      "command": "npx vitest run tests/wallet.test.ts tests/signing.test.ts tests/expected-wallet.test.ts",
+      "result": "passed",
+      "testFiles": 3,
+      "tests": 42
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  ],
+  "limitations": [
+    "These tests do not prove Solflare or Phantom browser settlement.",
+    "Solflare 2.28.1 in Zen reported a network mismatch; current attempt was safely reconciled without any saved signature.",
+    "Hosted Free CPU gate remains unmet."
+  ]
+}

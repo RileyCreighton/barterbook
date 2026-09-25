@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-09-25T09:53:48.145Z",
+  "source": "Read-only hosted D1 and independently configured devnet RPC genesis/block-origin checks",
+  "attempt": {
+    "id": "256c575e-b91b-4414-96da-ac9d8587129f",
+    "state": "EXPIRED_UNLANDED",
+    "safeToRetry": 1,
+    "txid": null,
+    "blockhash": "Tz36oYfuLBvCdCuVXVY26qzEeEnZRsFKac1osknwDJU",
+    "contextSlot": "503929929",
+    "cluster": "devnet",
+    "version": 5,
+    "messageHash": "859f3c0e15952f3848598783e77fba6f5882c9cce802c5ee3a416a46818be303",
+    "submissionStartedAt": null,
+    "observations": [
+      {
+        "endpoint": "devnet.helius-rpc.com",
+        "healthy": true,
+        "historyTrusted": true,
+        "finalizedBlockHeight": "491183916",
+        "blockhashValid": false,
+        "status": null,
+        "transactionFound": false,
+        "transactionErr": null,
+        "transactionFinalized": false,
+        "addressHistoryComplete": true
+      },
+      {
+        "endpoint": "solana-devnet.g.alchemy.com",
+        "healthy": true,
+        "historyTrusted": true,
+        "finalizedBlockHeight": "491183921",
+        "blockhashValid": false,
+        "status": null,
+        "transactionFound": false,
+        "transactionErr": null,
+        "transactionFinalized": false,
+        "addressHistoryComplete": true
+      }
+    ],
+    "storedSignatureCount": 0
+  },
+  "providers": [
+    {
+      "endpoint": "devnet.helius-rpc.com",
+      "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+      "devnetGenesis": true,
+      "contextSlot": "503929929",
+      "originBlockhashMatches": true
+    },
+    {
+      "endpoint": "solana-devnet.g.alchemy.com",
+      "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+      "devnetGenesis": true,
+      "contextSlot": "503929929",
+      "originBlockhashMatches": true
+    }
+  ],
+  "ownerReport": {
+    "wallet": "Solflare Firefox extension in Zen",
+    "message": "Network mismatch. Your current network is set to devnet, but this transaction is for mainnet. Switch to the correct network before signing.",
+    "extensionVersion": "2.28.1"
+  },
+  "note": "The requested Wallet Standard chain is solana:devnet. No wallet network switch, signature request or broadcast was performed by this diagnostic. A wallet label is not evidence that the frozen blockhash originated on mainnet."
+}

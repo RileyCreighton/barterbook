@@ -145,6 +145,12 @@ export function App() {
     .filter((a) => a.cluster === "devnet" && a.tested)
     .slice(0, 3);
   const owner = identity;
+  const showRoomFeedback =
+    page === "room" &&
+    !!identity &&
+    room?.id === id &&
+    !!room.attempt &&
+    !picker;
   const walletLabel = connection
     ? identity === connection.account.address
       ? participantName(identity, demo)
@@ -609,7 +615,7 @@ export function App() {
         mainnet settlement.
       </div>
       <main id="main-content" tabIndex={-1}>
-        {error && (
+        {error && !showRoomFeedback && !picker && (
           <div className="global-message" role="alert">
             {error}
             <button className="link-button" onClick={() => setError("")}>
@@ -617,12 +623,12 @@ export function App() {
             </button>
           </div>
         )}
-        {notice && (
+        {notice && !showRoomFeedback && (
           <div role="status" className="status-note">
             {notice}
           </div>
         )}
-        {busy && !picker && (
+        {busy && !picker && !showRoomFeedback && (
           <p className="working-note" role="status">
             Working on your request… If a submission times out, reconcile its
             original status before doing anything else.
@@ -779,7 +785,12 @@ export function App() {
                             </p>
                           ) : null}
                           <p className="eyebrow">
-                            Frozen attempt {short(room.attempt.id)}
+                            Transaction details · attempt{" "}
+                            {short(room.attempt.id)}
+                          </p>
+                          <p className="muted">
+                            These reference details identify the fixed
+                            transaction shared by every signer.
                           </p>
                           <p>
                             Message hash <code>{room.attempt.messageHash}</code>
@@ -799,6 +810,54 @@ export function App() {
                             )}{" "}
                             SOL.
                           </p>
+                          {room.attempt.state === "SIGNING" &&
+                            !room.attempt.stopRequested &&
+                            (room.attempt.signatures[owner ?? ""] ? (
+                              <p className="approval-help">
+                                <strong>Your signature is saved.</strong> Wait
+                                for the remaining participants to sign this same
+                                transaction.
+                              </p>
+                            ) : !room.attempt.signatures[
+                                room.terms.feePayer
+                              ] ? (
+                              <p className="approval-help">
+                                <strong>
+                                  {owner === room.terms.feePayer
+                                    ? "You are the fee payer. Sign first."
+                                    : `Waiting for ${participantName(room.terms.feePayer, demo)}’s saved signature.`}
+                                </strong>{" "}
+                                Fee payer: <code>{room.terms.feePayer}</code>.
+                                {owner === room.terms.feePayer
+                                  ? " After approving in your wallet, wait for this room to confirm that your signature was verified and saved."
+                                  : " Your signing button stays disabled until the fee payer approves in their wallet and their signature is verified and saved in this room. Wallet approval alone does not complete that step."}
+                              </p>
+                            ) : null)}
+                          {showRoomFeedback && error && (
+                            <div className="global-message" role="alert">
+                              <span>
+                                <strong>Request did not finish.</strong> {error}
+                              </span>
+                              <button
+                                className="link-button"
+                                onClick={() => setError("")}
+                              >
+                                Dismiss
+                              </button>
+                            </div>
+                          )}
+                          {showRoomFeedback && notice && (
+                            <p className="status-note" role="status">
+                              {notice}
+                            </p>
+                          )}
+                          {showRoomFeedback && busy && (
+                            <p className="working-note" role="status">
+                              Working on this request… If your wallet opens,
+                              review the request there. A signature counts only
+                              after this room confirms it was saved.
+                            </p>
+                          )}
                           <div className="actions">
                             <button
                               disabled={
@@ -882,12 +941,6 @@ export function App() {
                               Stop collecting signatures
                             </button>
                           </div>
-                          {!room.attempt.signatures[room.terms.feePayer] && (
-                            <p className="muted">
-                              The designated fee payer signs first so the
-                              original transaction identifier can be tracked.
-                            </p>
-                          )}
                           <p className="recovery-note">
                             Stopping or closing this page cannot revoke
                             signatures. A timeout keeps the original attempt

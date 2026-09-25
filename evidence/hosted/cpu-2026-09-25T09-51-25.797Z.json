@@ -1,0 +1,1635 @@
+{
+  "executedAt": "2026-09-25T09:51:25.797Z",
+  "environment": "HOSTED_CLOUDFLARE_TELEMETRY",
+  "worker": "barterbook-devnet",
+  "timeWindow": {
+    "from": "2026-09-25T09:46:00.000Z",
+    "to": "2026-09-25T09:50:00.000Z"
+  },
+  "scope": "Cloudflare invocation CPU in milliseconds, grouped from returned events. Not wall-clock request timing.",
+  "source": "https://developers.cloudflare.com/workers/observability/query-builder/",
+  "returnedEvents": 144,
+  "providerMatchingCount": 144,
+  "truncatedOrAtLimit": false,
+  "samples": 144,
+  "summaries": [
+    {
+      "route": "GET /api/rooms/:id",
+      "samples": 108,
+      "cpuP50Ms": 2,
+      "cpuP95Ms": 3,
+      "cpuP99Ms": 3,
+      "cpuMaxMs": 3,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "GET /api/assets/fresh",
+      "samples": 2,
+      "cpuP50Ms": 4,
+      "cpuP95Ms": 5,
+      "cpuP99Ms": 5,
+      "cpuMaxMs": 5,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "POST /api/rooms/:id/attempts",
+      "samples": 1,
+      "cpuP50Ms": 48,
+      "cpuP95Ms": 48,
+      "cpuP99Ms": 48,
+      "cpuMaxMs": 48,
+      "observedAbove10Ms": 1,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "POST /api/rooms/:id/ready",
+      "samples": 2,
+      "cpuP50Ms": 3,
+      "cpuP95Ms": 5,
+      "cpuP99Ms": 5,
+      "cpuMaxMs": 5,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "POST /api/rooms/:id/accept",
+      "samples": 2,
+      "cpuP50Ms": 4,
+      "cpuP95Ms": 4,
+      "cpuP99Ms": 4,
+      "cpuMaxMs": 4,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "GET /api/holdings",
+      "samples": 5,
+      "cpuP50Ms": 6,
+      "cpuP95Ms": 11,
+      "cpuP99Ms": 11,
+      "cpuMaxMs": 11,
+      "observedAbove10Ms": 1,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "GET /api/rooms",
+      "samples": 5,
+      "cpuP50Ms": 2,
+      "cpuP95Ms": 2,
+      "cpuP99Ms": 2,
+      "cpuMaxMs": 2,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "GET /api/offers",
+      "samples": 5,
+      "cpuP50Ms": 1,
+      "cpuP95Ms": 2,
+      "cpuP99Ms": 2,
+      "cpuMaxMs": 2,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "POST /api/auth/verify",
+      "samples": 2,
+      "cpuP50Ms": 3,
+      "cpuP95Ms": 4,
+      "cpuP99Ms": 4,
+      "cpuMaxMs": 4,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "POST /api/auth/challenge",
+      "samples": 2,
+      "cpuP50Ms": 2,
+      "cpuP95Ms": 3,
+      "cpuP99Ms": 3,
+      "cpuMaxMs": 3,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "POST /api/auth/logout",
+      "samples": 1,
+      "cpuP50Ms": 2,
+      "cpuP95Ms": 2,
+      "cpuP99Ms": 2,
+      "cpuMaxMs": 2,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "GET /api/assets",
+      "samples": 2,
+      "cpuP50Ms": 6,
+      "cpuP95Ms": 7,
+      "cpuP99Ms": 7,
+      "cpuMaxMs": 7,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "GET /api/listings",
+      "samples": 2,
+      "cpuP50Ms": 1,
+      "cpuP95Ms": 1,
+      "cpuP99Ms": 1,
+      "cpuMaxMs": 1,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "GET /api/auth/me",
+      "samples": 2,
+      "cpuP50Ms": 0,
+      "cpuP95Ms": 4,
+      "cpuP99Ms": 4,
+      "cpuMaxMs": 4,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "GET /api/demo",
+      "samples": 2,
+      "cpuP50Ms": 5,
+      "cpuP95Ms": 7,
+      "cpuP99Ms": 7,
+      "cpuMaxMs": 7,
+      "observedAbove10Ms": 0,
+      "nonOkOutcomes": 0
+    },
+    {
+      "route": "POST /api/rooms/:id/renew",
+      "samples": 1,
+      "cpuP50Ms": 28,
+      "cpuP95Ms": 28,
+      "cpuP99Ms": 28,
+      "cpuMaxMs": 28,
+      "observedAbove10Ms": 1,
+      "nonOkOutcomes": 0
+    }
+  ],
+  "rows": [
+    {
+      "timestamp": "2026-09-25T09:49:59.380Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 50,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:57.603Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 50,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:56.809Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 56,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:55.031Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 52,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:54.232Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 53,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:52.459Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 50,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:51.658Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 53,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:49.699Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 63,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:49.084Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 53,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:47.115Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 58,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:46.508Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 49,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:44.538Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 52,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:43.935Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 51,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:41.966Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 53,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:41.364Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 51,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:39.343Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 53,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:38.792Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 51,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:36.770Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 52,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:36.220Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 54,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:34.198Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 55,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:33.646Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 49,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:31.624Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 56,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:31.076Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 50,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:29.047Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 55,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:28.506Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 54,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:26.469Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 47,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:25.933Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 56,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:23.901Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 51,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:23.357Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 63,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:21.330Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 51,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:20.775Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 52,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:18.756Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 48,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:18.202Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 52,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:16.189Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 50,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:15.629Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 57,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:13.618Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 53,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:13.052Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 52,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:11.041Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 50,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:10.478Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 51,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:08.465Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 55,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:07.905Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 57,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:05.887Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 55,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:05.327Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 50,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:03.309Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 56,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:02.755Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 54,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:00.729Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 56,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:49:00.180Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 70,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:58.149Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 53,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:57.588Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 52,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:55.576Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 62,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:55.014Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 53,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:52.988Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 63,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:52.439Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 52,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:50.403Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 58,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:49.661Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 52,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:47.719Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 58,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:47.087Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 54,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:44.508Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 53,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:42.568Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 53,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:41.884Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 50,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:39.995Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 53,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:39.312Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 53,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:37.421Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 54,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:36.735Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 52,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:34.846Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 52,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:34.144Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 48,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:32.271Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 55,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:31.566Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 52,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:29.695Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 52,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:28.993Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 50,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:28.153Z",
+      "path": "/api/assets/fresh",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 4,
+      "wallTimeMs": 352,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:27.114Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 59,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:26.421Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 48,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:26.326Z",
+      "path": "/api/rooms/:id/attempts",
+      "method": "POST",
+      "status": 201,
+      "cpuTimeMs": 48,
+      "wallTimeMs": 1308,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:24.601Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 45,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:24.358Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 44,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:22.095Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 40,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:21.856Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 43,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:19.600Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 44,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:19.357Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 44,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:17.098Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 43,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:16.744Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 41,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:16.261Z",
+      "path": "/api/rooms/:id/ready",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 5,
+      "wallTimeMs": 207,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:15.562Z",
+      "path": "/api/rooms/:id/accept",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 4,
+      "wallTimeMs": 104,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:14.598Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 43,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:14.222Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 43,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:12.098Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 42,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:11.726Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 45,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:11.513Z",
+      "path": "/api/rooms/:id/ready",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 109,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:10.483Z",
+      "path": "/api/rooms/:id/accept",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 4,
+      "wallTimeMs": 109,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:09.628Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 45,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:09.224Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 44,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:07.098Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 42,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:06.726Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 45,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:04.595Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 41,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:04.223Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 42,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:02.096Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 40,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:48:01.722Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 42,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:59.502Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 42,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:59.225Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 45,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:59.223Z",
+      "path": "/api/holdings",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 5,
+      "wallTimeMs": 431,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:58.851Z",
+      "path": "/api/rooms",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 56,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:58.841Z",
+      "path": "/api/offers",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 46,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:56.910Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 47,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:56.722Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 43,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:54.576Z",
+      "path": "/api/holdings",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 6,
+      "wallTimeMs": 302,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:54.337Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 60,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:54.334Z",
+      "path": "/api/rooms",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 58,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:54.300Z",
+      "path": "/api/offers",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 24,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:54.248Z",
+      "path": "/api/auth/verify",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 4,
+      "wallTimeMs": 64,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:54.233Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 54,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:52.404Z",
+      "path": "/api/auth/challenge",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 73,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:52.311Z",
+      "path": "/api/auth/logout",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 34,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:51.722Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 42,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:51.556Z",
+      "path": "/api/holdings",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 11,
+      "wallTimeMs": 592,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:51.437Z",
+      "path": "/api/assets",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 6,
+      "wallTimeMs": 848,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:51.389Z",
+      "path": "/api/rooms",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 418,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:51.389Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 418,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:50.992Z",
+      "path": "/api/offers",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 22,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:50.619Z",
+      "path": "/api/listings",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 26,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:50.609Z",
+      "path": "/api/auth/me",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 4,
+      "wallTimeMs": 19,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:50.599Z",
+      "path": "/api/demo",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 5,
+      "wallTimeMs": 13,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:49.223Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 43,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:46.718Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 40,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:44.227Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 47,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:41.529Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 44,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:39.029Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 44,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:36.522Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 38,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:34.031Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 46,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:31.530Z",
+      "path": "/api/rooms/:id",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 45,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:29.337Z",
+      "path": "/api/holdings",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 4,
+      "wallTimeMs": 354,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:29.057Z",
+      "path": "/api/rooms",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 72,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:29.008Z",
+      "path": "/api/offers",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 23,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:28.944Z",
+      "path": "/api/rooms/:id/renew",
+      "method": "POST",
+      "status": 201,
+      "cpuTimeMs": 28,
+      "wallTimeMs": 1067,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:24.465Z",
+      "path": "/api/assets/fresh",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 5,
+      "wallTimeMs": 264,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:05.168Z",
+      "path": "/api/holdings",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 10,
+      "wallTimeMs": 343,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:04.860Z",
+      "path": "/api/rooms",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 28,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:04.852Z",
+      "path": "/api/offers",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 22,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:04.799Z",
+      "path": "/api/auth/verify",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 3,
+      "wallTimeMs": 59,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:47:03.038Z",
+      "path": "/api/auth/challenge",
+      "method": "POST",
+      "status": 200,
+      "cpuTimeMs": 2,
+      "wallTimeMs": 207,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:46:57.308Z",
+      "path": "/api/assets",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 7,
+      "wallTimeMs": 233,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:46:57.112Z",
+      "path": "/api/listings",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 1,
+      "wallTimeMs": 31,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:46:57.091Z",
+      "path": "/api/auth/me",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 0,
+      "wallTimeMs": 10,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    },
+    {
+      "timestamp": "2026-09-25T09:46:57.081Z",
+      "path": "/api/demo",
+      "method": "GET",
+      "status": 200,
+      "cpuTimeMs": 7,
+      "wallTimeMs": 9,
+      "outcome": "ok",
+      "versionId": "82b42cd9-aa9c-4111-96e7-666060f13c2d"
+    }
+  ],
+  "diagnostics": {
+    "skipped": {
+      "noWorkerMetrics": 0,
+      "wrongWorker": 0,
+      "missingCpu": 0,
+      "missingIdentity": 0,
+      "duplicate": 0
+    },
+    "fieldNames": []
+  },
+  "limitations": [
+    "Log retention, sampling and ingestion delay can omit requests.",
+    "Empty data, unknown paths, an unexercised path or only rejected/unauthenticated requests do not establish full-path headroom.",
+    "This script does not generate traffic, broadcast transactions, enable settlement or certify the plan tier.",
+    "Review actual auth/prepare/signature/submit/reconcile paths and version IDs alongside the exercise record."
+  ]
+}

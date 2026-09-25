@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-09-25T09:25:03.188Z",
+  "cluster": "devnet",
+  "commitment": "finalized",
+  "balances": [
+    {
+      "name": "Alice",
+      "address": "8B9FCGFGFjqqQhdkLSChG3Jxnjo4sLn3FdYjd18DeuTi",
+      "lamports": "50000000",
+      "contextSlot": "503921452"
+    },
+    {
+      "name": "Bob",
+      "address": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+      "lamports": "1000000000",
+      "contextSlot": "503921452"
+    },
+    {
+      "name": "Carol",
+      "address": "EqEnSeX2UXqF2stBPK1WGULz5Shs6CWBcU9JRUdHAz5J",
+      "lamports": "50000000",
+      "contextSlot": "503921453"
+    },
+    {
+      "name": "FaucetSetupPayer",
+      "address": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+      "lamports": "865306160",
+      "contextSlot": "503921453"
+    }
+  ],
+  "feePayer": "Bob",
+  "basketNetworkFeeLamports": "10000",
+  "basketMaximumAccountFundingLamports": "6472800",
+  "note": "All three browser participants have faucet-only Devnet SOL. Balances cover the accepted basket and repeated planned rehearsals; no top-up, purchase or new faucet request was executed. Does not prove browser-wallet functionality."
+}

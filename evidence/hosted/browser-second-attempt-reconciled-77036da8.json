@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-09-25T09:26:23.859Z",
+  "cluster": "devnet",
+  "source": "Read-only D1 outcome plus local native signature and immutable-message verification",
+  "attemptId": "77036da8-52f3-4502-9f00-9929ac42a114",
+  "roomId": "4cff89cad977b4c3d0c50c8d8f6faeb89542ad9a73b49b13",
+  "version": 2,
+  "state": "EXPIRED_UNLANDED",
+  "safeToRetry": true,
+  "txid": "4skQgvEpnB9tHUwe85WB48MPgr5iwBX25gzAAi1XXFvSyZ22Nem4RoET1QuhGGSeiDF8M3wtxiJWEomRbQV15nbR",
+  "messageHash": "61497942bde040d8c8ada1d7489e6e1e102d56ab32805f0d752ad91d0ffac59a",
+  "validStoredSigners": [
+    "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8"
+  ],
+  "lastCheckedAt": 1790328233518,
+  "submissionStartedAt": null,
+  "observations": [
+    {
+      "endpoint": "devnet.helius-rpc.com",
+      "healthy": true,
+      "historyTrusted": true,
+      "finalizedBlockHeight": "491173444",
+      "blockhashValid": false,
+      "status": null,
+      "transactionFound": false,
+      "transactionErr": null,
+      "transactionFinalized": false
+    },
+    {
+      "endpoint": "solana-devnet.g.alchemy.com",
+      "healthy": true,
+      "historyTrusted": true,
+      "finalizedBlockHeight": "491173450",
+      "blockhashValid": false,
+      "status": null,
+      "transactionFound": false,
+      "transactionErr": null,
+      "transactionFinalized": false
+    }
+  ],
+  "ownerReport": {
+    "bob": "Approved in Phantom extension in Zen; signature saved",
+    "alice": "Phantom transaction popup reported Not enough SOL despite confirmed Devnet; no signature uploaded",
+    "chromeDiagnostic": "Owner restored Alice same disposable address in Chrome and saw 0.05 Devnet SOL"
+  },
+  "note": "Partial signing and authoritative expiry recovery only. No completed browser exchange, broadcast, onchain failure or onchain receipt is claimed. Preserved original signed bytes remain private."
+}

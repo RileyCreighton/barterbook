@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-09-25T09:22:02.638Z",
+  "cluster": "devnet",
+  "attemptId": "77036da8-52f3-4502-9f00-9929ac42a114",
+  "stateAtRead": "SIGNING",
+  "txid": "4skQgvEpnB9tHUwe85WB48MPgr5iwBX25gzAAi1XXFvSyZ22Nem4RoET1QuhGGSeiDF8M3wtxiJWEomRbQV15nbR",
+  "messageHash": "61497942bde040d8c8ada1d7489e6e1e102d56ab32805f0d752ad91d0ffac59a",
+  "storedSignatureCount": 1,
+  "feePayer": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+  "networkFeeLamports": "10000",
+  "accountRentLamports": "6472800",
+  "lastValidBlockHeight": "491171364",
+  "observedFinalizedHeight": "491172786",
+  "diagnosticSimulation": {
+    "err": null,
+    "unitsConsumed": 32011,
+    "replacementBlockhashUsed": true,
+    "signatureVerification": false,
+    "slot": 503920391
+  },
+  "limitation": "Read-only RPC simulation using a temporary server-supplied blockhash; the original stored wire/message was not changed, no new signatures were requested, and nothing was broadcast. Simulation is not settlement or browser-signing proof."
+}

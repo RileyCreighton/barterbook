@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-09-25T09:46:31.523Z",
+  "source": "Read-only projected hosted D1 state after owner clicked normal authenticated reconciliation; extension observations below are owner reports",
+  "cluster": "devnet",
+  "buildId": "63378c69a5c831f46058f8d5adee6dcc4bb040c9",
+  "attempt": {
+    "id": "2383931c-52d4-4f7c-ad0d-caf4a1b9ce12",
+    "room_id": "4cff89cad977b4c3d0c50c8d8f6faeb89542ad9a73b49b13",
+    "state": "EXPIRED_UNLANDED",
+    "safeToRetry": 1,
+    "txid": null,
+    "messageHash": "b08bdef0dbf7b766f8cc455612607731eb3b67827f7721b8e7150ad3f071d8d5",
+    "version": 3,
+    "lastValidBlockHeight": "491175170",
+    "submissionStartedAt": null,
+    "lastCheckedAt": 1790329271176,
+    "error": "Original message expired; both independently trusted complete fee-payer histories prove no matching transaction",
+    "observations": [
+      {
+        "endpoint": "devnet.helius-rpc.com",
+        "healthy": true,
+        "historyTrusted": true,
+        "finalizedBlockHeight": "491179690",
+        "blockhashValid": false,
+        "status": null,
+        "transactionFound": false,
+        "transactionErr": null,
+        "transactionFinalized": false,
+        "addressHistoryComplete": true
+      },
+      {
+        "endpoint": "solana-devnet.g.alchemy.com",
+        "healthy": true,
+        "historyTrusted": true,
+        "finalizedBlockHeight": "491179696",
+        "blockhashValid": false,
+        "status": null,
+        "transactionFound": false,
+        "transactionErr": null,
+        "transactionFinalized": false,
+        "addressHistoryComplete": true
+      }
+    ],
+    "storedSignatureCount": 0
+  },
+  "ownerReport": {
+    "wallet": "Solflare Firefox extension in Zen",
+    "publicAddress": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+    "standaloneDevnetSol": "1",
+    "login": "Successful signed-message authentication",
+    "reconciliation": "EXPIRED UNLANDED; renewal available"
+  },
+  "note": "Original attempt remains preserved. No completed browser exchange, transaction broadcast, or onchain receipt is claimed. No Chrome test occurred."
+}

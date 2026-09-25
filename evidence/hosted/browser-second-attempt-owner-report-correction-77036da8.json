@@ -1,0 +1,28 @@
+{
+  "recordedAt": "2026-09-25T09:32:44.284415Z",
+  "kind": "OWNER_REPORT_CORRECTION",
+  "cluster": "devnet",
+  "source": "Explicit subsequent owner clarification relayed by the coordinating agent; no new browser, wallet, RPC or network action performed for this correction",
+  "corrects": {
+    "record": "evidence/hosted/browser-second-attempt-reconciled-77036da8.json",
+    "sha256": "d47e67bf29d4fc040e1f93bab75aa5d1ef5e287264b47fac2986c31fe275794a",
+    "field": "ownerReport.chromeDiagnostic"
+  },
+  "supersededClaim": "Owner restored Alice same disposable address in Chrome and saw 0.05 Devnet SOL",
+  "correctedOwnerReport": {
+    "chromeInstalledOrUsed": false,
+    "chromeProfilesCreated": false,
+    "chromeWalletRestorationOrBalanceCheckPerformed": false,
+    "allThreeWalletsConnectedInChrome": false,
+    "browserPreference": "Stay in Zen; owner declines installing Chrome",
+    "currentWalletIssue": "Owner reports both Phantom wallets show Not enough SOL"
+  },
+  "unchangedIndependentEvidence": [
+    "The original record remains unchanged.",
+    "The archived D1 safe-expiry result and verified stored Bob signature are separate from the withdrawn Chrome report.",
+    "Previously verified onchain balances do not prove that Phantom displayed those balances in Chrome or Zen.",
+    "No completed browser exchange or successful Chrome compatibility test is established."
+  ],
+  "currentDiagnosticPlan": "Pause app testing. Owner closes all BarterBook tabs and transaction popups, then inspects Phantom Home with Solana Devnet selected in existing Zen profiles. No new attempt, signature, transaction, wallet import or browser installation is requested.",
+  "causation": "The owner is concerned app testing may affect Phantom. This is a hypothesis to check; neither causation nor independence is established by this correction."
+}
