@@ -29,7 +29,7 @@ import {
   receiptFromMetadata,
   type TransactionEvidence,
 } from "../shared/receipt";
-import type { Attempt, Env } from "../shared/types";
+import type { Attempt, Env, SigningStatus } from "../shared/types";
 import {
   requireAuth,
   requireMutationOrigin,
@@ -729,6 +729,55 @@ export function createSettlementRouter(): Hono<AppContext> {
   app.get("/attempts/:id", requireAuth, async (c) =>
     c.json({ attempt: await owned(c, c.req.param("id")) }),
   );
+  app.get("/attempts/:id/signing-status", requireAuth, async (c) => {
+    const attempt = await owned(c, c.req.param("id"));
+    await assertDevnet(c.env);
+    const rpc = rpcFor(c.env);
+    const [height, validity] = await Promise.all([
+      rpc.call("getBlockHeight", [{ commitment: "confirmed" }]),
+      rpc.call("isBlockhashValid", [
+        attempt.plan.blockhash,
+        {
+          commitment: "confirmed",
+          minContextSlot: Number(attempt.plan.contextSlot),
+        },
+      ]),
+    ]);
+    const currentBlockHeight = integer(height);
+    if (
+      typeof validity?.value !== "boolean" ||
+      BigInt(integer(validity.context?.slot)) < BigInt(attempt.plan.contextSlot)
+    )
+      throw new Error(
+        "Unable to verify the transaction's signing window. Try the check again.",
+      );
+    const expired =
+      BigInt(currentBlockHeight) > BigInt(attempt.plan.lastValidBlockHeight);
+    const reason =
+      attempt.state !== "SIGNING" || attempt.stopRequested
+        ? "This attempt is not collecting signatures. Reconcile original status."
+        : attempt.plan.terms.expiresAt <= Date.now()
+          ? "Accepted terms expired. Reconcile original status before renewing."
+          : expired
+            ? "This transaction's signing window expired. Reconcile original status before renewing; keep your wallet on Devnet."
+            : !validity.value
+              ? "The Devnet provider cannot validate this transaction's blockhash. Keep your wallet on Devnet and reconcile original status."
+              : null;
+    const status: SigningStatus = {
+      attemptId: attempt.id,
+      network: "devnet",
+      buildId: c.env.BUILD_ID ?? null,
+      checkedAt: Date.now(),
+      currentBlockHeight,
+      lastValidBlockHeight: attempt.plan.lastValidBlockHeight,
+      blockhashValid: validity.value,
+      expired,
+      signingAllowed: reason === null,
+      reason,
+    };
+    c.header("Cache-Control", "no-store");
+    return c.json(status);
+  });
   app.post("/attempts/:id/signatures", requireAuth, async (c) => {
     const body = await jsonObject(c),
       old = await owned(c, c.req.param("id")),

@@ -1,0 +1,99 @@
+{
+  "checkedAt": "2026-09-25T17:51:24.984Z",
+  "attemptId": "0ea1ed29-31e1-4ff1-9285-825bca6b4c95",
+  "termsVersion": 7,
+  "networkOriginAndExpiry": {
+    "checkedAt": "2026-09-25T17:41:53.661Z",
+    "attemptId": "0ea1ed29-31e1-4ff1-9285-825bca6b4c95",
+    "termsVersion": 7,
+    "results": [
+      {
+        "provider": "primary",
+        "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+        "devnet": true,
+        "finalizedHeight": 491353413,
+        "lastValidBlockHeight": "491349979",
+        "expired": true,
+        "blockhashValid": false,
+        "contextSlot": "504097449",
+        "blockhashMatchesOriginBlock": true
+      },
+      {
+        "provider": "independent-fallback",
+        "genesis": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+        "devnet": true,
+        "finalizedHeight": 491353412,
+        "lastValidBlockHeight": "491349979",
+        "expired": true,
+        "blockhashValid": false,
+        "contextSlot": "504097449",
+        "blockhashMatchesOriginBlock": true
+      }
+    ],
+    "scope": "Read-only network origin and expiry checks; not complete transaction-history reconciliation."
+  },
+  "isolatedBrowserCheck": {
+    "scope": "Real frozen version 7 checked in isolated Firefox; network response mocked. No wallet extension, signatures or broadcast.",
+    "browser": "146.0.1",
+    "errors": [],
+    "apiCalls": [
+      {
+        "url": "http://127.0.0.1:5176/api/attempts/0ea1ed29-31e1-4ff1-9285-825bca6b4c95/signing-status",
+        "method": "GET"
+      }
+    ],
+    "report": {
+      "diagnosticVersion": "2026-09-25.2",
+      "termsNetwork": "devnet",
+      "planNetwork": "devnet",
+      "verified": true,
+      "verificationError": null,
+      "termsMatch": true,
+      "messageMatches": true,
+      "frozenMessageHash": "51e96b9b2fd116e0c036df85a7fb1e2bf0d36891037e16ab4feb49797b1c95f5",
+      "reconstructedMessageHash": "51e96b9b2fd116e0c036df85a7fb1e2bf0d36891037e16ab4feb49797b1c95f5",
+      "frozenMessageBytes": 645,
+      "reconstructedMessageBytes": 645,
+      "firstDifferentByte": null,
+      "headerMatches": true,
+      "accountOrderMatches": true,
+      "accountSetMatches": true,
+      "blockhashMatches": true,
+      "instructionsMatch": true,
+      "storedSignatureCount": 0,
+      "termsExpired": false,
+      "retryAuthorized": false,
+      "networkStatus": {
+        "attemptId": "0ea1ed29-31e1-4ff1-9285-825bca6b4c95",
+        "network": "devnet",
+        "buildId": "fixture",
+        "checkedAt": 1790358602266,
+        "currentBlockHeight": "491353413",
+        "lastValidBlockHeight": "491349979",
+        "blockhashValid": false,
+        "expired": true,
+        "signingAllowed": false,
+        "reason": "Signing window expired"
+      },
+      "attemptId": "0ea1ed29-31e1-4ff1-9285-825bca6b4c95",
+      "termsVersion": 7,
+      "walletName": null,
+      "signingPath": "not-connected",
+      "connectionCurrent": false,
+      "solflareAvailable": false,
+      "solflareConnected": false,
+      "solflareAccountMatches": false,
+      "registeredWalletNames": [],
+      "browser": "Mozilla/5.0 (X11; Linux x86_64; rv:146.0) Gecko/20100101 Firefox/146.0",
+      "language": "en-US",
+      "locale": "en-US"
+    }
+  },
+  "limitations": [
+    "Solflare extension was not executed; the browser UI test uses a mocked signing-status response.",
+    "No real wallet signing or settlement pass is claimed.",
+    "Devnet origin and current expiry do not establish why Solflare reported Mainnet.",
+    "This read-only investigation does not establish complete transaction history or authorize a replacement."
+  ],
+  "nextStep": "Owner copies the read-only transaction report from Bob’s existing room after deployment."
+}

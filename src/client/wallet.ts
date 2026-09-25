@@ -72,6 +72,25 @@ function injectedSolflare(): SolflareTransactionProvider | undefined {
     : (window as Window & { solflare?: SolflareTransactionProvider }).solflare;
 }
 
+export function walletSigningDiagnostics(connection: WalletConnection | null) {
+  const provider = injectedSolflare();
+  return {
+    walletName: connection?.wallet.name ?? null,
+    signingPath: connection
+      ? connection.wallet.name === "Solflare"
+        ? "solflare-transaction-message"
+        : "wallet-standard-transaction"
+      : "not-connected",
+    connectionCurrent: connection ? connectionIsCurrent(connection) : false,
+    solflareAvailable: !!provider && provider.isSolflare === true,
+    solflareConnected: provider?.isConnected === true,
+    solflareAccountMatches:
+      !!connection &&
+      provider?.publicKey?.toBase58() === connection.account.address,
+    registeredWalletNames: availableWallets().map((wallet) => wallet.name),
+  };
+}
+
 function assertSolflareAccount(
   provider: SolflareTransactionProvider,
   connection: WalletConnection,
@@ -316,7 +335,14 @@ export async function signFrozenTransaction(
   if (terms.expiresAt <= Date.now())
     throw new Error("Accepted terms expired. Review new terms before signing.");
   const originalWire = unb64(wireBase64);
-  const before = await verifyWireSignatures(originalWire, plan, false, terms);
+  let before: Awaited<ReturnType<typeof verifyWireSignatures>>;
+  try {
+    before = await verifyWireSignatures(originalWire, plan, false, terms);
+  } catch (cause) {
+    throw new Error(
+      `Before opening the wallet: ${cause instanceof Error ? cause.message : "Transaction verification failed"}. Use “Check transaction without signing” in this room.`,
+    );
+  }
   const ownSlot = before.signers.indexOf(connection.account.address);
   if (ownSlot < 0)
     throw new Error("Connected wallet is not a participant in these terms.");
@@ -348,7 +374,14 @@ export async function signFrozenTransaction(
       throw new Error("Wallet returned no unique signed transaction.");
     signedWire = new Uint8Array(result);
   }
-  const after = await verifyWireSignatures(signedWire, plan, false, terms);
+  let after: Awaited<ReturnType<typeof verifyWireSignatures>>;
+  try {
+    after = await verifyWireSignatures(signedWire, plan, false, terms);
+  } catch (cause) {
+    throw new Error(
+      `After wallet approval: ${cause instanceof Error ? cause.message : "Transaction verification failed"}. This signature was not uploaded.`,
+    );
+  }
   if (!equalBytes(before.message, after.message))
     throw new Error(
       "Wallet changed the frozen transaction message. All participants must approve a new attempt.",

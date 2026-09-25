@@ -8,6 +8,7 @@ import type {
   Listing,
   Match,
   Room,
+  SigningStatus,
   Terms,
 } from "../shared/types";
 import { api, onWalletIdentityMismatch, setExpectedWallet } from "./api";
@@ -34,6 +35,7 @@ import {
   type DemoConfiguration,
 } from "./DemoGuide";
 import { RenewAttempt } from "./RenewAttempt";
+import { TransactionCheck } from "./TransactionCheck";
 import {
   amount,
   AssetMark,
@@ -523,12 +525,24 @@ export function App() {
       terms = accepted[acceptKey(r)];
     if (!attempt || !terms)
       throw new Error("Accept exact terms in this browser before signing.");
-    const fresh = await api<{ assets: Asset[] }>("/assets/fresh");
+    const [fresh, signingStatus] = await Promise.all([
+      api<{ assets: Asset[] }>("/assets/fresh"),
+      api<SigningStatus>(`/attempts/${attempt.id}/signing-status`),
+    ]);
     if (generation !== sessionGeneration.current)
       throw new Error(
         "Wallet changed before signing. Reconnect and review the original room.",
       );
     validateTerms(terms, fresh.assets);
+    if (
+      signingStatus.attemptId !== attempt.id ||
+      signingStatus.network !== "devnet" ||
+      !signingStatus.signingAllowed
+    )
+      throw new Error(
+        signingStatus.reason ??
+          "Unable to verify this transaction's Devnet signing window.",
+      );
     const wireBase64 = await signFrozenTransaction(
       wallet,
       attempt.wireBase64,
@@ -539,7 +553,13 @@ export function App() {
       throw new Error(
         "Wallet changed while signing. The original attempt still needs reconciliation; this signature has not been uploaded.",
       );
-    await api(`/attempts/${attempt.id}/signatures`, { wireBase64 });
+    try {
+      await api(`/attempts/${attempt.id}/signatures`, { wireBase64 });
+    } catch (cause) {
+      throw new Error(
+        `While saving the signature to the server: ${cause instanceof Error ? cause.message : "Request failed"}. Reconcile the original status before another attempt.`,
+      );
+    }
     await loadRoom(r.id);
     setNotice("Signature verified and saved for the frozen message.");
   }
@@ -962,6 +982,14 @@ export function App() {
                         </div>
                       )}
                     </div>
+                    {room.attempt && (
+                      <TransactionCheck
+                        key={`${room.attempt.id}:${owner}`}
+                        attempt={room.attempt}
+                        terms={room.terms}
+                        connection={connection}
+                      />
+                    )}
                     <RenewAttempt
                       room={room}
                       assets={assets}

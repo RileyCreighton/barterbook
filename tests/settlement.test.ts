@@ -206,6 +206,7 @@ async function setup(options: { rentCap?: string } = {}) {
     tokens.set(wallet, token);
   }
   const state = {
+    genesis: "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
     height: 100,
     blockhashValid: true,
     timeoutSend: false,
@@ -231,7 +232,7 @@ async function setup(options: { rentCap?: string } = {}) {
     let result: unknown;
     switch (method) {
       case "getGenesisHash":
-        result = "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG";
+        result = state.genesis;
         break;
       case "getFirstAvailableBlock":
         result = 1;
@@ -404,6 +405,17 @@ async function setup(options: { rentCap?: string } = {}) {
     }
     return attempt;
   }
+  function signingStatus(id: string) {
+    return app.request(
+      `/attempts/${id}/signing-status`,
+      {
+        headers: {
+          Cookie: `__Host-bb_session=${tokens.get(f.terms.owners[0])}`,
+        },
+      },
+      env,
+    );
+  }
   return {
     db,
     f,
@@ -414,10 +426,71 @@ async function setup(options: { rentCap?: string } = {}) {
     prepare,
     sign,
     fullySigned,
+    signingStatus,
     fetchMock,
   };
 }
 describe("settlement HTTP + SQLite + mocked RPC integration (not onchain evidence)", () => {
+  it("checks Devnet lifetime without changing the attempt, including expired and unavailable blockhashes", async () => {
+    const s = await setup();
+    const attempt = await s.prepare();
+    const before = await getAttempt(s.db, attempt.id);
+    const fresh = await s.signingStatus(attempt.id);
+    expect(fresh.status).toBe(200);
+    expect(fresh.headers.get("Cache-Control")).toBe("no-store");
+    expect(await fresh.json()).toMatchObject({
+      network: "devnet",
+      signingAllowed: true,
+      expired: false,
+      blockhashValid: true,
+    });
+    s.state.height = 501;
+    s.state.blockhashValid = false;
+    expect(await (await s.signingStatus(attempt.id)).json()).toMatchObject({
+      signingAllowed: false,
+      expired: true,
+      blockhashValid: false,
+    });
+    s.state.height = 100;
+    expect(await (await s.signingStatus(attempt.id)).json()).toMatchObject({
+      signingAllowed: false,
+      expired: false,
+      blockhashValid: false,
+    });
+    expect(await getAttempt(s.db, attempt.id)).toEqual(before);
+    expect(s.state.sendCalls).toBe(0);
+  });
+
+  it("fails the signing check if the provider is not Devnet", async () => {
+    const s = await setup();
+    const attempt = await s.prepare();
+    s.state.genesis = "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp";
+    const result = await s.signingStatus(attempt.id);
+    expect(result.status).toBe(400);
+    expect(await result.json()).toMatchObject({
+      error: "RPC is not Solana devnet",
+    });
+  });
+
+  it("does not permit signing a stopped attempt even with a valid blockhash", async () => {
+    const s = await setup();
+    const attempt = await s.prepare();
+    await s.request(`/attempts/${attempt.id}/stop`);
+    expect(await (await s.signingStatus(attempt.id)).json()).toMatchObject({
+      signingAllowed: false,
+      expired: false,
+    });
+  });
+
+  it("does not disclose the signing status to a nonmember", async () => {
+    const s = await setup();
+    const attempt = await s.prepare();
+    await s.db
+      .prepare("DELETE FROM room_members WHERE room_id=? AND wallet=?")
+      .bind(s.room.id, s.f.terms.owners[0])
+      .run();
+    expect((await s.signingStatus(attempt.id)).status).toBe(404);
+  });
   it("keeps active signing and fully signed attempts usable while polling a healthy valid lifetime", async () => {
     const t = await setup();
     let attempt = await t.prepare();

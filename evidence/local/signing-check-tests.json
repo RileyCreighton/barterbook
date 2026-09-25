@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-09-25T17:52:02.406Z",
+  "success": true,
+  "tests": 272,
+  "passed": 272,
+  "failed": 0,
+  "pending": 0,
+  "files": 23,
+  "scope": "Local regression suite. Not actual Solflare browser execution."
+}

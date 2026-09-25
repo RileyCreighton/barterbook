@@ -125,6 +125,19 @@ export interface Attempt {
     transaction: import("./receipt").TransactionEvidence;
   };
 }
+/** A momentary signing check, never evidence that an attempt may be replaced. */
+export interface SigningStatus {
+  attemptId: string;
+  network: "devnet";
+  buildId: string | null;
+  checkedAt: number;
+  currentBlockHeight: string;
+  lastValidBlockHeight: string;
+  blockhashValid: boolean;
+  expired: boolean;
+  signingAllowed: boolean;
+  reason: string | null;
+}
 export interface ReceiptDelta {
   account: string;
   owner: string;

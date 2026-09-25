@@ -2,6 +2,16 @@
 
 The repair is live at [BarterBook Devnet](https://barterbook-devnet.rileycreighton.workers.dev), build `b45551b`. [Deployment verification](../evidence/hosted/solflare-signing-deployment-b45551b.json) confirms the served files match the tested build. [CI passed all 262 tests](https://github.com/RileyCreighton/barterbook/actions/runs/36166658227). These checks do not replace the owner-controlled Solflare test below.
 
+## Current next step: diagnose version 7 before another signature
+
+The owner reports the altered-transaction error in a refreshed version 7, followed on a later retry by Solflare's Devnet/Mainnet warning. Both configured RPCs independently confirmed the exact frozen blockhash originated on **Devnet**; it was expired at the later check. This does not establish why Solflare described it as Mainnet, and does not reconcile its onchain outcome.
+
+After the diagnostic update is deployed, keep Solflare on **Devnet**, close the old approval popup, and hard-refresh Bob's app tab. Open the existing Alice/Bob room and click **Check transaction without signing**, then **Copy check report**. Send the report back for diagnosis. This check works on the existing expired attempt, does not open a wallet, and does not authorize a replacement. There is no need to rebuild or renew to obtain this report.
+
+The update checks the configured provider's Devnet genesis and the attempt's remaining blockhash lifetime before opening a signing prompt. It also distinguishes verification before the wallet, verification after approval, and server upload failures. Expiry can still occur while a wallet prompt is open; the server continues to enforce the lifetime at upload and submission.
+
+The two-person and three-person sequences below are the subsequent rehearsal steps once this diagnostic is resolved. A replacement still requires the original attempt's normal safe reconciliation and fresh consent.
+
 ## Prepare the existing wallet windows
 
 1. Use your existing separate Zen profiles for Alice, Bob and Carol. Keep Solflare on **Devnet**.
@@ -18,9 +28,9 @@ The repair is live at [BarterBook Devnet](https://barterbook-devnet.rileycreight
 
 ## Test 1: Alice and Bob, using the existing room
 
-1. Open the [existing Alice/Bob room](https://barterbook-devnet.rileycreighton.workers.dev/#/room/4cff89cad977b4c3d0c50c8d8f6faeb89542ad9a73b49b13) in both profiles. At deployment, version 6 was still marked `SIGNING`, with no stored signatures or transaction ID.
+1. Open the [existing Alice/Bob room](https://barterbook-devnet.rileycreighton.workers.dev/#/room/4cff89cad977b4c3d0c50c8d8f6faeb89542ad9a73b49b13) in both profiles. Version 7 is the current reported failure. At the diagnostic snapshot it was marked `SIGNING`, with no stored signatures or transaction ID; that is not proof of non-execution.
 2. In either profile, click **Reconcile original status**. Wait for the app to establish that the original expired without landing and display **Original attempt reconciled** / the renewal controls. If the outcome remains unknown, report the displayed message before creating a replacement.
-3. In one profile, click **Refresh fees and preview renewal**, review the preview, then **Create revision for everyone to review**. This should create version 7 if nobody has renewed it in the meantime. Reuse the room; it has no source-listing dependency that requires rebuilding the offer.
+3. In one profile, click **Refresh fees and preview renewal**, review the preview, then **Create revision for everyone to review**. This creates the next terms version (after version 7, normally version 8). Reuse the room; it has no source-listing dependency that requires rebuilding the offer.
 4. Confirm the terms: Alice gives **10 TEST-A + 5 TEST-B**; Bob gives **20 TEST-C** and pays the network fee. With the current 1% token fees, Bob receives **9.9 TEST-A + 4.95 TEST-B**, and Alice receives **19.8 TEST-C**.
 5. In **both** profiles, check the review box, click **Accept exact terms**, then **I’m ready**. If the page was refreshed after preparation, use **Confirm this browser’s review** to restore that browser's local review.
 6. Once both participants show ready, click **Prepare one transaction** once, in Bob's window.
