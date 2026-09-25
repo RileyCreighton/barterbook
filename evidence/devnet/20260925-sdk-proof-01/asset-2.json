@@ -1,0 +1,29 @@
+{
+  "cluster": "devnet",
+  "mint": "3y3QsQtR3pK9fe3ZxCcwTdc5AHN87panLaFzR3GfzZvz",
+  "symbol": "TEST-C",
+  "name": "BarterBook devnet test asset C (not PRE)",
+  "decimals": 6,
+  "tokenProgram": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+  "hasTransferFee": true,
+  "olderFee": {
+    "epoch": "1166",
+    "basisPoints": 100,
+    "maximumFeeRaw": "1000000"
+  },
+  "newerFee": {
+    "epoch": "1166",
+    "basisPoints": 100,
+    "maximumFeeRaw": "1000000"
+  },
+  "observedEpoch": "1166",
+  "observedSlot": "503880825",
+  "observedAt": 1790321560515,
+  "extensions": [
+    1
+  ],
+  "multiplier": "1",
+  "pendingMultiplier": "1",
+  "tested": true,
+  "mock": true
+}

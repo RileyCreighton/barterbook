@@ -1,0 +1,330 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-25T07:30:12.650Z",
+  "cluster": "devnet",
+  "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+  "source": "Configured Helius primary RPC; endpoint/key omitted",
+  "commitment": "finalized",
+  "scope": "Read-only SOL funding inspection; no faucet request, signing, or broadcast",
+  "participants": [
+    {
+      "address": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+      "label": "Disposable SDK participant 1",
+      "finalizedLamports": "1000000000",
+      "balanceContextSlot": "503879899",
+      "history": [
+        {
+          "signature": "3QxPT4NoroM328WsTbLwdJBW1k7GnCQTTjRQ6TwrXiZkp3UYGucNGU1zyt6Hh3z2jvzVVSnajQmPLKTvSvQiUmgQ",
+          "slot": "503873620",
+          "err": null,
+          "confirmationStatus": "finalized",
+          "blockTime": 1790320366
+        }
+      ],
+      "incomingFunding": [
+        {
+          "signature": "3QxPT4NoroM328WsTbLwdJBW1k7GnCQTTjRQ6TwrXiZkp3UYGucNGU1zyt6Hh3z2jvzVVSnajQmPLKTvSvQiUmgQ",
+          "slot": "503873620",
+          "blockTime": 1790320366,
+          "feePayer": "dev2JBjyB5CshoGsiJCwzdmJYiEUwAXMdqDR7txoFBJ",
+          "recipientDeltaLamports": "1000000000",
+          "incomingSystemTransfers": [
+            {
+              "source": "dev2JBjyB5CshoGsiJCwzdmJYiEUwAXMdqDR7txoFBJ",
+              "destination": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+              "lamports": "1000000000"
+            }
+          ],
+          "faucetOriginVerified": false,
+          "faucetOriginNote": "Finalized payer and credit verified; public addresses alone do not identify the offchain faucet operator.",
+          "finalizedTransactionMetadata": {
+            "transaction": {
+              "signatures": [
+                "3QxPT4NoroM328WsTbLwdJBW1k7GnCQTTjRQ6TwrXiZkp3UYGucNGU1zyt6Hh3z2jvzVVSnajQmPLKTvSvQiUmgQ"
+              ],
+              "message": {
+                "accountKeys": [
+                  {
+                    "pubkey": "dev2JBjyB5CshoGsiJCwzdmJYiEUwAXMdqDR7txoFBJ",
+                    "writable": true,
+                    "signer": true,
+                    "source": "transaction"
+                  },
+                  {
+                    "pubkey": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+                    "writable": true,
+                    "signer": false,
+                    "source": "transaction"
+                  },
+                  {
+                    "pubkey": "11111111111111111111111111111111",
+                    "writable": false,
+                    "signer": false,
+                    "source": "transaction"
+                  },
+                  {
+                    "pubkey": "ComputeBudget111111111111111111111111111111",
+                    "writable": false,
+                    "signer": false,
+                    "source": "transaction"
+                  }
+                ],
+                "recentBlockhash": "qYtv7HiB9tTXKtQ68QUv7aFAzSrkupv6j7fJRidgprs",
+                "instructions": [
+                  {
+                    "program": "system",
+                    "programId": "11111111111111111111111111111111",
+                    "parsed": {
+                      "info": {
+                        "destination": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+                        "lamports": 1000000000,
+                        "source": "dev2JBjyB5CshoGsiJCwzdmJYiEUwAXMdqDR7txoFBJ"
+                      },
+                      "type": "transfer"
+                    },
+                    "stackHeight": 1
+                  },
+                  {
+                    "programId": "ComputeBudget111111111111111111111111111111",
+                    "accounts": [],
+                    "data": "3QCwqmHZ4mdq",
+                    "stackHeight": 1
+                  },
+                  {
+                    "programId": "ComputeBudget111111111111111111111111111111",
+                    "accounts": [],
+                    "data": "LCQ37u",
+                    "stackHeight": 1
+                  }
+                ]
+              }
+            },
+            "meta": {
+              "err": null,
+              "status": {
+                "Ok": null
+              },
+              "fee": 5495,
+              "preBalances": [
+                5988471043337227,
+                0,
+                1,
+                1
+              ],
+              "postBalances": [
+                5988470043331732,
+                1000000000,
+                1,
+                1
+              ],
+              "innerInstructions": [],
+              "logMessages": [
+                "Program 11111111111111111111111111111111 invoke [1]",
+                "Program 11111111111111111111111111111111 success",
+                "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+                "Program ComputeBudget111111111111111111111111111111 success",
+                "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+                "Program ComputeBudget111111111111111111111111111111 success"
+              ],
+              "preTokenBalances": [],
+              "postTokenBalances": [],
+              "rewards": [],
+              "computeUnitsConsumed": 450,
+              "costUnits": 1784
+            },
+            "version": "legacy",
+            "slot": 503873620,
+            "transactionIndex": 8,
+            "blockTime": 1790320366
+          }
+        }
+      ]
+    },
+    {
+      "address": "8B9FCGFGFjqqQhdkLSChG3Jxnjo4sLn3FdYjd18DeuTi",
+      "label": "Alice browser devnet wallet",
+      "finalizedLamports": "0",
+      "balanceContextSlot": "503879900",
+      "history": [],
+      "incomingFunding": []
+    },
+    {
+      "address": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+      "label": "Bob browser devnet wallet",
+      "finalizedLamports": "1000000000",
+      "balanceContextSlot": "503879901",
+      "history": [
+        {
+          "signature": "3ySLuxnXqGxUtv5Z4n6P3a4bShAVzGMyu6z3S8EP89Q5yq9b37NmVxnahuKCoaPheQ8TZisrEtRfCmbActSf9yp6",
+          "slot": "503875783",
+          "err": null,
+          "confirmationStatus": "finalized",
+          "blockTime": 1790320723
+        }
+      ],
+      "incomingFunding": [
+        {
+          "signature": "3ySLuxnXqGxUtv5Z4n6P3a4bShAVzGMyu6z3S8EP89Q5yq9b37NmVxnahuKCoaPheQ8TZisrEtRfCmbActSf9yp6",
+          "slot": "503875783",
+          "blockTime": 1790320723,
+          "feePayer": "dev2JBjyB5CshoGsiJCwzdmJYiEUwAXMdqDR7txoFBJ",
+          "recipientDeltaLamports": "1000000000",
+          "incomingSystemTransfers": [
+            {
+              "source": "dev2JBjyB5CshoGsiJCwzdmJYiEUwAXMdqDR7txoFBJ",
+              "destination": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+              "lamports": "1000000000"
+            }
+          ],
+          "faucetOriginVerified": false,
+          "faucetOriginNote": "Finalized payer and credit verified; public addresses alone do not identify the offchain faucet operator.",
+          "finalizedTransactionMetadata": {
+            "transaction": {
+              "signatures": [
+                "3ySLuxnXqGxUtv5Z4n6P3a4bShAVzGMyu6z3S8EP89Q5yq9b37NmVxnahuKCoaPheQ8TZisrEtRfCmbActSf9yp6"
+              ],
+              "message": {
+                "accountKeys": [
+                  {
+                    "pubkey": "dev2JBjyB5CshoGsiJCwzdmJYiEUwAXMdqDR7txoFBJ",
+                    "writable": true,
+                    "signer": true,
+                    "source": "transaction"
+                  },
+                  {
+                    "pubkey": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+                    "writable": true,
+                    "signer": false,
+                    "source": "transaction"
+                  },
+                  {
+                    "pubkey": "11111111111111111111111111111111",
+                    "writable": false,
+                    "signer": false,
+                    "source": "transaction"
+                  },
+                  {
+                    "pubkey": "ComputeBudget111111111111111111111111111111",
+                    "writable": false,
+                    "signer": false,
+                    "source": "transaction"
+                  }
+                ],
+                "recentBlockhash": "S24Ee2u6xBHQEmv5vDYhEcJdyzwYy9yc3E2Razu3JRt",
+                "instructions": [
+                  {
+                    "program": "system",
+                    "programId": "11111111111111111111111111111111",
+                    "parsed": {
+                      "info": {
+                        "destination": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+                        "lamports": 1000000000,
+                        "source": "dev2JBjyB5CshoGsiJCwzdmJYiEUwAXMdqDR7txoFBJ"
+                      },
+                      "type": "transfer"
+                    },
+                    "stackHeight": 1
+                  },
+                  {
+                    "programId": "ComputeBudget111111111111111111111111111111",
+                    "accounts": [],
+                    "data": "3QCwqmHZ4mdq",
+                    "stackHeight": 1
+                  },
+                  {
+                    "programId": "ComputeBudget111111111111111111111111111111",
+                    "accounts": [],
+                    "data": "LCQ37u",
+                    "stackHeight": 1
+                  }
+                ]
+              }
+            },
+            "meta": {
+              "err": null,
+              "status": {
+                "Ok": null
+              },
+              "fee": 5495,
+              "preBalances": [
+                5988429043282277,
+                0,
+                1,
+                1
+              ],
+              "postBalances": [
+                5988428043276782,
+                1000000000,
+                1,
+                1
+              ],
+              "innerInstructions": [],
+              "logMessages": [
+                "Program 11111111111111111111111111111111 invoke [1]",
+                "Program 11111111111111111111111111111111 success",
+                "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+                "Program ComputeBudget111111111111111111111111111111 success",
+                "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+                "Program ComputeBudget111111111111111111111111111111 success"
+              ],
+              "preTokenBalances": [],
+              "postTokenBalances": [],
+              "rewards": [],
+              "computeUnitsConsumed": 450,
+              "costUnits": 1784
+            },
+            "version": "legacy",
+            "slot": 503875783,
+            "transactionIndex": 18,
+            "blockTime": 1790320723
+          }
+        }
+      ]
+    },
+    {
+      "address": "EqEnSeX2UXqF2stBPK1WGULz5Shs6CWBcU9JRUdHAz5J",
+      "label": "Carol browser devnet wallet",
+      "finalizedLamports": "0",
+      "balanceContextSlot": "503879903",
+      "history": [],
+      "incomingFunding": []
+    }
+  ],
+  "journalStates": [
+    {
+      "filename": ".test-wallets/faucet-request-slots/5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV/1989241.json",
+      "state": null,
+      "status": null,
+      "hasTransactionIdentifier": false,
+      "hasSignedBytes": false
+    },
+    {
+      "filename": ".test-wallets/faucet-request.json",
+      "state": "REQUEST_STARTED",
+      "status": null,
+      "hasTransactionIdentifier": false,
+      "hasSignedBytes": false
+    },
+    {
+      "filename": ".test-wallets/runs/20260925-sdk-proof-01/faucet/retry-01/request.json",
+      "state": "REQUEST_STARTED",
+      "status": null,
+      "hasTransactionIdentifier": false,
+      "hasSignedBytes": false
+    },
+    {
+      "filename": ".test-wallets/runs/20260925-sdk-proof-01/faucet/retry-01/result.json",
+      "state": "BLOCKED_OR_UNCERTAIN",
+      "status": null,
+      "hasTransactionIdentifier": false,
+      "hasSignedBytes": false
+    },
+    {
+      "filename": ".test-wallets/runs/20260925-sdk-proof-01/run.json",
+      "state": null,
+      "status": null,
+      "hasTransactionIdentifier": false,
+      "hasSignedBytes": false
+    }
+  ]
+}

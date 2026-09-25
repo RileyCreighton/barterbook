@@ -1,0 +1,10 @@
+{
+  "recordedAt": "2026-09-25T07:38:52.648Z",
+  "scope": "Operator execution note; separate from transaction evidence",
+  "operation": "browser-sol-alice-carol-01",
+  "result": "FINALIZED",
+  "txid": "5HQduJtbwwhr1sPLVg3sntjGbTn3gc39nzVntPJ7xTJASM2Q2bkTTnX5j9TDtQu8B7HCBUBXUxj94r5s2ACxmBCz",
+  "duplicateInvocationRejected": true,
+  "explanation": "An operator import wrapper invoked the setup entrypoint twice. The immutable journal rejected the competing invocation; the original transaction finalized with exactly the two intended recipient credits. The wrapper was corrected for subsequent commands. No journal was deleted and no replacement message was created.",
+  "receipt": "browser-sol-alice-carol-01-receipt.json"
+}

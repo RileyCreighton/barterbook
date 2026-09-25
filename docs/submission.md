@@ -14,7 +14,7 @@ The current fields are project name, short description, full description (Markdo
 
 Generic devnet demonstrations are allowed by the platform guidance. The PRE bounty asks for a project using PreStocks and excludes other issuers' pre-IPO tokens; it does not explicitly confirm that generic mock-token fixtures alone qualify. Do not select that bounty as if eligibility were established. Real PRE testing still needs issuer eligibility and explicit asset authorization.
 
-The current draft measures **254 / 280** UTF-16 code units for the short description and **4,387 / 5,000** for the full description. The count includes spaces and paragraph breaks, matching the public form’s JavaScript length convention.
+The current draft measures **258 / 280** UTF-16 code units for the short description and **4,456 / 5,000** for the full description. The count includes spaces and paragraph breaks, matching the public form’s JavaScript length convention.
 
 ## Project name
 
@@ -27,7 +27,7 @@ Your inventory. Shared terms. One atomic exchange.
 ## Short description
 
 <!-- short:start -->
-BarterBook combines token offers, two-for-one baskets and three-owner matches. Its shared signing engine passes atomic Token-2022 execution tests locally. Public devnet settlement and browser-wallet proof remain pending. Test assets are not PRE holdings.
+BarterBook combines token offers, two-for-one baskets and three-owner matches. Developer-run SDK tests finalized a fee-aware basket, three-way exchange and atomic failure on Solana devnet. Browser settlement remains pending. Mock tokens are not PRE holdings.
 <!-- short:end -->
 
 ## Full description
@@ -48,11 +48,13 @@ The coordinator records an immutable message, signatures, full signed bytes, tra
 
 The stack is React, Vite and TypeScript, with one Cloudflare Worker serving static assets and a Hono API, D1 persistence and server-side Helius RPC access. Wallet keys remain in browser wallets. Provider credentials stay on the server. Active rooms use short HTTP polling.
 
-The prototype is publicly hosted on one Cloudflare Worker and configured for devnet; live settlement remains disabled. The no-wallet walkthrough labels illustrative examples separately from actual local execution evidence. All assets are test fixtures, not real PRE holdings, private-company shares or evidence of mainnet PRE settlement. PRE Kalshi, Neuralink and Anduril are intended mainnet integrations subject to fresh mint compatibility checks and eligible, explicitly authorized participants. Fixture-only PRE bounty eligibility has not been established.
+The public Worker offers a no-wallet walkthrough with clearly labeled examples and local execution evidence. Three mock devnet mints have passed actual compatibility transfers. They are not PRE holdings, private-company shares or mainnet settlement proof. Real PRE integrations require fresh mint validation and eligible, explicitly authorized participants. Fixture-only PRE bounty eligibility remains unestablished.
 
-The recorded automated suite and production build pass. Actual Token-2022 and associated-token programs execute locally in LiteSVM 0.8.0: a fee-aware two-for-one basket, a three-owner exchange and a failing final leg with complete token/account-creation rollback. SDK signers preserve one immutable message. These are local program executions, not public-network receipts or browser-wallet proof. Local no-wallet browser checks cover the guide, evidence view, exact example quantities and responsive mobile layout. Public history and finalized metadata downloads are implemented, with privacy and pagination tests.
+Developer-run SDK tests now finalized a fee-aware two-for-one basket and three-owner exchange on public Solana devnet. Both preserve one message across signatures, and transaction metadata verifies exact gross debits and net receipts. A deliberate final-leg failure finalized with all intended token deltas zero in existing accounts. Network fees were 10,000, 15,000 and 15,000 lamports respectively. Separate local LiteSVM tests prove rollback of newly created receiving accounts. These are controlled SDK tests, not browser-wallet settlements.
 
-Public devnet settlement remains pending: the original disposable-wallet faucet request and one journaled retry did not establish funding; current finalized reconciliation shows zero SOL. No fixture exchange was broadcast. No wallet extension was available, so real browser partial signing is also pending. The public Worker, D1 migrations and server-side Helius Devnet configuration are live. GitHub CI and hosted authentication/persistence checks pass. Hosted financial-path CPU measurements and browser-wallet settlement remain pending; no paid plan was enabled. The evidence ledger records these boundaries. This prototype is not an audited trading service.
+Actual devnet proofs: [basket](https://explorer.solana.com/tx/4TLQ55rcPS79kRAQTw52JH2SRTodvH5UzQgeczaRngpbHqu7YBqzfifr126N1BK8cD9GqDhAegdsKr3ofyKgPrP9?cluster=devnet) and [three-way exchange](https://explorer.solana.com/tx/3YfomqM1UoyqHkqobn2sUQYMoLh5CcUMsecsbF6o4Zcrrjvzbfsp4E1A6a54etPxcuSvT5z1LXmjmzHVy6coWsC2?cluster=devnet).
+
+Three new browser wallets received mock inventory; Alice and Carol received faucet-only setup SOL. Alice reports successful connection and authentication, but transaction partial signing remains unproven. The hosted app still has an empty registry and disabled settlement: Cloudflare account access currently blocks mint registration. Hosted financial CPU is unmeasured. Initial GitHub CI passed 143 tests; 35 focused script tests passed after helper changes, whose full-suite CI is pending. Hosted HTTP/authentication checks used an SDK identity. No paid plan was enabled. This is not an audited trading service.
 
 Development used AI coding assistance. The source documentation attributes React, Vite, TypeScript, Hono, Cloudflare tooling, Solana SDKs and other installed dependencies. Research also acknowledges prior bilateral barter, auction and multi-user matching work. The project makes no claim to have invented barter or order cycles.
 <!-- full:end -->
@@ -65,7 +67,9 @@ Demo: https://barterbook-devnet.rileycreighton.workers.dev/#/walkthrough
 
 Evidence: https://github.com/RileyCreighton/barterbook/blob/main/evidence/finish-verification.json
 
-Pitch video: not recorded. Technical video: not recorded. No public devnet transaction proof links exist yet.
+Pitch video: not recorded. Technical video: not recorded.
+
+Developer-run SDK devnet proofs: [basket](https://explorer.solana.com/tx/4TLQ55rcPS79kRAQTw52JH2SRTodvH5UzQgeczaRngpbHqu7YBqzfifr126N1BK8cD9GqDhAegdsKr3ofyKgPrP9?cluster=devnet), [three-way exchange](https://explorer.solana.com/tx/3YfomqM1UoyqHkqobn2sUQYMoLh5CcUMsecsbF6o4Zcrrjvzbfsp4E1A6a54etPxcuSvT5z1LXmjmzHVy6coWsC2?cluster=devnet), and [controlled final-leg failure](https://explorer.solana.com/tx/Egor5yrT3AXee5otWCdZi1ufCfmqNKBBYVZohAsELwfhzQDbeBycNEY3XZXjjbtrSSRai4dGd88XNnoHB8YyNj6?cluster=devnet). These are finalized public transactions, not hosted browser-wallet execution.
 
 Keep actual repository, hosted-demo, pitch-video and technical-video URLs in their dedicated fields. Do not substitute localhost, private credentials, a placeholder URL or a private repository the judges cannot access. At least one accessible supporting link is required by the event.
 

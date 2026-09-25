@@ -1,0 +1,14 @@
+[
+  {
+    "address": "8B9FCGFGFjqqQhdkLSChG3Jxnjo4sLn3FdYjd18DeuTi",
+    "label": "Alice browser devnet wallet"
+  },
+  {
+    "address": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+    "label": "Bob browser devnet wallet"
+  },
+  {
+    "address": "EqEnSeX2UXqF2stBPK1WGULz5Shs6CWBcU9JRUdHAz5J",
+    "label": "Carol browser devnet wallet"
+  }
+]

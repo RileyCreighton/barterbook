@@ -1569,6 +1569,30 @@ footer b {
 .local-result-grid details {
   margin-bottom: 0;
 }
+.sdk-evidence-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.sdk-effects {
+  padding-left: 18px;
+  font-size: 12px;
+}
+.sdk-effects li {
+  margin: 6px 0;
+}
+.separate-local-evidence {
+  margin: 24px 0;
+}
+.devnet-sdk-evidence article {
+  min-width: 0;
+}
+.devnet-sdk-evidence article > a {
+  font-size: 12px;
+}
 .local-result-grid .pill {
   background: #e7efdc;
 }

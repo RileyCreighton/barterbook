@@ -1,0 +1,28 @@
+{
+  "cluster": "devnet",
+  "runId": "20260925-sdk-proof-01",
+  "existingUserFundsUsed": false,
+  "checkedAt": "2026-09-25T07:31:54.877Z",
+  "wallet": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+  "finalizedLamports": "1000000000",
+  "history": [
+    {
+      "signature": "3QxPT4NoroM328WsTbLwdJBW1k7GnCQTTjRQ6TwrXiZkp3UYGucNGU1zyt6Hh3z2jvzVVSnajQmPLKTvSvQiUmgQ",
+      "slot": 503873620,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790320366
+    }
+  ],
+  "priorRequests": [
+    {
+      "at": "2026-09-25T04:24:32.868Z",
+      "state": "REQUEST_STARTED"
+    },
+    {
+      "at": "2026-09-25T06:29:42.938Z",
+      "state": "BLOCKED_OR_UNCERTAIN",
+      "reason": "The faucet returned an error or timed out. Inspect finalized funding/history before any later explicit retry."
+    }
+  ]
+}

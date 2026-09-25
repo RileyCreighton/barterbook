@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { api } from "./api";
 import { LocalEvidence } from "./LocalEvidence";
+import { DevnetSdkEvidence } from "./DevnetSdkEvidence";
 import { TestDisclosure } from "./DemoGuide";
 import { short } from "./TradeViews";
 
@@ -111,8 +112,8 @@ export function PublicHistory() {
           <p className="eyebrow">Public evidence · no wallet needed</p>
           <h1>Inspect what actually executed.</h1>
           <p className="subhead">
-            Public-network receipts and local token-program checks are distinct
-            evidence.
+            Application receipts, developer-run devnet demonstrations and local
+            token-program checks are distinct evidence.
           </p>
         </div>
         <button
@@ -124,9 +125,12 @@ export function PublicHistory() {
         </button>
       </div>
       <TestDisclosure />
+      <div className="card history-local">
+        <DevnetSdkEvidence />
+      </div>
       <section aria-labelledby="history-title">
         <div className="section-heading history-heading">
-          <h2 id="history-title">Recorded public-network receipts</h2>
+          <h2 id="history-title">Application trade-room receipts</h2>
           <span className="pill">{receipts.length} verified shown</span>
         </div>
         {loading ? (
@@ -200,10 +204,10 @@ export function PublicHistory() {
           </div>
         ) : (
           <div className="card empty-state">
-            <h3>No public-network receipt has been recorded yet.</h3>
+            <h3>No application trade-room receipt has been recorded yet.</h3>
             <p>
-              There is no claim of a completed devnet or mainnet trade in this
-              history. Local execution checks appear separately below.
+              This application history stays separate from the finalized SDK
+              demonstrations above. No browser-driven settlement is claimed.
             </p>
             <a href="#/walkthrough">Follow the no-wallet walkthrough →</a>
           </div>

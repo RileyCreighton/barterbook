@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-25T07:00:42.353Z",
+  "checkedAt": "2026-09-25T07:39:39.143Z",
   "testReport": "evidence/local/release-tests-2026-09-25T06-43-55-544Z.json",
   "runtimeReport": "evidence/local/litesvm-execution-2026-09-25T06-34-09-692Z.json",
   "testCount": 143,
@@ -8,7 +8,7 @@
   "typecheck": true,
   "productionBuild": true,
   "legalAssetsPackaged": true,
-  "devnetSettlements": 0,
+  "devnetSettlements": 2,
   "browserWalletProof": false,
   "hostedCpuMeasured": false,
   "remoteD1MigrationsApplied": 6,
@@ -19,5 +19,23 @@
   "hostedBrowserEvidence": "evidence/hosted/browser-guide-2026-09-25.json",
   "followupPublicTestsPassed": 5,
   "settlementEnabled": false,
-  "accountFreePlanConfirmed": false
+  "accountFreePlanConfirmed": false,
+  "devnetControlledFailures": 1,
+  "devnetEvidenceRun": "evidence/devnet/20260925-sdk-proof-01",
+  "devnetSigningMode": "Disposable SDK wallets; not browser transaction approvals",
+  "validatedDevnetMints": 3,
+  "browserInventoryRecipients": 3,
+  "browserFundingCompleted": true,
+  "browserAuthentication": {
+    "wallet": "8B9FCGFGFjqqQhdkLSChG3Jxnjo4sLn3FdYjd18DeuTi",
+    "reportedBy": "user",
+    "walletName": "Phantom",
+    "observedByAgent": false,
+    "transactionSigningProven": false
+  },
+  "followupSetupFundingTestsPassed": 14,
+  "combinedScriptTestsPassed": 35,
+  "cloudflareManagementAccess": "Blocked: D1 7403 and no accounts listed; user sign-in refresh requested",
+  "hostedRegistryUpdated": false,
+  "localDevnetEvidencePanel": "evidence/local/devnet-evidence-panel-2026-09-25.json"
 }

@@ -1,0 +1,84 @@
+{
+  "runId": "20260925-sdk-proof-01",
+  "buildId": "sha256:37dd3a21cb33d9a5189ab39bc8c765b9e86e64e4160fb4dc99cdb8b1b0caec7f",
+  "txid": "Egor5yrT3AXee5otWCdZi1ufCfmqNKBBYVZohAsELwfhzQDbeBycNEY3XZXjjbtrSSRai4dGd88XNnoHB8YyNj6",
+  "scope": "Sequential SDK signing by disposable test wallets only. Browser-wallet compatibility remains unproven.",
+  "owners": 3,
+  "messageHash": "649e7c5244a9be206323d77879d33bebbbae0ff5c5cbe3c7fa87838d2d0b54a8",
+  "messageHashesAfterEachSignature": [
+    "649e7c5244a9be206323d77879d33bebbbae0ff5c5cbe3c7fa87838d2d0b54a8",
+    "649e7c5244a9be206323d77879d33bebbbae0ff5c5cbe3c7fa87838d2d0b54a8",
+    "649e7c5244a9be206323d77879d33bebbbae0ff5c5cbe3c7fa87838d2d0b54a8"
+  ],
+  "wireBytes": 870,
+  "allSignaturesVerified": true,
+  "terms": {
+    "cluster": "devnet",
+    "version": 1,
+    "mode": "RING",
+    "owners": [
+      "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+      "bQG1z1SaJKpitQKTUeEuxiuenoBMrP4RSy1vbJ5iUW3",
+      "7PYpa2dL6hqxjPSGuh5b3EwjeWJYDvLWwaj8sWb3NiLC"
+    ],
+    "feePayer": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+    "maxNetworkFeeLamports": "50000",
+    "maxAccountRentLamports": "20000000",
+    "legs": [
+      {
+        "fromOwner": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+        "toOwner": "7PYpa2dL6hqxjPSGuh5b3EwjeWJYDvLWwaj8sWb3NiLC",
+        "mint": "kyEZzbcEZhJTmHesLTZFaKnmkisvLirFrgfKZrtJbQx",
+        "tokenProgram": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "sourceAccount": "A2KU6xSy5T2r5SKsgrZTRoucXXUWwho4Bk5nbvbs3nTW",
+        "destinationATA": "H3dQvmegUKSXLkFzHMpv1qK38hpDsyUA2pLhXyrqtaSo",
+        "grossRaw": "979900000",
+        "expectedFeeRaw": "1000000",
+        "netRaw": "978900000",
+        "decimals": 6
+      },
+      {
+        "fromOwner": "bQG1z1SaJKpitQKTUeEuxiuenoBMrP4RSy1vbJ5iUW3",
+        "toOwner": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+        "mint": "EZ2xuTV73HqM5AE8SrDjzQeHtae6cDV6TU6tzLBtEVxD",
+        "tokenProgram": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "sourceAccount": "GXjpgyf3kdP56d6HAqLqWm2uxoy6fub3ii9J1TY7HnNe",
+        "destinationATA": "BwHdGNf83iNs6KsECTgGtMBW9AoeJfQVqNvSbBxpfGqW",
+        "grossRaw": "20000000",
+        "expectedFeeRaw": "200000",
+        "netRaw": "19800000",
+        "decimals": 6
+      },
+      {
+        "fromOwner": "7PYpa2dL6hqxjPSGuh5b3EwjeWJYDvLWwaj8sWb3NiLC",
+        "toOwner": "bQG1z1SaJKpitQKTUeEuxiuenoBMrP4RSy1vbJ5iUW3",
+        "mint": "3y3QsQtR3pK9fe3ZxCcwTdc5AHN87panLaFzR3GfzZvz",
+        "tokenProgram": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "sourceAccount": "Hmv27QkVAA3U6Arw5ruGgFVB2R8bp61UnrNYbUPTGAGY",
+        "destinationATA": "5TmMMhL1ajdWyX8hFhRQ79PezVvuDuxY8gobCassgxPQ",
+        "grossRaw": "15000000",
+        "expectedFeeRaw": "150000",
+        "netRaw": "14850000",
+        "decimals": 6
+      }
+    ],
+    "minima": [
+      {
+        "owner": "7PYpa2dL6hqxjPSGuh5b3EwjeWJYDvLWwaj8sWb3NiLC",
+        "mint": "kyEZzbcEZhJTmHesLTZFaKnmkisvLirFrgfKZrtJbQx",
+        "minNetRaw": "978900000"
+      },
+      {
+        "owner": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+        "mint": "EZ2xuTV73HqM5AE8SrDjzQeHtae6cDV6TU6tzLBtEVxD",
+        "minNetRaw": "19800000"
+      },
+      {
+        "owner": "bQG1z1SaJKpitQKTUeEuxiuenoBMrP4RSy1vbJ5iUW3",
+        "mint": "3y3QsQtR3pK9fe3ZxCcwTdc5AHN87panLaFzR3GfzZvz",
+        "minNetRaw": "14850000"
+      }
+    ],
+    "expiresAt": 1790325332431
+  }
+}

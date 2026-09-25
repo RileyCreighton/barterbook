@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "runId": "20260925-sdk-proof-01",
+  "cluster": "devnet",
+  "assetKind": "mock tokens, not PRE",
+  "participants": [
+    {
+      "id": "browser-a7df94e52605",
+      "label": "Alice browser devnet wallet",
+      "publicKey": "8B9FCGFGFjqqQhdkLSChG3Jxnjo4sLn3FdYjd18DeuTi",
+      "kind": "browser",
+      "signingEvidence": "not-yet-proven"
+    },
+    {
+      "id": "browser-7beeb39110f5",
+      "label": "Bob browser devnet wallet",
+      "publicKey": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+      "kind": "browser",
+      "signingEvidence": "not-yet-proven"
+    },
+    {
+      "id": "browser-4b5406666b0d",
+      "label": "Carol browser devnet wallet",
+      "publicKey": "EqEnSeX2UXqF2stBPK1WGULz5Shs6CWBcU9JRUdHAz5J",
+      "kind": "browser",
+      "signingEvidence": "not-yet-proven"
+    }
+  ]
+}

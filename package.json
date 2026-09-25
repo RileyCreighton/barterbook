@@ -23,6 +23,7 @@
     "devnet:exchange": "node --import tsx scripts/devnet-exchange.ts",
     "release:scan": "node scripts/secret-scan.mjs",
     "devnet:faucet": "node --import tsx scripts/devnet-faucet.ts",
+    "devnet:fund-browser": "node --import tsx scripts/devnet-fund-browser.ts",
     "devnet:seed": "node --import tsx scripts/devnet-board-seed.ts",
     "profile:hosted": "node scripts/hosted-cpu.mjs",
     "smoke:http": "node --import tsx scripts/http-smoke.ts"

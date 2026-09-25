@@ -103,6 +103,23 @@ node --import tsx scripts/devnet-fixtures.ts --run demo-2026-09-25-a --browser-p
 
 The script reuses finalized setup operations, creates each recipient's ATA and mints the same mock inventory from this run's disposable mint authority. It appends a public `participants-browser-*.json` manifest. Browser records remain `signingEvidence: "not-yet-proven"`; receiving inventory is not signing proof. The browser fee payer will separately need faucet SOL in its own new devnet wallet. No SDK private key is exported into an extension.
 
+If the SDK payer has already received faucet-only SOL and that funding source has been checked, the separate setup utility can give each recorded browser wallet 0.05 SOL for its own network fees. It uses no browser private keys and cannot request faucet funds. Preview the exact recipients and amount first:
+
+```sh
+node --import tsx scripts/devnet-fund-browser.ts --run demo-2026-09-25-a --batch browser-01
+node --import tsx scripts/devnet-fund-browser.ts --run demo-2026-09-25-a --batch browser-01 --execute
+```
+
+Only the one to three browser participants already recorded in this run are eligible. The default is `50000000` raw lamports each; optional `--addresses ADDRESS_1,ADDRESS_2` selects a recorded subset, and `--lamports RAW_INTEGER` explicitly changes the amount before the batch is frozen. A batch's amount and recipients cannot later change. Before any new construction or same-byte resend, the finalized SDK payer balance must cover the entire distribution, a retained `100000000` lamport reserve and a conservative `10000` lamport fee cap. The fee quote must also fit that cap.
+
+After a timeout, reconcile the **same batch**, including when the payer now has too little SOL for another transfer:
+
+```sh
+node --import tsx scripts/devnet-fund-browser.ts --run demo-2026-09-25-a --batch browser-01 --resume
+```
+
+The original durable transaction is checked before the funding gate. No replacement transaction is created. A finalized receipt must show each exact recipient credit, the payer debit plus its actual fee, the preserved reserve, and zero change to every remaining account. Its immutable public archive is explicitly labeled setup funding, not an application barter or browser-signing proof. This utility is separate from the application, whose transaction verifier still rejects arbitrary SOL transfers.
+
 For the app's optional `DEMO_PARTICIPANTS_JSON`, use up to six public `{ "address": "…", "label": "…" }` entries. This labels both SDK and browser developer wallets without changing the three-owner maximum per trade. The scripts' public manifests call that field `publicKey`; map it to `address`. Configure provider credentials only in server `.dev.vars`/Worker secrets. A browser participant creates its own authenticated listings and approvals through the UI.
 
 If a demo has consumed its mock inventory, explicitly name a replenishment batch:
@@ -138,18 +155,40 @@ The exact request bodies, expiries and `Idempotency-Key` values are saved before
 
 ## Actual execution status, September 25, 2026
 
-The original early request to `5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV` returned a public faucet error. Its original wallet files and `.test-wallets/faucet-request.json` remain untouched. The earlier public evidence under `evidence/devnet-faucet*.json` is also preserved.
+The early public faucet request and the single authorized retry failed or remained uncertain. Their original wallet files, journals and zero-balance inspection records are preserved. Those records describe the earlier attempts; they are not the current execution status.
 
-After a fresh finalized-zero-balance/empty-history check, one explicitly authorized retry was recorded in run `20260925-sdk-proof-01`, reusing only those original disposable keys. The retry failed or remained uncertain; a subsequent finalized read again found **0 lamports and no signatures**. See `evidence/devnet/20260925-sdk-proof-01/funding-checks/` and `faucet-results/`. No mint, swap or controlled-failure transaction was broadcast. There is no actual devnet settlement receipt or browser-extension proof from this run.
+Later, user-operated web-faucet airdrops finalized **1 SOL to the disposable SDK payer and 1 SOL to Bob's new browser wallet**. The source was checked against the Solana Foundation web-faucet address before execution. See the [funding-source verification](../evidence/devnet/20260925-sdk-proof-01/faucet-source-verification.json). Only these faucet-funded disposable wallets were used; no existing user funds or real PRE holdings were acquired.
 
-To inspect that preserved run without requesting more funds:
+Run `20260925-sdk-proof-01` then completed all three mock mint creations and their separate fee-aware compatibility transfers. The [validated devnet asset registry](../evidence/devnet/20260925-sdk-proof-01/assets.json) contains TEST-A/B/C, each marked mock and tested. Actual finalized compatibility archives are available for [TEST-A](../evidence/devnet/20260925-sdk-proof-01/devnet-compatibility-0-transaction.json), [TEST-B](../evidence/devnet/20260925-sdk-proof-01/devnet-compatibility-1-transaction.json) and [TEST-C](../evidence/devnet/20260925-sdk-proof-01/devnet-compatibility-2-transaction.json).
+
+The following SDK exchange proofs also reached finality. Their receipt summaries verify the transaction-specific raw deltas, fees and preserved message; adjacent raw archives include the actual encoded transaction and finalized metadata.
+
+| SDK proof | Finalized outcome | Receipt and actual transaction archive |
+| --- | --- | --- |
+| Two-owner two-for-one basket | `FINALIZED`; expected raw gross/fee/net changes; 10,000 lamport network fee | [Receipt](../evidence/devnet/20260925-sdk-proof-01/devnet-two-for-one-receipt.json) · [Raw archive](../evidence/devnet/20260925-sdk-proof-01/devnet-two-for-one-transaction.json) |
+| Three-owner exchange | `FINALIZED`; expected raw gross/fee/net changes; 15,000 lamport network fee | [Receipt](../evidence/devnet/20260925-sdk-proof-01/devnet-three-way-receipt.json) · [Raw archive](../evidence/devnet/20260925-sdk-proof-01/devnet-three-way-transaction.json) |
+| Deliberately failing final token leg | `FAILED_ONCHAIN_FINALIZED`; all intended token deltas zero; 15,000 lamport network fee | [Rollback receipt](../evidence/devnet/20260925-sdk-proof-01/devnet-atomic-last-leg-failure-receipt.json) · [Raw archive](../evidence/devnet/20260925-sdk-proof-01/devnet-atomic-last-leg-failure-transaction.json) |
+
+All nine browser-inventory transactions finalized: each of Alice, Bob and Carol received 1,000,000,000 raw units of each mock mint. These are SDK-signed setup transactions, not browser signing evidence. The [public browser participant manifest](../evidence/devnet/20260925-sdk-proof-01/participants-browser-5bbbc029fa4648d8.json) still records browser signing as unproven.
+
+| Browser recipient | TEST-A raw archive | TEST-B raw archive | TEST-C raw archive |
+| --- | --- | --- | --- |
+| Alice | [Finalized](../evidence/devnet/20260925-sdk-proof-01/inventory-initial-browser-a7df94e52605-0-transaction.json) | [Finalized](../evidence/devnet/20260925-sdk-proof-01/inventory-initial-browser-a7df94e52605-1-transaction.json) | [Finalized](../evidence/devnet/20260925-sdk-proof-01/inventory-initial-browser-a7df94e52605-2-transaction.json) |
+| Bob | [Finalized](../evidence/devnet/20260925-sdk-proof-01/inventory-initial-browser-7beeb39110f5-0-transaction.json) | [Finalized](../evidence/devnet/20260925-sdk-proof-01/inventory-initial-browser-7beeb39110f5-1-transaction.json) | [Finalized](../evidence/devnet/20260925-sdk-proof-01/inventory-initial-browser-7beeb39110f5-2-transaction.json) |
+| Carol | [Finalized](../evidence/devnet/20260925-sdk-proof-01/inventory-initial-browser-4b5406666b0d-0-transaction.json) | [Finalized](../evidence/devnet/20260925-sdk-proof-01/inventory-initial-browser-4b5406666b0d-1-transaction.json) | [Finalized](../evidence/devnet/20260925-sdk-proof-01/inventory-initial-browser-4b5406666b0d-2-transaction.json) |
+
+The separate setup helper then transferred **0.05 SOL each to Alice and Carol** from the faucet-funded SDK payer, retaining its reserve. The actual network fee was 5,000 lamports. Bob already had the verified 1 SOL faucet credit and received no additional setup SOL. See the [verified setup funding receipt](../evidence/devnet/20260925-sdk-proof-01/browser-sol-alice-carol-01-receipt.json) and [raw finalized archive](../evidence/devnet/20260925-sdk-proof-01/browser-sol-alice-carol-01-transaction.json).
+
+**All completed chain proofs above are SDK proofs.** Browser wallets now have mock inventory and devnet SOL, but real browser-extension approval, partial signing and application settlement still need their own proof. These results establish no mainnet or PRE-token eligibility.
+
+To inspect the preserved run without requesting funds:
 
 ```sh
 node --import tsx scripts/devnet-faucet.ts --run 20260925-sdk-proof-01 --check
 ```
 
-All script tests use isolated temporary wallets and mocked chain transport or the real authentication/board HTTP routers backed by test SQLite. They cover immutable writes, signature/message identity, persistence before broadcast, timeout followed by original success, expiry holds, faucet cooldown/backoff, scoped authentication and idempotent reseeding after a lost HTTP response. Run them with:
+The script tests use isolated temporary wallets and mocked chain transport or the real authentication/board HTTP routers backed by test SQLite. They cover immutable writes, signature/message identity, persistence before broadcast, timeout followed by original success, expiry holds, faucet cooldown/backoff, scoped authentication, idempotent reseeding and exact browser-funding SOL deltas:
 
 ```sh
-npx vitest run tests/devnet-scripts.test.ts
+npx vitest run tests/devnet-scripts.test.ts tests/devnet-fund-browser.test.ts
 ```

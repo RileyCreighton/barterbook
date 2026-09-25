@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { LocalEvidence } from "./LocalEvidence";
+import { DevnetSdkEvidence } from "./DevnetSdkEvidence";
 import { TestDisclosure } from "./DemoGuide";
 export function Walkthrough() {
   const [step, setStep] = useState(0),
@@ -224,18 +225,24 @@ export function Walkthrough() {
           )}
           {step === 3 && (
             <>
-              <LocalEvidence />
+              <DevnetSdkEvidence />
               <div className="evidence-empty">
-                <h3>Public-network receipts remain a separate gate</h3>
+                <h3>Application and browser proof remain separate</h3>
                 <p>
-                  A devnet receipt must link an actual submitted transaction
-                  identifier to its confirmed metadata. This illustrative path
-                  claims no public-network receipt.{" "}
+                  The SDK demonstrations above executed on devnet. This
+                  walkthrough remains illustrative and does not simulate a
+                  browser approval or create an application receipt.{" "}
                   <a href="#/history">
                     Inspect the recorded evidence and receipt history.
                   </a>
                 </p>
               </div>
+              <details className="separate-local-evidence">
+                <summary>
+                  Inspect the separate local LiteSVM execution checks
+                </summary>
+                <LocalEvidence />
+              </details>
               <p>
                 After a broadcast timeout, reconcile the original identifier. A
                 timeout never creates a fresh executable replacement.

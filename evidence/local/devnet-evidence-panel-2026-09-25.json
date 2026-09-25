@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-09-25T07:43:25.567Z",
+  "scope": "Local built preview of real Devnet SDK evidence; not a browser-wallet transaction test",
+  "url": "http://localhost:8787/#/history",
+  "checks": {
+    "threeFinalizedSdkProofsVisible": true,
+    "applicationHistorySeparate": true,
+    "localLiteSvmSeparate": true,
+    "exactBasketNets": [
+      "9.9",
+      "4.95",
+      "19.8"
+    ],
+    "explicitDevnetExplorerLinks": true,
+    "mobileNoHorizontalOverflow": true,
+    "mobileCssWidth": 375,
+    "mobileScrollWidth": 375,
+    "consoleErrorsOrWarnings": 0
+  },
+  "screenshots": [
+    "docs/screenshots/local-devnet-evidence-desktop.png",
+    "docs/screenshots/local-devnet-evidence-mobile.png"
+  ],
+  "publicDeploymentVerified": false
+}

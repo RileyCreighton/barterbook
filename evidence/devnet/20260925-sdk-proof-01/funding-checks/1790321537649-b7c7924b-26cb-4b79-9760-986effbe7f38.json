@@ -1,0 +1,49 @@
+{
+  "cluster": "devnet",
+  "runId": "20260925-sdk-proof-01",
+  "existingUserFundsUsed": false,
+  "checkedAt": "2026-09-25T07:32:17.649Z",
+  "wallet": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+  "finalizedLamports": "986401240",
+  "history": [
+    {
+      "signature": "3F4hZjnWqKmwPGaee1VmEuQZiyk1pdb314GqS8uPzWkyY5ndRHE5CTCdFvkT5Fz754TunwvobnE8kGtC71ZT9aoR",
+      "slot": 503880647,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321530
+    },
+    {
+      "signature": "2xmKziwX2wReDjXUZF7MfUyJcKN13jCoc2A1tQ6vmu2ea2hkoZ9Yov7bC3g59p1WruSaHa3y9rDL9sTeUM8QuQZT",
+      "slot": 503880599,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321522
+    },
+    {
+      "signature": "4XBMUqu8DP6zbdWKE6sRdS1vxKAqWHBc6pnM6FgZpibSSrx4AdRm8t2U2dTBbN9HiegKfQKWNxxpinEu8VRSqM41",
+      "slot": 503880553,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790321514
+    },
+    {
+      "signature": "3QxPT4NoroM328WsTbLwdJBW1k7GnCQTTjRQ6TwrXiZkp3UYGucNGU1zyt6Hh3z2jvzVVSnajQmPLKTvSvQiUmgQ",
+      "slot": 503873620,
+      "err": null,
+      "confirmationStatus": "finalized",
+      "blockTime": 1790320366
+    }
+  ],
+  "priorRequests": [
+    {
+      "at": "2026-09-25T04:24:32.868Z",
+      "state": "REQUEST_STARTED"
+    },
+    {
+      "at": "2026-09-25T06:29:42.938Z",
+      "state": "BLOCKED_OR_UNCERTAIN",
+      "reason": "The faucet returned an error or timed out. Inspect finalized funding/history before any later explicit retry."
+    }
+  ]
+}

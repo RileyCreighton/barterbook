@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "runId": "20260925-sdk-proof-01",
+  "buildId": "sha256:37dd3a21cb33d9a5189ab39bc8c765b9e86e64e4160fb4dc99cdb8b1b0caec7f",
+  "cluster": "devnet",
+  "scope": "Disposable SDK payer distributes already faucet-funded SOL to recorded new browser test wallets. Setup only; not an application barter or browser signing proof.",
+  "batch": "alice-carol-01",
+  "txid": "5HQduJtbwwhr1sPLVg3sntjGbTn3gc39nzVntPJ7xTJASM2Q2bkTTnX5j9TDtQu8B7HCBUBXUxj94r5s2ACxmBCz",
+  "explorer": "https://explorer.solana.com/tx/5HQduJtbwwhr1sPLVg3sntjGbTn3gc39nzVntPJ7xTJASM2Q2bkTTnX5j9TDtQu8B7HCBUBXUxj94r5s2ACxmBCz?cluster=devnet",
+  "commitment": "finalized",
+  "slot": "503881471",
+  "blockTime": 1790321668,
+  "payer": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+  "recipients": [
+    {
+      "publicKey": "8B9FCGFGFjqqQhdkLSChG3Jxnjo4sLn3FdYjd18DeuTi",
+      "label": "Alice browser devnet wallet",
+      "lamportsRaw": "50000000"
+    },
+    {
+      "publicKey": "EqEnSeX2UXqF2stBPK1WGULz5Shs6CWBcU9JRUdHAz5J",
+      "label": "Carol browser devnet wallet",
+      "lamportsRaw": "50000000"
+    }
+  ],
+  "networkFeeLamports": "5000",
+  "totalRecipientLamports": "100000000",
+  "payerReserveLamports": "100000000",
+  "deltas": [
+    {
+      "account": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+      "preLamports": "965376160",
+      "postLamports": "865371160",
+      "deltaLamports": "-100005000"
+    },
+    {
+      "account": "8B9FCGFGFjqqQhdkLSChG3Jxnjo4sLn3FdYjd18DeuTi",
+      "preLamports": "0",
+      "postLamports": "50000000",
+      "deltaLamports": "50000000"
+    },
+    {
+      "account": "EqEnSeX2UXqF2stBPK1WGULz5Shs6CWBcU9JRUdHAz5J",
+      "preLamports": "0",
+      "postLamports": "50000000",
+      "deltaLamports": "50000000"
+    },
+    {
+      "account": "11111111111111111111111111111111",
+      "preLamports": "1",
+      "postLamports": "1",
+      "deltaLamports": "0"
+    }
+  ],
+  "verified": true
+}

@@ -1,0 +1,24 @@
+{
+  "verifiedAt": "2026-09-25T07:31:46.103Z",
+  "cluster": "devnet",
+  "sourceAddress": "dev2JBjyB5CshoGsiJCwzdmJYiEUwAXMdqDR7txoFBJ",
+  "authoritativeAttribution": {
+    "url": "https://faucet.solana.com/monitor",
+    "label": "Web faucet",
+    "operator": "Solana Foundation"
+  },
+  "fundingEvidence": "funding-checks/1790321412651-64ee1de1-bb5d-40e2-9441-9bf84909f095.json",
+  "verifiedFunding": [
+    {
+      "recipient": "5LjQfnCwojPVdqHYjdmZzdnyhzSNottxSZSBGwVkqvAV",
+      "lamportsRaw": "1000000000",
+      "txid": "3QxPT4NoroM328WsTbLwdJBW1k7GnCQTTjRQ6TwrXiZkp3UYGucNGU1zyt6Hh3z2jvzVVSnajQmPLKTvSvQiUmgQ"
+    },
+    {
+      "recipient": "H8jpK2haGLYQDbNHsToFqxAXRmJQ6MwYvemw7wz5bBk8",
+      "lamportsRaw": "1000000000",
+      "txid": "3ySLuxnXqGxUtv5Z4n6P3a4bShAVzGMyu6z3S8EP89Q5yq9b37NmVxnahuKCoaPheQ8TZisrEtRfCmbActSf9yp6"
+    }
+  ],
+  "scope": "Finalized RPC credits from the officially identified web faucet; user-operated airdrops. Funding is not barter or browser transaction-signing proof."
+}
