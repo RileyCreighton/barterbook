@@ -1,0 +1,55 @@
+{
+  "verifiedAt": "2026-09-25T18:48:25.942Z",
+  "buildId": "07b09d4bc30286d4cbd980bbe96b5d50eff5836e",
+  "workerVersion": "53566014-c41a-4c1f-8783-2fd2f1e1494b",
+  "previousWorkerVersion": "99580693-b994-43d5-bec0-50ea55b2d61b",
+  "databaseBookmark": "00000024-000000d0-000050f1-c60478d003c46d6f3c775fd1b11cb683",
+  "migration": null,
+  "health": {
+    "name": "BarterBook",
+    "cluster": "devnet",
+    "settlementEnabled": true,
+    "rpcConfigured": true
+  },
+  "assets": [
+    {
+      "path": "index.html",
+      "sha256": "6b068b2401f1c88c575f455da7f450340b9482ff8e9aa053c99c5c939f0bfbe2",
+      "matched": true
+    },
+    {
+      "path": "assets/App-ClEBwVl8.js",
+      "sha256": "e9e422470172a2ebc524ba19a51de00428953536de9eb161e44694da199fafea",
+      "matched": true
+    },
+    {
+      "path": "assets/index-B8pXj5kH.css",
+      "sha256": "2a2b323d32977f23197e36ec0056e0c8441ba1123efe283eee134a609c366d66",
+      "matched": true
+    },
+    {
+      "path": "assets/index-CYbgg_6h.js",
+      "sha256": "acb51fb2e2e538e1c97bf77502f192f269ac394fd67d955b613ce10c73d7656a",
+      "matched": true
+    },
+    {
+      "path": "assets/litesvm-execution-mWUClHY3.json",
+      "sha256": "8e39eaebfa59da36bac22d28dfa8cfaf462226416f09413862adb469cb66c9ac",
+      "matched": true
+    }
+  ],
+  "nonceStatusUnauthenticatedStatus": 401,
+  "history": [
+    {
+      "txid": "3wfDTWASADuBTxAfgziKaYyQRJFbPHzMwxk1STQD4qLSKtnEr3rLXyHmzW9YfiKRg4movuuBn7xT3HptJ74QPFUn",
+      "status": "FINALIZED",
+      "verified": true
+    },
+    {
+      "txid": "5CQDkJnbjsEG8JBmvEQFGmzUeT573CywExFx2ajkR884CJrkruXcSwdvA2ZWsY8TJK7B8XWDk21Q6v2CWmPZXqwV",
+      "status": "FINALIZED",
+      "verified": true
+    }
+  ],
+  "scope": "Hosted build, configuration and asset verification; no migration needed. Actual Solflare durable setup and two-/three-owner settlement remain unverified."
+}

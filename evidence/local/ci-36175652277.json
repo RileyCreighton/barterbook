@@ -1,0 +1,12 @@
+{
+  "runId": 36175652277,
+  "commit": "07b09d4bc30286d4cbd980bbe96b5d50eff5836e",
+  "url": "https://github.com/RileyCreighton/barterbook/actions/runs/36175652277",
+  "success": true,
+  "tests": 295,
+  "passed": 295,
+  "failed": 0,
+  "pending": 0,
+  "files": 25,
+  "scope": "Independent full CI tests, build and migrations; actual Solflare durable setup and settlement remain unverified."
+}

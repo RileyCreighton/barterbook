@@ -1,17 +1,17 @@
 # Browser transaction retest with longer-lived signing
 
-The longer-lived signing update is live at [BarterBook Devnet](https://barterbook-devnet.rileycreighton.workers.dev), build `c9e9ee0`. [Deployment verification](../evidence/hosted/durable-signing-deployment-c9e9ee0.json) confirms the served files match the tested build; [all 292 local tests passed](../evidence/local/durable-signing-tests.json). [CI also passed all 292 tests](../evidence/local/ci-36174285244.json). Actual Solflare setup and finalized two-/three-person signing still need the owner-controlled rehearsal below.
+The signing-mode compatibility repair is live at [BarterBook Devnet](https://barterbook-devnet.rileycreighton.workers.dev/?release=07b09d4), build `07b09d4`. [Deployment verification](../evidence/hosted/signing-mode-deployment-07b09d4.json) confirms the served files match the tested build; [all 52 focused regression checks passed](../evidence/local/signing-mode-guard-tests.json). [Full CI passed all 295 tests](../evidence/local/ci-36175652277.json). Actual Solflare durable setup and finalized two-/three-person signing still need the owner-controlled rehearsal below.
 
 ## Current next step: longer-lived signing
 
-Version 8 saved Bob's signature, then Alice's verified signature reached the server after its roughly 25-second Devnet blockhash lifetime. [The timing is confirmed by finalized blocks](../evidence/hosted/browser-v8-signing-expiry.json). The owner chose [longer-lived signing](durable-signing.md). This requires a fresh room revision, one-time setup by the fee payer, and new consent from everyone.
+Version 8 saved Bob's signature, then Alice's verified signature reached the server after its roughly 25-second Devnet blockhash lifetime. [The timing is confirmed by finalized blocks](../evidence/hosted/browser-v8-signing-expiry.json). The owner chose [longer-lived signing](durable-signing.md). Version 9 still omitted that mode and saved both signatures before submission expired; [the setup button was absent and no setup operation was recorded](../evidence/hosted/browser-v9-signing-mode.json). The compatibility guard now rejects that old renewal request. This requires a fresh room revision, one-time setup by the fee payer, and new consent from everyone.
 
 Keep Solflare on **Devnet**. A review period ending does not revoke signatures in this new mode. To abandon a prepared durable exchange, the fee payer must use **Cancel on chain in wallet**, wait for its result, and reconcile the original exchange before renewing.
 
 ## Prepare the existing wallet windows
 
 1. Use your existing separate Zen profiles for Alice, Bob and Carol. Keep Solflare on **Devnet**.
-2. Close any old approval popup. Open [the fresh signing-update link](https://barterbook-devnet.rileycreighton.workers.dev/?release=signing-mode-guard) in all three profiles, then connect/authenticate the intended Solflare account in each if prompted. A login-message approval is separate from transaction approval.
+2. Close any old approval popup. Open [the fresh signing-update link](https://barterbook-devnet.rileycreighton.workers.dev/?release=07b09d4) in all three profiles, then connect/authenticate the intended Solflare account in each if prompted. A login-message approval is separate from transaction approval.
 3. Check the identities below. The app may use the generic demo labels rather than Alice/Bob/Carol.
 
 | Person | App label | Public address as shortened by the app |
