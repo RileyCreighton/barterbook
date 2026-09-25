@@ -179,6 +179,8 @@ export interface Env {
   DEVNET_ASSETS_JSON?: string;
   RPC_HISTORY_TRUSTED?: string;
   FALLBACK_HISTORY_TRUSTED?: string;
+  RPC_ADDRESS_HISTORY_TRUSTED?: string;
+  FALLBACK_ADDRESS_HISTORY_TRUSTED?: string;
   DEMO_PARTICIPANTS_JSON?: string;
   SITE_URL?: string;
   REPOSITORY_URL?: string;

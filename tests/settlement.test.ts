@@ -237,7 +237,7 @@ async function setup(options: { rentCap?: string } = {}) {
         result = 1;
         break;
       case "getEpochInfo":
-        result = { epoch: 1, absoluteSlot: 100 };
+        result = { epoch: 1, absoluteSlot: 100, blockHeight: state.height };
         break;
       case "getMultipleAccounts":
         result = {

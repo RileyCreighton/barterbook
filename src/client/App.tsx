@@ -722,6 +722,10 @@ export function App() {
                             disabled={
                               busy ||
                               !config.settlementEnabled ||
+                              !reviewChecked ||
+                              !accepted[acceptKey(room)] ||
+                              canonical(accepted[acceptKey(room)]) !==
+                                canonical(room.terms) ||
                               !room.members.every((m) => m.ready)
                             }
                             onClick={() =>
@@ -753,6 +757,27 @@ export function App() {
                       )}
                       {room.attempt && (
                         <div className="attempt-box">
+                          {room.attempt.state !== "SIGNING" ||
+                          room.attempt.stopRequested ? (
+                            <p className="approval-help" role="status">
+                              This attempt is not collecting signatures. The
+                              wallet button stays disabled. Use “Reconcile
+                              original status” to check this exact attempt; do
+                              not create a replacement while its outcome is
+                              unresolved.
+                            </p>
+                          ) : !accepted[acceptKey(room)] ||
+                            canonical(accepted[acceptKey(room)]) !==
+                              canonical(room.terms) ||
+                            !reviewChecked ? (
+                            <p className="approval-help" role="status">
+                              Before your wallet can open, select the review
+                              checkbox above and click “Confirm this browser’s
+                              review”. Then choose “Verify and sign in wallet”.
+                              The fee payer signs first; have every participant
+                              ready before signing.
+                            </p>
+                          ) : null}
                           <p className="eyebrow">
                             Frozen attempt {short(room.attempt.id)}
                           </p>
@@ -781,6 +806,9 @@ export function App() {
                                 room.attempt.state !== "SIGNING" ||
                                 room.attempt.stopRequested ||
                                 !reviewChecked ||
+                                !accepted[acceptKey(room)] ||
+                                canonical(accepted[acceptKey(room)]) !==
+                                  canonical(room.terms) ||
                                 !!room.attempt.signatures[owner ?? ""] ||
                                 (!room.attempt.signatures[
                                   room.terms.feePayer

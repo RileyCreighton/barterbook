@@ -37,6 +37,8 @@ jobs:
           SETTLEMENT_ENABLED: ${{ vars.SETTLEMENT_ENABLED }}
           RPC_HISTORY_TRUSTED: ${{ vars.RPC_HISTORY_TRUSTED }}
           FALLBACK_HISTORY_TRUSTED: ${{ vars.FALLBACK_HISTORY_TRUSTED }}
+          RPC_ADDRESS_HISTORY_TRUSTED: ${{ vars.RPC_ADDRESS_HISTORY_TRUSTED }}
+          FALLBACK_ADDRESS_HISTORY_TRUSTED: ${{ vars.FALLBACK_ADDRESS_HISTORY_TRUSTED }}
       - name: Record database recovery bookmark
         run: npx wrangler d1 time-travel info barterbook-devnet --config .wrangler/deploy.json
         env:

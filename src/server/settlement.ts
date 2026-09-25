@@ -1,12 +1,22 @@
 import { Hono, type Context } from "hono";
 import { HTTPException } from "hono/http-exception";
-import { b64, equalBytes, sha256, unb64 } from "../shared/crypto";
+import {
+  b64,
+  canonical,
+  equalBytes,
+  sha256,
+  unb64,
+  verifyEd25519,
+} from "../shared/crypto";
+import bs58 from "bs58";
+import { VersionedTransaction } from "@solana/web3.js";
 import {
   hashTerms,
   mergeSignature,
   transactionId,
   unsignedWire,
   verifyWireSignatures,
+  verifyTransaction,
   wireParts,
   validateTerms,
 } from "../shared/transactions";
@@ -42,6 +52,190 @@ import {
   rpcFor,
   Rpc,
 } from "./chain";
+interface DiscoveredTransaction {
+  txid: string;
+  wireBase64: string;
+  signatures: Record<string, string>;
+  transaction: TransactionEvidence;
+}
+type RecoveryCall = <T = any>(method: string, params?: unknown[]) => Promise<T>;
+/** No new signatures or broadcasts: inspect at most one page and two candidate
+ * transactions per provider. Any incomplete index or metadata keeps locks held.
+ * https://solana.com/docs/rpc/http/getsignaturesforaddress
+ */
+async function scanFeePayerHistory(
+  call: RecoveryCall,
+  attempt: Attempt,
+  original: ReturnType<typeof wireParts>,
+  onSuccess: () => void,
+): Promise<DiscoveredTransaction[]> {
+  const floor = BigInt(attempt.plan.contextSlot);
+  // Bind the history's minimum slot to an expired finalized bank in ONE RPC.
+  // A separate getSlot could lag an earlier getBlockHeight response.
+  const bank = await call("getEpochInfo", [{ commitment: "finalized" }]);
+  const root = integer(bank.absoluteSlot),
+    height = integer(bank.blockHeight);
+  if (
+    !Number.isSafeInteger(Number(floor)) ||
+    !Number.isSafeInteger(Number(root)) ||
+    !Number.isSafeInteger(Number(height))
+  )
+    throw new Error("Address history slot cannot be represented safely");
+  if (BigInt(height) <= BigInt(attempt.plan.lastValidBlockHeight))
+    throw new Error("Address history bank has not finalized original expiry");
+  if (BigInt(root) < floor)
+    throw new Error("Finalized history root is behind attempt");
+  // RPC context can be later than the blockhash's originating bank. It is only
+  // a safe history cutoff after proving this exact block produced the hash.
+  const anchor = await call("getBlock", [
+    Number(floor),
+    {
+      commitment: "finalized",
+      transactionDetails: "none",
+      rewards: false,
+      maxSupportedTransactionVersion: 0,
+    },
+  ]);
+  if (!anchor || anchor.blockhash !== attempt.plan.blockhash)
+    throw new Error("Original blockhash origin could not be anchored");
+  const options = {
+    commitment: "finalized",
+    minContextSlot: Number(root),
+    limit: 50,
+  };
+  const page = await call("getSignaturesForAddress", [
+    attempt.plan.terms.feePayer,
+    options,
+  ]);
+  if (!Array.isArray(page) || page.length > 50)
+    throw new Error("Invalid address history page");
+  const seen = new Set<string>();
+  let previous = BigInt(root);
+  const candidates: Array<{ signature: string; slot: string; err: unknown }> =
+    [];
+  let crossedFloor = false;
+  for (const row of page) {
+    if (
+      !row ||
+      typeof row.signature !== "string" ||
+      !/^[1-9A-HJ-NP-Za-km-z]{64,88}$/.test(row.signature) ||
+      bs58.decode(row.signature).length !== 64 ||
+      seen.has(row.signature) ||
+      row.confirmationStatus !== "finalized" ||
+      row.err === undefined
+    )
+      throw new Error("Invalid or duplicate finalized address history entry");
+    const slot = integer(row.slot);
+    if (BigInt(slot) > previous)
+      throw new Error("Address history ordering or root changed");
+    previous = BigInt(slot);
+    seen.add(row.signature);
+    if (BigInt(slot) < floor) crossedFloor = true;
+    else candidates.push({ signature: row.signature, slot, err: row.err });
+  }
+  if (candidates.length > 2)
+    throw new Error("Address history candidate budget exceeded");
+  if (!crossedFloor && page.length > 0) {
+    if (page.length === 50)
+      throw new Error("Address history page is incomplete");
+    const tail = await call("getSignaturesForAddress", [
+      attempt.plan.terms.feePayer,
+      {
+        ...options,
+        limit: 1,
+        before: page.at(-1).signature,
+      },
+    ]);
+    if (!Array.isArray(tail) || tail.length !== 0)
+      throw new Error("Address history exhaustion was not established");
+  }
+  const matches: DiscoveredTransaction[] = [];
+  for (const candidate of candidates) {
+    const transaction = await call<TransactionEvidence | null>(
+      "getTransaction",
+      [
+        candidate.signature,
+        {
+          encoding: "base64",
+          commitment: "finalized",
+          maxSupportedTransactionVersion: 0,
+        },
+      ],
+    );
+    if (
+      !transaction?.meta ||
+      transaction.transaction?.[1] !== "base64" ||
+      integer(transaction.slot) !== candidate.slot
+    )
+      throw new Error(
+        "Finalized address history transaction metadata missing or inconsistent",
+      );
+    const wire = unb64(transaction.transaction[0]);
+    // Every packet-sized transaction has a one-byte signature count. Unlike
+    // wireParts, this also permits unrelated one-signer or versioned messages.
+    const count = wire[0],
+      offset = 1 + count * 64;
+    if (
+      wire.length > 1232 ||
+      count < 1 ||
+      count > 19 ||
+      wire.length <= offset ||
+      bs58.encode(wire.subarray(1, 65)) !== candidate.signature
+    )
+      throw new Error("Address history transaction identity mismatch");
+    const decoded = VersionedTransaction.deserialize(wire);
+    if (
+      decoded.message.header.numRequiredSignatures !== count ||
+      !equalBytes(decoded.message.serialize(), wire.subarray(offset))
+    )
+      throw new Error("Address history transaction message is malformed");
+    const sameMessage = equalBytes(wire.subarray(offset), original.message);
+    // A later mismatch/error cannot erase credible exact-message success.
+    if (sameMessage && transaction.meta.err === null) onSuccess();
+    if (canonical(candidate.err) !== canonical(transaction.meta.err))
+      throw new Error("Address history transaction outcome conflicts");
+    if (!sameMessage) {
+      // Bind an unrelated message cryptographically to the candidate's identity
+      // before excluding it; signature bytes alone could accompany bad metadata.
+      if (
+        !(await verifyEd25519(
+          decoded.message.staticAccountKeys[0].toBase58(),
+          decoded.signatures[0],
+          wire.subarray(offset),
+        ))
+      )
+        throw new Error(
+          "Unrelated address history transaction identity is invalid",
+        );
+      continue;
+    }
+    const parts = await verifyWireSignatures(wire, attempt.plan, true);
+    for (let i = 0; i < original.signatures.length; i++)
+      if (
+        original.signatures[i].some(Boolean) &&
+        !equalBytes(original.signatures[i], parts.signatures[i])
+      )
+        throw new Error(
+          "Discovered transaction changed a stored partial signature",
+        );
+    if (
+      attempt.fullWireBase64 &&
+      !equalBytes(wire, unb64(attempt.fullWireBase64))
+    )
+      throw new Error(
+        "Discovered transaction changed stored fully signed bytes",
+      );
+    matches.push({
+      txid: transactionId(wire),
+      wireBase64: transaction.transaction[0],
+      transaction,
+      signatures: Object.fromEntries(
+        parts.signers.map((signer, i) => [signer, b64(parts.signatures[i])]),
+      ),
+    });
+  }
+  return matches;
+}
 export async function observe(
   env: Env,
   attempt: Attempt,
@@ -51,16 +245,26 @@ export async function observe(
   finalizedFailureEvidence: TransactionEvidence | null;
   finalizedSuccessEvidence: TransactionEvidence | null;
   observedSuccess: boolean;
+  discovered: DiscoveredTransaction | null;
+  discoveryConflict: boolean;
 }> {
   let evidence: TransactionEvidence | null = null;
   let finalizedFailureEvidence: TransactionEvidence | null = null;
   let finalizedSuccessEvidence: TransactionEvidence | null = null;
   let observedSuccess = false;
+  let discovered: DiscoveredTransaction | null = null;
+  let discoveryConflict = false;
+  let original: ReturnType<typeof wireParts> | null = null;
   const endpoints = [
-    { url: env.SOLANA_RPC_URL, trust: env.RPC_HISTORY_TRUSTED === "true" },
+    {
+      url: env.SOLANA_RPC_URL,
+      trust: env.RPC_HISTORY_TRUSTED === "true",
+      addressTrust: env.RPC_ADDRESS_HISTORY_TRUSTED === "true",
+    },
     {
       url: env.SOLANA_RPC_FALLBACK_URL,
       trust: env.FALLBACK_HISTORY_TRUSTED === "true",
+      addressTrust: env.FALLBACK_ADDRESS_HISTORY_TRUSTED === "true",
     },
   ].filter((e) => e.url);
   const observations: ChainObservation[] = [];
@@ -84,21 +288,44 @@ export async function observe(
       const firstAvailable = integer(await call("getFirstAvailableBlock"));
       const coversLifetime =
         BigInt(firstAvailable) <= BigInt(attempt.plan.contextSlot);
-      const height = integer(
-        await call("getBlockHeight", [{ commitment: "finalized" }]),
-      );
+      // Bind expiry height and the minimum evidence slot to one finalized bank.
+      // Separately sampled height/slot responses can disagree behind a load balancer.
+      const bank = await call("getEpochInfo", [{ commitment: "finalized" }]);
+      const height = integer(bank.blockHeight),
+        root = integer(bank.absoluteSlot);
+      if (
+        !Number.isSafeInteger(Number(height)) ||
+        !Number.isSafeInteger(Number(root))
+      )
+        throw new Error("Recovery bank cannot be represented safely");
       const valid = await call("isBlockhashValid", [
         attempt.plan.blockhash,
-        { commitment: "finalized" },
+        { commitment: "finalized", minContextSlot: Number(root) },
       ]);
+      const requireFreshBlockhashEvidence = () => {
+        if (
+          typeof valid?.value !== "boolean" ||
+          BigInt(integer(valid.context?.slot)) < BigInt(root)
+        )
+          throw new Error(
+            "Blockhash validity context is behind the recovery bank",
+          );
+      };
       let status: any = null,
         transaction: TransactionEvidence | null = null,
-        transactionFinalized = false;
+        transactionFinalized = false,
+        addressHistoryComplete = false;
       if (attempt.txid) {
         const s = await call("getSignatureStatuses", [
           [attempt.txid],
           { searchTransactionHistory: true },
         ]);
+        if (
+          !Array.isArray(s.value) ||
+          s.value.length !== 1 ||
+          s.value[0] === undefined
+        )
+          throw new Error("Invalid signature status response");
         status = s.value[0];
         // Preserve a credible success status even if the following metadata RPC
         // times out; that later transport error cannot erase prior success.
@@ -128,22 +355,72 @@ export async function observe(
               },
             ],
           );
-        if (transaction?.meta && !evidence) evidence = transaction;
-        if (transaction?.meta?.err === null) observedSuccess = true;
-        if (
-          transactionFinalized &&
-          transaction?.meta?.err === null &&
-          !finalizedSuccessEvidence
-        )
-          finalizedSuccessEvidence = transaction;
-        if (
-          transactionFinalized &&
-          transaction?.meta &&
-          transaction.meta.err !== null &&
-          !finalizedFailureEvidence
-        )
-          finalizedFailureEvidence = transaction;
+        // Positive metadata remains usable even if a separate status cache lags.
+        // Only absence needs both contexts fenced at the expired finalized bank.
+        if (status === null && !transaction?.meta) {
+          requireFreshBlockhashEvidence();
+          if (BigInt(integer(s.context?.slot)) < BigInt(root))
+            throw new Error(
+              "Signature absence context is behind the recovery bank",
+            );
+        }
+      } else if (
+        entry.trust &&
+        entry.addressTrust &&
+        coversLifetime &&
+        BigInt(height) > BigInt(attempt.plan.lastValidBlockHeight) &&
+        valid.value === false
+      ) {
+        requireFreshBlockhashEvidence();
+        original ??= verifyTransaction(unb64(attempt.wireBase64), attempt.plan);
+        if (!equalBytes(original.message, unb64(attempt.messageBase64)))
+          throw new Error("Stored unsigned message identity differs");
+        const matches = await scanFeePayerHistory(
+          call,
+          attempt,
+          original,
+          () => {
+            observedSuccess = true;
+          },
+        );
+        addressHistoryComplete = true;
+        for (const match of matches) {
+          if (
+            discovered &&
+            (discovered.txid !== match.txid ||
+              discovered.wireBase64 !== match.wireBase64 ||
+              canonical(discovered.transaction.meta?.err) !==
+                canonical(match.transaction.meta?.err))
+          )
+            discoveryConflict = true;
+          discovered ??= match;
+        }
+        if (matches.length) {
+          const match =
+            matches.find((m) => m.transaction.meta?.err === null) ?? matches[0];
+          transaction = match.transaction;
+          transactionFinalized = true;
+          status = {
+            confirmationStatus: "finalized",
+            err: transaction.meta!.err,
+          };
+        }
       }
+      if (transaction?.meta && !evidence) evidence = transaction;
+      if (transaction?.meta?.err === null) observedSuccess = true;
+      if (
+        transactionFinalized &&
+        transaction?.meta?.err === null &&
+        !finalizedSuccessEvidence
+      )
+        finalizedSuccessEvidence = transaction;
+      if (
+        transactionFinalized &&
+        transaction?.meta &&
+        transaction.meta.err !== null &&
+        !finalizedFailureEvidence
+      )
+        finalizedFailureEvidence = transaction;
       if (status?.confirmationStatus === "finalized" && !transaction?.meta)
         throw new Error("Finalized status needs transaction history metadata");
       observations.push({
@@ -161,6 +438,7 @@ export async function observe(
         transactionFound: !!transaction?.meta,
         transactionErr: transaction?.meta?.err ?? null,
         transactionFinalized,
+        ...(addressHistoryComplete ? { addressHistoryComplete: true } : {}),
       });
     } catch (error) {
       // Keep only our own error categories/status, never provider bodies, URLs,
@@ -199,6 +477,8 @@ export async function observe(
     finalizedFailureEvidence,
     finalizedSuccessEvidence,
     observedSuccess,
+    discovered,
+    discoveryConflict,
   };
 }
 export async function reconcileAttempt(
@@ -212,8 +492,35 @@ export async function reconcileAttempt(
     finalizedFailureEvidence,
     finalizedSuccessEvidence,
     observedSuccess,
+    discovered,
+    discoveryConflict,
   } = await observe(env, old);
-  const decision = reconcileDecision(old, observations);
+  const messageHistoryComplete =
+    observations.length >= 2 &&
+    observations.every((o) => o.healthy && o.addressHistoryComplete) &&
+    new Set(observations.map((o) => o.endpoint)).size >= 2;
+  // Incomplete discovery must not promote an identity and bypass the mandatory
+  // message-history scan on the next reconciliation (especially for failures).
+  const identified: Attempt =
+    discovered && !discoveryConflict && messageHistoryComplete
+      ? {
+          ...old,
+          txid: discovered.txid,
+          wireBase64: discovered.wireBase64,
+          fullWireBase64: discovered.wireBase64,
+          signatures: discovered.signatures,
+        }
+      : old;
+  const decision = reconcileDecision(identified, observations);
+  if (
+    discoveryConflict ||
+    (!old.txid && discovered && !messageHistoryComplete)
+  ) {
+    decision.state = "STATUS_UNKNOWN";
+    decision.safeToRetry = false;
+    decision.reason =
+      "Original message history is conflicting or incomplete; retain the original attempt";
+  }
   if (observedSuccess && !["CONFIRMED", "FINALIZED"].includes(decision.state)) {
     decision.state = "STATUS_UNKNOWN";
     decision.safeToRetry = false;
@@ -221,7 +528,7 @@ export async function reconcileAttempt(
       "Success was observed but its metadata or finality is unresolved; no replacement is authorized";
   }
   const next: Attempt = {
-    ...old,
+    ...identified,
     state: decision.state,
     safeToRetry: decision.safeToRetry,
     successObserved:

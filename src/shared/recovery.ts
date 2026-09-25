@@ -12,6 +12,9 @@ export interface ChainObservation {
   transactionFound: boolean;
   transactionErr: unknown | null;
   transactionFinalized: boolean;
+  // Only set after a complete bounded fee-payer address-index scan, including
+  // original-blockhash anchoring and finalized metadata for every candidate.
+  addressHistoryComplete?: boolean;
   // Diagnostics never participate in an expiry/failure decision.
   failureStage?: string;
   failureKind?:
@@ -50,6 +53,14 @@ export function reconcileDecision(
   );
   if (!attempt.txid) {
     if (
+      attempt.successObserved ||
+      attempt.state === "CONFIRMED" ||
+      attempt.receipt?.verified
+    )
+      return hold(
+        "Previously observed success cannot be cleared by an address history scan",
+      );
+    if (
       stillLive &&
       attempt.submissionStartedAt === null &&
       !attempt.stopRequested
@@ -58,6 +69,28 @@ export function reconcileDecision(
         state: "SIGNING",
         safeToRetry: false,
         reason: "Original message remains valid for signature collection",
+      };
+    const complete = observations.filter(
+      (o) =>
+        o.healthy &&
+        o.historyTrusted &&
+        o.addressHistoryComplete === true &&
+        BigInt(o.finalizedBlockHeight) >
+          BigInt(attempt.plan.lastValidBlockHeight) &&
+        o.blockhashValid === false &&
+        o.status === null &&
+        !o.transactionFound,
+    );
+    if (
+      observations.length >= 2 &&
+      complete.length === observations.length &&
+      new Set(complete.map((o) => o.endpoint)).size >= 2
+    )
+      return {
+        state: "EXPIRED_UNLANDED",
+        safeToRetry: true,
+        reason:
+          "Original message expired; both independently trusted complete fee-payer histories prove no matching transaction",
       };
     return hold(
       "No locally derived transaction ID yet; keep locks because an offline signature may exist",
