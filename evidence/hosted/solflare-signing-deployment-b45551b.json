@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-09-25T17:23:57.594Z",
+  "origin": "https://barterbook-devnet.rileycreighton.workers.dev",
+  "workerVersion": "dd5624c1-15b3-4115-a30b-06cd53c31aba",
+  "buildId": "b45551b64f83c4790a6a0ebe233a8a688dac0f3b",
+  "health": {
+    "name": "BarterBook",
+    "cluster": "devnet",
+    "settlementEnabled": true,
+    "rpcConfigured": true
+  },
+  "assets": [
+    {
+      "path": "index.html",
+      "sha256": "e9c344cf84b48f8f247756da4998a82fc933c9ada819ee950469a9c5904165eb",
+      "matches": true
+    },
+    {
+      "path": "assets/App-DKdZjmVd.js",
+      "sha256": "9a144af4efc8788a6593fc69732097a60a07321b823f4aff4dc1cfc650de57c5",
+      "matches": true
+    },
+    {
+      "path": "assets/index-B8pXj5kH.css",
+      "sha256": "2a2b323d32977f23197e36ec0056e0c8441ba1123efe283eee134a609c366d66",
+      "matches": true
+    },
+    {
+      "path": "assets/index-n5eabISD.js",
+      "sha256": "2ff7a75215fe04bb0c8ee304254cfa1b70a904eb59496e0815725485f0ef8608",
+      "matches": true
+    }
+  ],
+  "historyReceiptCount": 2,
+  "historyResponseKeys": [
+    "receipts",
+    "limit",
+    "nextCursor"
+  ],
+  "preDeploymentD1Bookmark": "0000001b-00000000-000050f1-dc5733c1fca7beec2bbbbb3a1de0111d",
+  "limitations": [
+    "Public endpoint and served-byte verification only. Actual Solflare browser signing and new settlement require the owner test."
+  ]
+}
